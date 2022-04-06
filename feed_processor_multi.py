@@ -22,6 +22,7 @@ import pytz
 import requests
 import requests_cache
 import unshortenit
+from better_profanity import profanity
 from bs4 import BeautifulSoup as BS
 from pytz import timezone
 from requests.exceptions import ConnectTimeout, HTTPError, InvalidURL, ReadTimeout, SSLError, TooManyRedirects
@@ -143,6 +144,10 @@ def fixup_item(item, my_feed):
 
         if (urlparse(item['link']).hostname or '') not in my_feed["destination_domains"]:
             return None
+
+    # filter the offensive articles
+    if profanity.contains_profanity(item.get("title")):
+        return None
 
     try:
         out_item['url'] = unshortener.unshorten(item['link'])
