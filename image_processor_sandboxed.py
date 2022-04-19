@@ -122,7 +122,7 @@ class ImageProcessor():
                 return cache_fn
 
         try:
-            content = get_with_max_size(url, 50000000)  # 5mb max
+            content = get_with_max_size(url, 200000000)  # 200mb max
         except requests.exceptions.ReadTimeout:
             return None
         except ValueError:
