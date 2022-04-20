@@ -45,6 +45,10 @@ def resize_and_pad_image(image_bytes, width, height, size, cache_path):
 
                 video_stream = cv2.VideoCapture(temp.name)
                 success, image = video_stream.read()
+                i = 0
+                while success and i <= 3:
+                    success, image = video_stream.read()
+                    i = i + 1
 
                 name = 'feed/image_from_video' + '.jpg'
                 cv2.imwrite(name, image)
