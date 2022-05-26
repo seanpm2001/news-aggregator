@@ -248,7 +248,7 @@ def check_images_in_item(item, feeds):
         if item['img'] == None:
             item['img'] = ""
 
-    item['padded_img'] = ""
+    item['padded_img'] = item["img"]
     return item
 
 
