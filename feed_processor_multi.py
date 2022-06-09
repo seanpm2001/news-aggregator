@@ -291,9 +291,6 @@ class FeedProcessor():
         logging.info("Checking images for %s items...", len(items))
         with multiprocessing.Pool(config.CONCURRENCY) as pool:
             for item in pool.imap(partial(check_images_in_item, feeds=self.feeds), items):
-                if not item:
-                    continue
-
                 out_items.append(item)
 
         # logging.info("Caching images for %s items...", len(out_items))
