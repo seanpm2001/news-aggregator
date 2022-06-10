@@ -3,7 +3,6 @@ import html
 import json
 import logging
 import math
-import mimetypes
 import multiprocessing
 import os
 import shutil
@@ -211,11 +210,6 @@ def fixup_item(item, my_feed):
     return out_item
 
 
-def is_url_image(url):
-    mimetype, encoding = mimetypes.guess_type(url)
-    return mimetype and mimetype.startswith('image')
-
-
 def check_images_in_item(item, feeds):
     if item['img']:
         try:
@@ -261,9 +255,6 @@ def check_images_in_item(item, feeds):
             item['img'] = urlunparse(parsed_img_url._replace(scheme='https'))
         else:
             item['img'] = ""
-
-    if not is_url_image(item["img"]):
-        item['img'] = ""
 
     item['padded_img'] = item["img"]
     return item
