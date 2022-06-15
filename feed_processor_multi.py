@@ -215,7 +215,7 @@ def check_images_in_item(item, feeds):
         try:
             parsed = urlparse(item['img'])
             if not parsed.scheme:
-                parsed = parsed._replace(scheme='http')
+                parsed = parsed._replace(scheme='https')
                 url = urlunparse(parsed)
             else:
                 url = item['img']
@@ -247,6 +247,16 @@ def check_images_in_item(item, feeds):
             logging.error("Error parsing: %s -- %s", item['url'], e)
         if item['img'] == None:
             item['img'] = ""
+
+    if not item["img"] == "":
+        parsed_img_url = urlparse(item['img'])
+
+        if len(parsed_img_url.path) >= 4:
+            item['img'] = urlunparse(parsed_img_url._replace(scheme='https'))
+        else:
+            item['img'] = ""
+
+    item['padded_img'] = item["img"]
     return item
 
 
@@ -274,12 +284,12 @@ class FeedProcessor():
             for item in pool.imap(partial(check_images_in_item, feeds=self.feeds), items):
                 out_items.append(item)
 
-        logging.info("Caching images for %s items...", len(out_items))
-        with multiprocessing.Pool(config.CONCURRENCY) as pool:
-            result = []
-            for item in pool.imap(process_image, out_items):
-                result.append(item)
-            return result
+        # logging.info("Caching images for %s items...", len(out_items))
+        # with multiprocessing.Pool(config.CONCURRENCY) as pool:
+        #     result = []
+        #     for item in pool.imap(process_image, out_items):
+        #         result.append(item)
+        return out_items
 
     def download_feeds(self, my_feeds):
         feed_cache = {}
