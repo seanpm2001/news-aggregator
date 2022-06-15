@@ -24,8 +24,6 @@ with open(in_path, 'r') as f:
         if len(row[2].strip()) == 0:
             # no title = no use
             continue
-
-        row[2] = row[2].replace('&amp;', '&')  # workaround limitation in bleach
         feed_url = row[1]
         u = urlparse(feed_url)
         u = u._replace(scheme="https")
