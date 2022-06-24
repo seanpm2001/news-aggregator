@@ -289,7 +289,7 @@ class FeedProcessor():
             result = []
             for item in pool.imap(process_image, out_items):
                 result.append(item)
-        return out_items
+        return result
 
     def download_feeds(self, my_feeds):
         feed_cache = {}
