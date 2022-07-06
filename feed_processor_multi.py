@@ -64,7 +64,6 @@ def get_with_max_size(url, max_bytes):
 
 
 def process_image(item):
-    item['padded_img'] = ''  # requested stop gap to fix client parser
     if item['img'] != '':
         try:
             cache_fn = im_proc.cache_image(item['img'])
@@ -72,12 +71,13 @@ def process_image(item):
             cache_fn = None
             logging.error("im_proc.cache_image failed [%s]: %s -- %s", e.__class__.__name__, item['img'], e)
         if cache_fn:
-            item['img'] = "%s/brave-today/cache/%s" % (config.PCDN_URL_BASE, cache_fn)
-            item['padded_img'] = item['img'] + ".pad"
+            if cache_fn.startswith("https"):
+                item['padded_img'] = cache_fn
+            else:
+                item['padded_img'] = "%s/brave-today/cache/%s" % (config.PCDN_URL_BASE, cache_fn) + ".pad"
         else:
             item['img'] = ""
-            item['padded_img'] = ''
-    del item['img']
+            item['padded_img'] = ""
     return item
 
 
@@ -284,12 +284,12 @@ class FeedProcessor():
             for item in pool.imap(partial(check_images_in_item, feeds=self.feeds), items):
                 out_items.append(item)
 
-        # logging.info("Caching images for %s items...", len(out_items))
-        # with multiprocessing.Pool(config.CONCURRENCY) as pool:
-        #     result = []
-        #     for item in pool.imap(process_image, out_items):
-        #         result.append(item)
-        return out_items
+        logging.info("Caching images for %s items...", len(out_items))
+        with multiprocessing.Pool(config.CONCURRENCY) as pool:
+            result = []
+            for item in pool.imap(process_image, out_items):
+                result.append(item)
+        return result
 
     def download_feeds(self, my_feeds):
         feed_cache = {}
