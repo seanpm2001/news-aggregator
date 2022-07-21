@@ -324,7 +324,7 @@ class FeedProcessor():
         variety_by_source = {}
         for entry in entries:
             seconds_ago = (datetime.utcnow() - dateparser.parse(entry['publish_time'])).total_seconds()
-            recency = math.log(seconds_ago)
+            recency = math.log(seconds_ago) if seconds_ago > 0 else 0.1
             if entry['publisher_id'] in variety_by_source:
                 last_variety = variety_by_source[entry['publisher_id']]
             else:
