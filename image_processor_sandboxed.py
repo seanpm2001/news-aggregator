@@ -109,6 +109,8 @@ class ImageProcessor():
             return None
         except ValueError:
             return None  # skipping (image exceeds maximum size)
+        except requests.exceptions.SSLError:
+            return None
         except requests.exceptions.HTTPError as e:
             if e.response.status_code not in (403, 429, 500, 502, 503):
                 logging.error("Failed to get image [%s]: %s", e.response.status_code, url)
