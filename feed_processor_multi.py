@@ -411,17 +411,17 @@ if __name__ == '__main__':
         category = sys.argv[1]
     else:
         category = 'feed'
-    with open("%s.json" % (category)) as f:
+    with open(f"{category}.json") as f:
         feeds = json.loads(f.read())
-        fp.aggregate(feeds, "feed/%s.json-tmp" % (category))
-        shutil.copyfile("feed/%s.json-tmp" % (category), "feed/%s.json" % (category))
+        fp.aggregate(feeds, f"feed/{category}.json-tmp")
+        shutil.copyfile(f"feed/{category}.json-tmp", f"feed/{category}.json")
         if not config.NO_UPLOAD:
-            upload_file("feed/%s.json" % (category), config.PUB_S3_BUCKET,
-                        "brave-today/%s%s.json" % (category, config.SOURCES_FILE.strip("sources")))
+            upload_file(f"feed/{category}.json", config.PUB_S3_BUCKET,
+                        f"brave-today/{category}{config.SOURCES_FILE.replace('sources', '')}.json")
             # Temporarily upload also with incorrect filename as a stopgap for
             # https://github.com/brave/brave-browser/issues/20114
             # Can be removed once fixed in the brave-core client for all Desktop users.
-            upload_file("feed/%s.json" % (category), config.PUB_S3_BUCKET,
-                        "brave-today/%s%sjson" % (category, config.SOURCES_FILE.strip("sources")))
+            upload_file(f"feed/{category}.json", config.PUB_S3_BUCKET,
+                        f"brave-today/{category}{config.SOURCES_FILE.replace('sources', '')}json")
     with open("report.json", 'w') as f:
         f.write(json.dumps(fp.report))
