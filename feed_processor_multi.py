@@ -45,7 +45,7 @@ logging.info("Using %s processes for parallel tasks.", config.CONCURRENCY)
 
 
 def get_with_max_size(url, max_bytes):
-    response = requests.get(url, headers={'User-Agent': USER_AGENT}, stream=True, timeout=10, allow_redirects=False)
+    response = requests.get(url, headers={'User-Agent': USER_AGENT}, stream=True)
     response.raise_for_status()
 
     if response.status_code != 200:  # raise for status is not working with 3xx error
@@ -138,12 +138,12 @@ def fixup_item(item, my_feed):
             return None  # skip (can't find link)
 
     # check if the article belongs to allowed domains
-    if item.get('link'):
-        if not my_feed.get('destination_domains'):
-            return None
-
-        if (urlparse(item['link']).hostname or '') not in my_feed["destination_domains"]:
-            return None
+    # if item.get('link'):
+    #     if not my_feed.get('destination_domains'):
+    #         return None
+    #
+    #     if (urlparse(item['link']).hostname or '') not in my_feed["destination_domains"]:
+    #         return None
 
     # filter the offensive articles
     if profanity.contains_profanity(item.get("title")):
