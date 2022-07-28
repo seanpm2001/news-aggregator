@@ -138,12 +138,12 @@ def fixup_item(item, my_feed):
             return None  # skip (can't find link)
 
     # check if the article belongs to allowed domains
-    # if item.get('link'):
-    #     if not my_feed.get('destination_domains'):
-    #         return None
-    #
-    #     if (urlparse(item['link']).hostname or '') not in my_feed["destination_domains"]:
-    #         return None
+    if item.get('link'):
+        if not my_feed.get('destination_domains'):
+            return None
+
+        if (urlparse(item['link']).hostname or '') not in my_feed["destination_domains"]:
+            return None
 
     # filter the offensive articles
     if profanity.contains_profanity(item.get("title")):
