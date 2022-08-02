@@ -42,7 +42,7 @@ with open(in_path, 'r') as f:
         else:
             content_type = row[7]
 
-        channels = ""
+        channels = []
         if len(row) >= 11:
             channels = [i.strip() for i in row[10].split(";")]
 
