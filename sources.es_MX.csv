@@ -1,14 +1,14 @@
 Domain,Title,Feed,Category,Status,Score,OG-Images,Content Type,Creative Instance ID,Channels,Rank
-elpais.com,EL PAÍS,https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/america/portada,Top News,Enabled,,,article,,"Top Sources, Top News",1
-xataka.com,Xataka,http://feeds.weblogssl.com/xataka2,Technology,Enabled,,,article,,"Top Sources, Technology",2
-as.com,Diario AS,https://as.com/rss/diarioas/portada.xml,Sports,Enabled,,,article,,"Top Sources, Sports",3
-elfinanciero.com.mx,El Financiero,https://www.elfinanciero.com.mx/rss/,Business,Enabled,,,article,,"Top Sources, Business",4
-marca.com,Marca,https://www.marca.com/rss/googlenews/portada.xml,Sports,Enabled,,,article,,"Top Sources, Sports",5
-definicion.de,Definicion,https://definicion.de/feed/,Top News,Enabled,,,article,,"Top Sources, Top News",6
-elmundo.es,El Mundo,http://rss.elmundo.es/rss/descarga.htm?data2=9,Top News,Enabled,,,article,,"Top Sources, Top News",7
-milenio.com,Milenio,https://www.milenio.com/rss,Top News,Enabled,,,article,,"Top Sources, Top News",8
-expansion.mx,Expansión,https://www.expansion.mx/rss,Top News,Enabled,,,article,,"Top Sources, Top News",9
-xatakandroid.com,Xataka Android,http://www.xatakandroid.com/index.xml,Technology,Enabled,,,article,,"Top Sources, Technology",10
+elpais.com,EL PAÍS,https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/america/portada,Top News,Enabled,,,article,,Top Sources; Top News,1
+xataka.com,Xataka,http://feeds.weblogssl.com/xataka2,Technology,Enabled,,,article,,Top Sources; Technology,2
+as.com,Diario AS,https://as.com/rss/diarioas/portada.xml,Sports,Enabled,,,article,,Top Sources; Sports,3
+elfinanciero.com.mx,El Financiero,https://www.elfinanciero.com.mx/rss/,Business,Enabled,,,article,,Top Sources; Business,4
+marca.com,Marca,https://www.marca.com/rss/googlenews/portada.xml,Sports,Enabled,,,article,,Top Sources; Sports,5
+definicion.de,Definicion,https://definicion.de/feed/,Top News,Enabled,,,article,,Top Sources; Top News,6
+elmundo.es,El Mundo,http://rss.elmundo.es/rss/descarga.htm?data2=9,Top News,Enabled,,,article,,Top Sources; Top News,7
+milenio.com,Milenio,https://www.milenio.com/rss,Top News,Enabled,,,article,,Top Sources; Top News,8
+expansion.mx,Expansión,https://www.expansion.mx/rss,Top News,Enabled,,,article,,Top Sources; Top News,9
+xatakandroid.com,Xataka Android,http://www.xatakandroid.com/index.xml,Technology,Enabled,,,article,,Top Sources; Technology,10
 eluniversal.com.mx,EL UNIVERSAL,https://www.eluniversal.com.mx/rss.xml,Top News,Disabled,,,article,,Top News,11
 redalyc.org,Redalyc,https://xmljatsredalyc.org/feed/,Science,Disabled,,,article,,Science,12
 abc.es,ABC,http://www.abc.es/rss/feeds/abc_ultima.xml,Top News,Disabled,,,article,,Top News,13
