@@ -418,10 +418,5 @@ if __name__ == '__main__':
         if not config.NO_UPLOAD:
             upload_file(f"feed/{category}.json", config.PUB_S3_BUCKET,
                         f"brave-today/{category}{config.SOURCES_FILE.replace('sources', '')}.json")
-            # Temporarily upload also with incorrect filename as a stopgap for
-            # https://github.com/brave/brave-browser/issues/20114
-            # Can be removed once fixed in the brave-core client for all Desktop users.
-            upload_file(f"feed/{category}.json", config.PUB_S3_BUCKET,
-                        f"brave-today/{category}{config.SOURCES_FILE.replace('sources', '')}json")
     with open("report.json", 'w') as f:
         f.write(json.dumps(fp.report))
