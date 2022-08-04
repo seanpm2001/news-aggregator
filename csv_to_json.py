@@ -3,11 +3,16 @@ import hashlib
 import json
 import sys
 from urllib.parse import urlparse, urlunparse
-
+from typing import Dict
 import bleach
 
 import config
+from utils import ensure_scheme
 from upload import upload_file
+
+favicon_lookup: Dict[str, str] = None
+with open(f'{config.FAVICON_LOOKUP_FILE}.json', 'r') as f:
+    favicon_lookup = json.load(f)
 
 in_path = "{}.csv".format(config.SOURCES_FILE)
 out_path = sys.argv[1]
@@ -42,6 +47,9 @@ with open(in_path, 'r') as f:
         else:
             content_type = row[7]
 
+        domain = ensure_scheme(domain)
+        favicon_url = favicon_lookup[domain] if domain in favicon_lookup else ''
+
         channels = []
         if len(row) >= 11:
             channels = [i.strip() for i in row[10].split(";")]
@@ -58,13 +66,14 @@ with open(in_path, 'r') as f:
                   'default': default,
                   'publisher_name': row[2],
                   'content_type': content_type,
-                  'publisher_domain': row[0],
+                  'publisher_domain': domain,
                   'publisher_id': hashlib.sha256(original_feed.encode('utf-8') if original_feed
                                                  else feed_url.encode('utf-8')).hexdigest(),
                   'max_entries': 20,
                   'og_images': og_images,
                   'creative_instance_id': row[8],
                   'url': feed_url,
+                  'favicon_url': favicon_url,
                   'destination_domains': row[9],
                   'channels': channels,
                   'rank': rank
@@ -77,11 +86,11 @@ with open(in_path, 'r') as f:
              'category': row[3],
              'site_url': row[0],
              'feed_url': row[1],
+             'favicon_url': record['favicon_url'],
              'score': float(row[5] or 0),
              'destination_domains': row[9].split(';'),
              'channels': channels,
-             'rank': rank
-             }
+             'rank': rank}
 with open(out_path, 'w') as f:
     f.write(json.dumps(by_url))
 
