@@ -84,7 +84,7 @@ def get_icon(icon_url: str) -> Image:
     # Failed to download the image, or the thing we downloaded wasn't valid.
     except: return None
 
-def get_best_image(site_url: str):
+def get_best_image(site_url: str) -> tuple[Image, str]:
     sources = [get_manifest_icon_urls, get_apple_icon_urls, get_open_graph_icon_urls]
 
     soup = get_soup(site_url)
@@ -93,8 +93,9 @@ def get_best_image(site_url: str):
     # The sources are in preference order. We take the largest image, if any
     # If a source has no images, we fall through to the next one.
     for source in sources:
-        icons = filter(lambda x: x is not None, [get_icon(urllib.parse.urljoin(site_url, url)) for url in source(site_url, soup)])
-        icons = list(reversed(sorted(icons, key=lambda x: min(x.size))))
+        icon_urls = [urllib.parse.urljoin(site_url, url) for url in source(site_url, soup)]
+        icons = filter(lambda x: x[0] is not None, [(get_icon(url), url) for url in icon_urls])
+        icons = list(reversed(sorted(icons, key=lambda x: min(x[0].size))))
         if len(icons) != 0:
             return icons[0]
 
@@ -146,7 +147,15 @@ def get_background_color(image: Image):
     color = colors[len(colors) // 2]
     return hex_color(color)
 
+def process_site(domain: str):
+    if not domain.startswith('http'):
+        domain = f'https://{domain}'
+
+    (image, image_url) = get_best_image(domain)
+    background_color = get_background_color(image)
+
+    return (domain, image_url, background_color)
+
 
 if __name__ == '__main__':
-    image = get_best_image('https://economist.com')
-    print(image, get_background_color(image))
+    print(process_site('https://economist.com'))
