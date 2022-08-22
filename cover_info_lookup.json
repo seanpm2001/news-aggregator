@@ -1,0 +1,3310 @@
+{
+    "https://carscoops.com": {
+        "cover_url": "https://www.carscoops.com/wp-content/uploads/2019/03/e20906f6-csp-icon-red25px.png",
+        "background_color": "#e21313"
+    },
+    "https://bobvila.com": {
+        "cover_url": "https://bobvila.com/android-chrome-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://gizmodo.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_200,q_80,w_200/fdj3buryz5nuzyf2k620.png",
+        "background_color": "#9c9c9c"
+    },
+    "https://bukkenfan.jp/": {
+        "cover_url": "https://bukkenfan.jp/images/favicon-512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://compradiccion.com": {
+        "cover_url": "https://img.weblogssl.com/css/compradiccion/p/common/apple-touch-icon.png",
+        "background_color": "#70b085"
+    },
+    "https://mindbodygreen.com": {
+        "cover_url": "https://www.mindbodygreen.com/img/icons/android-chrome-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://blog.cosasmolonas.com": {
+        "cover_url": "https://blog.cosasmolonas.com/wp-content/uploads/2021/08/heart-favicon.png",
+        "background_color": "#000000"
+    },
+    "https://nypost.com": {
+        "cover_url": "https://nypost.com/wp-content/themes/nypost-2016/static/images/favicon-nypost/icon-512x512.png",
+        "background_color": "#cc0000"
+    },
+    "https://motherjones.com": {
+        "cover_url": "https://www.motherjones.com/wp-content/uploads/2017/09/cropped-favicon-512x512.png?w=192",
+        "background_color": "#f1632f"
+    },
+    "https://filmschoolrejects.com": {
+        "cover_url": "https://filmschoolrejects.com/wp-content/uploads/2021/07/cropped-fsr-site-icon.png",
+        "background_color": "#051236"
+    },
+    "https://metacritic.com": {
+        "cover_url": "https://metacritic.com/MC_favicon.png",
+        "background_color": "#ffce34"
+    },
+    "https://news.yahoo.co.jp/search/?p=%E6%97%A5%E5%88%8A%E3%82%B2%E3%83%B3%E3%83%80%E3%82%A4DIGITAL&vaop=a&to=2&st=n&c_n=c_spo/": {
+        "cover_url": "https://s.yimg.jp/images/news-web/all/images/ogp_default.png",
+        "background_color": "#4b6e93"
+    },
+    "https://pagesix.com": {
+        "cover_url": "https://pagesix.com/wp-content/themes/nypost-2016/static/images/favicon-pagesix/icon-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://matadornetwork.com": {
+        "cover_url": "https://matadornetwork.com/apple-touch-icon.png",
+        "background_color": "#436588"
+    },
+    "https://firstshowing.net": {
+        "cover_url": "https://firstshowing.net/android-chrome-384x384.png",
+        "background_color": "#b30808"
+    },
+    "https://rinconpsicologia.com": {
+        "cover_url": "https://rinconpsicologia.com/wp-content/uploads/2019/05/cropped-Icono-512-192x192.png",
+        "background_color": "#dd5d24"
+    },
+    "https://kuragebunch.com/": {
+        "cover_url": "https://cdn.kuragebunch.com/images/android-icon-192.png?1661151251",
+        "background_color": "#ffffff"
+    },
+    "https://cnet.com": {
+        "cover_url": "https://cnet.com/android-chrome-256x256.png",
+        "background_color": "#e71f1f"
+    },
+    "https://www3.nhk.or.jp/news/": {
+        "cover_url": "https://www3.nhk.or.jp/news/parts16/images/favicon/512x512.png",
+        "background_color": "#0076d1"
+    },
+    "https://healthtechnews.jp/": {
+        "cover_url": "https://healthtechnews.jp/wp-content/uploads/fbrfg/android-chrome-192x192.png?v=kPPYOeB6e4",
+        "background_color": "#51d2cb"
+    },
+    "https://ejerciciosencasa.as.com": {
+        "cover_url": "https://ejerciciosencasa.as.com/wp-content/uploads/2016/01/cropped-favicon-192x192.png",
+        "background_color": "#247ac2"
+    },
+    "https://theepochtimes.com": {
+        "cover_url": "https://theepochtimes.com/EET192.png",
+        "background_color": "#0e2748"
+    },
+    "https://news.yahoo.co.jp/": {
+        "cover_url": "https://s.yimg.jp/images/news-web/all/images/ogp_default.png",
+        "background_color": "#4b6e93"
+    },
+    "https://clarin.com/deportes/": {
+        "cover_url": "https://clarin.com/android-icon-192x192.png",
+        "background_color": "#d60026"
+    },
+    "https://parabrisas.perfil.com": {
+        "cover_url": "https://parabrisas.perfil.com/img/favicon/android-icon-192x192.png",
+        "background_color": "#e0040c"
+    },
+    "https://9to5mac.com": {
+        "cover_url": "https://9to5mac.com/wp-content/themes/9to5-2015/images/favicons/9to5mac/icon-192x192.png",
+        "background_color": "#004b7d"
+    },
+    "https://axios.com": {
+        "cover_url": "https://assets.axios.com/203e9f932cc97836ac2ff4c6c982676c.png",
+        "background_color": "#222222"
+    },
+    "https://inverse.com": {
+        "cover_url": "https://cdn2.bustle.com/2022/inverse/icon-8e233159b3.png",
+        "background_color": "#ff6272"
+    },
+    "https://theguardian.com": {
+        "cover_url": "https://assets.guim.co.uk/images/favicons/fee5e2d638d1c35f6d501fa397e53329/152x152.png",
+        "background_color": "#ffffff"
+    },
+    "https://looper.com": {
+        "cover_url": "https://www.looper.com/img/Looper_RGB.png",
+        "background_color": "#000000"
+    },
+    "https://elsaltodiario.com": {
+        "cover_url": "https://elsaltodiario.com/uploads/avatars/thumb/AVATAR_TRANSPARENTE.png?v=63760661653",
+        "background_color": "#1a171b"
+    },
+    "https://scientificamerican.com": {
+        "cover_url": "https://scientificamerican.com/public/resources/favicons/favicon-196-f10395ba7ecf07756e4b5a82c4795b61.png",
+        "background_color": "#ffffff"
+    },
+    "https://flowingdata.com": {
+        "cover_url": "https://flowingdata.com/wp-content/uploads/2014/10/logo-lone-square-600-5451c585_site_icon-256x256.png",
+        "background_color": "#821523"
+    },
+    "https://investor-a.com/": {
+        "cover_url": "https://ango-production.s3.amazonaws.com/wp-content/uploads/2017/12/21220802/cropped-ANGO_favicon_32-192x192.png",
+        "background_color": "#000000"
+    },
+    "https://daigoblog.jp/": {
+        "cover_url": "https://daigoblog.jp/wp-content/uploads/2019/07/nukomiko_ic.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://tradebitlab.com/": {
+        "cover_url": "https://tradebitlab.com/wp/wp-content/uploads/2016/12/cropped-14717278_541977889330691_2427739309898601417_n-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://bitdays.jp/": {
+        "cover_url": "https://bitdays.jp/wp-content/uploads/2019/12/cropped-icon-192x192.png",
+        "background_color": "#333333"
+    },
+    "https://microsiervos.com": {
+        "cover_url": "https://microsiervos.com/android-chrome-512x512.png",
+        "background_color": "#b4cde9"
+    },
+    "https://appuals.com": {
+        "cover_url": "https://cdn.appuals.com/wp-content/uploads/2021/06/cropped-cropped-512-1-192x192.png",
+        "background_color": "#0e0d11"
+    },
+    "https://dailywire.com": {
+        "cover_url": "https://dailywire.com/images/icons-512.png",
+        "background_color": "#0d0d0d"
+    },
+    "https://pcgamer.com": {
+        "cover_url": "https://vanilla.futurecdn.net/pcgamer/521446/apple-touch-icon.png",
+        "background_color": "#d91e25"
+    },
+    "https://bitcoin-yoro.com": {
+        "cover_url": "https://bitcoin-yoro.com/wp-content/uploads/2017/07/cropped-heart-192x192.png.pagespeed.ce._LAWzqg81r.png",
+        "background_color": "#e04e5f"
+    },
+    "https://space.com": {
+        "cover_url": "https://vanilla.futurecdn.net/space/521446/apple-touch-icon.png",
+        "background_color": "#000000"
+    },
+    "https://etonline.com": {
+        "cover_url": "https://etonline.com/img/favicons/android-icon-192x192.png",
+        "background_color": "#ffbe20"
+    },
+    "https://maldita.es": {
+        "cover_url": "https://maldita.es/images/logos/maldita_logo_cuadrado_grande.png",
+        "background_color": "#000000"
+    },
+    "https://cnet.com/es/#ftag=ESPdf5230a": {
+        "cover_url": "https://cnet.com/android-chrome-256x256.png",
+        "background_color": "#e71f1f"
+    },
+    "https://www.carview.co.jp/": {
+        "cover_url": "https://www.carview.co.jp/wp-content/uploads/2019/03/ogp_img.png",
+        "background_color": "#94bd09"
+    },
+    "https://mejorconsalud.as.com": {
+        "cover_url": "https://cdn.atomik.vip/themes/mcs/apple-touch-icon_192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://fashion-news.doorblog.jp/": {
+        "cover_url": "https://fashion-news.net/wp-content/uploads/2022/05/cropped-siteiconfaban-192x192.jpg",
+        "background_color": "#000000"
+    },
+    "https://tonogata.hatenablog.com/": {
+        "cover_url": "https://tonogata.hatenablog.com/icon/link",
+        "background_color": "#56504c"
+    },
+    "https://forbes.com": {
+        "cover_url": "https://i.forbesimg.com/media/assets/appicons/forbes-app-icon_144x144.png",
+        "background_color": "#2c2c2c"
+    },
+    "https://expansion.mx": {
+        "cover_url": "https://expansion.mx/apple-touch-icon.png",
+        "background_color": "#f83831"
+    },
+    "https://bittimes.net/": {
+        "cover_url": "https://bittimes.net/wp-content/themes/bittimes_for_pc/img/apple-touch-icon-180x180.png",
+        "background_color": "#e95411"
+    },
+    "https://onemileatatime.com": {
+        "cover_url": "https://cdn.onemileatatime.com/wp-content/uploads/2021/02/cropped-cropped-favicon.png?width=192&auto_optimize=low&quality=75&height=192&aspect_ratio=1%3A1",
+        "background_color": "#ff4a00"
+    },
+    "https://eleconomista.com.mx": {
+        "cover_url": "https://eleconomista.com.mx/__public/ac558515aae5b22f/images/social/android-icon-192x192.png",
+        "background_color": "#222222"
+    },
+    "https://buzzfeed.com": {
+        "cover_url": "https://buzzfeed.com/static-assets/img/buzzfeed_webapp_logo.0ea3c59fd2aeb164cfdfe77e74ab3aa2.png",
+        "background_color": "#df3543"
+    },
+    "https://brave.com": {
+        "cover_url": "https://brave.com/static-assets/images/cropped-brave_appicon_release-192x192.png",
+        "background_color": "#fb2d04"
+    },
+    "https://crea.bunshun.jp/list/genre/trip/": {
+        "cover_url": "https://crea.ismcdn.jp/common/crea/images/chrome-icon.png",
+        "background_color": "#111111"
+    },
+    "https://coin-otaku.com/": {
+        "cover_url": "https://coin-otaku.com/wp-content/uploads/2018/09/cropped-3137309736a7de15146376744fc17375-192x192.jpg",
+        "background_color": "#464648"
+    },
+    "https://slashfilm.com": {
+        "cover_url": "https://www.slashfilm.com/img/slashfilm-logo.png",
+        "background_color": "#20bfe1"
+    },
+    "https://algarabia.com": {
+        "cover_url": "https://algarabia.com/wp-content/uploads/2021/06/favicon.png",
+        "background_color": "#0b1213"
+    },
+    "https://rikei-miler.com/": {
+        "cover_url": "https://i0.wp.com/rikei-miler.com/wp-content/uploads/2015/12/freefont_logo_nicomoji-plus_v09.png?fit=192%2C192&ssl=1",
+        "background_color": "#fafafa"
+    },
+    "https://co-trip.jp/": {
+        "cover_url": "https://co-trip.jp/common/images/ogp_thumbnail.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://www.realtokyoestate.co.jp/": {
+        "cover_url": "https://s3-ap-northeast-1.amazonaws.com/rincglobal/tokyo/global/trf_ogp.png",
+        "background_color": "#846757"
+    },
+    "https://culturizando.com": {
+        "cover_url": "https://culturizando.com/wp-content/uploads/2018/01/cropped-CULTURIZANDO-favicon-192x192.png",
+        "background_color": "#ff7224"
+    },
+    "https://xatakamovil.com": {
+        "cover_url": "https://img.weblogssl.com/css/xatakamovil/p/common/apple-touch-icon.png",
+        "background_color": "#316e20"
+    },
+    "https://verywellfit.com": {
+        "cover_url": "https://www.verywellfit.com/thmb/xXulBplj7S2m8k4LNq9_5UIYVpU=/1000x1000/filters:fill(FFDB5D,1)/default-vw-fit-5a78863dc5542e00377ba177-e82672d84b8c46428801cc4492024c56.png",
+        "background_color": "#16131e"
+    },
+    "https://electrek.co": {
+        "cover_url": "https://electrek.co/wp-content/themes/9to5-2015/images/favicons/electrek/icon-192x192.png",
+        "background_color": "#48d7ff"
+    },
+    "https://eurogamer.net": {
+        "cover_url": "https://eurogamer.net/static/20f3a739e6c4214dbcffac67534217a6/icon/apple-touch-icon-152x152.png",
+        "background_color": "#ffffff"
+    },
+    "https://thewindowsclub.com": {
+        "cover_url": "https://www.thewindowsclub.com/wp-content/uploads/2020/01/TheWindowsClub-Icon.png",
+        "background_color": "#07b9f4"
+    },
+    "https://car.watch.impress.co.jp": {
+        "cover_url": "https://car.watch.impress.co.jp/include/common/p01/images/logo/car.1200.png",
+        "background_color": "#d7011f"
+    },
+    "https://transfermarkt.es": {
+        "cover_url": "https://tmssl.akamaized.net/images/tm_logo.png",
+        "background_color": "#ffffff"
+    },
+    "https://gastroeconomy.com": {
+        "cover_url": "https://www.gastroeconomy.com/wp-content/uploads/2018/03/favicon.png",
+        "background_color": "#0faca9"
+    },
+    "https://www.newsweekjapan.jp/": {
+        "cover_url": "http://www.newsweekjapan.jp/images/newsweek_logo_90x90.jpg",
+        "background_color": "#e10038"
+    },
+    "https://fashion.adeliepenguin.info/": {
+        "cover_url": "https://fashion.adeliepenguin.info/wp-content/uploads/2018/02/cropped-h_favicon5-1-192x192.png",
+        "background_color": "#8f8f95"
+    },
+    "https://ambito.com": {
+        "cover_url": "https://www.ambito.com/css-custom/239/images/favicon/android-icon-192x192.png",
+        "background_color": "#0289cb"
+    },
+    "https://washingtontimes.com": {
+        "cover_url": "https://twt-assets.washtimes.com/v4/images/icons/apple-touch-icon-precomposed.faa3cb2fc54e.png",
+        "background_color": "#a71e23"
+    },
+    "https://mentalfloss.com": {
+        "cover_url": "https://images2.minutemediacdn.com/image/upload/c_fill,w_1440,ar_1:1,f_auto,q_auto,g_auto/frontier/favicons/MFFavicon_216ef394-60ef-4fac-9984-97a8819af760_400x.png",
+        "background_color": "#f16957"
+    },
+    "https://aristeguinoticias.com": {
+        "cover_url": "https://aristeguinoticias.com/images/500x.png",
+        "background_color": "#d41b28"
+    },
+    "https://sportingnews.com": {
+        "cover_url": "https://static.sportingnews.com/1.15.0.11/themes/custom/tsn/logo.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://smh.com.au": {
+        "cover_url": "https://smh.com.au/apple-touch-icons/smh.png",
+        "background_color": "#0a1633"
+    },
+    "https://remodelista.com": {
+        "cover_url": "https://remodelista.com/assets/favicons/rm/apple-touch-icon.png",
+        "background_color": "#353540"
+    },
+    "https://www.scienceplus2ch.com/": {
+        "cover_url": "https://blog.seesaa.jp/img/ogp_logo.png",
+        "background_color": "#ffffff"
+    },
+    "https://elblogsalmon.com": {
+        "cover_url": "https://img.remediosdigitales.com/css/elblogsalmon/p/common/apple-touch-icon.png",
+        "background_color": "#fde0c1"
+    },
+    "https://newscientist.com": {
+        "cover_url": "https://newscientist.com/build/images/layup/touch-icon/180x180.50b024f6.png",
+        "background_color": "#0b1f3e"
+    },
+    "https://milenio.com": {
+        "cover_url": "https://milenio.com/bundles/appcamusassets/images/icons/57x57.png",
+        "background_color": "#da0000"
+    },
+    "https://decine21.com": {
+        "cover_url": "https://decine21.com/templates/decine21/images/logof.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://xatakaciencia.com": {
+        "cover_url": "https://img.weblogssl.com/css/xatakaciencia/p/common/apple-touch-icon.png",
+        "background_color": "#14334f"
+    },
+    "https://traveler.es": {
+        "cover_url": "https://media.traveler.es/photos/615ac0e418f7c8136ccf4525/16:9/w_1280,c_limit/1280x720-CNT.jpg?mbid=social_retweet",
+        "background_color": "#000000"
+    },
+    "https://saborgourmet.com": {
+        "cover_url": "https://saborgourmet.com/wp-content/uploads/logo-tendenzias-grande-1.png",
+        "background_color": "#ffffff"
+    },
+    "https://fivethirtyeight.com": {
+        "cover_url": "https://fivethirtyeight.com/wp-content/themes/espn-fivethirtyeight/assets/images/fivethirtyeight-logo-touch.png?v=1.0.24",
+        "background_color": "#ffffff"
+    },
+    "https://engadget.com": {
+        "cover_url": "https://s.yimg.com/kw/assets/favicon-160x160.png",
+        "background_color": "#000000"
+    },
+    "https://fashionista.com": {
+        "cover_url": "https://fashionista.com/site/images/apple-touch-icon-114x114-precomposed.png?v=2022-08-22-195946-d32a854-028480",
+        "background_color": "#404042"
+    },
+    "https://gamesradar.com": {
+        "cover_url": "https://vanilla.futurecdn.net/gamesradar/521446/apple-touch-icon.png",
+        "background_color": "#130c0e"
+    },
+    "https://eladerezo.com": {
+        "cover_url": "https://www.eladerezo.com/wp-content/uploads/2020/03/recurso-3-1-293x293.png",
+        "background_color": "#f8e81e"
+    },
+    "https://nbcsports.com": {
+        "cover_url": "https://nbcsports.com/sites/all/themes/custom/nbcsports/img/apple-touch-icons/nbcsports/ios/apple-touch-icon-180x180.png",
+        "background_color": "#0a0a0a"
+    },
+    "https://thenation.com": {
+        "cover_url": "https://www.thenation.com/images/touch-icon-152x152.png?ver=2.0.2",
+        "background_color": "#e4002b"
+    },
+    "https://attac.es": {
+        "cover_url": "https://attac.es/wp-content/uploads/2019/06/attaces.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://eleganciadospuntocero.com": {
+        "cover_url": "https://i0.wp.com/eleganciadospuntocero.com/wp-content/uploads/2016/10/cropped-Logo-Elegancia-225x220.png?fit=192%2C192&ssl=1",
+        "background_color": "#ffffff"
+    },
+    "https://asacokitchen.com/": {
+        "cover_url": "https://asacokitchen.com/img/facebook_ogp.png",
+        "background_color": "#d0c0a5"
+    },
+    "https://homedit.com": {
+        "cover_url": "https://www.homedit.com/wp-content/uploads/2022/06/HD-logo-512-512.png",
+        "background_color": "#ffffff"
+    },
+    "https://saludconcosas.es": {
+        "cover_url": "https://saludconcosas.es/wp-content/uploads/2020/01/cropped-idea-bombilla-192x192.png",
+        "background_color": "#000000"
+    },
+    "https://elrincondesele.com": {
+        "cover_url": "https://www.elrincondesele.com/wp-content/uploads/2020/03/elrincondesele-logo.png",
+        "background_color": "#6ba465"
+    },
+    "https://yutura.net/": {
+        "cover_url": "https://yutura.net/common/img/icon_512x512.png",
+        "background_color": "#b71c1c"
+    },
+    "https://diezminutos.es": {
+        "cover_url": "https://diezminutos.es/sites/diezminutos/assets/images/apple-touch-icon.png",
+        "background_color": "#cf0000"
+    },
+    "https://elrincondemoda.com": {
+        "cover_url": "https://elrincondemoda.com/wp-content/uploads/2020/06/cropped-el-rinc\u00f3n-de-moda-poster-192x192.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://foxbusiness.com": {
+        "cover_url": "https://static.foxnews.com/static/orion/styles/img/fox-business/favicons/android-chrome-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://poppytalk.com": {
+        "cover_url": "https://poppytalk.com/wp-content/uploads/2022/02/cropped-7A075157-731D-4CA9-8813-85C6839B1136-192x192.png",
+        "background_color": "#050608"
+    },
+    "https://rawstory.com": {
+        "cover_url": "https://assets.rbl.ms/24986936/origin.png",
+        "background_color": "#030303"
+    },
+    "https://jp.techcrunch.com": {
+        "cover_url": "https://techcrunch.com/wp-content/uploads/2015/02/cropped-cropped-favicon-gradient.png?w=192",
+        "background_color": "#14d025"
+    },
+    "https://www.nikkei-science.com": {
+        "cover_url": "https://www.nikkei-science.com/wp-content/themes/nikkeiscience/images/apple-touch-icon.png",
+        "background_color": "#42a838"
+    },
+    "https://es.gizmodo.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_200,q_80,w_200/192oytk94dk4cpng.png",
+        "background_color": "#0c0c0c"
+    },
+    "https://gfinityesports.com": {
+        "cover_url": "https://gfinityesports.com/favicon/android-icon-192x192.png",
+        "background_color": "#fb2d45"
+    },
+    "https://debate.com.mx": {
+        "cover_url": "https://assets.debate.com.mx/__export/1560957626045/sites/debate/arte/el-debate/apps/precomposed-20190619.png_352024981.png",
+        "background_color": "#ffffff"
+    },
+    "https://travel.spot-app.jp/": {
+        "cover_url": "https://travel.spot-app.jp/wp-content/themes/spot-adways/assets/img/favicons/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://r.gnavi.co.jp/g-interview/": {
+        "cover_url": "https://r.gnavi.co.jp/g-interview/icon/link",
+        "background_color": "#000000"
+    },
+    "https://pitchfork.com": {
+        "cover_url": "https://media.pitchfork.com/photos/5935a027a28a096fc4292134/16:9/w_1280,c_limit/c53c3aba.jpg?mbid=social_retweet",
+        "background_color": "#100e0f"
+    },
+    "https://elblogalternativo.com": {
+        "cover_url": "https://i1.wp.com/www.elblogalternativo.com/wp-content/uploads/2013/05/el-blog-alternativo_logo.png?fit=463%2C85&ssl=1",
+        "background_color": "#7596be"
+    },
+    "https://theringer.com": {
+        "cover_url": "https://cdn.vox-cdn.com/uploads/chorus_asset/file/8991995/favicon-196x196.0.png",
+        "background_color": "#000000"
+    },
+    "https://parade.com": {
+        "cover_url": "https://parade.com/site/images/apple-touch-icon-114x114-precomposed.png?v=2022-08-22-195946-d32a854-028480",
+        "background_color": "#ffffff"
+    },
+    "https://blockgeeks.com": {
+        "cover_url": "https://blockgeeks.com/wp-content/uploads/2016/09/blockchain.jpg",
+        "background_color": "#0f131f"
+    },
+    "https://phys.org": {
+        "cover_url": "https://sciencex.com/gfx/shared/phys_icon_192.png",
+        "background_color": "#153568"
+    },
+    "https://time.com": {
+        "cover_url": "https://time.com/img/favicons/favicon-192.png",
+        "background_color": "#e90606"
+    },
+    "https://seekingalpha.com": {
+        "cover_url": "https://seekingalpha.com/samw/icon_512x512.60de11531ae1a2cfb05e9146b68739c4.png",
+        "background_color": "#ff7a1c"
+    },
+    "https://yorokobu.es": {
+        "cover_url": "https://www.yorokobu.es/wp-content/themes/yorokobu/assets/images/favicon.png",
+        "background_color": "#000000"
+    },
+    "https://bodymakingtips.com/": {
+        "cover_url": "https://bodymakingtips.com/wp-content/uploads/2019/06/cropped-c8804b24f64d05a714627c576e5e2702-192x192.png",
+        "background_color": "#190202"
+    },
+    "https://abcnews.com": {
+        "cover_url": "https://s.abcnews.com/images/US/abc_news_default_2000x2000_update_16x9_992.jpg",
+        "background_color": "#78a0d4"
+    },
+    "https://xataka.com": {
+        "cover_url": "https://img.weblogssl.com/css/xataka/p/common/apple-touch-icon.png",
+        "background_color": "#212a34"
+    },
+    "https://washingtonpost.com": {
+        "cover_url": "https://www.washingtonpost.com/wp-stat/assets/favicons/touch-icon-iphone-retina.png",
+        "background_color": "#000000"
+    },
+    "https://nature.com": {
+        "cover_url": "https://nature.com/static/images/favicons/nature/android-chrome-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://scmp.com": {
+        "cover_url": "https://scmp.com/static/img/icons/scmp-icon-512x512.png",
+        "background_color": "#f3f7fb"
+    },
+    "https://gq.com": {
+        "cover_url": "https://origin.go.gq.com.au/wp-content/uploads/2018/04/cropped-ipmg-client-logo-gq1.png?w=192",
+        "background_color": "#000000"
+    },
+    "https://kai-you.net/": {
+        "cover_url": "https://kai-you.net/apple-touch-icon180.png?20210120",
+        "background_color": "#00bfca"
+    },
+    "https://espndeportes.espn.com": {
+        "cover_url": "https://a.espncdn.com/icons/PWA_ESPN_512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://marketwatch.com": {
+        "cover_url": "https://mw4.wsj.net/mw5/content/images/favicons/apple-touch-icon-180x180.png",
+        "background_color": "#ffffff"
+    },
+    "https://cnbc.com": {
+        "cover_url": "https://sc.cnbcfm.com/applications/cnbc.com/staticcontent/img/cnbc_logo.gif?v=1524171804&w=1920&h=1080",
+        "background_color": "#ffffff"
+    },
+    "https://nationalgeographic.com.es": {
+        "cover_url": "https://nationalgeographic.com.es/android-chrome-512x512.png",
+        "background_color": "#ffd000"
+    },
+    "https://iotnews.jp/": {
+        "cover_url": "https://iotnews-media.s3.ap-northeast-1.amazonaws.com/images/20210503114051/cropped-logo_square_512-192x192.png",
+        "background_color": "#cc6664"
+    },
+    "https://sbnation.com": {
+        "cover_url": "https://cdn1.vox-cdn.com/dev/uploads/chorus_asset/file/8108503/sandbox-www-data-ip-10-0-0-66_/sandbox_favicon-192x192.0.png",
+        "background_color": "#ff0033"
+    },
+    "https://tiempo.com": {
+        "cover_url": "https://www.tiempo.com/css/images/new/pwa/icon_2048_1536.png",
+        "background_color": "#07b9ee"
+    },
+    "https://huffingtonpost.com": {
+        "cover_url": "https://img.huffingtonpost.com/asset/5f3448f32200001eb13888de.jpg",
+        "background_color": "#1d0c2e"
+    },
+    "https://medium.com/starts-with-a-bang?source=rss----458a773bccd2---4": {
+        "cover_url": "https://cdn-images-1.medium.com/fit/c/304/304/1*VH9usPh601npohqlvpnxvg.jpeg",
+        "background_color": "#2a2c77"
+    },
+    "https://cnnespanol.cnn.com": {
+        "cover_url": "https://cnnespanol.cnn.com/wp-content/uploads/2017/01/logo-cnnee.png?w=192",
+        "background_color": "#cd0000"
+    },
+    "https://screenrant.com": {
+        "cover_url": "https://screenrant.com/public/build/images/favicon-240x240.c818c0f4.png",
+        "background_color": "#333333"
+    },
+    "https://thespruce.com": {
+        "cover_url": "https://www.thespruce.com/thmb/VM_HN9C6p9l45F7pnjlClGm_Hgo=/1001x525/filters:fill(auto,1)/default_thespruce_facebook-91ece9ac70ed4e9794b235ac3739faf4.png",
+        "background_color": "#1f8d94"
+    },
+    "https://dailycaller.com": {
+        "cover_url": "https://dailycaller.com/files/DailyCaller-Icon.png",
+        "background_color": "#000000"
+    },
+    "https://www.fnn.jp/": {
+        "cover_url": "https://www.fnn.jp/common/images/android-chrome-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://www.fashion-headline.com/": {
+        "cover_url": "https://www.fashion-headline.com/images/touch-icon-152.png",
+        "background_color": "#ffffff"
+    },
+    "https://wired.com": {
+        "cover_url": "https://media.wired.com/photos/615e2b8ce78a8cd913bbaa76/16:9/w_1280,c_limit/wired_bug.jpg?mbid=social_retweet",
+        "background_color": "#000000"
+    },
+    "https://sciencealert.com": {
+        "cover_url": "https://www.sciencealert.com/images/2022/08/cropped-sa-rounded-favicon-192x192.png",
+        "background_color": "#fdba17"
+    },
+    "https://slate.com": {
+        "cover_url": "https://slate.com/media/sites/slate-com/icon-monochrome.512x512.png",
+        "background_color": "#2c0022"
+    },
+    "https://vayagif.com": {
+        "cover_url": "https://statics.vayagif.com/images/og_image.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://redalyc.org": {
+        "cover_url": "https://www.redalyc.org/redalyc/media/inc/img/revista/social/redalyc_generica.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://newsbtc.com": {
+        "cover_url": "https://www.newsbtc.com/wp-content/uploads/2020/06/cropped-cropped-cropped-favicon-192x192.png",
+        "background_color": "#04aab9"
+    },
+    "https://salon.com": {
+        "cover_url": "https://salon.com/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://spectrum.ieee.org": {
+        "cover_url": "https://assets.rbl.ms/26596649/origin.png",
+        "background_color": "#ff4c00"
+    },
+    "https://rollingstone.com": {
+        "cover_url": "https://www.rollingstone.com/wp-content/themes/vip/pmc-rollingstone-2022/assets/app/icons/apple-touch-icon.png",
+        "background_color": "#df3131"
+    },
+    "https://number.bunshun.jp/subcategory/%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BC%E6%97%A5%E6%9C%AC%E4%BB%A3%E8%A1%A8/column/": {
+        "cover_url": "https://number.ismcdn.jp/common/numberweb/v4/images/touch-icon-iphone6-retinahd.png",
+        "background_color": "#000000"
+    },
+    "https://f1-gate.com/": {
+        "cover_url": "https://f1-gate.com/img/logo-ogp.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://deadline.com": {
+        "cover_url": "https://deadline.com/wp-content/themes/pmc-deadline-2019/assets/app/icons/icon-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://theathletic.com": {
+        "cover_url": "https://theathletic.com/static/img/cropped-cropped-favicon1-192x192.png",
+        "background_color": "#111111"
+    },
+    "https://techblog.yahoo.co.jp/": {
+        "cover_url": "https://s.yimg.jp/i/docs/integrate/images/common/about_yahoo_webclip.png",
+        "background_color": "#ff0033"
+    },
+    "https://techtarget.com": {
+        "cover_url": "https://cdn.ttgtmedia.com/wp-content/uploads/2016/08/cropped-tt-favicon-2-192x192.png",
+        "background_color": "#00a69f"
+    },
+    "https://design-milk.com": {
+        "cover_url": "https://design-milk.com/img/favicon/dm-favicon-192-192.png",
+        "background_color": "#000000"
+    },
+    "https://psfk.com": {
+        "cover_url": "https://www.psfk.com/wp-content/themes/psfk7/assets/sources/images/favicon/favicon-192.png?15-07-22",
+        "background_color": "#623b90"
+    },
+    "https://www.jaxa.jp/": {
+        "cover_url": "https://www.jaxa.jp/images/logo.gif",
+        "background_color": "#ffffff"
+    },
+    "https://macrumors.com": {
+        "cover_url": "https://images.macrumors.com/images-new/apple-touch-icon.png?v=01",
+        "background_color": "#ffffff"
+    },
+    "https://digitalspy.com": {
+        "cover_url": "https://digitalspy.com/sites/digitalspy/assets/images/apple-touch-icon.png",
+        "background_color": "#000000"
+    },
+    "https://espn.com": {
+        "cover_url": "https://a.espncdn.com/icons/PWA_ESPN_512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://theathletic.com/nba": {
+        "cover_url": "https://theathletic.com/static/img/cropped-cropped-favicon1-192x192.png",
+        "background_color": "#111111"
+    },
+    "https://el-nacional.com": {
+        "cover_url": "https://cdn.elnacional.com/wp-content/uploads/2019/09/cropped-Logo-EN-512x512-02-192x192.png",
+        "background_color": "#011589"
+    },
+    "https://io9.gizmodo.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_200,q_80,w_200/fdj3buryz5nuzyf2k620.png",
+        "background_color": "#9c9c9c"
+    },
+    "https://clicccar.com/": {
+        "cover_url": "https://clicccar.com/uploads/2021/06/23/cropped-cropped-cropped-site-icon-1-1-1-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://miyearnzzlabo.com/": {
+        "cover_url": "https://miyearnzzlabo.com/wp-content/uploads/2019/04/favicon-450x450.jpg",
+        "background_color": "#ececea"
+    },
+    "https://jalmile.blog6.fc2.com/": {
+        "cover_url": "https://blog-imgs-31.fc2.com/j/a/l/jalmile/topimg.jpg",
+        "background_color": "#72716c"
+    },
+    "https://nybooks.com": {
+        "cover_url": "https://www.nybooks.com/wp-content/themes/nyrb_2020/img/favicon-32x32.png",
+        "background_color": "#990101"
+    },
+    "https://es.investing.com": {
+        "cover_url": "https://i-invdn-com.investing.com/redesign/images/seo/investing_300X300.png",
+        "background_color": "#070707"
+    },
+    "https://blogmodahombre.com": {
+        "cover_url": "https://www.blogmodahombre.com/wp-content/uploads/2019/07/cropped-mediano-negro-192x192.png",
+        "background_color": "#202020"
+    },
+    "https://bubbyandbean.com/": {
+        "cover_url": "https://1.bp.blogspot.com/-r-xjpcCVCRE/XXf6rNS0_VI/AAAAAAAAkf8/YQKQddgxQdM0xKmajz9YualkHd9HMXK3wCLcBGAs/s1600/favicon.png",
+        "background_color": "#7d7b7c"
+    },
+    "https://viajablog.com": {
+        "cover_url": "https://www.viajablog.com/wp-content/uploads/2020/11/logo-512-min.png",
+        "background_color": "#ffffff"
+    },
+    "https://theconversation.com": {
+        "cover_url": "https://cdn.theconversation.com/static/tc/@theconversation/ui/dist/esm/logos/web-app-logo-192x192-2d05bdd6de6328146de80245d4685946.png",
+        "background_color": "#d8352a"
+    },
+    "https://eluniverso.com": {
+        "cover_url": "https://eluniverso.com/pf/resources/icons/apple-touch-icon.png?d=229",
+        "background_color": "#ffffff"
+    },
+    "https://worldfn.net/": {
+        "cover_url": "https://livedoor.blogimg.jp/kurrism/imgs/7/7/778cc140.png",
+        "background_color": "#01153b"
+    },
+    "https://lecturalia.com/blog": {
+        "cover_url": "https://static.lecturalia.com/imgstatic/logo.jpg",
+        "background_color": "#8d1400"
+    },
+    "https://greenz.jp/": {
+        "cover_url": "https://greenz.jp/main/wp-content/themes/greenz_v5.11/assets/images/ogp-ba17cc6192.png",
+        "background_color": "#f6f6f6"
+    },
+    "https://nasa.gov": {
+        "cover_url": "https://nasa.gov/sites/all/themes/custom/nasatwo/images/apple-touch-icon-152x152.png",
+        "background_color": "#1a5dad"
+    },
+    "https://delikatissen.com": {
+        "cover_url": "https://www.delikatissen.com/wp-content/2019/04/cropped-logo512-192x192.png",
+        "background_color": "#403f40"
+    },
+    "https://heraldo.es": {
+        "cover_url": "https://heraldo.es/uploads/icons/iphone_heraldo.png",
+        "background_color": "#ffffff"
+    },
+    "https://tabizine.jp": {
+        "cover_url": "https://tabizine.jp/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://nbcnews.com": {
+        "cover_url": "https://nodeassets.nbcnews.com/cdnassets/projects/ramen/favicon/nbcnews/all-other-sizes-PNG.ico/android-icon-192x192.png",
+        "background_color": "#000000"
+    },
+    "https://knowyourmeme.com": {
+        "cover_url": "https://knowyourmeme.com/assets/favicons/android-icon-192x192.png",
+        "background_color": "#111248"
+    },
+    "https://andro4all.com": {
+        "cover_url": "https://andro4all.com/images/icon-512.png",
+        "background_color": "#b5d81f"
+    },
+    "https://flavorwire.com": {
+        "cover_url": "https://imgix.bustle.com/uploads/image/2019/7/16/a78cea84-c3ba-473f-8f1b-d19c982d8a46-flavorwire-triangles.png?w=1200&h=630&fit=crop&crop=faces&fm=jpg",
+        "background_color": "#0095bf"
+    },
+    "https://markets.bitbank.cc": {
+        "cover_url": "https://assets-global.website-files.com/5d83569cbe860b38c2209217/5d83569cbe860bf16320922d_webclip.png",
+        "background_color": "#2f9bdc"
+    },
+    "https://misthermorecetas.com": {
+        "cover_url": "https://www.misthermorecetas.com/wp-content/uploads/2017/10/cropped-cabecera-cuadrada-512-192x192.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://www.businessinsider.jp/": {
+        "cover_url": "https://www.businessinsider.jp/asset/favicon/android-chrome-512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://runfitners.com": {
+        "cover_url": "https://runfitners.com/wp-content/uploads/2019/11/cropped-apple-icon-144x144-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://decoracion.trendencias.com": {
+        "cover_url": "https://img.weblogssl.com/css/trendenciasdecoracion/p/common/apple-touch-icon.png",
+        "background_color": "#329ac9"
+    },
+    "https://makingitlovely.com": {
+        "cover_url": "https://makingitlovely.com/wp-content/uploads/2016/02/favicon.png",
+        "background_color": "#dd807d"
+    },
+    "https://llabtooflatot.blog.fc2.com/": {
+        "cover_url": "https://blog-imgs-131.fc2.com/l/l/a/llabtooflatot/20190911185008630.jpg",
+        "background_color": "#2a700e"
+    },
+    "https://vg247.com": {
+        "cover_url": "https://vg247.com/static/icon/android-chrome-512x512.png",
+        "background_color": "#e31b2d"
+    },
+    "https://mashable.com": {
+        "cover_url": "https://mashable.com/favicons/android-chrome-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://abcblogs.abc.es/nieves/": {
+        "cover_url": "https://static-abcblogs.abc.es/wp-content/uploads/sites/59/2019/07/nieves-1024x512.jpg",
+        "background_color": "#e4e4e4"
+    },
+    "https://japan.zdnet.com": {
+        "cover_url": "https://japan.zdnet.com/icon-192x192.png",
+        "background_color": "#de1400"
+    },
+    "https://spiegel.de": {
+        "cover_url": "https://cdn.prod.www.spiegel.de/public/spon/images/icons/touch-icon180.png",
+        "background_color": "#e64415"
+    },
+    "https://bitpress.jp/": {
+        "cover_url": "https://bitpress.jp/archives/001/201704/74d3b785bbece5bd9dcf2ade220a1f31.png",
+        "background_color": "#f39700"
+    },
+    "https://www.hotpepper.jp/mesitsu/": {
+        "cover_url": "https://www.hotpepper.jp/mesitsu/icon/link",
+        "background_color": "#000000"
+    },
+    "https://www.foocom.net/": {
+        "cover_url": "https://foocom.net/wp-content/themes/foocom2021/img/foocom.png",
+        "background_color": "#eeeeee"
+    },
+    "https://japan.techinsight.jp": {
+        "cover_url": "https://static.techinsight.jp/wp-content/uploads/2017/04/ogp.png",
+        "background_color": "#fffefe"
+    },
+    "https://dotesports.com": {
+        "cover_url": "https://cdn1.dotesports.com/wp-content/uploads/2020/08/05202510/cropped-black-white-dotlogo-1-192x192.png",
+        "background_color": "#000000"
+    },
+    "https://cbssports.com": {
+        "cover_url": "https://sportsfly.cbsistatic.com/fly-0302/bundles/sportsmediacss/images/core/webclips/apple-touch-icon-180.png",
+        "background_color": "#0049ce"
+    },
+    "https://cadenaser.com": {
+        "cover_url": "https://cadenaser.com/pf/resources/img/favicon.png?d=309",
+        "background_color": "#1c223b"
+    },
+    "https://realfooding.com": {
+        "cover_url": "https://realfooding.com/wp-content/uploads/2021/11/cropped-RFfavicon-192x192.png",
+        "background_color": "#2dd48c"
+    },
+    "https://www.youtube.com/channel/UC2Wss-yUn0b5xTTZ45tQWfA/": {
+        "cover_url": "https://www.gstatic.com/youtube/img/web/monochrome/logo_512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://thegatewaypundit.com": {
+        "cover_url": "https://www.thegatewaypundit.com/wp-content/uploads/tgpfavicon.png",
+        "background_color": "#ffffff"
+    },
+    "https://planetacurioso.com": {
+        "cover_url": "https://www.planetacurioso.com/wp-content/uploads/2022/05/cropped-icon-planeta-orange-192x192.png",
+        "background_color": "#ef5627"
+    },
+    "https://yofuiaegb.com": {
+        "cover_url": "https://yofuiaegb.com/wp-content/uploads/2020/01/fav-icon-egb.jpg",
+        "background_color": "#e3ce3f"
+    },
+    "https://insideevs.com": {
+        "cover_url": "https://cdn.motor1.com/images/static/insideevs/favicon-228.png",
+        "background_color": "#ffffff"
+    },
+    "https://elindependiente.com": {
+        "cover_url": "https://www.elindependiente.com/wp-content/uploads/2019/09/logo-220x220.jpg",
+        "background_color": "#0c7c8a"
+    },
+    "https://welele.es": {
+        "cover_url": "https://78.media.tumblr.com/avatar_0fe884c36fd3_128.png",
+        "background_color": "#074e36"
+    },
+    "https://100life.jp/": {
+        "cover_url": "https://img.100life.jp/core/ico/favicon-512.png",
+        "background_color": "#ffffff"
+    },
+    "https://espinof.com": {
+        "cover_url": "https://img.weblogssl.com/css/espinof/p/common/apple-touch-icon.png",
+        "background_color": "#00283a"
+    },
+    "https://www.seize-one-world.com/": {
+        "cover_url": "https://www.seize-one-world.com/wp-content/uploads/2017/12/cropped-54554854-192x192.gif",
+        "background_color": "#fcfefc"
+    },
+    "https://boardingarea.com": {
+        "cover_url": "https://boardingarea.com/wp-content/themes/boardingarea/img/apple-touch-icon-144x144.png",
+        "background_color": "#374042"
+    },
+    "https://financemagnates.com": {
+        "cover_url": "https://images.financemagnates.com/static/fm-default-thumbnail.jpg",
+        "background_color": "#451f98"
+    },
+    "https://avclub.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_200,q_80,w_200/no63bw902mddhwxtjtxh.png",
+        "background_color": "#1c263c"
+    },
+    "https://clarin.com/revista-enie/": {
+        "cover_url": "https://clarin.com/android-icon-192x192.png",
+        "background_color": "#d60026"
+    },
+    "https://pequenocerdocapitalista.com": {
+        "cover_url": "https://i0.wp.com/www.pequenocerdocapitalista.com/wp-content/uploads/2022/06/cropped-logo-sin-moneda-REDES.png?fit=192%2C192&ssl=1",
+        "background_color": "#ffffff"
+    },
+    "https://nationalgeographic.com.es/": {
+        "cover_url": "https://nationalgeographic.com.es/android-chrome-512x512.png",
+        "background_color": "#ffd000"
+    },
+    "https://www.coinjinja.com/": {
+        "cover_url": "https://www.coinjinja.com/static/icons/icon-512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://skift.com": {
+        "cover_url": "https://skift.com/wp-content/uploads/2016/09/cropped-logo-square-yellow-192x192.png",
+        "background_color": "#fff200"
+    },
+    "https://uproxx.com": {
+        "cover_url": "https://s0.wp.com/i/blank.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://dailymail.co.uk": {
+        "cover_url": "https://dailymail.co.uk/favicon.ico?v=2",
+        "background_color": "#004db3"
+    },
+    "https://www.sukesuke-mile-kojiki.net/": {
+        "cover_url": "http://www.sukesuke-mile-kojiki.net/wp-content/uploads/2018/02/123.png",
+        "background_color": "#4b4b4b"
+    },
+    "https://guialowcost.es": {
+        "cover_url": "https://glczone-guialowcost.netdna-ssl.com/wp-content/uploads/LOGO-para-FB2.png",
+        "background_color": "#0066cb"
+    },
+    "https://number.bunshun.jp/category/column": {
+        "cover_url": "https://number.ismcdn.jp/common/numberweb/v4/images/touch-icon-iphone6-retinahd.png",
+        "background_color": "#000000"
+    },
+    "https://thenextweb.com": {
+        "cover_url": "https://cdn0.tnwcdn.com/wp-content/themes/cyberdelia/assets/icons/android-chrome-192x192.png",
+        "background_color": "#000000"
+    },
+    "https://criptotendencia.com": {
+        "cover_url": "https://i0.wp.com/criptotendencia.com/wp-content/uploads/2017/11/cropped-LOGO-CriptoTendencia.png?fit=192%2C192&ssl=1",
+        "background_color": "#0c2a5c"
+    },
+    "https://howtogeek.com": {
+        "cover_url": "https://howtogeek.com/public/images/192x192.png",
+        "background_color": "#000000"
+    },
+    "https://investopedia.com": {
+        "cover_url": "https://www.investopedia.com/thmb/_pLPstWPtVSw8VOM6xp2Rr4eMhQ=/1000x1000/filters:fill(auto,1)/investopedia-social-share-default-ab113c8afd9a439dbc4c68b1926292f4.png",
+        "background_color": "#dadada"
+    },
+    "https://www.neweconomy.jp/": {
+        "cover_url": "https://www.neweconomy.jp/wp-content/themes/new_economy/assets/images/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://www.cryptostream.jp/": {
+        "cover_url": "https://www.cryptostream.jp/wp/wp-content/uploads/cryptostream_og_001.png",
+        "background_color": "#ffffff"
+    },
+    "https://afar.com": {
+        "cover_url": "https://afar.com/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://rayasycuadros.net": {
+        "cover_url": "https://1.bp.blogspot.com/--BDXNhrtqX4/X2mi6JC68-I/AAAAAAABXdY/avA2A75-zd8Cc5Ngu2j5RiEtbLNdFLmPgCLcBGAsYHQ/w1200-h630-p-k-no-nu/screen-pollution-multiopticas.jpg",
+        "background_color": "#0c1212"
+    },
+    "https://tnr.com": {
+        "cover_url": "https://assets.newrepublic.com/assets/favicons/favicon-194x194.png",
+        "background_color": "#000000"
+    },
+    "https://caranddriver.com/es/": {
+        "cover_url": "https://caranddriver.com/sites/caranddriver/assets/images/apple-touch-icon.png",
+        "background_color": "#c3122f"
+    },
+    "https://si.com": {
+        "cover_url": "https://si.com/site/images/apple-touch-icon-114x114-precomposed.png?v=2022-08-22-195946-d32a854-028480",
+        "background_color": "#0a1529"
+    },
+    "https://cookien.com/": {
+        "cover_url": "https://cookien.com/apple-touch-icon.png",
+        "background_color": "#f6f4ef"
+    },
+    "https://mens-fashion.blog.jp/": {
+        "cover_url": "https://livedoor.blogimg.jp/timaruri/imgs/3/7/37ed16fc.jpg",
+        "background_color": "#fcfcfc"
+    },
+    "https://www.coindeskjapan.com": {
+        "cover_url": "https://www.coindeskjapan.com/wp-content/themes/coindeskjapan-v2/assets/img/cropped-coindesk-new-favicon.png",
+        "background_color": "#121921"
+    },
+    "https://vitonica.com": {
+        "cover_url": "https://img.weblogssl.com/css/vitonica/p/common/apple-touch-icon.png",
+        "background_color": "#2b71c2"
+    },
+    "https://thespruceeats.com": {
+        "cover_url": "https://www.thespruceeats.com/thmb/1CjAC8Zr29zcoXNHtq5DgJ45lYs=/1001x1001/filters:fill(auto,1)/SPRE_SocialImage-no-transparency-5ad5fc0bc5542e00362c0baa.png",
+        "background_color": "#e5ecf3"
+    },
+    "https://theonion.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_200,q_80,w_200/eti2h1r4wg0bqxctxenl.png",
+        "background_color": "#006b3a"
+    },
+    "https://cinemablend.com": {
+        "cover_url": "https://cdn.mos.cms.futurecdn.net/flexiimages/tbhqzd9bso1619422461.png",
+        "background_color": "#161e2f"
+    },
+    "https://jp.cointelegraph.com": {
+        "cover_url": "https://jp.cointelegraph.com/favicons/android-chrome-512x512.png",
+        "background_color": "#253137"
+    },
+    "https://techcrunch.com": {
+        "cover_url": "https://techcrunch.com/wp-content/uploads/2015/02/cropped-cropped-favicon-gradient.png?w=192",
+        "background_color": "#14d025"
+    },
+    "https://hobbyconsolas.com": {
+        "cover_url": "https://hobbyconsolas.com/assets/icons/android-chrome-512x512.png",
+        "background_color": "#00a8fb"
+    },
+    "https://novatostradingclub.com": {
+        "cover_url": "https://www.novatostradingclub.com/wp-content/uploads/2016/08/favicon.png",
+        "background_color": "#61214f"
+    },
+    "https://los40.com": {
+        "cover_url": "https://los40es00.epimg.net/iconos/v1.x/v1.0/touch-apple.png",
+        "background_color": "#000000"
+    },
+    "https://eater.com": {
+        "cover_url": "https://cdn.vox-cdn.com/uploads/chorus_asset/file/6253177/favicon-192x192.0.png",
+        "background_color": "#d51406"
+    },
+    "https://cointelegraph.com": {
+        "cover_url": "https://cointelegraph.com/favicons/android-chrome-512x512.png",
+        "background_color": "#253137"
+    },
+    "https://ft.com": {
+        "cover_url": "https://www.ft.com/__assets/creatives/brand-ft/icons/v2/android-chrome-192x192.png",
+        "background_color": "#ffe3c4"
+    },
+    "https://bleacherreport.com": {
+        "cover_url": "https://bleacherreport.com/img/favicon/manifest-256x256.png",
+        "background_color": "#000000"
+    },
+    "https://proyectos.habitissimo.es": {
+        "cover_url": "https://es.habcdn.com/static/root/android-chrome-192x192.png",
+        "background_color": "#de9f24"
+    },
+    "https://xtech.nikkei.com/": {
+        "cover_url": "https://xtech.nikkei.com/images/n/xtech/2020/ogp_nikkeixtech_2022neko01.jpg?20220512",
+        "background_color": "#6e6e6e"
+    },
+    "https://elcolombiano.com": {
+        "cover_url": "https://www.elcolombiano.com/mcm/logo_redes.jpg",
+        "background_color": "#273a41"
+    },
+    "https://engadget.com/": {
+        "cover_url": "https://s.yimg.com/kw/assets/favicon-160x160.png",
+        "background_color": "#000000"
+    },
+    "https://kirainet.com": {
+        "cover_url": "https://i0.wp.com/www.kirainet.com/wp-content/uploads/2020/09/cropped-Screen-Shot-2020-09-23-at-11.10.34.jpg?fit=192%2C192&ssl=1",
+        "background_color": "#010101"
+    },
+    "https://nytimes.com": {
+        "cover_url": "https://nytimes.com/vi-assets/static-assets/apple-touch-icon-28865b72953380a40aa43318108876cb.png",
+        "background_color": "#f0f0f0"
+    },
+    "https://tvinsider.com": {
+        "cover_url": "https://www.tvinsider.com/wp-content/themes/tv/images/TVi_Logo.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://www.outdoorfoodgathering.jp/": {
+        "cover_url": "https://www.outdoorfoodgathering.jp/wp-content/themes/cocoon-master/images/site-icon180x180.png",
+        "background_color": "#21759a"
+    },
+    "https://www.gizmodo.jp": {
+        "cover_url": "https://www.gizmodo.jp/assets/favicon/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://www.traicy.com": {
+        "cover_url": "https://www.traicy.com/wp-content/uploads/2019/06/cropped-TRAICY-logo-wing-white-192x192.png",
+        "background_color": "#ca1c58"
+    },
+    "https://tecnohotelnews.com": {
+        "cover_url": "https://www.tecnohotelnews.com/wp-content/uploads/2020/03/anagrama_TH.png",
+        "background_color": "#21a7b4"
+    },
+    "https://businessinsider.es": {
+        "cover_url": "https://businessinsider.es/assets/icons/android-chrome-512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://dwks.cocolog-nifty.com/fashion_column/": {
+        "cover_url": "https://dwks.cocolog-nifty.com/.shared-cocolog/nifty_managed/images/web/ogp/default.png",
+        "background_color": "#f8df8a"
+    },
+    "https://www.inshokuten.com/foodist/": {
+        "cover_url": "https://www.inshokuten.com/foodist/foodist-content/uploads/fbrfg/android-chrome-192x192.png?v=20160330",
+        "background_color": "#ffffff"
+    },
+    "https://efe.com": {
+        "cover_url": "http://www.efe.com/efe/images/logos/efe114x114.png",
+        "background_color": "#ffffff"
+    },
+    "https://autobild.es": {
+        "cover_url": "https://autobild.es/assets/icons/android-chrome-512x512.png",
+        "background_color": "#dd0121"
+    },
+    "https://the360.life/": {
+        "cover_url": "https://360life.ismcdn.jp/common/images/v1/android-chrome.png",
+        "background_color": "#ffffff"
+    },
+    "https://hollywoodreporter.com": {
+        "cover_url": "https://www.hollywoodreporter.com/wp-content/themes/vip/pmc-hollywoodreporter-2021/assets/app/icons/favicon.png",
+        "background_color": "#d92128"
+    },
+    "https://simplyrecipes.com": {
+        "cover_url": "https://www.simplyrecipes.com/thmb/GumzGTKgFWAztADJFm2DsmeGofU=/2000x1333/filters:fill(auto,1)/SimplyRecipesRelaunch-LEAD-6f09832cea634074a3b6a7a8558c6c09.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://response.jp/": {
+        "cover_url": "https://response.jp/base/images/touch-icon-180.png",
+        "background_color": "#fcfcfc"
+    },
+    "https://nyliberty.exblog.jp": {
+        "cover_url": "https://pds.exblog.jp/logo/1/200408/05/05/b000780520080629000027.jpg",
+        "background_color": "#9c9c9a"
+    },
+    "https://csmonitor.com": {
+        "cover_url": "https://csmonitor.com/extension/csm_base/design/standard/images/apple-touch-icon.png",
+        "background_color": "#f7c224"
+    },
+    "https://theclinic.cl": {
+        "cover_url": "https://theclinic.cl/android-icon-192x192.png",
+        "background_color": "#000000"
+    },
+    "https://smithsonianmag.com": {
+        "cover_url": "https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/51/55/51552bfc-6530-4521-8a18-1e4473703d8c/smithsonianmagazine_webmanifest_icon_512.png",
+        "background_color": "#000000"
+    },
+    "https://lainformacion.com": {
+        "cover_url": "https://lainformacion.com/launcher-icon-4x.png",
+        "background_color": "#3a3535"
+    },
+    "https://hiroyukikojima.hatenablog.com/": {
+        "cover_url": "https://hiroyukikojima.hatenablog.com/icon/link",
+        "background_color": "#ffffff"
+    },
+    "https://watchmono.com/": {
+        "cover_url": "https://static.fc2.com/image/noimage.gif",
+        "background_color": "#ffffff"
+    },
+    "https://xda-developers.com": {
+        "cover_url": "https://xda-developers.com/android-chrome-512x512.png",
+        "background_color": "#2f045d"
+    },
+    "https://gotrip.jp/": {
+        "cover_url": "https://gotrip.jp/wp-content/themes/point/apple-touch-icon.png",
+        "background_color": "#3a6c9d"
+    },
+    "https://ideal.es": {
+        "cover_url": "https://static.ideal.es/squido/latest/assets/icons/ideal/android-chrome-192x192.png",
+        "background_color": "#b90021"
+    },
+    "https://kunisawa.net/": {
+        "cover_url": "https://kunisawa.net/wp-content/themes/keni62_wp_cool_160130/images/home-icon.png",
+        "background_color": "#464f53"
+    },
+    "https://pagina12.com.ar": {
+        "cover_url": "https://www.pagina12.com.ar/assets/media/favicon/152x152.png?v=2.0.86",
+        "background_color": "#000000"
+    },
+    "https://actualidadmotor.com": {
+        "cover_url": "https://www.actualidadmotor.com/wp-content/uploads/2020/05/cropped-favicon-1-192x192.png",
+        "background_color": "#d00816"
+    },
+    "https://bitcoinist.com": {
+        "cover_url": "https://bitcoinist.com/wp-content/uploads/2021/04/cropped-cropped-cropped-Icon-192x192.png",
+        "background_color": "#0099fd"
+    },
+    "https://democracynow.org": {
+        "cover_url": "https://assets.democracynow.org/assets/default_content_image-354f4555cc64afadc730d64243c658dd0af1f330152adcda6c4900cb4a26f082.jpg",
+        "background_color": "#172027"
+    },
+    "https://dsk.ne.jp/": {
+        "cover_url": "https://s3-ap-northeast-1.amazonaws.com/amz.dsk.ne.jp/common/img/2.0/android-chrome-192x192.png",
+        "background_color": "#0069b3"
+    },
+    "https://neoteo.com": {
+        "cover_url": "https://www.neoteo.com/wp-content/uploads/2018/01/cropped-cropped-logo-neoteo-fav-2-192x192.png",
+        "background_color": "#a8c91d"
+    },
+    "https://tocana.jp/": {
+        "cover_url": "https://tocana.jp/wp-content/themes/tocana/img/logo-smartnews-tocana.png",
+        "background_color": "#000000"
+    },
+    "https://wikihow.com": {
+        "cover_url": "https://www.wikihow.com/skins/WikiHow/wH-initials_152x152.png",
+        "background_color": "#94b975"
+    },
+    "https://hosteltur.com": {
+        "cover_url": "https://hosteltur.com/img/pwa-icons/android-icon-512x512.png",
+        "background_color": "#1e2a51"
+    },
+    "https://hollywoodlife.com": {
+        "cover_url": "https://hollywoodlife.com/wp-content/uploads/2018/06/hl_logo.png?w=128",
+        "background_color": "#d42d93"
+    },
+    "https://codigoespagueti.com": {
+        "cover_url": "https://codigoespagueti.com/wp-content/themes/amp-ce/images/icon/192.png",
+        "background_color": "#00a5ce"
+    },
+    "https://danielmarin.naukas.com": {
+        "cover_url": "https://danielmarin.naukas.com/files/2018/11/cropped-Icono-eureka-1.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://clarin.com": {
+        "cover_url": "https://clarin.com/android-icon-192x192.png",
+        "background_color": "#d60026"
+    },
+    "https://vistoenlasredes.com": {
+        "cover_url": "https://statics.vistoenlasredes.com/images/og_image.jpg",
+        "background_color": "#f6f0f0"
+    },
+    "https://windowsreport.com": {
+        "cover_url": "https://cdn.windowsreport.com/wp-content/uploads/2019/09/cropped-cropped-winrep-favicon-1-210x210.png",
+        "background_color": "#00a8f2"
+    },
+    "https://gardeningknowhow.com": {
+        "cover_url": "https://www.gardeningknowhow.com/gkh-114.png",
+        "background_color": "#ffffff"
+    },
+    "https://entabe.jp/": {
+        "cover_url": "https://image.entabe.jp/apple-touch-icon-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://jotdown.es": {
+        "cover_url": "https://www.jotdown.es/wp-content/uploads/2022/07/cropped-BOLA-PLANA-PNG-FONDO-TRANSPARENTE-192x192.png",
+        "background_color": "#000000"
+    },
+    "https://vox.com": {
+        "cover_url": "https://cdn.vox-cdn.com/uploads/hub/sbnu_logo_minimal/441/touch_icon_iphone_retina_1000_yellow.755.png",
+        "background_color": "#ffff00"
+    },
+    "https://hamada.air-nifty.com/raisan/": {
+        "cover_url": "https://hamada.air-nifty.com/.shared-cocolog/nifty_managed/images/web/ogp/default.png",
+        "background_color": "#f8df8a"
+    },
+    "https://www.koumetan.com/": {
+        "cover_url": "https://blog.seesaa.jp/img/iphone/apple-touch-icon.png",
+        "background_color": "#ecefdd"
+    },
+    "https://tecnologia.press": {
+        "cover_url": "https://www.tecnologia.press/wp-content/uploads/2019/01/favicon.png",
+        "background_color": "#54e800"
+    },
+    "https://sports.yahoo.com": {
+        "cover_url": "https://s.yimg.com/cv/apiv2/sports/web/app/Sports_512.png",
+        "background_color": "#5300a7"
+    },
+    "https://autoblog.com": {
+        "cover_url": "https://autoblog.com/img/favicon/android-chrome-192x192.png?v=4",
+        "background_color": "#ec2930"
+    },
+    "https://thedailybeast.com": {
+        "cover_url": "https://img.thedailybeast.com/image/upload/fl_lossy,q_auto/placeholder_euli9k",
+        "background_color": "#000000"
+    },
+    "https://makeuseof.com": {
+        "cover_url": "https://makeuseof.com/public/build/images/favicon-240x240.df310da5.png",
+        "background_color": "#c50d0d"
+    },
+    "https://vanityfair.com": {
+        "cover_url": "https://media.vanityfair.com/photos/5b8410c7a26d2c55ff422942/16:9/w_1280,c_limit/VF%20LOGO.png?mbid=social_retweet",
+        "background_color": "#000000"
+    },
+    "https://paultan.org": {
+        "cover_url": "https://paultan.org/touch-icon-ipad-retina.png",
+        "background_color": "#a00000"
+    },
+    "https://mindhacks.com": {
+        "cover_url": "https://secure.gravatar.com/blavatar/e1a4389e311de66187044dee40297f7e?s=114",
+        "background_color": "#ffffff"
+    },
+    "https://medicinenet.com/script/main/hp.asp": {
+        "cover_url": "https://images.medicinenet.com/images/facebook/medicinenet/fb-mnet-default.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://vice.com/es": {
+        "cover_url": "https://vice-web-statics-cdn.vice.com/favicons/vice/android-chrome-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://number.bunshun.jp/subcategory/J%E3%83%AA%E3%83%BC%E3%82%B0/column/": {
+        "cover_url": "https://number.ismcdn.jp/common/numberweb/v4/images/touch-icon-iphone6-retinahd.png",
+        "background_color": "#000000"
+    },
+    "https://theatlantic.com": {
+        "cover_url": "https://cdn.theatlantic.com/tng/static/theatlantic/img/lacroix/apple-touch-icon-ipad-retina.398a2c61e146.png",
+        "background_color": "#ffffff"
+    },
+    "https://pcworld.com": {
+        "cover_url": "https://www.pcworld.com/wp-content/uploads/2021/09/cropped-cropped-PCWorld-Site-Icon.png?w=192",
+        "background_color": "#ac1f2b"
+    },
+    "https://huffingtonpost.es": {
+        "cover_url": "https://img.huffingtonpost.com/asset/default-entry.jpg",
+        "background_color": "#31082a"
+    },
+    "https://digitaltrends.com": {
+        "cover_url": "https://www.digitaltrends.com/wp-content/uploads/2020/08/dt-site-icon.png?fit=144%2C144&p=1",
+        "background_color": "#0290fa"
+    },
+    "https://www.soccer-king.jp/": {
+        "cover_url": "https://www.soccer-king.jp/wp-content/themes/david-beckham/assets/images/ogp/apple-touch-icon-ly.png",
+        "background_color": "#eeff00"
+    },
+    "https://variety.com": {
+        "cover_url": "https://variety.com/wp-content/themes/pmc-variety-2020/assets/app/icons/icon-512x512.png",
+        "background_color": "#04090a"
+    },
+    "https://espndeportes-assets.espn.com": {
+        "cover_url": "https://a.espncdn.com/icons/PWA_ESPN_512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://bostonglobe.com": {
+        "cover_url": "https://bostonglobe.com/pf/resources/images/icons/apple-touch-icon.png?v=bostonGlobe&d=358",
+        "background_color": "#ffffff"
+    },
+    "https://rtings.com": {
+        "cover_url": "https://i.rtings.com/assets/favicon/current/android-icon-192x192-2c57e3c2e187fc221f412f51391e49f0b619c4f733a84ffc5ad4a4df85aa1238.png",
+        "background_color": "#e80000"
+    },
+    "https://www.gqjapan.jp/": {
+        "cover_url": "https://media.gqjapan.jp/photos/60e2c6b8c18284e7006ee41f/16:9/w_1280,c_limit/GQ.jpg?mbid=social_retweet",
+        "background_color": "#ffffff"
+    },
+    "https://naukas.com": {
+        "cover_url": "https://naukas.com/fx/uploads/2018/12/cropped-naukas-icono-192x192.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://elconfidencial.com": {
+        "cover_url": "https://www.ecestaticos.com/file/112f2e89248dc42a8b8a772deca96eee/1629790198-el-confidencial.jpg",
+        "background_color": "#0c0c0c"
+    },
+    "https://futurism.com": {
+        "cover_url": "https://futurism.com/favicon.png",
+        "background_color": "#000000"
+    },
+    "https://news.yahoo.co.jp/search/?p=%E3%82%B9%E3%83%9D%E3%83%8B%E3%83%81%E3%82%A2%E3%83%8D%E3%83%83%E3%82%AF%E3%82%B9&vaop=a&to=2&st=n&c_n=c_spo/": {
+        "cover_url": "https://s.yimg.jp/images/news-web/all/images/ogp_default.png",
+        "background_color": "#4b6e93"
+    },
+    "https://okdiario.com": {
+        "cover_url": "https://okdiario.com/img/i/android-icon-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://diariodesign.com": {
+        "cover_url": "https://diariodesign.com/wp-content/themes/diariodesign_v3/images/favicon/android-icon-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://toyokeizai.net": {
+        "cover_url": "https://toyokeizai.net/apple-touch-icon.png?20131220",
+        "background_color": "#fffffe"
+    },
+    "https://decorablog.com": {
+        "cover_url": "https://i0.wp.com/www.decorablog.com/wp-content/2015/10/cropped-DB-avatar-con-texto-twitter1.png?fit=192%2C192&ssl=1",
+        "background_color": "#b9afa6"
+    },
+    "https://rocketnews24.com": {
+        "cover_url": "https://rocketnews24.com/wp-content/uploads/sites/2/2020/05/rocket_circle_512.png?w=192",
+        "background_color": "#ffffff"
+    },
+    "https://cbc.ca": {
+        "cover_url": "https://cbc.ca/a/apple-touch-icon.png",
+        "background_color": "#1a1a1a"
+    },
+    "https://elespanol.com/cultura/": {
+        "cover_url": "https://s1.eestatic.com/2021/11/29/LOGO_-_RRSS-cultural.png",
+        "background_color": "#ffffff"
+    },
+    "https://oryouri.2chblog.jp/": {
+        "cover_url": "https://livedoor.blogimg.jp/chaaaahan/imgs/e/c/ecf4ebd4.png",
+        "background_color": "#ffffff"
+    },
+    "https://tresubresdobles.com": {
+        "cover_url": "https://tresubresdobles.com/android-icon-192x192.png",
+        "background_color": "#3b3430"
+    },
+    "https://ramenparados.com": {
+        "cover_url": "https://ramenparados.com/wp-content/uploads/2020/06/cropped-favicon-192x192.png",
+        "background_color": "#ea4498"
+    },
+    "https://butsuyoku-gadget.com/": {
+        "cover_url": "https://butsuyoku-gadget.com/wp-content/uploads/2022/04/cropped-B-gadget-icon-192x192.jpg",
+        "background_color": "#647a77"
+    },
+    "https://www.webcartop.jp/": {
+        "cover_url": "https://www.webcartop.jp/wp-content/themes/cartop/favicons/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://intojapanwaraku.com/": {
+        "cover_url": "https://intojapanwaraku.com/wp-content/themes/warakuweb/assets/img/favicon2.png",
+        "background_color": "#ffffff"
+    },
+    "https://nerdfitness.com": {
+        "cover_url": "https://www.nerdfitness.com/wp-content/uploads/2016/07/nf-logo.png",
+        "background_color": "#c63737"
+    },
+    "https://seriouseats.com": {
+        "cover_url": "https://www.seriouseats.com/thmb/NRfJOfuo1tSxnCy8jrp9hMr7Avo=/1001x1001/filters:fill(auto,1)/Serious_Eats_Social_Default-72cf0bc11b434461b62c6ffc85b4298f.jpg",
+        "background_color": "#262b31"
+    },
+    "https://eluniversal.com.mx": {
+        "cover_url": "https://eluniversal.com.mx/sites/all/themes/universal/images/icos/manifest/192.png",
+        "background_color": "#fbfbf9"
+    },
+    "https://ycombinator.com": {
+        "cover_url": "https://www.ycombinator.com/assets/ycdc/yc-og-image-0cfa80cac837d64d9b4f0705950000b66906ac032791376bd721f246fafcc7b4.png",
+        "background_color": "#f6f6ef"
+    },
+    "https://openculture.com": {
+        "cover_url": "https://www.openculture.com/wp-content/themes/openculture_v4a/images/apple_icon_new.png",
+        "background_color": "#ffffff"
+    },
+    "https://thecarconnection.com": {
+        "cover_url": "https://www.thecarconnection.com/images/logo-150x150.jpg",
+        "background_color": "#03152d"
+    },
+    "https://travelweekly.com": {
+        "cover_url": "https://travelweekly.com/dist/images/AppleIcons/apple-icon-144x144.png",
+        "background_color": "#ffffff"
+    },
+    "https://cupmen.org/": {
+        "cover_url": "https://blog-imgs-41.fc2.com/k/u/i/kuimakuru/profile.jpg",
+        "background_color": "#d5b92a"
+    },
+    "https://telegraph.co.uk/sport/": {
+        "cover_url": "https://telegraph.co.uk/etc/designs/telegraph/core/clientlibs/core/icons/favicon-196x196.png",
+        "background_color": "#222222"
+    },
+    "https://dt125kazuo.blog22.fc2.com/": {
+        "cover_url": "https://blog-imgs-83.fc2.com/d/t/1/dt125kazuo/20151207161342803.jpg",
+        "background_color": "#c69263"
+    },
+    "https://ikemen3.blog.jp/": {
+        "cover_url": "https://livedoor.blogimg.jp/ikemen7373/imgs/8/7/87d33d77.png",
+        "background_color": "#06060a"
+    },
+    "https://magazine.tabelog.com/": {
+        "cover_url": "https://magazine.tabelog.com/wp-content/uploads/2017/02/tabelog_magazine_top_ogp.png",
+        "background_color": "#ffffff"
+    },
+    "https://marcianosmx.com": {
+        "cover_url": "https://marcianosmx.com/wp-content/uploads/2022/02/cropped-IconodelSitio-192x192.png",
+        "background_color": "#ed194f"
+    },
+    "https://cntraveler.com": {
+        "cover_url": "https://media.cntraveler.com/photos/54abf33b7d23454b52671fe5/16:9/w_1280,c_limit/cnt-logo.jpg?mbid=social_retweet",
+        "background_color": "#ffffff"
+    },
+    "https://mujerhoy.com": {
+        "cover_url": "https://static.mujerhoy.com/squido/latest/assets/images/placeholders/mujerhoy-placeholder.png",
+        "background_color": "#ffffff"
+    },
+    "https://secretflying.com": {
+        "cover_url": "https://secretflying.com/android-chrome-512x512.png?v=PYEkzWNjOP",
+        "background_color": "#231f20"
+    },
+    "https://diariovasco.com": {
+        "cover_url": "https://static.diariovasco.com/squido/latest/assets/icons/diario-vasco/android-chrome-192x192.png",
+        "background_color": "#d2232a"
+    },
+    "https://denofgeek.com": {
+        "cover_url": "https://www.denofgeek.com/wp-content/uploads/2020/02/favicon.geek_.purple.swirl_-1.png?fit=192%2C192",
+        "background_color": "#8050a0"
+    },
+    "https://self.com": {
+        "cover_url": "https://media.self.com/photos/5bfef6efbec1632d4cf38bbf/16:9/w_1280,c_limit/group-of-women-running-in-park.jpg?mbid=social_retweet",
+        "background_color": "#9fa162"
+    },
+    "https://motorpasion.com": {
+        "cover_url": "https://img.remediosdigitales.com/css/motorpasion/p/common/apple-touch-icon.png",
+        "background_color": "#801201"
+    },
+    "https://fancueva.com": {
+        "cover_url": "https://www.fancueva.com/wp-content/uploads/2021/10/fancueva_logo_ico-220x220.png",
+        "background_color": "#000000"
+    },
+    "https://investing.com": {
+        "cover_url": "https://i-invdn-com.investing.com/redesign/images/seo/investing_300X300.png",
+        "background_color": "#070707"
+    },
+    "https://elmueble.com/": {
+        "cover_url": "https://elmueble.com/android-chrome-512x512.png",
+        "background_color": "#ee9b9b"
+    },
+    "https://blog.ricksteves.com": {
+        "cover_url": "https://blog.ricksteves.com/wp-content/uploads/2020/06/cropped-android-chrome-512x512-1-192x192.jpg",
+        "background_color": "#fefefe"
+    },
+    "https://tabi-labo.com/": {
+        "cover_url": "https://img.tabi-labo.com/wp-content/uploads/2014/07/home.gif",
+        "background_color": "#222222"
+    },
+    "https://es.cointelegraph.com": {
+        "cover_url": "https://es.cointelegraph.com/favicons/android-chrome-512x512.png",
+        "background_color": "#253137"
+    },
+    "https://xkcd.com": {
+        "cover_url": "https://imgs.xkcd.com/comics/physics_safety_tip_2x.png",
+        "background_color": "#000000"
+    },
+    "https://citizenfreepress.com": {
+        "cover_url": "https://citizenfreepress.com/wp-content/uploads/2021/07/cropped-Citizen-4-192x192.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://ciperchile.cl": {
+        "cover_url": "https://www.ciperchile.cl/wp-content/uploads/logo-ciper-mail-1.png",
+        "background_color": "#082333"
+    },
+    "https://finofilipino.org": {
+        "cover_url": "https://finofilipino.org/android-icon-192x192.png",
+        "background_color": "#f42200"
+    },
+    "https://ign.com": {
+        "cover_url": "https://assets1.ignimgs.com/2020/06/09/iggy-1591742329095.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://operaciontransformer.com": {
+        "cover_url": "https://www.operaciontransformer.com/wp-content/uploads/2019/04/cropped-icono_operaciontransformer-192x192.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://enriquedans.com": {
+        "cover_url": "http://www.enriquedans.com/wp-content/themes/enriquedans_30_v1/images/favicons/android-icon-192x192.png",
+        "background_color": "#000000"
+    },
+    "https://cine.com": {
+        "cover_url": "https://cine.com/apple-touch-icon.png",
+        "background_color": "#ff8700"
+    },
+    "https://contemporist.com": {
+        "cover_url": "https://contemporist.com/apple-touch-icon.png",
+        "background_color": "#186faf"
+    },
+    "https://usatoday.com": {
+        "cover_url": "https://www.usatoday.com/tangstatic/sites/usat/og-image-q1a2z3fb72acfa.png",
+        "background_color": "#404040"
+    },
+    "https://wsj.com": {
+        "cover_url": "https://s.wsj.net/media/wsj_launcher-icon-4x.png",
+        "background_color": "#f7f7f7"
+    },
+    "https://blackwatch.seesaa.net/": {
+        "cover_url": "https://blackwatch.up.n.seesaa.net/blackwatch/seesaa_favicon/favicon-152x152.png?1492329060",
+        "background_color": "#0a0a0a"
+    },
+    "https://dineroenimagen.com": {
+        "cover_url": "https://www.dineroenimagen.com/sites/dinero.mx/themes/dinerov4/images/dinero_share.jpg",
+        "background_color": "#014165"
+    },
+    "https://theverge.com": {
+        "cover_url": "https://cdn.vox-cdn.com/uploads/chorus_asset/file/7395351/android-chrome-192x192.0.png",
+        "background_color": "#d4d4d4"
+    },
+    "https://www.lifehacker.jp": {
+        "cover_url": "https://www.lifehacker.jp/images/ogp.png",
+        "background_color": "#ffffff"
+    },
+    "https://elpais.com": {
+        "cover_url": "https://imagenes.elpais.com/resizer/q1Bzvi_vytH6svtum46Q9iiKu8Q=/300x300/arc-anglerfish-eu-central-1-prod-prisa.s3.amazonaws.com/public/PSMME3J7ZBDOHK4S6ZIIFVDEAQ.png",
+        "background_color": "#d2d2d2"
+    },
+    "https://ignacioizquierdo.com": {
+        "cover_url": "https://i0.wp.com/www.ignacioizquierdo.com/wp-content/uploads/2020/03/14-a\u00f1os-01.jpg",
+        "background_color": "#121212"
+    },
+    "https://theroot.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_200,q_80,w_200/f5zr3vuc90hrpnmx0nme.png",
+        "background_color": "#59a625"
+    },
+    "https://espnfc.com": {
+        "cover_url": "https://a.espncdn.com/wireless/mw5/r1/images/bookmark-icons-v2/espn-icon-57x57.png",
+        "background_color": "#ec1c24"
+    },
+    "https://propublica.org": {
+        "cover_url": "https://assets.propublica.org/static/prod/v5/images/apple-touch-icon-180x180.png",
+        "background_color": "#304154"
+    },
+    "https://news.yahoo.co.jp/search/?p=%E7%94%A3%E7%B5%8C%E6%96%B0%E8%81%9E&vaop=a&to=2&st=n&c_n=dom/": {
+        "cover_url": "https://s.yimg.jp/images/news-web/all/images/ogp_default.png",
+        "background_color": "#4b6e93"
+    },
+    "https://bustle.com": {
+        "cover_url": "https://cdn2.bustle.com/2022/bustle/icon-c030f451b3.png",
+        "background_color": "#e9474b"
+    },
+    "https://gamepur.com": {
+        "cover_url": "https://assets.gamepur.com/wp-content/uploads/2021/01/19105045/gamepur_G_logo.png",
+        "background_color": "#00a8f7"
+    },
+    "https://www.honda.co.jp/": {
+        "cover_url": "https://www.honda.co.jp/honda-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://nejm.org": {
+        "cover_url": "https://www.nejm.org/templates/jsp/_mms/image/NEJM_defaultlogo_200px.png",
+        "background_color": "#fffcec"
+    },
+    "https://www.cinra.net/": {
+        "cover_url": "https://www.cinra.net/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://livescience.com": {
+        "cover_url": "https://vanilla.futurecdn.net/livescience/521446/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://animalpolitico.com": {
+        "cover_url": "https://www.animalpolitico.com/wp-content/uploads/2016/02/cropped-favicon-300x300.png",
+        "background_color": "#000000"
+    },
+    "https://hardzone.es": {
+        "cover_url": "https://hardzone.es/app/uploads-hardzone.es/2019/10/cropped-hz-logo-512x512.png",
+        "background_color": "#e2b63a"
+    },
+    "https://devilwearszara.vogue.es": {
+        "cover_url": "https://media.vogue.es/photos/627a2a76bb5b37e08a1549f2/16:9/w_1280,c_limit/00022-Alberta-Ferretti-Spring-22-RTW-Milan-credit-Daniele-Oberrauch-Gorunway.jpeg?mbid=social_retweet",
+        "background_color": "#8f5120"
+    },
+    "https://elcomercio.pe": {
+        "cover_url": "https://cdna.elcomercio.pe/resources/dist/elcomercio/images/apple-touch-icon-180x180.png?d=1",
+        "background_color": "#fecd26"
+    },
+    "https://drugs.com": {
+        "cover_url": "https://drugs.com/img/logo/favicon/ddc-icon-512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://arstechnica.com": {
+        "cover_url": "https://cdn.arstechnica.net/wp-content/themes/ars/assets/img/material-ars-db41652381.png",
+        "background_color": "#ff4e00"
+    },
+    "https://dilbert.com": {
+        "cover_url": "https://dilbert.com/assets/packs/images/favicon/favicon-196x196-21d3f791195be908fc24b0eca3eaaeac.png",
+        "background_color": "#242122"
+    },
+    "https://dw.com/spanish/": {
+        "cover_url": "https://dw.com/favicon.png",
+        "background_color": "#ffffff"
+    },
+    "https://lavanguardia.com/vida/salud": {
+        "cover_url": "https://stories.lavanguardia.com/xlv-android-icon-192x192.png.pagespeed.ic._ODxVr2OkP.webp",
+        "background_color": "#01164d"
+    },
+    "https://psicologiaymente.com": {
+        "cover_url": "https://psicologiaymente.com/android-chrome-512x512.png",
+        "background_color": "#2f235b"
+    },
+    "https://cocinandoentreolivos.com": {
+        "cover_url": "https://cocinandoentreolivos.com/wp-content/uploads/2016/11/cropped-logo-cocinandoentreolivos-1-192x192.png",
+        "background_color": "#61784b"
+    },
+    "https://cuantarazon.com": {
+        "cover_url": "https://statics.cuantarazon.com/images/og_image.jpg",
+        "background_color": "#000000"
+    },
+    "https://gadget-shot.com/": {
+        "cover_url": "https://gadget-shot.com/wp-content/themes/maria/images/apple-touch-icon_180x180.png",
+        "background_color": "#ffffff"
+    },
+    "https://lavanguardia.com/cultura": {
+        "cover_url": "https://stories.lavanguardia.com/xlv-android-icon-192x192.png.pagespeed.ic._ODxVr2OkP.webp",
+        "background_color": "#01164d"
+    },
+    "https://hombresconestilo.com": {
+        "cover_url": "https://hombresconestilo.com/wp-content/uploads/2020/05/cropped-favicon-192x192.png",
+        "background_color": "#253248"
+    },
+    "https://notengotele.com": {
+        "cover_url": "https://statics.notengotele.com/images/og_image.jpg",
+        "background_color": "#393e5b"
+    },
+    "https://cryptoslate.com": {
+        "cover_url": "https://cryptoslate.com/wp-content/themes/cryptoslate-2020/icons/android-icon-192x192.png",
+        "background_color": "#100e1b"
+    },
+    "https://lanacion.com.ar/herramientas/rss/index.aspx?categoria_id=131": {
+        "cover_url": "https://lanacion.com.ar/pf/resources/images/favicon-512.png?d=993",
+        "background_color": "#006998"
+    },
+    "https://independent.co.uk": {
+        "cover_url": "https://independent.co.uk/img/shortcut-icons/icon-512x512.png",
+        "background_color": "#ec1f31"
+    },
+    "https://greatist.com": {
+        "cover_url": "https://images-prod.healthline.com/hlcmsresource/images/frontend-static/favicon/v1/greatist-apple-touch-icon.png",
+        "background_color": "#000000"
+    },
+    "https://gigazine.net/": {
+        "cover_url": "https://gigazine.net/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://powerexplosive.com": {
+        "cover_url": "https://powerexplosive.com/wp-content/uploads/2015/06/logo.png",
+        "background_color": "#000101"
+    },
+    "https://atlasobscura.com": {
+        "cover_url": "https://s3.amazonaws.com/atlas-dev/misc/icons/android-chrome-256x256.png",
+        "background_color": "#382c14"
+    },
+    "https://www.fukulow.info/": {
+        "cover_url": "https://www.fukulow.info/wp-content/uploads/2016/05/DRESSCODE_Favicon_03.png",
+        "background_color": "#ffffff"
+    },
+    "https://pymesyautonomos.com": {
+        "cover_url": "https://img.remediosdigitales.com/css/pymesyautonomos/p/common/apple-touch-icon.png",
+        "background_color": "#476277"
+    },
+    "https://huntersokuhou.blog.jp/": {
+        "cover_url": "https://livedoor.blogimg.jp/rekiota0800/imgs/0/8/081e7cc6.jpg",
+        "background_color": "#dc4122"
+    },
+    "https://hypebeast.com": {
+        "cover_url": "https://static.hypebeast.com/dist/hypebeast/favicon/apple-touch-icon-1024x1024.png?v4",
+        "background_color": "#000000"
+    },
+    "https://informationisbeautiful.net": {
+        "cover_url": "https://informationisbeautiful.net/android-chrome-512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://www.bitcoin-trade.info": {
+        "cover_url": "https://www.bitcoin-trade.info/wp-content/uploads/2020/04/b424a4a7c9e40c78cb9b9368262e8fb6-300x300.png",
+        "background_color": "#fcfcfc"
+    },
+    "https://billboard.com": {
+        "cover_url": "https://www.billboard.com/wp-content/themes/vip/pmc-billboard-2021/assets/app/icons/icon-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://diariosur.es": {
+        "cover_url": "https://static3.diariosur.es/squido/latest/assets/icons/diario-sur/android-chrome-192x192.png",
+        "background_color": "#b90021"
+    },
+    "https://internet.watch.impress.co.jp": {
+        "cover_url": "https://internet.watch.impress.co.jp/include/common/p01/images/logo/iw.1200.png",
+        "background_color": "#fade00"
+    },
+    "https://genbeta.com": {
+        "cover_url": "https://img.weblogssl.com/css/genbeta/p/common/apple-touch-icon.png",
+        "background_color": "#004c98"
+    },
+    "https://www.aviationwire.jp": {
+        "cover_url": "https://www.aviationwire.jp/wp-content/uploads/2022/03/220326_0319_ana_rjtt-640.jpg",
+        "background_color": "#8b877e"
+    },
+    "https://glamour.es": {
+        "cover_url": "https://media.glamour.es/photos/6171141d7a09840b79f4fec3/16:9/w_1280,c_limit/1280x720-GLAMOUR.jpg?mbid=social_retweet",
+        "background_color": "#ffffff"
+    },
+    "https://fitnessrevolucionario.com": {
+        "cover_url": "https://www.fitnessrevolucionario.com/wp-content/uploads/2020/04/cropped-fitnessrevolucionario-favicon-fr-192x192.png",
+        "background_color": "#ad283d"
+    },
+    "https://amazings.es": {
+        "cover_url": "https://culturayciencia.diariocronicas.com/wp-content/uploads/2020/06/cropped-Favicon-Amazings-192x192.png",
+        "background_color": "#0b93d7"
+    },
+    "https://theguardian.com/us/travel": {
+        "cover_url": "https://assets.guim.co.uk/images/favicons/fee5e2d638d1c35f6d501fa397e53329/152x152.png",
+        "background_color": "#ffffff"
+    },
+    "https://number.bunshun.jp/subcategory/%E3%81%9D%E3%81%AE%E4%BB%96%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84/column/": {
+        "cover_url": "https://number.ismcdn.jp/common/numberweb/v4/images/touch-icon-iphone6-retinahd.png",
+        "background_color": "#000000"
+    },
+    "https://hackaday.com": {
+        "cover_url": "https://hackaday.com/wp-content/themes/hackaday-2/img/hackaday-logo_1024x1024.png?v=3",
+        "background_color": "#000000"
+    },
+    "https://chron.com": {
+        "cover_url": "https://chron.com/192x192.png",
+        "background_color": "#000000"
+    },
+    "https://fotogramas.es": {
+        "cover_url": "https://fotogramas.es/sites/fotogramas/assets/images/apple-touch-icon.png",
+        "background_color": "#000000"
+    },
+    "https://fool.com": {
+        "cover_url": "https://g.foolcdn.com/misc-assets/apple-touch-icon.png",
+        "background_color": "#0094c9"
+    },
+    "https://businessinsider.com": {
+        "cover_url": "https://www.businessinsider.com/public/assets/BI/US/favicons/android-chrome-512x512.png?v=2021-03",
+        "background_color": "#096ffa"
+    },
+    "https://japan.cnet.com": {
+        "cover_url": "https://japan.cnet.com/static/img/favicon-192x192.png",
+        "background_color": "#e71d1d"
+    },
+    "https://boingboing.net": {
+        "cover_url": "https://boingboing.net/wp-content/uploads/fbrfg/android-chrome-256x256.png?v=2.1",
+        "background_color": "#f6f6f6"
+    },
+    "https://geektopia.es": {
+        "cover_url": "https://static-geektopia.com/storage/geek/favicon/android-icon-512x512-mask.png",
+        "background_color": "#448aff"
+    },
+    "https://usmagazine.com": {
+        "cover_url": "https://www.usmagazine.com/wp-content/uploads/2020/05/cropped-us-logo.png?w=192&quality=86&strip=all",
+        "background_color": "#f52b90"
+    },
+    "https://estiloydeco.com": {
+        "cover_url": "https://www.estiloydeco.com/wp-content/uploads/2017/04/cropped-Perfil2-192x192.png",
+        "background_color": "#e40646"
+    },
+    "https://techspot.com": {
+        "cover_url": "https://www.techspot.com/images/ts3mobile-badge.png",
+        "background_color": "#1e64b6"
+    },
+    "https://artofmanliness.com": {
+        "cover_url": "https://www.artofmanliness.com/wp-content/themes/aom/assets/img/icon.png",
+        "background_color": "#eeeeee"
+    },
+    "https://omocoro.jp/": {
+        "cover_url": "http://omocoro.heteml.net/wp-omocoro/assets/img/common/og-image.jpg",
+        "background_color": "#0a7e57"
+    },
+    "https://collagevintage.com": {
+        "cover_url": "https://collagevintage.com/wp-content/uploads/2020/05/cropped-Favicon-192x192.png",
+        "background_color": "#ecd1d3"
+    },
+    "https://f1aldia.com": {
+        "cover_url": "https://f1aldia.com/images/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://juanrevenga.com": {
+        "cover_url": "https://juanrevenga.com/wp-content/uploads/2015/09/cropped-PAR8565-2-192x192.jpg",
+        "background_color": "#c1bfca"
+    },
+    "https://vidaextra.com": {
+        "cover_url": "https://img.weblogssl.com/css/vidaextra/p/common/apple-touch-icon.png",
+        "background_color": "#042340"
+    },
+    "https://nazology.net/": {
+        "cover_url": "https://nazology.net/wp-content/themes/nazology/frontend/statics/images/icon/android-icon-192x192.png",
+        "background_color": "#f08300"
+    },
+    "https://vozpopuli.com": {
+        "cover_url": "https://media.vozpopuli.com/2021/02/vp_400x400-235x235.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://hypebeast.com/jp/": {
+        "cover_url": "https://static.hypebeast.com/dist/hypebeast/favicon/apple-touch-icon-1024x1024.png?v4",
+        "background_color": "#000000"
+    },
+    "https://travel.watch.impress.co.jp/": {
+        "cover_url": "https://travel.watch.impress.co.jp/include/common/p01/images/logo/trw.1200.png",
+        "background_color": "#80d9b7"
+    },
+    "https://cbslocal.com": {
+        "cover_url": "https://cbslocal.com/wp-content/themes/cbs-local/images/share-logos/default.png",
+        "background_color": "#3f73b5"
+    },
+    "https://madriddiferente.com": {
+        "cover_url": "https://madriddiferente.com/wp-content/uploads/2014/02/icon.png",
+        "background_color": "#e81b9f"
+    },
+    "https://thegamer.com": {
+        "cover_url": "https://thegamer.com/public/build/images/favicon-240x240.21b137ff.png",
+        "background_color": "#fc6c0f"
+    },
+    "https://tripsavvy.com": {
+        "cover_url": "https://www.tripsavvy.com/thmb/Oa30k_UewbqghMNuL9pAJ5Is9ZA=/1001x1001/filters:fill(auto,1)/TripSavvy_1000x1000_1-5919dbe23df78cf5fa559857.png",
+        "background_color": "#ffffff"
+    },
+    "https://wearedore.com": {
+        "cover_url": "https://cdn.shopify.com/s/files/1/0551/2904/7127/files/seal-dark_32x32.png?v=1644690671",
+        "background_color": "#318976"
+    },
+    "https://k-tai.watch.impress.co.jp": {
+        "cover_url": "https://k-tai.watch.impress.co.jp/include/common/p01/images/logo/ktw.1200.png",
+        "background_color": "#f7acb7"
+    },
+    "https://wwwhatsnew.com": {
+        "cover_url": "https://wwwhatsnew.com/wp-content/uploads/2022/08/ClipStudioPaint.jpg",
+        "background_color": "#dbc78a"
+    },
+    "https://wired.jp": {
+        "cover_url": "https://media.wired.jp/photos/61ddb6e3bb66ce2aa6b508a8/16:9/w_1280,c_limit/wired-jp-share.jpg?mbid=social_retweet",
+        "background_color": "#ffffff"
+    },
+    "https://motor.es": {
+        "cover_url": "https://motor.es/favicon/android-chrome-256x256.png",
+        "background_color": "#0d6adb"
+    },
+    "https://syfy.com": {
+        "cover_url": "https://www.syfy.com/sites/syfy/themes/custom/syfy/logo.png",
+        "background_color": "#333333"
+    },
+    "https://boticariagarcia.com": {
+        "cover_url": "https://boticariagarcia.com/wp-content/uploads/2021/01/cropped-logonegrotransparente-1-192x192.png",
+        "background_color": "#030304"
+    },
+    "https://gaiax-blockchain.com/": {
+        "cover_url": "https://gaiax-blockchain.com/wp-content/uploads/fbrfg/android-chrome-192x192.png?v=lkkm3P4qkE",
+        "background_color": "#ffffff"
+    },
+    "https://sirchandler.com.ar": {
+        "cover_url": "https://www.sirchandler.com.ar/wp-content/uploads/2017/03/cropped-cuadrado-grande-520-azul-192x192.gif",
+        "background_color": "#41a5cf"
+    },
+    "https://bbc.com": {
+        "cover_url": "https://gn-web-assets.api.bbc.com/wwhp/20220728-1026-6ae3f1b393e4986c3a5bec7534b3caefe1536be4/responsive/img/apple-touch/apple-touch-180.jpg",
+        "background_color": "#000000"
+    },
+    "https://progameguides.com": {
+        "cover_url": "https://progameguides.com/favicon-32x32.png",
+        "background_color": "#1c1c1c"
+    },
+    "https://timeout.com": {
+        "cover_url": "https://media.timeout.com/images/105686275/image.jpg",
+        "background_color": "#000000"
+    },
+    "https://food-stadium.com/": {
+        "cover_url": "https://food-stadium.com/wp/wp-content/uploads/2018/08/cropped-h_logo-1-192x192.gif",
+        "background_color": "#fcfefc"
+    },
+    "https://politico.com": {
+        "cover_url": "https://static.politico.com/da/f5/44342c424c68b675719324b1106b/politico.jpg",
+        "background_color": "#cd181d"
+    },
+    "https://decoracion2.com": {
+        "cover_url": "https://decoracion2.com/imagenes/2017/10/favicon-152x152.png",
+        "background_color": "#ca5139"
+    },
+    "https://ascodevida.com": {
+        "cover_url": "https://statics.ascodevida.com/images/og_image.jpg",
+        "background_color": "#000000"
+    },
+    "https://cbr.com": {
+        "cover_url": "https://cbr.com/public/build/images/favicon-240x240.72ec888b.png",
+        "background_color": "#fbc725"
+    },
+    "https://fayerwayer.com/fw": {
+        "cover_url": "https://fayerwayer.com/pf/resources/dist/fayerwayer/img/favicon-32x32.png?d=241",
+        "background_color": "#ff6400"
+    },
+    "https://blogs.hogarmania.com": {
+        "cover_url": "https://www.hogarmania.com/archivos/202207/platos-tipicos-espana-portada-668x400x80xX-1.jpg",
+        "background_color": "#aa632b"
+    },
+    "https://libremercado.com": {
+        "cover_url": "https://s.libertaddigital.com/2022/03/21/1200/627/lm.jpg",
+        "background_color": "#f6f6f6"
+    },
+    "https://www.aol.com/": {
+        "cover_url": "https://s.yimg.com/cv/apiv2/aolfp/images/favicon/android-chrome-192x192.png",
+        "background_color": "#2f9aff"
+    },
+    "https://rankia.com": {
+        "cover_url": "https://rankia.com/assets/favicon/apple-touch-icon-c91689e8977312556edff16f659a29393c4a11f74685f99c1ca02b6fc7b6a44e.png",
+        "background_color": "#ffffff"
+    },
+    "https://news.yahoo.co.jp/search/?p=%E3%83%8F%E3%83%95%E3%83%9D%E3%82%B9%E3%83%88%E6%97%A5%E6%9C%AC%E7%89%88&vaop=a&to=2&st=n&c_n=dom/": {
+        "cover_url": "https://s.yimg.jp/images/news-web/all/images/ogp_default.png",
+        "background_color": "#4b6e93"
+    },
+    "https://ocularis.es": {
+        "cover_url": "https://ocularis.es/wp-content/uploads/2016/12/cropped-logo_grande-1.png",
+        "background_color": "#231f20"
+    },
+    "https://sopitas.com": {
+        "cover_url": "https://www.sopitas.com/wp-content/uploads/2022/04/Carita-8bit-1.jpg",
+        "background_color": "#fff017"
+    },
+    "https://gooday.nikkei.co.jp/": {
+        "cover_url": "https://gooday.nikkei.co.jp/images/gdy/201506/apple-touch-icon.png",
+        "background_color": "#a0d324"
+    },
+    "https://vice.com/es?locale=es_mx": {
+        "cover_url": "https://vice-web-statics-cdn.vice.com/favicons/vice/android-chrome-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://midietacojea.com": {
+        "cover_url": "https://www.midietacojea.com/wp-content/uploads/vaso-midietacojea.png",
+        "background_color": "#f1ebe8"
+    },
+    "https://rxlist.com": {
+        "cover_url": "https://images.rxlist.com/images/facebook/rxlist/fb-rxlist-default-2.jpg",
+        "background_color": "#bfe4f4"
+    },
+    "https://finance.yahoo.com": {
+        "cover_url": "https://s.yimg.com/uc/fin/img/19/02/d408d9d.png",
+        "background_color": "#440099"
+    },
+    "https://espncricinfo.com": {
+        "cover_url": "https://espncricinfo.com/static/images/s-512.png",
+        "background_color": "#03a9f4"
+    },
+    "https://elconfidencialdigital.com": {
+        "cover_url": "https://elconfidencialdigital.com/media/elconfidencialdigital/images/2021/01/01/2021010100000076295.png",
+        "background_color": "#011b41"
+    },
+    "https://verywellhealth.com": {
+        "cover_url": "https://www.verywellhealth.com/thmb/MtNcvO5hWDsB-02Kfs8P8_DEnzQ=/1001x1001/filters:fill(87E3EF,1)/default-vw-health-5a78863fa9d4f90036f2e9c1.png",
+        "background_color": "#0a383f"
+    },
+    "https://autosport.com": {
+        "cover_url": "https://cdn-3.motorsport.com/static/custom/autosport.jpg",
+        "background_color": "#fe0000"
+    },
+    "https://sportskeeda.com": {
+        "cover_url": "https://staticg.sportskeeda.com/logo/sk-short-logo.png",
+        "background_color": "#d53636"
+    },
+    "https://androidauthority.com": {
+        "cover_url": "https://androidauthority.com/pwa/android-chrome-512x512.png",
+        "background_color": "#002b16"
+    },
+    "https://lasprovincias.es": {
+        "cover_url": "https://static.lasprovincias.es/squido/latest/assets/icons/las-provincias/android-chrome-192x192.png",
+        "background_color": "#b90021"
+    },
+    "https://andpremium.jp/": {
+        "cover_url": "https://img.andpremium.jp/core/ico/favicon-512.png",
+        "background_color": "#f5f5f5"
+    },
+    "https://www.cnn.co.jp": {
+        "cover_url": "https://www.cnn.co.jp/media/cnn/images/icons/android-chrome-192x192.png",
+        "background_color": "#cd2027"
+    },
+    "https://criptonoticias.com": {
+        "cover_url": "https://www.criptonoticias.com/wp-content/uploads/2019/04/cropped-criptonoticias-favicon-1-192x192.png",
+        "background_color": "#4185f5"
+    },
+    "https://www.rehabilimemo.com/": {
+        "cover_url": "https://www.rehabilimemo.com/icon/link",
+        "background_color": "#ffffff"
+    },
+    "https://www.chem-station.com": {
+        "cover_url": "https://i0.wp.com/assets.chem-station.com/uploads/2017/09/cropped-chemstation.jpg?fit=192%2C192&ssl=1",
+        "background_color": "#ffffff"
+    },
+    "https://koisoku.ldblog.jp/": {
+        "cover_url": "https://livedoor.blogimg.jp/koisokucarp/imgs/2/2/223f7612.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://abcblogs.abc.es/gastronomia/": {
+        "cover_url": "https://static-abcblogs.abc.es/wp-content/uploads/sites/82/2019/07/gastronomia-1024x512.jpg",
+        "background_color": "#e4e4e4"
+    },
+    "https://estrategiasdeinversion.com": {
+        "cover_url": "https://www.estrategiasdeinversion.com/apple-touch-icon.png?v=v2.0.68.3",
+        "background_color": "#c80e1c"
+    },
+    "https://pcgamesn.com": {
+        "cover_url": "https://www.pcgamesn.com/wp-content/themes/pcgamesn/dist/images/favicon/apple-touch-icon.png",
+        "background_color": "#f65002"
+    },
+    "https://www.fashion-press.net/": {
+        "cover_url": "https://www.fashion-press.net/apple-touch-icon-20180130.png",
+        "background_color": "#ffffff"
+    },
+    "https://theblaze.com": {
+        "cover_url": "https://assets.rbl.ms/18924421/2000x.png",
+        "background_color": "#ff002d"
+    },
+    "https://20minutos.es": {
+        "cover_url": "https://www.20minutos.es/uploads/icons/favicon-192x192.png",
+        "background_color": "#0b419b"
+    },
+    "https://ctxt.es": {
+        "cover_url": "https://ctxt.es/themes/publication_1/theme_1/favicon/favicon-194x194.png?v=8jn0OAEq6k",
+        "background_color": "#000000"
+    },
+    "https://fanbyte.com": {
+        "cover_url": "https://cdn.fanbyte.com/wp-content/uploads/2021/12/cropped-260x260-1-192x192.png?x10567",
+        "background_color": "#ff762c"
+    },
+    "https://intereconomia.com": {
+        "cover_url": "https://intereconomia.com/wp-content/uploads/2022/04/cropped-favicon-192x192.png",
+        "background_color": "#162c4a"
+    },
+    "https://decoracion2.com/opendeco": {
+        "cover_url": "https://decoracion2.com/opendeco/wp-content/uploads/2017/11/256x256.png",
+        "background_color": "#ffc93c"
+    },
+    "https://fortune.com": {
+        "cover_url": "https://content.fortune.com/wp-content/uploads/2020/01/Digital-Card4.jpg?resize=1200,600",
+        "background_color": "#061822"
+    },
+    "https://rokushin.blog.ss-blog.jp/": {
+        "cover_url": "https://blog.ss-blog.jp/_common/img/sonet_logo_l.png",
+        "background_color": "#3cb4ff"
+    },
+    "https://laptopmag.com": {
+        "cover_url": "https://vanilla.futurecdn.net/laptopmag/521446/apple-touch-icon.png",
+        "background_color": "#6771e5"
+    },
+    "https://thoughtcatalog.com": {
+        "cover_url": "https://thoughtcatalog.com/wp-content/uploads/2020/09/cropped-favicon-512x512-1-1.png?w=192",
+        "background_color": "#000000"
+    },
+    "https://next49.hatenadiary.jp/": {
+        "cover_url": "https://next49.hatenadiary.jp/icon/link",
+        "background_color": "#ffffff"
+    },
+    "https://elle.com/es/": {
+        "cover_url": "https://elle.com/sites/elle/assets/images/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://libertaddigital.com": {
+        "cover_url": "https://s.libertaddigital.com/images/icono-ld.png",
+        "background_color": "#1065af"
+    },
+    "https://redeszone.net": {
+        "cover_url": "https://www.redeszone.net/app/uploads-redeszone.net/2019/09/cropped-redeszone.png",
+        "background_color": "#1b2e8d"
+    },
+    "https://diamond.jp/category/dol/": {
+        "cover_url": "https://diamond.jp/common/images/apple-touch-icon-iphone-retina.png",
+        "background_color": "#695e2d"
+    },
+    "https://nme.com": {
+        "cover_url": "https://www.nme.com/wp-content/uploads/2019/12/logo-nme@64w.png",
+        "background_color": "#000000"
+    },
+    "https://natrom.hatenablog.com/": {
+        "cover_url": "https://natrom.hatenablog.com/icon/link",
+        "background_color": "#ffffff"
+    },
+    "https://forzastyle.com/": {
+        "cover_url": "https://forza.ismcdn.jp/common/images/apple-touch-icon.png",
+        "background_color": "#000000"
+    },
+    "https://newtral.es": {
+        "cover_url": "https://www.newtral.es/wp-content/uploads/2022/02/cropped-AVATAR-NEWTRAL-BL-RGB-NORM-192x192.png?x24211",
+        "background_color": "#000000"
+    },
+    "https://xatakandroid.com": {
+        "cover_url": "https://img.weblogssl.com/css/xatakandroid/p/common/apple-touch-icon.png",
+        "background_color": "#f0f0f0"
+    },
+    "https://negineesan.hatenablog.com/": {
+        "cover_url": "https://negineesan.hatenablog.com/icon/link",
+        "background_color": "#a7d2ff"
+    },
+    "https://eldinamo.cl": {
+        "cover_url": "https://www.eldinamo.cl/__export/1637693747000/sites/eldinamo/arte/apps/precomposed_512x512.png_352024981.png",
+        "background_color": "#000000"
+    },
+    "https://diariomotor.com": {
+        "cover_url": "https://www.diariomotor.com/wp-content/themes/diariomotor2014/images/favicon.png",
+        "background_color": "#49acd9"
+    },
+    "https://lineblog.me/sirogohan/": {
+        "cover_url": "https://obs.line-scdn.net/0hE6sRbbkwGhlOKwy_HyplTgV2HHY3SAARJFMUPDV8HHQ3BRwMLBoNIj83BnEgRQsRKx0KYyx3MW09GAlIcBQvASlTJkAEfS8oAhVQAjhXFlozHiQybk1SfGkoTSxqGF1Peh8GfWosRGxiTgoae09QeA/large",
+        "background_color": "#e6e6e4"
+    },
+    "https://pc.watch.impress.co.jp": {
+        "cover_url": "https://pc.watch.impress.co.jp/include/common/p01/images/logo/pcw.1200.png",
+        "background_color": "#4565ff"
+    },
+    "https://footballnet.2chblog.jp/": {
+        "cover_url": "https://livedoor.blogimg.jp/fbn_2chfootball/imgs/e/f/eff0962c.png",
+        "background_color": "#338d07"
+    },
+    "https://hsnstore.com/blog": {
+        "cover_url": "https://cdn.hsnstore.com/blog/wp-content/uploads/2015/03/hsn-blog.jpg",
+        "background_color": "#ff6d03"
+    },
+    "https://dualshockers.com": {
+        "cover_url": "https://www.dualshockers.com/static/uploads/generated/favicon.png",
+        "background_color": "#3da9da"
+    },
+    "https://curistoria.com": {
+        "cover_url": "https://www.curistoria.com/wp-content/uploads/2019/06/icono.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://elcorreo.com": {
+        "cover_url": "https://static3.elcorreo.com/squido/latest/assets/icons/elcorreo/android-chrome-192x192.png",
+        "background_color": "#b90021"
+    },
+    "https://trendenciashombre.com": {
+        "cover_url": "https://img.weblogssl.com/css/trendenciashombre/p/common/apple-touch-icon.png",
+        "background_color": "#f9f9f9"
+    },
+    "https://webosfritos.es": {
+        "cover_url": "https://webosfritos.es/apple-touch-icon-144x144-precomposed.png",
+        "background_color": "#ffffff"
+    },
+    "https://conbotasdeagua.com": {
+        "cover_url": "https://www.conbotasdeagua.com/favicon.ico?v=2",
+        "background_color": "#000000"
+    },
+    "https://gori.me/": {
+        "cover_url": "https://gori.me/wp-content/themes/gorime-2019/images/apple-touch-icon-180x180.png",
+        "background_color": "#111111"
+    },
+    "https://nintendolife.com": {
+        "cover_url": "https://images.nintendolife.com/site/icon/180x180.png",
+        "background_color": "#1b1b1b"
+    },
+    "https://cbsnews.com": {
+        "cover_url": "https://cbsnews.com/fly/bundles/cbsnewscore/icons/icon-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://fastcompany.com": {
+        "cover_url": "https://images.fastcompany.net/image/upload/v1499719004/fcweb/android-chrome-512x512_kmmfwf.png",
+        "background_color": "#000000"
+    },
+    "https://elpachinko.com": {
+        "cover_url": "https://elpachinko.com/wp-content/uploads/elpachinko_152x152-150x150.png",
+        "background_color": "#7b9c5b"
+    },
+    "https://www.roomie.jp": {
+        "cover_url": "https://www.roomie.jp/wp-content/themes/roomie2016/asset/favicon/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://whowhatwear.com": {
+        "cover_url": "https://whowhatwear.com/touch-icon-180x180.png",
+        "background_color": "#000000"
+    },
+    "https://bio.nikkeibp.co.jp/": {
+        "cover_url": "https://bio.nikkeibp.co.jp/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://lifewire.com": {
+        "cover_url": "https://www.lifewire.com/thmb/0rNTQ8kv1n5R0XrUH8bmd5H9GUU=/1024x1024/filters:fill(auto,1)/Lifewire_Share_Image-1741eb1b75f0497c89cf4ba9a56d7aba.jpg",
+        "background_color": "#ffff01"
+    },
+    "https://smbc-comics.com": {
+        "cover_url": "https://www.smbc-comics.com/comics/1661171744-20220822.png",
+        "background_color": "#ffffff"
+    },
+    "https://cincodias.elpais.com": {
+        "cover_url": "https://d500.epimg.net/cincodias/iconos/v2.x/v2.1/redes/152x152.png",
+        "background_color": "#004f88"
+    },
+    "https://101lugaresincreibles.com": {
+        "cover_url": "https://101lugaresincreibles.com/wp-content/uploads/2021/05/favicon.png",
+        "background_color": "#ff9400"
+    },
+    "https://promociones-aereas.com.ar": {
+        "cover_url": "https://promociones-aereas.com.ar/wp-content/uploads/2019/04/cropped-logo512x512-192x192.png",
+        "background_color": "#26348b"
+    },
+    "https://blog.es.privalia.com": {
+        "cover_url": "https://blog.es.privalia.com/wp-content/themes/privalia-ES/images/icons/apple-touch-icon.png",
+        "background_color": "#000000"
+    },
+    "https://futurity.org": {
+        "cover_url": "https://www.futurity.org/wp/wp-content/uploads/2018/08/futurity_ico.png",
+        "background_color": "#f8b70d"
+    },
+    "https://otokomaeken.com": {
+        "cover_url": "https://otokomaeken.com/wp-content/uploads/2016/09/cropped-icon-5-1-480x480.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://www.webcg.net/": {
+        "cover_url": "https://www.webcg.net/common/webcg/images/v5/smartphone/apple-touch-icon-precomposed.png",
+        "background_color": "#004f91"
+    },
+    "https://bbc.co.uk/spanish/": {
+        "cover_url": "https://static.files.bbci.co.uk/ws/simorgh-assets/public/news/images/icons/icon-512x512.png",
+        "background_color": "#bb1919"
+    },
+    "https://infolibre.es": {
+        "cover_url": "https://static.infolibre.es/infolibre/public/file/2021/1119/11/infolibre-apple-touch-0da3f47.png",
+        "background_color": "#bebebe"
+    },
+    "https://wondertrip.jp/": {
+        "cover_url": "https://wondertrip.jp/wp-content/themes/tabiyori/assets/favicon/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://tabiris.com/": {
+        "cover_url": "https://tabiris.com/wp1/images/2014/04/short-logo2.jpeg",
+        "background_color": "#ffffff"
+    },
+    "https://commonsensemedia.org": {
+        "cover_url": "https://commonsensemedia.org/themes/custom/common_sense/images/favicons/favicon-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://president.jp/category/president/": {
+        "cover_url": "https://president.jp/common/icons/1024x1024.png",
+        "background_color": "#ffffff"
+    },
+    "https://brainpickings.org": {
+        "cover_url": "https://brainpickings.org/android-chrome-512x512.png",
+        "background_color": "#ffdc00"
+    },
+    "https://icanhas.cheezburger.com": {
+        "cover_url": "https://s.chzbgr.com/blob/1/ICHCnew.png",
+        "background_color": "#d6b565"
+    },
+    "https://jalopnik.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_200,q_80,w_200/aqhdzcldymb9mkltfhxh.png",
+        "background_color": "#ff4d00"
+    },
+    "https://ripple.2chblog.jp/": {
+        "cover_url": "https://livedoor.blogimg.jp/gcuigzqu-ripple/imgs/a/6/a69927e3.jpg",
+        "background_color": "#fefefe"
+    },
+    "https://complex.com": {
+        "cover_url": "https://images.complex.com/complex/image/upload/w_1024,h_1024/complex-box-logo-2014_mpwmgz.png",
+        "background_color": "#000000"
+    },
+    "https://foxsports.com": {
+        "cover_url": "https://foxsports.com/android-chrome-256x256.png",
+        "background_color": "#ffffff"
+    },
+    "https://popsugar.com": {
+        "cover_url": "https://media1.popsugar-assets.com/v4770/static/imgs/apple/apple-touch-icon-180x180.png",
+        "background_color": "#002689"
+    },
+    "https://sky.com": {
+        "cover_url": "https://www.sky.com/assets/masthead/images/favicon-32.png",
+        "background_color": "#ffffff"
+    },
+    "https://vogue.com": {
+        "cover_url": "https://origin.go.vogue.com.au/wp-content/uploads/2019/10/cropped-cropped-vogue-favicon-1.png?w=192",
+        "background_color": "#181815"
+    },
+    "https://coolhunting.com": {
+        "cover_url": "https://i0.wp.com/coolhunting.com/wp-content/uploads/2018/08/cropped-cropped-CH-Logo-icon-3.png?fit=192%2C192&ssl=1",
+        "background_color": "#000000"
+    },
+    "https://www.buzzfeed.com/news/": {
+        "cover_url": "https://www.buzzfeed.com/static-assets/img/buzzfeed_webapp_logo.0ea3c59fd2aeb164cfdfe77e74ab3aa2.png",
+        "background_color": "#df3543"
+    },
+    "https://www.afpbb.com/": {
+        "cover_url": "https://afpbb.ismcdn.jp/common/images/apple-touch-icon2020.png",
+        "background_color": "#325aff"
+    },
+    "https://upworthy.com": {
+        "cover_url": "https://assets.rbl.ms/19301381/980x.png",
+        "background_color": "#f44941"
+    },
+    "https://breitbart.com": {
+        "cover_url": "https://breitbart.com/android-chrome-512x512.png",
+        "background_color": "#fb5303"
+    },
+    "https://decider.com": {
+        "cover_url": "https://decider.com/wp-content/themes/nypost-2016/static/images/favicon-decider/android-chrome-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://thebalance.com": {
+        "cover_url": "https://www.thebalance.com/thmb/_BdIUYuF4B7ol4p8Ss5YWauKGMc=/1080x1080/filters:fill(auto,1)/money-social-share-default-5ac795adc0647100374ba7e7.png",
+        "background_color": "#ffffff"
+    },
+    "https://pinchofyum.com": {
+        "cover_url": "https://pinchofyum.com/wp-content/uploads/cropped-Pinch-of-Yum-Favicon-512-300x300.png",
+        "background_color": "#713e5f"
+    },
+    "https://inc.com": {
+        "cover_url": "https://www.incimages.com/branding/icons/inc_i_dotless_512x512.png",
+        "background_color": "#000000"
+    },
+    "https://the-sun.com": {
+        "cover_url": "https://www.the-sun.com/wp-content/uploads/sites/6/2020/01/cropped-UsSunFavicon.png?strip=all&w=192",
+        "background_color": "#eb1701"
+    },
+    "https://lonelyplanet.com": {
+        "cover_url": "https://lonelyplanetstatic.imgix.net/microsites/bit2021/sustainability/hero.jpg?auto=compress&fit=crop&fm=auto&w=1200&h=800",
+        "background_color": "#cfd4d7"
+    },
+    "https://kuniroku.com/": {
+        "cover_url": "https://kuniroku.com/wp/wp-content/uploads/2022/06/cropped-icon-192x192.jpg",
+        "background_color": "#bb8d1d"
+    },
+    "https://diariomedico.com/": {
+        "cover_url": "https://statics-diariomedico.uecdn.es/cms/favicon_io/apple-touch-icon.png",
+        "background_color": "#157ab8"
+    },
+    "https://alphr.com": {
+        "cover_url": "https://i0.wp.com/www.alphr.com/wp-content/uploads/2020/06/cropped-favicon-big.png?fit=192%2C192&ssl=1",
+        "background_color": "#474747"
+    },
+    "https://businessoffashion.com": {
+        "cover_url": "https://businessoffashion.com/pf/resources/favicon.ico?d=131",
+        "background_color": "#040001"
+    },
+    "https://latimes.com": {
+        "cover_url": "https://latimes.com/apple-touch-icon.png",
+        "background_color": "#1e1e1e"
+    },
+    "https://mlbtraderumors.com": {
+        "cover_url": "https://www.mlbtraderumors.com/wp-content/themes/mlbtr2015/images/android-chrome-256x256.png?v=ngkBbGyONn",
+        "background_color": "#090909"
+    },
+    "https://gamepressure.com": {
+        "cover_url": "https://gamepressure.com/android-chrome-256x256.png",
+        "background_color": "#294062"
+    },
+    "https://wtf.microsiervos.com": {
+        "cover_url": "https://wtf.microsiervos.com/android-chrome-512x512.png",
+        "background_color": "#b3bec3"
+    },
+    "https://locuraviajes.com": {
+        "cover_url": "https://locuraviajes.com/wp-content/plugins/super-progressive-web-apps/public/images/logo-512x512.png",
+        "background_color": "#464442"
+    },
+    "https://exputer.com": {
+        "cover_url": "https://cdn.exputer.com/wp-content/uploads/2022/01/cropped-exputer-192x192.jpg",
+        "background_color": "#96c46a"
+    },
+    "https://larazon.es": {
+        "cover_url": "https://larazon.es/pf/resources/images/logo.ico?d=449",
+        "background_color": "#0a1d64"
+    },
+    "https://iprofesional.com": {
+        "cover_url": "https://iprofesional.com/images/favicon/android-icon-192x192.png?84416082-8-8-15",
+        "background_color": "#000000"
+    },
+    "https://infobae.com": {
+        "cover_url": "https://infobae.com/pf/resources/favicon/apple-touch-icon.png?d=1030",
+        "background_color": "#ff8900"
+    },
+    "https://japanese.engadget.com/": {
+        "cover_url": "https://s.yimg.com/kw/assets/favicon-160x160.png",
+        "background_color": "#000000"
+    },
+    "https://telegraph.co.uk": {
+        "cover_url": "https://telegraph.co.uk/etc/designs/telegraph/core/clientlibs/core/icons/favicon-196x196.png",
+        "background_color": "#222222"
+    },
+    "https://bringatrailer.com": {
+        "cover_url": "https://bringatrailer.com/wp-content/themes/bringatrailer/assets/img/apple-touch-icon-ipad-retina-152x152.png?v=http://4e421e3271",
+        "background_color": "#fefefe"
+    },
+    "https://familyhandyman.com": {
+        "cover_url": "https://www.familyhandyman.com/wp-content/uploads/2017/05/cropped-fhm-favicon.jpg?fit=192,192",
+        "background_color": "#b4cfca"
+    },
+    "https://tech.nikkeibp.co.jp/dm/ndh/": {
+        "cover_url": "https://tech.nikkeibp.co.jp/images/n/xtech/2020/channel/icon_ch_digitalhealth_256px.png",
+        "background_color": "#000000"
+    },
+    "https://insider.com": {
+        "cover_url": "https://www.insider.com/public/assets/INSIDER/US/favicons/android-chrome-512x512.png?v=2021-03",
+        "background_color": "#0270fa"
+    },
+    "https://tmz.com": {
+        "cover_url": "https://static.tmz.com/tmz-web/icons/android-chrome-512x512-v1.png",
+        "background_color": "#000000"
+    },
+    "https://techwave.jp/": {
+        "cover_url": "https://techwave.jp/images_inbox/2019/03/favicon_152x152@2x.png",
+        "background_color": "#239985"
+    },
+    "https://elotrolado.net": {
+        "cover_url": "https://elotrolado.net/apple-touch-icon.png",
+        "background_color": "#38592e"
+    },
+    "https://lifehacker.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_200,q_80,w_200/u0939doeuioaqhspkjyc.png",
+        "background_color": "#94b330"
+    },
+    "https://koujiebe.blog95.fc2.com/": {
+        "cover_url": "https://blog-imgs-29.fc2.com/k/o/u/koujiebe/IMG_0110_convert_20120217152958.jpg",
+        "background_color": "#785f1c"
+    },
+    "https://rockpapershotgun.com": {
+        "cover_url": "https://rockpapershotgun.com/static/b76b9bdfccfaec74bb4d12ca4f00572b/icon/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://lifeboxset.com": {
+        "cover_url": "https://www.lifeboxset.com/wp-content/uploads/2014/11/avatar-big.jpg",
+        "background_color": "#000000"
+    },
+    "https://chikirin.hatenablog.com/": {
+        "cover_url": "https://chikirin.hatenablog.com/icon/link",
+        "background_color": "#ffffff"
+    },
+    "https://www.technologyreview.jp/": {
+        "cover_url": "https://cdn.technologyreview.jp/wp-content/uploads/sites/2/2021/02/08170309/cropped-icon-192x192.png",
+        "background_color": "#231815"
+    },
+    "https://indiewire.com": {
+        "cover_url": "https://www.indiewire.com/wp-content/uploads/2018/04/cropped-iw_favicon.png",
+        "background_color": "#0a5da7"
+    },
+    "https://newsweek.com": {
+        "cover_url": "https://g.newsweek.com/themes/newsweek/favicons/apple-touch-icon.png",
+        "background_color": "#ff0500"
+    },
+    "https://hbr.org": {
+        "cover_url": "https://hbr.org/resources/images/android-chrome-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://markezine.jp/": {
+        "cover_url": "https://markezine.jp/static/common/images/fb_logo.png",
+        "background_color": "#ffffff"
+    },
+    "https://pushsquare.com": {
+        "cover_url": "https://images.pushsquare.com/site/icon/180x180.png",
+        "background_color": "#0244c5"
+    },
+    "https://cracked.com": {
+        "cover_url": "https://ui-seo-8.crackedcdn.com/images/favicon/apple-touch-icon.png?v=98b3723116c00a2a93573a4b452ee8fd",
+        "background_color": "#727272"
+    },
+    "https://highsnobiety.com": {
+        "cover_url": "https://www.highsnobiety.com/wp-content/themes/highsnobiety/favicons/android-chrome-192x192.png?v=2018",
+        "background_color": "#1a1a1a"
+    },
+    "https://coinpost.jp": {
+        "cover_url": "https://coinpost.jp/wp-content/uploads/2020/03/cropped-coinpost_icon2020-9-192x192.png",
+        "background_color": "#2e9bf5"
+    },
+    "https://www.nikkansports.com/baseball/index.html/": {
+        "cover_url": "https://cache2.nipc.jp/mod2015/img/icon/touch-icon_ipad-retina.png",
+        "background_color": "#ffffff"
+    },
+    "https://stuckincustoms.com": {
+        "cover_url": "http://stuckincustoms.smugmug.com/photos/740461231_emfwW-O.png",
+        "background_color": "#a28f64"
+    },
+    "https://cryptopotato.com": {
+        "cover_url": "https://cdn.shortpixel.ai/spai/q_lossless+ret_img/https://cryptopotato.com/wp-content/uploads/2020/07/cropped-potato-fav2-192x192.jpg",
+        "background_color": "#3b3b3b"
+    },
+    "https://www.autocar.jp/": {
+        "cover_url": "https://www.autocar.jp/wp-content/themes/base/images/common/logo_ogp.png",
+        "background_color": "#ffffff"
+    },
+    "https://www.mylohas.net": {
+        "cover_url": "https://assets.media-platform.com/mylohas/dist/images/2018/01/11/ogp_mylohas.png",
+        "background_color": "#f2f2f2"
+    },
+    "https://bolsamania.com": {
+        "cover_url": "https://rsrc.s3wfg.com/web/img/icons/iconnApp_small.jpg",
+        "background_color": "#e6593b"
+    },
+    "https://jbpress.ismedia.jp/": {
+        "cover_url": "https://jbpress.ismcdn.jp/common/images/favicons/android-chrome-512x512.png",
+        "background_color": "#0f717a"
+    },
+    "https://entrenamiento.com": {
+        "cover_url": "https://www.entrenamiento.com/wp-content/uploads/2020/06/cropped-favicon-192x192.png",
+        "background_color": "#111111"
+    },
+    "https://cooperativa.cl": {
+        "cover_url": "https://www.cooperativa.cl/noticias/imag/fotos/logo-cooperativa-cl-facebook-1200x630.jpg",
+        "background_color": "#005dbd"
+    },
+    "https://anaflyer.blog.fc2.com/": {
+        "cover_url": "https://blog-imgs-151.fc2.com/a/n/a/anaflyer/2023JAicons.png",
+        "background_color": "#fefefe"
+    },
+    "https://ikedanobuo.livedoor.biz/": {
+        "cover_url": "https://parts.blog.livedoor.jp/img/usr/cmn/ogp_image/livedoor.png",
+        "background_color": "#0081db"
+    },
+    "https://next.rikunabi.com/journal/": {
+        "cover_url": "https://next.rikunabi.com/journal/wp-content/uploads/2018/03/rnnj_logo_180x180-1.png",
+        "background_color": "#ffffff"
+    },
+    "https://magnet.xataka.com": {
+        "cover_url": "https://img.weblogssl.com/css/xatakamagnet/p/common/apple-touch-icon.png",
+        "background_color": "#64abd8"
+    },
+    "https://mayoclinic.org": {
+        "cover_url": "https://mayoclinic.org/-/media/web/gbs/shared/images/apple-touch-icon-152x152.png",
+        "background_color": "#27251e"
+    },
+    "https://lanacion.com.ar": {
+        "cover_url": "https://lanacion.com.ar/pwa_512.png",
+        "background_color": "#006998"
+    },
+    "https://npr.org": {
+        "cover_url": "https://static-assets.npr.org/static/images/favicon/favicon-180x180.png",
+        "background_color": "#ffffff"
+    },
+    "https://blogdeviajes.com.ar": {
+        "cover_url": "https://www.blogdeviajes.com.ar/wp-content/uploads/2017/01/cropped-cropped-cropped-Medanos-5-192x192.jpeg",
+        "background_color": "#6f696d"
+    },
+    "https://honestlywtf.com": {
+        "cover_url": "https://honestlywtf.com/wp-content/uploads/2018/04/favicon512_480-300x300.png",
+        "background_color": "#cdd7e1"
+    },
+    "https://thehill.com": {
+        "cover_url": "https://thehill.com/wp-content/uploads/sites/2/2022/05/cropped-favicon.png?w=192",
+        "background_color": "#2a53c1"
+    },
+    "https://shorebird.hatenablog.com/": {
+        "cover_url": "https://shorebird.hatenablog.com/icon/link",
+        "background_color": "#9fb5c2"
+    },
+    "https://qiita.com/popular-items/": {
+        "cover_url": "https://cdn.qiita.com/assets/favicons/public/apple-touch-icon-ec5ba42a24ae923f16825592efdc356f.png",
+        "background_color": "#ffffff"
+    },
+    "https://apa.org": {
+        "cover_url": "https://apa.org/Content/Images/launcher-apa-144.png",
+        "background_color": "#ffffff"
+    },
+    "https://elciudadano.cl": {
+        "cover_url": "https://www.elciudadano.com/wp-content/uploads/2019/04/logociudadano.jpg",
+        "background_color": "#215ba5"
+    },
+    "https://adventure.com": {
+        "cover_url": "https://adventure.com/wp-content/uploads/2017/03/cropped-small_black-192x192.png",
+        "background_color": "#0f0f0f"
+    },
+    "https://www.ccdm.jp/": {
+        "cover_url": "https://www.ccdm.jp/wp-content/2015/11/Avada114-114.jpg",
+        "background_color": "#867f75"
+    },
+    "https://sfgate.com": {
+        "cover_url": "https://sfgate.com/192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://sciencejournal.livedoor.biz/": {
+        "cover_url": "https://parts.blog.livedoor.jp/img/usr/cmn/ogp_image/livedoor.png",
+        "background_color": "#0081db"
+    },
+    "https://xatakafoto.com": {
+        "cover_url": "https://img.weblogssl.com/css/xatakafoto/p/common/apple-touch-icon.png",
+        "background_color": "#1e2e1f"
+    },
+    "https://smoda.elpais.com": {
+        "cover_url": "https://smoda.elpais.com/wp-content/uploads/2016/08/smodaLOGO21-267x267.png",
+        "background_color": "#000000"
+    },
+    "https://coinchoice.net/": {
+        "cover_url": "https://coinchoice.net/wp-content/uploads/2021/11/cropped-logo_512x512_rgb-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://forococheselectricos.com": {
+        "cover_url": "https://forococheselectricos.com/wp-content/uploads/2021/08/cropped-favicon-192x192.png",
+        "background_color": "#3ca0ca"
+    },
+    "https://hipertextual.com": {
+        "cover_url": "https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2021/07/cropped-hipertextual-favicon-2349743.png?fit=512%2C512&quality=50&strip=all&ssl=1",
+        "background_color": "#0e2289"
+    },
+    "https://vozpopuli.com/altavoz/next/": {
+        "cover_url": "https://media.vozpopuli.com/2021/02/vp_400x400-235x235.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://medicinenet.com": {
+        "cover_url": "https://images.medicinenet.com/images/facebook/medicinenet/fb-mnet-default.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://yadokari.net": {
+        "cover_url": "https://yadokari.net/wp-content/uploads/2017/05/cropped-co-yadokari-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://thetruthaboutcars.com": {
+        "cover_url": "https://thetruthaboutcars.com/resources/themes/ttac/imgs-responsive/ttac-pwa-icon-512.png",
+        "background_color": "#ffffff"
+    },
+    "https://aintitcool.com": {
+        "cover_url": "https://media.aintitcool.com/static/social/facebook-wide-dannie.png",
+        "background_color": "#9a6601"
+    },
+    "https://computerhoy.com": {
+        "cover_url": "https://computerhoy.com/themes/computerhoy/manifest/icon-512x512.png",
+        "background_color": "#fe302a"
+    },
+    "https://sciencemag.org": {
+        "cover_url": "https://www.science.org/apple-touch-icon-precomposed.png",
+        "background_color": "#c4161c"
+    },
+    "https://1000bero.net/": {
+        "cover_url": "https://1000bero.net/wp-content/uploads/2020/01/cropped-logo-192x192.png",
+        "background_color": "#20367d"
+    },
+    "https://webmd.com": {
+        "cover_url": "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/logos/webmd/web/webmd-logo-fb.jpg",
+        "background_color": "#127ab1"
+    },
+    "https://wwd.com": {
+        "cover_url": "https://wwd.com/wp-content/uploads/2018/06/a9597fffaf6885dd6f870d1269ef3b72.png",
+        "background_color": "#040707"
+    },
+    "https://www.fashionsnap.com": {
+        "cover_url": "https://www.fashionsnap.com/favicon/android-chrome-512x512.png?v=47MNLvaPK8",
+        "background_color": "#ffffff"
+    },
+    "https://allmusic.com": {
+        "cover_url": "https://cdn-gce.allmusic.com/images/favicon/favicon-196x196.png?v=47BXOjEqB",
+        "background_color": "#24aae1"
+    },
+    "https://lavanguardia.com": {
+        "cover_url": "https://stories.lavanguardia.com/xlv-android-icon-192x192.png.pagespeed.ic._ODxVr2OkP.webp",
+        "background_color": "#01164d"
+    },
+    "https://consumer.es/": {
+        "cover_url": "https://consumer.es/app/uploads/2022/02/eroski_consumer.jpg",
+        "background_color": "#ec1d23"
+    },
+    "https://entrepreneur.com": {
+        "cover_url": "https://assets.entrepreneur.com/ent-apple-touch-icon.jpg",
+        "background_color": "#323232"
+    },
+    "https://elbitcoin.org": {
+        "cover_url": "https://elbitcoin.org/wp-content/uploads/2015/05/cropped-logo-fb-192x192.jpg",
+        "background_color": "#f7f2ec"
+    },
+    "https://www.shibukei.com/": {
+        "cover_url": "https://images.keizai.biz/img/logo/shibukei.png",
+        "background_color": "#0062b0"
+    },
+    "https://bigthink.com": {
+        "cover_url": "https://bigthink.com/wp-content/uploads/2021/09/cropped-android-chrome-512x512-1.png?w=192",
+        "background_color": "#000000"
+    },
+    "https://as.com/tag/real_madrid/a": {
+        "cover_url": "https://as01.epimg.net/img/favicon/android-chrome-512x512.png",
+        "background_color": "#ce0000"
+    },
+    "https://lavanguardia.com/economia": {
+        "cover_url": "https://stories.lavanguardia.com/xlv-android-icon-192x192.png.pagespeed.ic._ODxVr2OkP.webp",
+        "background_color": "#01164d"
+    },
+    "https://as.com/tag/fc_barcelona/a": {
+        "cover_url": "https://as01.epimg.net/img/favicon/android-chrome-512x512.png",
+        "background_color": "#ce0000"
+    },
+    "https://applesfera.com": {
+        "cover_url": "https://img.weblogssl.com/css/applesfera/p/common/apple-touch-icon.png",
+        "background_color": "#110c3f"
+    },
+    "https://bolavip.com": {
+        "cover_url": "https://statics.bolavip.com/shared/favicon/android-icon-512x512.png",
+        "background_color": "#d81f30"
+    },
+    "https://refinery29.com": {
+        "cover_url": "https://www.refinery29.com/assets/ceca07ea31bccaf0dc283e59c247e70d.jpg",
+        "background_color": "#f23b40"
+    },
+    "https://as.com": {
+        "cover_url": "https://as01.epimg.net/img/favicon/android-chrome-512x512.png",
+        "background_color": "#ce0000"
+    },
+    "https://eltiempo.com": {
+        "cover_url": "https://eltiempo.com/favicon-114x114.png",
+        "background_color": "#0e65a5"
+    },
+    "https://diariodelviajero.com": {
+        "cover_url": "https://img.remediosdigitales.com/css/diariodelviajero/p/common/apple-touch-icon.png",
+        "background_color": "#f0ee9a"
+    },
+    "https://absurd.blogo.jp/": {
+        "cover_url": "https://livedoor.blogimg.jp/kamonegi21/imgs/9/8/983fbac4.gif",
+        "background_color": "#a0a0a0"
+    },
+    "https://recetasdecocina.elmundo.es": {
+        "cover_url": "https://recetasdecocina.elmundo.es/wp-content/uploads/2013/10/logo-recetas-300x300.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://windowscentral.com": {
+        "cover_url": "https://cdn.mos.cms.futurecdn.net/flexiimages/gvnkdor1vl1647264367.png",
+        "background_color": "#ffffff"
+    },
+    "https://flyertalk.com": {
+        "cover_url": "https://www.flyertalk.com/wp-content/uploads/2020/03/shutterstock_452502628-1000x600.jpg",
+        "background_color": "#232e04"
+    },
+    "https://gamerant.com": {
+        "cover_url": "https://gamerant.com/public/build/images/favicon-240x240.e2e355d6.png",
+        "background_color": "#242a36"
+    },
+    "https://exweb.jp/": {
+        "cover_url": "https://exweb.jp/common/images/icons/icon-exweb-512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://tomshardware.com": {
+        "cover_url": "https://vanilla.futurecdn.net/tomshardware/521446/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://zdnet.com": {
+        "cover_url": "https://www.zdnet.com/a/fly/bundles/zdnetcore/images/logos/zdnet-logo-yellow.png",
+        "background_color": "#9fc23d"
+    },
+    "https://rogerebert.com": {
+        "cover_url": "https://rogerebert.com/assets/fav/favicon-196x196-e11c28ccdbdd131ae271453581a65c68c19affb80e694897e34c86c1d663f9ab.png",
+        "background_color": "#000000"
+    },
+    "https://sciencedaily.com": {
+        "cover_url": "https://www.sciencedaily.com/images/scidaily-icon.png",
+        "background_color": "#753318"
+    },
+    "https://www.carenet.com/": {
+        "cover_url": "http://www.carenet.com/common/images/common/default.png",
+        "background_color": "#ffffff"
+    },
+    "https://aljazeera.com": {
+        "cover_url": "https://www.aljazeera.com/images/logo_aje_social.png",
+        "background_color": "#fb9605"
+    },
+    "https://foxnews.com": {
+        "cover_url": "https://static.foxnews.com/static/orion/styles/img/fox-news/favicons/android-chrome-192x192.png",
+        "background_color": "#003366"
+    },
+    "https://intothegloss.com/": {
+        "cover_url": "https://assets2.intothegloss.com/assets/misc/itgsquare-2d18d3d83c785c9a6b2977c40ed44fbd.png",
+        "background_color": "#ffffff"
+    },
+    "https://hola.com": {
+        "cover_url": "https://www.himgs.com/imagenes/hola/comunes/hola-2017.gif",
+        "background_color": "#e0081d"
+    },
+    "https://actualidad.rt.com": {
+        "cover_url": "https://actualidad.rt.com/static/js/homescreen/icon.png",
+        "background_color": "#77bc1f"
+    },
+    "https://food.com": {
+        "cover_url": "https://geniuskitchen.sndimg.com/gk/img/apple-touch-icon-iphone-retina-precomposed.png?v=271",
+        "background_color": "#000000"
+    },
+    "https://formulatv.com": {
+        "cover_url": "https://www.formulatv.com/apple-touch-icon.png",
+        "background_color": "#3c94f8"
+    },
+    "https://elfinanciero.com.mx": {
+        "cover_url": "https://elfinanciero.com.mx/pf/resources/images/elfinanciero/favicon.png?d=88",
+        "background_color": "#173080"
+    },
+    "https://ecartelera.com": {
+        "cover_url": "https://ecartelera.com/android-chrome-192x192.png",
+        "background_color": "#000000"
+    },
+    "https://motor1.com": {
+        "cover_url": "https://cdn.motor1.com/images/static/motor1/favicon-228.png",
+        "background_color": "#000000"
+    },
+    "https://nbamaniacs.com": {
+        "cover_url": "https://www.nbamaniacs.com/wp-content/uploads/2016/10/cropped-NBAMANIACS-Icon-1-192x192.jpg",
+        "background_color": "#fffffd"
+    },
+    "https://cuantocabron.com": {
+        "cover_url": "https://statics.cuantocabron.com/images/og_image.jpg",
+        "background_color": "#fefefe"
+    },
+    "https://abc.es": {
+        "cover_url": "https://abc.es/favicon-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://tendencias21.es/": {
+        "cover_url": "https://tendencias21.es/favicon.ico?v=1357585468",
+        "background_color": "#2d92b7"
+    },
+    "https://foreignpolicy.com": {
+        "cover_url": "https://foreignpolicy.com/wp-content/uploads/2017/12/cropped-favicon-512_2017.png?w=192",
+        "background_color": "#ee3125"
+    },
+    "https://qz.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/w_192,h_192/z0tv68jrzudw9elopji0.png",
+        "background_color": "#000000"
+    },
+    "https://ted.com": {
+        "cover_url": "https://pa.tedcdn.com/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://shape.com": {
+        "cover_url": "https://www.shape.com/thmb/gliclPi32o-m89UD8Cn05QVLKIs=/640x640/filters:fill(auto,1)/shape_social-share-default-3877173494844c9595627609b85ec950.jpg",
+        "background_color": "#6a1d65"
+    },
+    "https://healthpolicyhealthecon.com/": {
+        "cover_url": "https://s2.wp.com/i/webclip.png",
+        "background_color": "#1e8cbe"
+    },
+    "https://elmostrador.cl": {
+        "cover_url": "https://elmostrador.cl/android-icon-192x192.png",
+        "background_color": "#000000"
+    },
+    "https://howstuffworks.com": {
+        "cover_url": "https://cdn.hswstatic.com/en-us/hsw/img/icons/icon-512x512.png",
+        "background_color": "#000033"
+    },
+    "https://foodandwine.com": {
+        "cover_url": "https://foodandwine.com/img/favicons/favicon-192.png",
+        "background_color": "#000000"
+    },
+    "https://bikeexif.com": {
+        "cover_url": "https://bikeexif.com/android-chrome-192x192.png?v=YAAYRd87NE",
+        "background_color": "#ffffff"
+    },
+    "https://nofootynolife.blog.fc2.com/": {
+        "cover_url": "https://static.fc2.com/image/noimage.gif",
+        "background_color": "#ffffff"
+    },
+    "https://perfil.com": {
+        "cover_url": "https://www.perfil.com/images/favicon/android-icon-192x192.png",
+        "background_color": "#6286b1"
+    },
+    "https://www.vogue.co.jp": {
+        "cover_url": "https://media.vogue.co.jp/photos/5d4000572455960008f90f17/16:9/w_1280,c_limit/logo.png?mbid=social_retweet",
+        "background_color": "#1a1311"
+    },
+    "https://clarin.com/cultura/": {
+        "cover_url": "https://clarin.com/android-icon-192x192.png",
+        "background_color": "#d60026"
+    },
+    "https://gamespot.com": {
+        "cover_url": "https://www.gamespot.com/a/bundles/gamespotsite/images/touch-icon-ipad-retina-precomposed.png",
+        "background_color": "#e03800"
+    },
+    "https://df.cl": {
+        "cover_url": "https://www.df.cl/noticias/site/artic/20171102/imag/foto_0000000120171102183405.png",
+        "background_color": "#ff9600"
+    },
+    "https://culturacolectiva.com": {
+        "cover_url": "https://cloudfront-us-east-1.images.arcpublishing.com/culturacolectiva/MASP5BP3BVBB3PIYKMZ7G7NCOM.jpg",
+        "background_color": "#241f23"
+    },
+    "https://nasa.gov/news": {
+        "cover_url": "https://nasa.gov/sites/all/themes/custom/nasatwo/images/apple-touch-icon-152x152.png",
+        "background_color": "#1a5dad"
+    },
+    "https://scientiablog.com": {
+        "cover_url": "https://secure.gravatar.com/blavatar/f4a45fba9daafe9033329d24c2fff3a8?s=114",
+        "background_color": "#080d09"
+    },
+    "https://bonappetit.com": {
+        "cover_url": "https://assets.bonappetit.com/photos/597f6564e85ce178131a6475/16:9/w_1280,c_limit/0817-murray-mancini-dried-tomato-pie.jpg?mbid=social_retweet",
+        "background_color": "#bf7931"
+    },
+    "https://mundodeportivo.com/futbol/fc-barcelona": {
+        "cover_url": "https://www.mundodeportivo.com/rsc/images/ico/apple-touch-icon-152x152.png",
+        "background_color": "#353a3b"
+    },
+    "https://lacienciaysusdemonios.com": {
+        "cover_url": "https://secure.gravatar.com/blavatar/02e2c824ad5f3a4315d55f0aa10714b8?s=114",
+        "background_color": "#f0f0f0"
+    },
+    "https://eonline.com": {
+        "cover_url": "https://eonline.com/images/icon.png",
+        "background_color": "#231f20"
+    },
+    "https://sfgirlbybay.com": {
+        "cover_url": "https://www.sfgirlbybay.com/wp-content/themes/sfgirlbybay-v2/assets/icons/favicon-32x32.png",
+        "background_color": "#fbe4d9"
+    },
+    "https://wellandgood.com": {
+        "cover_url": "https://www.wellandgood.com/wp-content/uploads/2018/04/favicon-194x194.png",
+        "background_color": "#b7227f"
+    },
+    "https://todomountainbike.net/": {
+        "cover_url": "https://cdn.todomountainbike.net/images/favicon192.png",
+        "background_color": "#ef0022"
+    },
+    "https://ure.pia.co.jp/list/media?c=umai-niku/": {
+        "cover_url": "https://urepia.ismcdn.jp/common/ure/images/v1/ogp.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://modaes.es": {
+        "cover_url": "https://modaes.es/files/favicon/google-touch-icon.png",
+        "background_color": "#000000"
+    },
+    "https://collider.com": {
+        "cover_url": "https://collider.com/public/build/images/favicon-240x240.c24091db.png",
+        "background_color": "#48be3b"
+    },
+    "https://euribor.com.es": {
+        "cover_url": "https://www.euribor.com.es/wp-content/uploads/2019/10/favicon-1.png",
+        "background_color": "#ffffff"
+    },
+    "https://tvline.com": {
+        "cover_url": "https://tvline.com/wp-content/uploads/2018/06/logo-tvline.png",
+        "background_color": "#26abe1"
+    },
+    "https://verywellmind.com": {
+        "cover_url": "https://www.verywellmind.com/thmb/IIAAwIxT4G6hhZW8swFl7QEnAAw=/1001x1001/filters:fill(ABEAC3,1)/default-vw-mind-5a7886431f4e1300377d0645.png",
+        "background_color": "#0a383f"
+    },
+    "https://deadspin.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_200,q_80,w_200/rnxqtvv6advgidzfs6am.png",
+        "background_color": "#1b3a4d"
+    },
+    "https://muyinteresante.es": {
+        "cover_url": "https://www.muyinteresante.es/android-touch-icon.png",
+        "background_color": "#cd051e"
+    },
+    "https://antevenio.com": {
+        "cover_url": "https://antevenio.com/wp-content/themes/Impreza/img/antevenio-logo-205x40.png",
+        "background_color": "#101820"
+    },
+    "https://forest.watch.impress.co.jp/": {
+        "cover_url": "https://forest.watch.impress.co.jp/include/common/p01/images/logo/wf.1200.png",
+        "background_color": "#469900"
+    },
+    "https://velocidadcuchara.com": {
+        "cover_url": "https://www.velocidadcuchara.com/wp-content/uploads/2017/07/Ro-cocina-nueva-VC-AGOSTO171200-768x513.jpeg",
+        "background_color": "#ededeb"
+    },
+    "https://mangashokudo.net/": {
+        "cover_url": "https://livedoor.blogimg.jp/mangashokudo/imgs/b/e/beb53ce9.png",
+        "background_color": "#ffffff"
+    },
+    "https://number.bunshun.jp/subcategory/%E3%83%A2%E3%83%BC%E3%82%BF%E3%83%BC%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84/column/": {
+        "cover_url": "https://number.ismcdn.jp/common/numberweb/v4/images/touch-icon-iphone6-retinahd.png",
+        "background_color": "#000000"
+    },
+    "https://bitcoin-newstart.com/": {
+        "cover_url": "https://bitcoin-newstart.com/wp-content/uploads/2021/06/cropped-profile-192x192.jpg",
+        "background_color": "#091d38"
+    },
+    "https://techradar.com": {
+        "cover_url": "https://vanilla.futurecdn.net/techradar/521446/apple-touch-icon.png",
+        "background_color": "#2f6e91"
+    },
+    "https://fichajes.com": {
+        "cover_url": "https://www.fichajes.com/build/favicons/android-chrome-512x512.3f6d28a8.png",
+        "background_color": "#2d4d85"
+    },
+    "https://99bitcoins.com": {
+        "cover_url": "https://99bitcoins.com/wp-content/uploads/2022/03/99bitcoins-og.png",
+        "background_color": "#ffffff"
+    },
+    "https://tomsguide.com": {
+        "cover_url": "https://vanilla.futurecdn.net/tomsguide/521446/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://www.narcisman.com/": {
+        "cover_url": "https://www.narcisman.com/icon/link",
+        "background_color": "#ffffff"
+    },
+    "https://radiotimes.com": {
+        "cover_url": "https://images.immediate.co.uk/production/volatile/sites/3/2016/11/cropped-RT-logo-2.png?quality=90&resize=192,192",
+        "background_color": "#000000"
+    },
+    "https://cnn.com": {
+        "cover_url": "https://cdn.cnn.com/cnn/.e/img/3.0/global/misc/apple-touch-icon.png",
+        "background_color": "#cc0000"
+    },
+    "https://okuri-bit.com/": {
+        "cover_url": "https://okuri-bit.com/wp-content/themes/keni71_wp_cool_black_201712071636/images/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://lamarea.com": {
+        "cover_url": "https://lamarea.com/android-chrome-512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://www.nikkansports.com/soccer/index.html/": {
+        "cover_url": "https://cache2.nipc.jp/mod2015/img/icon/touch-icon_ipad-retina.png",
+        "background_color": "#ffffff"
+    },
+    "https://gamertweak.com": {
+        "cover_url": "https://gamertweak.com/wp-content/uploads/2020/09/GT-Favicon-New.png",
+        "background_color": "#bbbce9"
+    },
+    "https://androidcentral.com": {
+        "cover_url": "https://cdn.mos.cms.futurecdn.net/flexiimages/m3uyybbdos1632303243.png",
+        "background_color": "#93bd49"
+    },
+    "https://tasteofhome.com": {
+        "cover_url": "https://www.tasteofhome.com/wp-content/uploads/2018/09/TOH_Pinterest_ProfilePhoto_RedBkg.png",
+        "background_color": "#ee3823"
+    },
+    "https://cienciadesofa.com": {
+        "cover_url": "https://cienciadesofa.com/wp-content/uploads/2018/06/cds_favicon.png",
+        "background_color": "#00699e"
+    },
+    "https://fronterasblog.com": {
+        "cover_url": "https://secure.gravatar.com/blavatar/58ee077fcb4462680ec9459e869e4284?s=114",
+        "background_color": "#8e8a64"
+    },
+    "https://carbuzz.com": {
+        "cover_url": "https://cdn.carbuzz.com/i/icons/pwa-icons/icon-512.png",
+        "background_color": "#ffffff"
+    },
+    "https://freakonomics.com": {
+        "cover_url": "https://freakonomics.com/wp-content/uploads/2021/12/freako_logo.png",
+        "background_color": "#f47900"
+    },
+    "https://r25.jp/": {
+        "cover_url": "https://r25.jp/assets/1661144809/img/icon/512.png",
+        "background_color": "#ffffff"
+    },
+    "https://www.dhbr.net/subcategory/Management/": {
+        "cover_url": "https://dhbr2.ismcdn.jp/common/images/v1/common/logo2.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://techlife.cookpad.com/": {
+        "cover_url": "https://techlife.cookpad.com/icon/link",
+        "background_color": "#ff9933"
+    },
+    "https://popsci.com": {
+        "cover_url": "https://www.popsci.com/uploads/2021/04/28/cropped-PSC3.png?auto=webp&width=192&height=192",
+        "background_color": "#e86044"
+    },
+    "https://thedesignfiles.net": {
+        "cover_url": "https://thedesignfiles.net/wp-content/themes/tdf-2017/images/favicons/apple-touch-icon-152x152.png",
+        "background_color": "#fbdd1d"
+    },
+    "https://sinembargo.mx": {
+        "cover_url": "https://www.sinembargo.mx/wp-content/themes/wp-bootstrap-starter-child/assets/img/favicon-192.png?x71967",
+        "background_color": "#e41339"
+    },
+    "https://isamist.work/": {
+        "cover_url": "https://isamist.work/wp-content/uploads/2017/12/cropped-5cd3fa617ac50f010517c6907f4f78d9-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://decrypt.co": {
+        "cover_url": "https://cdn.decrypt.co/wp-content/themes/decrypt-media/assets/images/favicon-32x32.png",
+        "background_color": "#303030"
+    },
+    "https://kinarino.jp/": {
+        "cover_url": "https://kinarino.k-img.com/favicon-512x512.png",
+        "background_color": "#ffffff"
+    },
+    "https://compuhoy.com": {
+        "cover_url": "https://www.compuhoy.com/wp-content/uploads/2021/09/cropped-favicon-192x192.png",
+        "background_color": "#4d5055"
+    },
+    "https://thewrap.com": {
+        "cover_url": "https://www.thewrap.com/wp-content/themes/thewrap-canvas/imgs/favicon/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://mdpi.com": {
+        "cover_url": "https://mdpi.com/img/icon_new/android-icon-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://www.jalan.net/news/": {
+        "cover_url": "https://www.jalan.net/news/wp-content/themes/jalan-new/assets/images/common/android-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://youpouch.com/": {
+        "cover_url": "https://youpouch.com/wp-content/uploads/sites/4/2020/05/cropped-pouch_logo_circle_512.png?w=192",
+        "background_color": "#ffffff"
+    },
+    "https://eldiario.es": {
+        "cover_url": "https://eldiario.es/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://chicagotribune.com": {
+        "cover_url": "https://chicagotribune.com/pb/resources/images/ct_icons/144-iTunesArtwork.png?v=302",
+        "background_color": "#004e87"
+    },
+    "https://france24.com": {
+        "cover_url": "https://france24.com/ios-iphone-ipad-1024x1024.png",
+        "background_color": "#00a7e3"
+    },
+    "https://healthpress.jp/": {
+        "cover_url": "http://healthpress.jp/img/snsicon.png",
+        "background_color": "#ffffff"
+    },
+    "https://bestcarweb.jp/": {
+        "cover_url": "https://img.bestcarweb.jp/wp-content/uploads/2021/04/14182035/bestcar-256.png",
+        "background_color": "#db323a"
+    },
+    "https://skillet.lifehacker.com": {
+        "cover_url": "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_200,q_80,w_200/u0939doeuioaqhspkjyc.png",
+        "background_color": "#94b330"
+    },
+    "https://directoalpaladar.com": {
+        "cover_url": "https://img.weblogssl.com/css/directoalpaladar/p/common/apple-touch-icon.png",
+        "background_color": "#51001a"
+    },
+    "https://thedrive.com": {
+        "cover_url": "https://www.thedrive.com/uploads/2021/12/14/favicon-196x196-1.png?auto=webp&width=192&height=192",
+        "background_color": "#f39b3f"
+    },
+    "https://failblog.cheezburger.com": {
+        "cover_url": "https://s.chzbgr.com/s/unversioned/images/square_logos/FailBlog.png",
+        "background_color": "#231e1f"
+    },
+    "https://www.legendsstadium.com": {
+        "cover_url": "https://ls3assets.s3-ap-northeast-1.amazonaws.com/web_production/3.8.30/img/share/common_3.png",
+        "background_color": "#17324f"
+    },
+    "https://imore.com": {
+        "cover_url": "https://cdn.mos.cms.futurecdn.net/flexiimages/99m2rw3pzf1649746644.png",
+        "background_color": "#ffffff"
+    },
+    "https://blog.bitso.com": {
+        "cover_url": "https://blog.bitso.com/wp-content/uploads/2022/03/cropped-bitso-avatar-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://putthison.com": {
+        "cover_url": "https://putthison.com/wp-content/themes/pto/assets/images/apple-icon-touch.png",
+        "background_color": "#ff0a12"
+    },
+    "https://kyoko-np.net/": {
+        "cover_url": "http://kyoko-np.net/images/og-kyoko-thumb.jpg",
+        "background_color": "#ffffff"
+    },
+    "https://trendencias.com": {
+        "cover_url": "https://img.weblogssl.com/css/trendencias/p/common/apple-touch-icon.png",
+        "background_color": "#fbfbfb"
+    },
+    "https://blogos.com": {
+        "cover_url": "https://blogos.com/img_ogp_blogos.jpg",
+        "background_color": "#b1b1b3"
+    },
+    "https://healthline.com": {
+        "cover_url": "https://images-prod.healthline.com/hlcmsresource/images/frontend-static/favicon/v1/apple-touch-icon.png",
+        "background_color": "#000000"
+    },
+    "https://adslzone.net": {
+        "cover_url": "https://www.adslzone.net/app/uploads-adslzone.net/2020/03/cropped-logo-adslzone-pwa-192x192.png",
+        "background_color": "#fafafa"
+    },
+    "https://www.infoq.com/jp/": {
+        "cover_url": "https://cdn.infoq.com/statics_s2_20220816063500/apple-touch-icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://thebridge.jp": {
+        "cover_url": "https://thebridge.jp/wp-content/uploads/2019/11/cropped-apple-touch-icon-192x192.png",
+        "background_color": "#e5631d"
+    },
+    "https://number.bunshun.jp/subcategory/%E3%83%97%E3%83%AD%E9%87%8E%E7%90%83/column/": {
+        "cover_url": "https://number.ismcdn.jp/common/numberweb/v4/images/touch-icon-iphone6-retinahd.png",
+        "background_color": "#000000"
+    },
+    "https://autoc-one.jp/news/": {
+        "cover_url": "https://cdn.autoc-one.jp/static/iphone/icon.png",
+        "background_color": "#ffffff"
+    },
+    "https://thermorecetas.com": {
+        "cover_url": "https://www.thermorecetas.com/wp-content/uploads/2020/05/cropped-favicon-192x192.png",
+        "background_color": "#b98c2f"
+    },
+    "https://kottke.org": {
+        "cover_url": "https://kottke.org/images/2016/ios/192x192.png",
+        "background_color": "#f54f96"
+    },
+    "https://vice.com": {
+        "cover_url": "https://vice-web-statics-cdn.vice.com/favicons/vice/android-chrome-512x512.png",
+        "background_color": "#000000"
+    },
+    "https://economist.com": {
+        "cover_url": "https://economist.com/ico/touch-icon-512x512.png",
+        "background_color": "#e3120b"
+    },
+    "https://frontiersin.org": {
+        "cover_url": "https://frontiersin.org/_nuxt/icons/icon_512x512.fcefef.png",
+        "background_color": "#ffffff"
+    },
+    "https://samuraigoal.doorblog.jp/": {
+        "cover_url": "https://livedoor.blogimg.jp/samuraigoal/imgs/4/a/4a7f2e59.gif",
+        "background_color": "#000066"
+    },
+    "https://netafull.net/": {
+        "cover_url": "https://netafull.net/wp-content/uploads/2021/03/cropped-netafull-siteicon-2-192x192.png",
+        "background_color": "#00a0e9"
+    },
+    "https://mundodeportivo.com": {
+        "cover_url": "https://www.mundodeportivo.com/rsc/images/ico/apple-touch-icon-152x152.png",
+        "background_color": "#353a3b"
+    },
+    "https://comicbook.com": {
+        "cover_url": "https://comicbook.com/dist/img/comicbook/pwa/comicbook-maskable-512x512.png",
+        "background_color": "#fac315"
+    },
+    "https://edmunds.com": {
+        "cover_url": "https://static.ed.edmunds-media.com/unversioned/images/logos/edmunds-logo-200x200.png",
+        "background_color": "#4f514f"
+    },
+    "https://blog.goo.ne.jp/nobanonch?fm=rss/": {
+        "cover_url": "https://blogimg.goo.ne.jp/user_image/58/7e/8343a0d6010fb43bf095c55f33b8a690.jpg",
+        "background_color": "#d7d5d6"
+    },
+    "https://b-lunch.com/": {
+        "cover_url": "https://b-lunch.com/wp-content/uploads/2020/02/cropped-blunch-sitelogo-192x192.jpeg",
+        "background_color": "#ffffff"
+    },
+    "https://www.nomooo.jp/": {
+        "cover_url": "https://www.nomooo.jp/base/images/touch-icon-180.png",
+        "background_color": "#0dac53"
+    },
+    "https://rd.com": {
+        "cover_url": "https://www.rd.com/wp-content/uploads/2018/10/NEWRDicon10.9.18.png?fit=192,188",
+        "background_color": "#f93e43"
+    },
+    "https://milideas.net": {
+        "cover_url": "https://www.milideas.net/wp-content/uploads/logo-1-200x200.jpg",
+        "background_color": "#1ab7ca"
+    },
+    "https://pequerecetas.com": {
+        "cover_url": "https://pequerecetas.com/android-chrome-512x512.png?v=3eBYbvwWMw",
+        "background_color": "#ffffff"
+    },
+    "https://usnews.com": {
+        "cover_url": "https://usnews.com/static-atlas/assets/img/social-logo-world-report.png",
+        "background_color": "#005ea6"
+    },
+    "https://elplural.com": {
+        "cover_url": "https://www.elplural.com/uploads/static/elplural/apple-touch-icon-72x72.png",
+        "background_color": "#eeeeee"
+    },
+    "https://nadaesgratis.es": {
+        "cover_url": "https://nadaesgratis.es/wp-content/uploads/Neg-logo-400x400.jpeg",
+        "background_color": "#ffffff"
+    },
+    "https://laverdadnoticias.com": {
+        "cover_url": "https://laverdadnoticias.com/__export/1513955667814/sites/laverdad/arte/apps/precomposed.png_352024981.png",
+        "background_color": "#16c1f3"
+    },
+    "https://mens.tasclap.jp/": {
+        "cover_url": "https://mens.tasclap.jp/favicon-192x192.png",
+        "background_color": "#ffffff"
+    },
+    "https://www.47news.jp/": {
+        "cover_url": "https://www.47news.jp/apple-touch-icon-180x180.png",
+        "background_color": "#ff7f00"
+    }
+}

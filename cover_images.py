@@ -6,14 +6,23 @@ from PIL import Image
 import json
 import math
 from color import color_length, hex_color, is_transparent
-from typing import Tuple
+from typing import Tuple, List
+from utils import get_all_domains, ensure_scheme
+from multiprocessing import Pool
+from config import CONCURRENCY
+
+# In seconds. Tested with 5s but it's too low for a bunch of sites
+REQUEST_TIMEOUT = 15
+headers = {
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
+}
 
 CACHE_FOLDER = './dist/cache'
 os.makedirs(CACHE_FOLDER, exist_ok=True)
 
 def get_soup(domain) -> BeautifulSoup:
     try:
-        html = requests.get(domain).content.decode('utf-8')
+        html = requests.get(domain, timeout=REQUEST_TIMEOUT, headers=headers).content.decode('utf-8')
         return BeautifulSoup(html, features='lxml')
 
     # Failed to download html
@@ -27,21 +36,24 @@ def get_manifest_icon_urls(site_url: str, soup: BeautifulSoup):
     if not manifest_link: return []
 
     url = urllib.parse.urljoin(site_url, manifest_link)
-    manifest_response = requests.get(url)
 
-    if not manifest_response.ok:
-        print('Failed to download manifest from', url)
-        return []
+    try:
+        manifest_response = requests.get(url, timeout=REQUEST_TIMEOUT, headers=headers)
 
-    content = manifest_response.content.decode('utf-8')
-    manifest_json = json.loads(content)
+        if not manifest_response.ok:
+            print('Failed to download manifest from', url)
+            return []
 
-    if not 'icons' in manifest_json:
-        return []
+        content = manifest_response.content.decode('utf-8')
+        manifest_json = json.loads(content)
 
-    for icon_raw in manifest_json['icons']:
-        if not 'src' in icon_raw: continue
-        yield icon_raw['src']
+        if not 'icons' in manifest_json:
+            return []
+
+        for icon_raw in manifest_json['icons']:
+            if not 'src' in icon_raw: continue
+            yield icon_raw['src']
+    except: return []
 
 
 def get_apple_icon_urls(site_url: str, soup: BeautifulSoup):
@@ -72,7 +84,7 @@ def get_icon(icon_url: str) -> Image:
 
     try:
         if not os.path.exists(filename):
-            response = requests.get(icon_url, stream=True)
+            response = requests.get(icon_url, stream=True, timeout=REQUEST_TIMEOUT, headers=headers)
             if not response.ok: return None
 
             with open(filename, 'wb') as f:
@@ -148,14 +160,36 @@ def get_background_color(image: Image):
     return hex_color(color)
 
 def process_site(domain: str):
-    if not domain.startswith('http'):
-        domain = f'https://{domain}'
+    domain = ensure_scheme(domain)
 
-    (image, image_url) = get_best_image(domain)
-    background_color = get_background_color(image)
+    result = get_best_image(domain)
+    if not result: return None
+
+    image, image_url = result
+    background_color = get_background_color(image) if image is not None else None
 
     return (domain, image_url, background_color)
 
 
 if __name__ == '__main__':
-    print(process_site('https://economist.com'))
+    domains = list(set(get_all_domains()))[:]
+    print(f'Processing {len(domains)} domains')
+
+    cover_infos: List[Tuple[str, str, str]]
+    with Pool(100) as p:
+        cover_infos = list(filter(lambda x: x is not None, p.map(process_site, domains)))
+
+    result = {}
+    for entry in cover_infos:
+        result.update({
+            entry[0]: {
+                'cover_url': entry[1],
+                'background_color': entry[2]
+            }
+        })
+
+    with open('cover_info_lookup.json', 'w') as f:
+        f.write(json.dumps(result, indent=4))
+
+    print('Done')
+
