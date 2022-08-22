@@ -34,7 +34,9 @@ def get_favicon(domain: str) -> Tuple[str, str]:
     icon_url = '/favicon.ico'
 
     try:    
-        response = requests.get(domain, timeout=REQUEST_TIMEOUT)
+        response = requests.get(domain, timeout=REQUEST_TIMEOUT, headers={
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36'
+        })
         soup = BeautifulSoup(response.text, features='lxml')
         icon = soup.find('link', rel="shortcut icon")
 
@@ -42,8 +44,8 @@ def get_favicon(domain: str) -> Tuple[str, str]:
         # some sites actually do this (https://coinchoice.net/ + more).
         if icon and icon.get('href'):
             icon_url = icon.get('href')
-    except:
-        print(f'Failed to download HTML for {domain}. Using default icon path {icon_url}')
+    except Exception as e:
+        print(f'Failed to download HTML for {domain}. Using default icon path {icon_url}', e)
 
     # We need to resolve relative urls so we send something sensible to the client.
     icon_url = urljoin(domain, icon_url)
