@@ -176,6 +176,9 @@ if __name__ == '__main__':
     print(f'Processing {len(domains)} domains')
 
     cover_infos: List[Tuple[str, str, str]]
+
+    # This work is IO bound, so it's okay to start up a bunch more threads
+    # than we have cores, it just means we'll have more in flight requests.
     with Pool(100) as p:
         cover_infos = list(filter(lambda x: x is not None, p.map(process_site, domains)))
 
