@@ -50,12 +50,17 @@ with open(in_path, 'r') as f:
         if len(row) >= 12:
             rank = int(row[11])
 
+        original_feed = ''
+        if len(row) >= 13:
+            original_feed = row[12]
+
         record = {'category': row[3],
                   'default': default,
                   'publisher_name': row[2],
                   'content_type': content_type,
                   'publisher_domain': row[0],
-                  'publisher_id': hashlib.sha256(feed_url.encode('utf-8')).hexdigest(),
+                  'publisher_id': hashlib.sha256(original_feed.encode('utf-8') if original_feed
+                                                 else feed_url.encode('utf-8')).hexdigest(),
                   'max_entries': 20,
                   'og_images': og_images,
                   'creative_instance_id': row[8],
