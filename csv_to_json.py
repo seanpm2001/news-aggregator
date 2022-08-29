@@ -70,17 +70,18 @@ with open(in_path, 'r') as f:
                   'rank': rank
                   }
         by_url[record['url']] = record
-        sources_data[hashlib.sha256(feed_url.encode('utf-8')).hexdigest()] = {'enabled': default,
-                                                                              'publisher_name': record[
-                                                                                  'publisher_name'],
-                                                                              'category': row[3],
-                                                                              'site_url': row[0],
-                                                                              'feed_url': row[1],
-                                                                              'score': float(row[5] or 0),
-                                                                              'destination_domains': row[9].split(';'),
-                                                                              'channels': channels,
-                                                                              'rank': rank
-                                                                              }
+        sources_data[
+            hashlib.sha256(original_feed.encode('utf-8') if original_feed else feed_url.encode('utf-8')).hexdigest()
+        ] = {'enabled': default,
+             'publisher_name': record['publisher_name'],
+             'category': row[3],
+             'site_url': row[0],
+             'feed_url': row[1],
+             'score': float(row[5] or 0),
+             'destination_domains': row[9].split(';'),
+             'channels': channels,
+             'rank': rank
+             }
 with open(out_path, 'w') as f:
     f.write(json.dumps(by_url))
 
