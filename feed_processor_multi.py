@@ -45,7 +45,7 @@ logging.info("Using %s processes for parallel tasks.", config.CONCURRENCY)
 
 
 def get_with_max_size(url, max_bytes):
-    response = requests.get(url, headers={'User-Agent': USER_AGENT}, stream=True, timeout=10, allow_redirects=False)
+    response = requests.get(url, headers={'User-Agent': USER_AGENT}, stream=True)
     response.raise_for_status()
 
     if response.status_code != 200:  # raise for status is not working with 3xx error
@@ -64,7 +64,6 @@ def get_with_max_size(url, max_bytes):
 
 
 def process_image(item):
-    item['padded_img'] = ''  # requested stop gap to fix client parser
     if item['img'] != '':
         try:
             cache_fn = im_proc.cache_image(item['img'])
@@ -72,12 +71,13 @@ def process_image(item):
             cache_fn = None
             logging.error("im_proc.cache_image failed [%s]: %s -- %s", e.__class__.__name__, item['img'], e)
         if cache_fn:
-            item['img'] = "%s/brave-today/cache/%s" % (config.PCDN_URL_BASE, cache_fn)
-            item['padded_img'] = item['img'] + ".pad"
+            if cache_fn.startswith("https"):
+                item['padded_img'] = cache_fn
+            else:
+                item['padded_img'] = "%s/brave-today/cache/%s" % (config.PCDN_URL_BASE, cache_fn) + ".pad"
         else:
             item['img'] = ""
-            item['padded_img'] = ''
-    del item['img']
+            item['padded_img'] = ""
     return item
 
 
@@ -215,7 +215,7 @@ def check_images_in_item(item, feeds):
         try:
             parsed = urlparse(item['img'])
             if not parsed.scheme:
-                parsed = parsed._replace(scheme='http')
+                parsed = parsed._replace(scheme='https')
                 url = urlunparse(parsed)
             else:
                 url = item['img']
@@ -247,6 +247,16 @@ def check_images_in_item(item, feeds):
             logging.error("Error parsing: %s -- %s", item['url'], e)
         if item['img'] == None:
             item['img'] = ""
+
+    if not item["img"] == "":
+        parsed_img_url = urlparse(item['img'])
+
+        if len(parsed_img_url.path) >= 4:
+            item['img'] = urlunparse(parsed_img_url._replace(scheme='https'))
+        else:
+            item['img'] = ""
+
+    item['padded_img'] = item["img"]
     return item
 
 
@@ -279,7 +289,7 @@ class FeedProcessor():
             result = []
             for item in pool.imap(process_image, out_items):
                 result.append(item)
-            return result
+        return result
 
     def download_feeds(self, my_feeds):
         feed_cache = {}
@@ -314,7 +324,7 @@ class FeedProcessor():
         variety_by_source = {}
         for entry in entries:
             seconds_ago = (datetime.utcnow() - dateparser.parse(entry['publish_time'])).total_seconds()
-            recency = math.log(seconds_ago)
+            recency = math.log(seconds_ago) if seconds_ago > 0 else 0.1
             if entry['publisher_id'] in variety_by_source:
                 last_variety = variety_by_source[entry['publisher_id']]
             else:
@@ -401,17 +411,17 @@ if __name__ == '__main__':
         category = sys.argv[1]
     else:
         category = 'feed'
-    with open("%s.json" % (category)) as f:
+    with open(f"{category}.json") as f:
         feeds = json.loads(f.read())
-        fp.aggregate(feeds, "feed/%s.json-tmp" % (category))
-        shutil.copyfile("feed/%s.json-tmp" % (category), "feed/%s.json" % (category))
+        fp.aggregate(feeds, f"feed/{category}.json-tmp")
+        shutil.copyfile(f"feed/{category}.json-tmp", f"feed/{category}.json")
         if not config.NO_UPLOAD:
-            upload_file("feed/%s.json" % (category), config.PUB_S3_BUCKET,
-                        "brave-today/%s%s.json" % (category, config.SOURCES_FILE.strip("sources")))
+            upload_file(f"feed/{category}.json", config.PUB_S3_BUCKET,
+                        f"brave-today/{category}{config.SOURCES_FILE.replace('sources', '')}.json")
             # Temporarily upload also with incorrect filename as a stopgap for
             # https://github.com/brave/brave-browser/issues/20114
             # Can be removed once fixed in the brave-core client for all Desktop users.
-            upload_file("feed/%s.json" % (category), config.PUB_S3_BUCKET,
-                        "brave-today/%s%sjson" % (category, config.SOURCES_FILE.strip("sources")))
+            upload_file(f"feed/{category}.json", config.PUB_S3_BUCKET,
+                        f"brave-today/{category}{config.SOURCES_FILE.replace('sources', '')}json")
     with open("report.json", 'w') as f:
         f.write(json.dumps(fp.report))

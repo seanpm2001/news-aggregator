@@ -42,26 +42,46 @@ with open(in_path, 'r') as f:
         else:
             content_type = row[7]
 
+        channels = []
+        if len(row) >= 11:
+            channels = [i.strip() for i in row[10].split(";")]
+
+        rank = None
+        if len(row) >= 12:
+            rank = int(row[11])
+
+        original_feed = ''
+        if len(row) >= 13:
+            original_feed = row[12]
+
         record = {'category': row[3],
                   'default': default,
                   'publisher_name': row[2],
                   'content_type': content_type,
                   'publisher_domain': row[0],
-                  'publisher_id': hashlib.sha256(feed_url.encode('utf-8')).hexdigest(),
+                  'publisher_id': hashlib.sha256(original_feed.encode('utf-8') if original_feed
+                                                 else feed_url.encode('utf-8')).hexdigest(),
                   'max_entries': 20,
                   'og_images': og_images,
                   'creative_instance_id': row[8],
                   'url': feed_url,
-                  'destination_domains': row[9]}
+                  'destination_domains': row[9],
+                  'channels': channels,
+                  'rank': rank
+                  }
         by_url[record['url']] = record
-        sources_data[hashlib.sha256(feed_url.encode('utf-8')).hexdigest()] = {'enabled': default,
-                                                                              'publisher_name': record[
-                                                                                  'publisher_name'],
-                                                                              'category': row[3],
-                                                                              'destination_domains': row[9].split(';'),
-                                                                              'site_url': row[0],
-                                                                              'feed_url': row[1],
-                                                                              'score': float(row[5] or 0)}
+        sources_data[
+            hashlib.sha256(original_feed.encode('utf-8') if original_feed else feed_url.encode('utf-8')).hexdigest()
+        ] = {'enabled': default,
+             'publisher_name': record['publisher_name'],
+             'category': row[3],
+             'site_url': row[0],
+             'feed_url': row[1],
+             'score': float(row[5] or 0),
+             'destination_domains': row[9].split(';'),
+             'channels': channels,
+             'rank': rank
+             }
 with open(out_path, 'w') as f:
     f.write(json.dumps(by_url))
 
