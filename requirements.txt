@@ -15,4 +15,3 @@ wasmer==1.0.0
 wasmer-compiler-cranelift==1.0.0
 better-profanity==0.7.0
 regex==2022.3.2
-opencv-python==4.5.5.64
