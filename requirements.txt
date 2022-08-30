@@ -1,9 +1,9 @@
-beautifulsoup4==4.9.3
+beautifulsoup4==4.11.1
 bleach==3.3.1
-boto3==1.18.7
-botocore==1.21.7
+boto3==1.24.9
+botocore==1.27.9
 dateparser==1.1.1
-feedparser==6.0.2
+feedparser==6.0.10
 html2text==2020.1.16
 metadata-parser==0.10.5
 pytz==2019.3
