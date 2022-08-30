@@ -14,6 +14,10 @@ favicon_lookup: Dict[str, str] = None
 with open(f'{config.FAVICON_LOOKUP_FILE}.json', 'r') as f:
     favicon_lookup = json.load(f)
 
+cover_info_lookup: Dict[str, Dict[str, str]] = None
+with open(f'{config.COVER_INFO_LOOKUP_FILE}.json', 'r') as f:
+    cover_info_lookup = json.load(f)
+
 in_path = "{}.csv".format(config.SOURCES_FILE)
 out_path = sys.argv[1]
 
@@ -49,7 +53,8 @@ with open(in_path, 'r') as f:
 
         domain = ensure_scheme(row[0])
         favicon_url = favicon_lookup[domain] if domain in favicon_lookup else ''
-
+        cover_info = cover_info_lookup[domain] if domain in cover_info_lookup else { 'cover_url': None, 'background_color': None }
+        
         channels = []
         if len(row) >= 11:
             channels = [i.strip() for i in row[10].split(";")]
@@ -76,8 +81,7 @@ with open(in_path, 'r') as f:
                   'favicon_url': favicon_url,
                   'destination_domains': row[9],
                   'channels': channels,
-                  'rank': rank
-                  }
+                  'rank': rank}
         by_url[record['url']] = record
         sources_data[
             hashlib.sha256(original_feed.encode('utf-8') if original_feed else feed_url.encode('utf-8')).hexdigest()
@@ -87,6 +91,8 @@ with open(in_path, 'r') as f:
              'site_url': row[0],
              'feed_url': row[1],
              'favicon_url': record['favicon_url'],
+             'cover_url': cover_info['cover_url'],
+             'background_color': cover_info['background_color'],
              'score': float(row[5] or 0),
              'destination_domains': row[9].split(';'),
              'channels': channels,

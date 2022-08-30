@@ -6,23 +6,11 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 import json
 from config import FAVICON_LOOKUP_FILE, CONCURRENCY
-from utils import ensure_scheme
+from utils import ensure_scheme, get_all_domains
 
 # In seconds. Tested with 5s but it's too low for a bunch of sites (I'm looking
 # at you https://skysports.com).
 REQUEST_TIMEOUT = 15
-
-def get_all_domains() -> List[str]:
-    source_files = glob.glob('sources*.csv')
-    result = set()
-    for source_file in source_files:
-        with open(source_file) as f:
-            # Skip the first line, with the headers.
-            lines = f.readlines()[1:]
-
-            # The domain is the first field on the line
-            yield from [line.split(',')[0].strip() for line in lines]
-
 
 def get_favicon(domain: str) -> Tuple[str, str]:
     # Only sources from the Japanese file include a scheme, so parse the domain
