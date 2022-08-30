@@ -79,6 +79,8 @@ with open(in_path, 'r') as f:
                   'creative_instance_id': row[8],
                   'url': feed_url,
                   'favicon_url': favicon_url,
+                  'cover_url': cover_info['cover_url'],
+                  'background_color': cover_info['background_color'],
                   'destination_domains': row[9],
                   'channels': channels,
                   'rank': rank}
