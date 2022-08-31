@@ -12,7 +12,7 @@ from wasmer import engine, Store, Module, Instance
 from wasmer_compiler_cranelift import Compiler
 
 import config
-from upload import upload_file
+from utils import upload_file
 
 boto_session = boto3.Session()
 s3_client = boto_session.client('s3')
@@ -73,18 +73,20 @@ def get_with_max_size(url, max_bytes=5000000):
     return content.getvalue(), is_large
 
 
-class ImageProcessor():
-    def __init__(self, s3_bucket=None):
+class ImageProcessor:
+    def __init__(self, s3_bucket=None, s3_path='brave-today/cache/{}.pad', force_upload=False):
         self.s3_bucket = s3_bucket
+        self.s3_path = s3_path
+        self.force_upload = force_upload
 
     def cache_image(self, url):
         try:
             content, is_large = get_with_max_size(url)  # 5mb max
-            if not is_large:
+            if not is_large and not self.force_upload:
                 return url
 
             cache_fn = "%s.jpg" % (hashlib.sha256(url.encode('utf-8')).hexdigest())
-            cache_path = "./feed/cache/%s" % (cache_fn)
+            cache_path = "./feed/cache/%s" % cache_fn
 
             # if we have it dont do it again
             if os.path.isfile(cache_path):
@@ -93,7 +95,7 @@ class ImageProcessor():
             if not config.NO_UPLOAD:
                 exists = False
                 try:
-                    s3_resource.Object(self.s3_bucket, "brave-today/cache/%s.pad" % (cache_fn)).load()
+                    s3_resource.Object(self.s3_bucket, self.s3_path.format(cache_fn)).load()
                     exists = True
                 except ValueError as e:
                     exists = False  # make tests work
@@ -121,5 +123,5 @@ class ImageProcessor():
             return None
 
         if self.s3_bucket and not config.NO_UPLOAD:
-            upload_file("feed/cache/%s.pad" % (cache_fn), self.s3_bucket, "brave-today/cache/%s.pad" % (cache_fn))
+            upload_file("feed/cache/%s.pad" % cache_fn, self.s3_bucket, self.s3_path.format(cache_fn))
         return cache_fn

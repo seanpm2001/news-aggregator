@@ -1,15 +1,15 @@
-import requests
-from bs4 import BeautifulSoup
+import json
 import os
 import urllib
-from PIL import Image
-import json
-import math
-from color import color_length, hex_color, is_transparent
-from typing import Tuple, List
-from utils import get_all_domains, ensure_scheme
 from multiprocessing import Pool
-from config import CONCURRENCY
+from typing import Tuple, List
+
+import requests
+from PIL import Image
+from bs4 import BeautifulSoup
+
+from color import color_length, hex_color, is_transparent
+from utils import get_all_domains, ensure_scheme
 
 # In seconds. Tested with 5s but it's too low for a bunch of sites
 REQUEST_TIMEOUT = 15
@@ -20,13 +20,16 @@ headers = {
 CACHE_FOLDER = '.cache'
 os.makedirs(CACHE_FOLDER, exist_ok=True)
 
+
 def get_soup(domain) -> BeautifulSoup:
     try:
         html = requests.get(domain, timeout=REQUEST_TIMEOUT, headers=headers).content.decode('utf-8')
         return BeautifulSoup(html, features='lxml')
 
     # Failed to download html
-    except: return None
+    except:
+        return None
+
 
 def get_manifest_icon_urls(site_url: str, soup: BeautifulSoup):
     manifest_rel = soup.select_one('link[rel="manifest"]')
@@ -53,7 +56,8 @@ def get_manifest_icon_urls(site_url: str, soup: BeautifulSoup):
         for icon_raw in manifest_json['icons']:
             if not 'src' in icon_raw: continue
             yield icon_raw['src']
-    except: return []
+    except:
+        return []
 
 
 def get_apple_icon_urls(site_url: str, soup: BeautifulSoup):
@@ -64,6 +68,7 @@ def get_apple_icon_urls(site_url: str, soup: BeautifulSoup):
         if not rel.has_attr('href'): continue
         yield rel.attrs['href']
 
+
 def get_open_graph_icon_urls(site_url: str, soup: BeautifulSoup):
     image_metas = soup.select('meta[property="og:image"]')
     image_metas += soup.select('meta[property="twitter:image"]')
@@ -73,8 +78,10 @@ def get_open_graph_icon_urls(site_url: str, soup: BeautifulSoup):
         if not meta.has_attr('content'): continue
         yield meta.attrs['content']
 
+
 def get_filename(url: str):
     return os.path.join(CACHE_FOLDER, urllib.parse.quote_plus(url))
+
 
 def get_icon(icon_url: str) -> Image:
     filename = get_filename(icon_url)
@@ -94,7 +101,9 @@ def get_icon(icon_url: str) -> Image:
         return Image.open(filename).convert('RGBA')
 
     # Failed to download the image, or the thing we downloaded wasn't valid.
-    except: return None
+    except:
+        return None
+
 
 def get_best_image(site_url: str) -> tuple[Image, str]:
     sources = [get_manifest_icon_urls, get_apple_icon_urls, get_open_graph_icon_urls]
@@ -111,6 +120,7 @@ def get_best_image(site_url: str) -> tuple[Image, str]:
         if len(icons) != 0:
             return icons[0]
 
+
 def find_non_transparent(image: Image, start: Tuple[int, int], step: Tuple[int, int], min_transparency=0.8):
     width, height = image.size
     x, y = start
@@ -125,7 +135,8 @@ def find_non_transparent(image: Image, start: Tuple[int, int], step: Tuple[int, 
 
         if x < 0 or y < 0 or x >= width or y >= height:
             return None
-    
+
+
 def get_background_color(image: Image):
     """
     After a bunch of experimentation we found the best way
@@ -158,6 +169,7 @@ def get_background_color(image: Image):
     colors.sort(key=color_length)
     color = colors[len(colors) // 2]
     return hex_color(color)
+
 
 def process_site(domain: str):
     domain = ensure_scheme(domain)
@@ -195,4 +207,3 @@ if __name__ == '__main__':
         f.write(json.dumps(result, indent=4))
 
     print('Done')
-

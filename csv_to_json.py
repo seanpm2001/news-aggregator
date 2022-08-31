@@ -3,18 +3,16 @@ import hashlib
 import json
 import sys
 from urllib.parse import urlparse, urlunparse
-from typing import Dict
+
 import bleach
 
 import config
 from utils import ensure_scheme
-from upload import upload_file
+from utils import upload_file
 
-favicon_lookup: Dict[str, str] = None
 with open(f'{config.FAVICON_LOOKUP_FILE}.json', 'r') as f:
     favicon_lookup = json.load(f)
 
-cover_info_lookup: Dict[str, Dict[str, str]] = None
 with open(f'{config.COVER_INFO_LOOKUP_FILE}.json', 'r') as f:
     cover_info_lookup = json.load(f)
 
@@ -53,8 +51,10 @@ with open(in_path, 'r') as f:
 
         domain = ensure_scheme(row[0])
         favicon_url = favicon_lookup[domain] if domain in favicon_lookup else ''
-        cover_info = cover_info_lookup[domain] if domain in cover_info_lookup else { 'cover_url': None, 'background_color': None }
-        
+        cover_info = cover_info_lookup[domain] if domain in cover_info_lookup else {
+            'cover_url': None, 'background_color': None
+        }
+
         channels = []
         if len(row) >= 11:
             channels = [i.strip() for i in row[10].split(";")]

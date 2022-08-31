@@ -1,5 +1,60 @@
-from typing import List
 import glob
+import logging
+from typing import List
+
+import boto3
+from botocore.exceptions import ClientError
+
+import config
+
+boto_session = boto3.Session()
+s3_client = boto_session.client('s3')
+
+
+class InvalidS3Bucket(Exception):
+    pass
+
+
+def upload_file(file_name, bucket, object_name=None):
+    if object_name is None:
+        object_name = file_name
+    try:
+        if bucket == config.PUB_S3_BUCKET:
+            s3_client.upload_file(file_name, bucket, object_name, ExtraArgs={
+                'GrantRead': 'id=%s' % config.BRAVE_TODAY_CLOUDFRONT_CANONICAL_ID,
+                'GrantFullControl': 'id=%s' % config.BRAVE_TODAY_CANONICAL_ID
+            })
+        elif bucket == config.PRIV_S3_BUCKET:
+            s3_client.upload_file(file_name, bucket, object_name, ExtraArgs={
+                'GrantRead': 'id=%s' % config.PRIVATE_CDN_CANONICAL_ID,
+                'GrantFullControl': 'id=%s' % config.PRIVATE_CDN_CLOUDFRONT_CANONICAL_ID
+            })
+        else:
+            raise InvalidS3Bucket("Attempted to upload to unknown S3 bucket.")
+
+    except ClientError as e:
+        logging.error(e)
+        return False
+    return True
+
+
+def download_file(file_name, bucket, object_name=None):
+    if object_name is None:
+        object_name = file_name
+
+    try:
+        if bucket == config.PUB_S3_BUCKET:
+            s3_client.download_file(bucket, object_name, file_name)
+        elif bucket == config.PRIV_S3_BUCKET:
+            s3_client.download_file(bucket, object_name, file_name)
+        else:
+            raise InvalidS3Bucket("Attempted to upload to unknown S3 bucket.")
+
+    except ClientError as e:
+        logging.error(e)
+        return False
+    return True
+
 
 def ensure_scheme(domain):
     """Helper utility for ensuring a domain has a scheme. If none is attached
@@ -13,6 +68,7 @@ def ensure_scheme(domain):
     if not domain.startswith('http'):
         domain = f'https://{domain}'
     return domain
+
 
 def get_all_domains() -> List[str]:
     """Helper utility for getting all domains across all sources"""

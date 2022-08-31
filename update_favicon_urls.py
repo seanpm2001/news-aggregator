@@ -1,16 +1,24 @@
-import requests
-import glob
-from multiprocessing import Pool, cpu_count
-from typing import List, Tuple
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin, urlparse
 import json
-from config import FAVICON_LOOKUP_FILE, CONCURRENCY
-from utils import ensure_scheme, get_all_domains
+from multiprocessing import Pool
+from typing import List, Tuple
+from urllib.parse import urljoin
+
+import requests
+from bs4 import BeautifulSoup
+from structlog import get_logger
+
+import image_processor_sandboxed
+from config import FAVICON_LOOKUP_FILE, CONCURRENCY, USER_AGENT, PUB_S3_BUCKET, PRIV_S3_BUCKET, PCDN_URL_BASE
+from utils import ensure_scheme, get_all_domains, upload_file
+
+logger = get_logger()
+im_proc = image_processor_sandboxed.ImageProcessor(PRIV_S3_BUCKET, s3_path='brave-today/favicons/{}.pad',
+                                                   force_upload=True)
 
 # In seconds. Tested with 5s but it's too low for a bunch of sites (I'm looking
 # at you https://skysports.com).
 REQUEST_TIMEOUT = 15
+
 
 def get_favicon(domain: str) -> Tuple[str, str]:
     # Only sources from the Japanese file include a scheme, so parse the domain
@@ -21,9 +29,9 @@ def get_favicon(domain: str) -> Tuple[str, str]:
     # this.
     icon_url = '/favicon.ico'
 
-    try:    
+    try:
         response = requests.get(domain, timeout=REQUEST_TIMEOUT, headers={
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Mobile Safari/537.36'
+            'User-Agent': USER_AGENT
         })
         soup = BeautifulSoup(response.text, features='lxml')
         icon = soup.find('link', rel="shortcut icon")
@@ -33,23 +41,59 @@ def get_favicon(domain: str) -> Tuple[str, str]:
         if icon and icon.get('href'):
             icon_url = icon.get('href')
     except Exception as e:
-        print(f'Failed to download HTML for {domain}. Using default icon path {icon_url}', e)
+        logger.info(f'Failed to download HTML for {domain} with exception {e}. Using default icon path {icon_url}')
 
-    # We need to resolve relative urls so we send something sensible to the client.
+    # We need to resolve relative urls, so we send something sensible to the client.
     icon_url = urljoin(domain, icon_url)
-    return (domain, icon_url)
+    return domain, icon_url
+
+
+def process_image(item):
+    domain = ""
+    icon_url = ""
+    padded_icon_url = ""
+    try:
+        domain, icon_url = item
+        try:
+            cache_fn = im_proc.cache_image(icon_url)
+        except Exception as e:
+            cache_fn = None
+            logger.error("im_proc.cache_image failed [e]: {icon_url}")
+        if cache_fn:
+            if cache_fn.startswith("https"):
+                padded_icon_url = cache_fn
+            else:
+                padded_icon_url = f"{PCDN_URL_BASE}/brave-today/favicons/{cache_fn}.pad"
+        else:
+            padded_icon_url = ""
+
+    except ValueError as e:
+        logger.info(f"Tuple unpacking error {e}")
+
+    if padded_icon_url:
+        return domain, padded_icon_url
+    else:
+        return domain, icon_url
+
 
 if __name__ == "__main__":
     domains = list(get_all_domains())
-    print(f"Processing {len(domains)} domains")
+    logger.info(f"Processing {len(domains)} domains")
 
     favicons: List[Tuple[str, str]]
-    with Pool(CONCURRENCY) as p:
-        favicons = p.map(get_favicon, domains)
+    with Pool(CONCURRENCY) as pool:
+        favicons = pool.map(get_favicon, domains)
 
-    # This isn't sent over the network, so format it nicely.
-    result = json.dumps(dict(favicons), indent=4)
+    processed_favicons: List[Tuple[str, str]]
+    with Pool(CONCURRENCY) as pool:
+        processed_favicons = pool.map(process_image, favicons)
+
+    result = json.dumps(dict(processed_favicons), indent=4)
     with open(f'{FAVICON_LOOKUP_FILE}.json', 'w') as f:
         f.write(result)
 
-    print("Done!")
+    logger.info("Fetched all the favicons!")
+
+    upload_file(f"{FAVICON_LOOKUP_FILE}.json", PUB_S3_BUCKET, f"{FAVICON_LOOKUP_FILE}.json")
+
+    logger.info(f"{FAVICON_LOOKUP_FILE} is upload to S3")
