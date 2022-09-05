@@ -48,7 +48,7 @@ def get_favicon(domain: str) -> Tuple[str, str]:
     return domain, icon_url
 
 
-def process_image(item):
+def process_favicons_image(item):
     domain = ""
     icon_url = ""
     padded_icon_url = ""
@@ -86,7 +86,7 @@ if __name__ == "__main__":
 
     processed_favicons: List[Tuple[str, str]]
     with Pool(CONCURRENCY) as pool:
-        processed_favicons = pool.map(process_image, favicons)
+        processed_favicons = pool.map(process_favicons_image, favicons)
 
     result = json.dumps(dict(processed_favicons), indent=4)
     with open(f'{FAVICON_LOOKUP_FILE}.json', 'w') as f:

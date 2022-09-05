@@ -2,30 +2,34 @@ import json
 import os
 import urllib
 from multiprocessing import Pool
-from typing import Tuple, List
+from typing import Tuple, List, Optional
 
 import requests
 from PIL import Image
 from bs4 import BeautifulSoup
+from structlog import get_logger
 
+import config
+import image_processor_sandboxed
 from color import color_length, hex_color, is_transparent
-from utils import get_all_domains, ensure_scheme
+from utils import get_all_domains, ensure_scheme, upload_file
 
 # In seconds. Tested with 5s but it's too low for a bunch of sites
 REQUEST_TIMEOUT = 15
-headers = {
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
-}
 
 CACHE_FOLDER = '.cache'
+logger = get_logger()
+im_proc = image_processor_sandboxed.ImageProcessor(config.PRIV_S3_BUCKET, s3_path='brave-today/cover_images/{}.pad',
+                                                   force_upload=True)
+
 os.makedirs(CACHE_FOLDER, exist_ok=True)
 
 
-def get_soup(domain) -> BeautifulSoup:
+def get_soup(domain) -> Optional[BeautifulSoup]:
     try:
-        html = requests.get(domain, timeout=REQUEST_TIMEOUT, headers=headers).content.decode('utf-8')
+        html = requests.get(domain, timeout=REQUEST_TIMEOUT, headers={
+            "user-agent": config.USER_AGENT}).content.decode('utf-8')
         return BeautifulSoup(html, features='lxml')
-
     # Failed to download html
     except:
         return None
@@ -41,20 +45,21 @@ def get_manifest_icon_urls(site_url: str, soup: BeautifulSoup):
     url = urllib.parse.urljoin(site_url, manifest_link)
 
     try:
-        manifest_response = requests.get(url, timeout=REQUEST_TIMEOUT, headers=headers)
+        manifest_response = requests.get(url, timeout=REQUEST_TIMEOUT, headers={"user-agent": config.USER_AGENT})
 
         if not manifest_response.ok:
-            print('Failed to download manifest from', url)
+            logger.info(f'Failed to download manifest from {url}')
             return []
 
         content = manifest_response.content.decode('utf-8')
         manifest_json = json.loads(content)
 
-        if not 'icons' in manifest_json:
+        if 'icons' not in manifest_json:
             return []
 
         for icon_raw in manifest_json['icons']:
-            if not 'src' in icon_raw: continue
+            if 'src' not in icon_raw:
+                continue
             yield icon_raw['src']
     except:
         return []
@@ -65,7 +70,8 @@ def get_apple_icon_urls(site_url: str, soup: BeautifulSoup):
     image_rels += soup.select('link[rel="icon"]')
 
     for rel in image_rels:
-        if not rel.has_attr('href'): continue
+        if not rel.has_attr('href'):
+            continue
         yield rel.attrs['href']
 
 
@@ -75,7 +81,8 @@ def get_open_graph_icon_urls(site_url: str, soup: BeautifulSoup):
     image_metas += soup.select('meta[property="image"]')
 
     for meta in image_metas:
-        if not meta.has_attr('content'): continue
+        if not meta.has_attr('content'):
+            continue
         yield meta.attrs['content']
 
 
@@ -91,8 +98,10 @@ def get_icon(icon_url: str) -> Image:
 
     try:
         if not os.path.exists(filename):
-            response = requests.get(icon_url, stream=True, timeout=REQUEST_TIMEOUT, headers=headers)
-            if not response.ok: return None
+            response = requests.get(icon_url, stream=True, timeout=REQUEST_TIMEOUT,
+                                    headers={"user-agent": config.USER_AGENT})
+            if not response.ok:
+                return None
 
             with open(filename, 'wb') as f:
                 for chunk in response.iter_content(1024):
@@ -109,7 +118,8 @@ def get_best_image(site_url: str) -> tuple[Image, str]:
     sources = [get_manifest_icon_urls, get_apple_icon_urls, get_open_graph_icon_urls]
 
     soup = get_soup(site_url)
-    if not soup: return None
+    if not soup:
+        return None
 
     # The sources are in preference order. We take the largest image, if any
     # If a source has no images, we fall through to the next one.
@@ -164,7 +174,8 @@ def get_background_color(image: Image):
         colors.append(bottom)
 
     colors = [color for color in colors if color is not None]
-    if len(colors) == 0: return None
+    if len(colors) == 0:
+        return None
 
     colors.sort(key=color_length)
     color = colors[len(colors) // 2]
@@ -175,17 +186,47 @@ def process_site(domain: str):
     domain = ensure_scheme(domain)
 
     result = get_best_image(domain)
-    if not result: return None
+    if not result:
+        return None
 
     image, image_url = result
     background_color = get_background_color(image) if image is not None else None
 
-    return (domain, image_url, background_color)
+    return domain, image_url, background_color
+
+
+def process_cover_image(item):
+    domain = ""
+    image_url = ""
+    padded_image_url = ""
+    background_color = ""
+    try:
+        domain, image_url, background_color = item
+        try:
+            cache_fn = im_proc.cache_image(image_url)
+        except Exception as e:
+            cache_fn = None
+            logger.error("im_proc.cache_image failed [e]: {icon_url}")
+        if cache_fn:
+            if cache_fn.startswith("https"):
+                padded_image_url = cache_fn
+            else:
+                padded_image_url = f"{config.PCDN_URL_BASE}/brave-today/cover_images/{cache_fn}.pad"
+        else:
+            padded_image_url = ""
+
+    except ValueError as e:
+        logger.info(f"Tuple unpacking error {e}")
+
+    if padded_image_url:
+        return domain, padded_image_url, background_color
+    else:
+        return domain, image_url, background_color
 
 
 if __name__ == '__main__':
     domains = list(set(get_all_domains()))[:]
-    print(f'Processing {len(domains)} domains')
+    logger.info(f'Processing {len(domains)} domains')
 
     cover_infos: List[Tuple[str, str, str]]
 
@@ -193,6 +234,10 @@ if __name__ == '__main__':
     # than we have cores, it just means we'll have more in flight requests.
     with Pool(100) as p:
         cover_infos = list(filter(lambda x: x is not None, p.map(process_site, domains)))
+
+    processed_cover_images: List[Tuple[str, str, str]]
+    with Pool(config.CONCURRENCY) as pool:
+        processed_cover_images = pool.map(process_cover_image, cover_infos)
 
     result = {}
     for entry in cover_infos:
@@ -204,6 +249,10 @@ if __name__ == '__main__':
         })
 
     with open('cover_info_lookup.json', 'w') as f:
-        f.write(json.dumps(result, indent=4))
+        f.write(json.dumps(processed_cover_images, indent=4))
 
-    print('Done')
+    logger.info("Fetched all the Cover images!")
+
+    upload_file(f"{config.COVER_INFO_LOOKUP_FILE}.json", config.PUB_S3_BUCKET, f"{config.COVER_INFO_LOOKUP_FILE}.json")
+
+    logger.info(f"{config.COVER_INFO_LOOKUP_FILE} is upload to S3")
