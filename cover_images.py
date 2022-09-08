@@ -240,7 +240,7 @@ if __name__ == '__main__':
         processed_cover_images = pool.map(process_cover_image, cover_infos)
 
     result = {}
-    for entry in cover_infos:
+    for entry in processed_cover_images:
         result.update({
             entry[0]: {
                 'cover_url': entry[1],
@@ -249,7 +249,7 @@ if __name__ == '__main__':
         })
 
     with open('cover_info_lookup.json', 'w') as f:
-        f.write(json.dumps(processed_cover_images, indent=4))
+        f.write(json.dumps(result, indent=4))
 
     logger.info("Fetched all the Cover images!")
 
