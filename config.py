@@ -12,8 +12,9 @@ CONCURRENCY = max(1, int(os.getenv('CONCURRENCY', os.cpu_count())))
 # Set to INFO to see some output during long-running steps.
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'WARNING')
 
-# Disable uploads to S3. Useful when running locally or in CI.
+# Disable uploads and downloads to S3. Useful when running locally or in CI.
 NO_UPLOAD = os.getenv('NO_UPLOAD', None)
+NO_DOWNLOAD = os.getenv('NO_DOWNLOAD', None)
 
 PCDN_URL_BASE = os.getenv('PCDN_URL_BASE', 'https://pcdn.brave.software')
 # Canonical ID of the private S3 bucket
