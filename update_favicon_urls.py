@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 from structlog import get_logger
 
+import config
 import image_processor_sandboxed
 from config import FAVICON_LOOKUP_FILE, CONCURRENCY, USER_AGENT, PUB_S3_BUCKET, PRIV_S3_BUCKET, PCDN_URL_BASE
 from utils import ensure_scheme, get_all_domains, upload_file
@@ -58,7 +59,7 @@ def process_favicons_image(item):
             cache_fn = im_proc.cache_image(icon_url)
         except Exception as e:
             cache_fn = None
-            logger.error("im_proc.cache_image failed [e]: {icon_url}")
+            logger.error(f"im_proc.cache_image failed [e]: {icon_url}")
         if cache_fn:
             if cache_fn.startswith("https"):
                 padded_icon_url = cache_fn
@@ -94,6 +95,6 @@ if __name__ == "__main__":
 
     logger.info("Fetched all the favicons!")
 
-    upload_file(f"{FAVICON_LOOKUP_FILE}.json", PUB_S3_BUCKET, f"{FAVICON_LOOKUP_FILE}.json")
-
-    logger.info(f"{FAVICON_LOOKUP_FILE} is upload to S3")
+    if not config.NO_UPLOAD:
+        upload_file(f"{FAVICON_LOOKUP_FILE}.json", PUB_S3_BUCKET, f"{FAVICON_LOOKUP_FILE}.json")
+        logger.info(f"{FAVICON_LOOKUP_FILE} is upload to S3")

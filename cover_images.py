@@ -206,7 +206,7 @@ def process_cover_image(item):
             cache_fn = im_proc.cache_image(image_url)
         except Exception as e:
             cache_fn = None
-            logger.error("im_proc.cache_image failed [e]: {icon_url}")
+            logger.error(f"im_proc.cache_image failed [e]: {image_url}")
         if cache_fn:
             if cache_fn.startswith("https"):
                 padded_image_url = cache_fn
@@ -253,6 +253,7 @@ if __name__ == '__main__':
 
     logger.info("Fetched all the Cover images!")
 
-    upload_file(f"{config.COVER_INFO_LOOKUP_FILE}.json", config.PUB_S3_BUCKET, f"{config.COVER_INFO_LOOKUP_FILE}.json")
-
-    logger.info(f"{config.COVER_INFO_LOOKUP_FILE} is upload to S3")
+    if not config.NO_UPLOAD:
+        upload_file(f"{config.COVER_INFO_LOOKUP_FILE}.json", config.PUB_S3_BUCKET,
+                    f"{config.COVER_INFO_LOOKUP_FILE}.json")
+        logger.info(f"{config.COVER_INFO_LOOKUP_FILE} is upload to S3")
