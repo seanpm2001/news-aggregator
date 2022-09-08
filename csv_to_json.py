@@ -2,19 +2,39 @@ import csv
 import hashlib
 import json
 import sys
+from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
 import bleach
 
 import config
-from utils import ensure_scheme
+from utils import ensure_scheme, download_file
 from utils import upload_file
 
-with open(f'{config.FAVICON_LOOKUP_FILE}.json', 'r') as f:
-    favicon_lookup = json.load(f)
 
-with open(f'{config.COVER_INFO_LOOKUP_FILE}.json', 'r') as f:
-    cover_info_lookup = json.load(f)
+def get_favicons_lookup():
+    download_file(f'{config.FAVICON_LOOKUP_FILE}.json', config.PUB_S3_BUCKET,
+                  f"brave-today/{config.FAVICON_LOOKUP_FILE}.json")
+
+    if Path(f'{config.FAVICON_LOOKUP_FILE}.json').is_file():
+        with open(f'{config.FAVICON_LOOKUP_FILE}.json', 'r') as f:
+            favicons_lookup = json.load(f)
+            return favicons_lookup
+    else:
+        return {}
+
+
+def get_cover_infos_lookup():
+    download_file(f'{config.COVER_INFO_LOOKUP_FILE}.json', config.PUB_S3_BUCKET,
+                  f"brave-today/{config.COVER_INFO_LOOKUP_FILE}.json")
+
+    if Path(f'{config.COVER_INFO_LOOKUP_FILE}.json').is_file():
+        with open(f'{config.COVER_INFO_LOOKUP_FILE}.json', 'r') as f:
+            cover_infos_lookup = json.load(f)
+            return cover_infos_lookup
+    else:
+        return {}
+
 
 in_path = "{}.csv".format(config.SOURCES_FILE)
 out_path = sys.argv[1]
@@ -49,11 +69,12 @@ with open(in_path, 'r') as f:
         else:
             content_type = row[7]
 
+        favicons_lookup = get_favicons_lookup()
+        cover_infos_lookup = get_cover_infos_lookup()
+
         domain = ensure_scheme(row[0])
-        favicon_url = favicon_lookup[domain] if domain in favicon_lookup else ''
-        cover_info = cover_info_lookup[domain] if domain in cover_info_lookup else {
-            'cover_url': None, 'background_color': None
-        }
+        favicon_url = favicons_lookup.get(domain, "")
+        cover_info = cover_infos_lookup.get(domain, {'cover_url': None, 'background_color': None})
 
         channels = []
         if len(row) >= 11:
