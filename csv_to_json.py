@@ -2,12 +2,41 @@ import csv
 import hashlib
 import json
 import sys
+from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
 import bleach
 
 import config
-from upload import upload_file
+from utils import ensure_scheme, download_file
+from utils import upload_file
+
+
+def get_favicons_lookup():
+    if not config.NO_DOWNLOAD:
+        download_file(f'{config.FAVICON_LOOKUP_FILE}.json', config.PUB_S3_BUCKET,
+                      f"brave-today/{config.FAVICON_LOOKUP_FILE}.json")
+
+    if Path(f'{config.FAVICON_LOOKUP_FILE}.json').is_file():
+        with open(f'{config.FAVICON_LOOKUP_FILE}.json', 'r') as f:
+            favicons_lookup = json.load(f)
+            return favicons_lookup
+    else:
+        return {}
+
+
+def get_cover_infos_lookup():
+    if not config.NO_DOWNLOAD:
+        download_file(f'{config.COVER_INFO_LOOKUP_FILE}.json', config.PUB_S3_BUCKET,
+                      f"brave-today/{config.COVER_INFO_LOOKUP_FILE}.json")
+
+    if Path(f'{config.COVER_INFO_LOOKUP_FILE}.json').is_file():
+        with open(f'{config.COVER_INFO_LOOKUP_FILE}.json', 'r') as f:
+            cover_infos_lookup = json.load(f)
+            return cover_infos_lookup
+    else:
+        return {}
+
 
 in_path = "{}.csv".format(config.SOURCES_FILE)
 out_path = sys.argv[1]
@@ -42,6 +71,13 @@ with open(in_path, 'r') as f:
         else:
             content_type = row[7]
 
+        favicons_lookup = get_favicons_lookup()
+        cover_infos_lookup = get_cover_infos_lookup()
+
+        domain = ensure_scheme(row[0])
+        favicon_url = favicons_lookup.get(domain, "")
+        cover_info = cover_infos_lookup.get(domain, {'cover_url': None, 'background_color': None})
+
         channels = []
         if len(row) >= 11:
             channels = [i.strip() for i in row[10].split(";")]
@@ -58,17 +94,19 @@ with open(in_path, 'r') as f:
                   'default': default,
                   'publisher_name': row[2],
                   'content_type': content_type,
-                  'publisher_domain': row[0],
+                  'publisher_domain': domain,
                   'publisher_id': hashlib.sha256(original_feed.encode('utf-8') if original_feed
                                                  else feed_url.encode('utf-8')).hexdigest(),
                   'max_entries': 20,
                   'og_images': og_images,
                   'creative_instance_id': row[8],
                   'url': feed_url,
+                  'favicon_url': favicon_url,
+                  'cover_url': cover_info['cover_url'],
+                  'background_color': cover_info['background_color'],
                   'destination_domains': row[9],
                   'channels': channels,
-                  'rank': rank
-                  }
+                  'rank': rank}
         by_url[record['url']] = record
         sources_data[
             hashlib.sha256(original_feed.encode('utf-8') if original_feed else feed_url.encode('utf-8')).hexdigest()
@@ -77,11 +115,13 @@ with open(in_path, 'r') as f:
              'category': row[3],
              'site_url': row[0],
              'feed_url': row[1],
+             'favicon_url': record['favicon_url'],
+             'cover_url': cover_info['cover_url'],
+             'background_color': cover_info['background_color'],
              'score': float(row[5] or 0),
              'destination_domains': row[9].split(';'),
              'channels': channels,
-             'rank': rank
-             }
+             'rank': rank}
 with open(out_path, 'w') as f:
     f.write(json.dumps(by_url))
 

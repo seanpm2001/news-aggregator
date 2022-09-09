@@ -29,7 +29,7 @@ from requests.exceptions import ConnectTimeout, HTTPError, InvalidURL, ReadTimeo
 
 import config
 import image_processor_sandboxed
-from upload import upload_file
+from utils import upload_file
 
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.49 Safari/537.36'
 TZ = timezone('UTC')
@@ -294,7 +294,7 @@ class FeedProcessor():
     def download_feeds(self, my_feeds):
         feed_cache = {}
         logging.info("Downloading %s feeds...", len(my_feeds))
-        with multiprocessing.Pool(config.CONCURRENCY) as pool:
+        with multiprocessing.Pool(50) as pool:
             for result in pool.imap(download_feed, [my_feeds[key]['url'] for key in my_feeds]):
                 if not result:
                     continue
