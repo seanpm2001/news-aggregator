@@ -15,7 +15,7 @@ from utils import upload_file
 def get_favicons_lookup():
     if not config.NO_DOWNLOAD:
         download_file(f'{config.FAVICON_LOOKUP_FILE}.json', config.PUB_S3_BUCKET,
-                      f"brave-today/{config.FAVICON_LOOKUP_FILE}.json")
+                      f"{config.FAVICON_LOOKUP_FILE}.json")
 
     if Path(f'{config.FAVICON_LOOKUP_FILE}.json').is_file():
         with open(f'{config.FAVICON_LOOKUP_FILE}.json', 'r') as f:
@@ -28,7 +28,7 @@ def get_favicons_lookup():
 def get_cover_infos_lookup():
     if not config.NO_DOWNLOAD:
         download_file(f'{config.COVER_INFO_LOOKUP_FILE}.json', config.PUB_S3_BUCKET,
-                      f"brave-today/{config.COVER_INFO_LOOKUP_FILE}.json")
+                      f"{config.COVER_INFO_LOOKUP_FILE}.json")
 
     if Path(f'{config.COVER_INFO_LOOKUP_FILE}.json').is_file():
         with open(f'{config.COVER_INFO_LOOKUP_FILE}.json', 'r') as f:
