@@ -56,7 +56,7 @@ def resize_and_pad_image(image_bytes, width, height, size, cache_path):
     return False
 
 
-def get_with_max_size(url, max_bytes=5000000):
+def get_with_max_size(url, max_bytes=1000000):
     is_large = False
     response = requests.get(url, stream=True, timeout=10)
     response.raise_for_status()
@@ -79,7 +79,7 @@ class ImageProcessor():
 
     def cache_image(self, url):
         try:
-            content, is_large = get_with_max_size(url)  # 5mb max
+            content, is_large = get_with_max_size(url)  # 1mb max
             if not is_large:
                 return url
 
