@@ -11,3 +11,4 @@ __pycache__/
 sources.ja.json
 feed.ja.json
 .cache/
+sources.global.json
