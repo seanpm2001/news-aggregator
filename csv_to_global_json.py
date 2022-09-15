@@ -3,7 +3,6 @@ import glob
 import hashlib
 import json
 import re
-import sys
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
@@ -39,8 +38,6 @@ def get_cover_infos_lookup():
     else:
         return {}
 
-
-out_path = sys.argv[1]
 
 locales_finder = re.compile(r"sources\.(.*)\.csv")
 count = 0
