@@ -46,7 +46,7 @@ locales_finder = re.compile(r"sources\.(.*)\.csv")
 count = 0
 by_url = {}
 sources_data = {}
-source_files = glob.glob('sources*.csv')
+source_files = glob.glob(r'sources.*_*.csv')
 for in_path in source_files:
     locales = locales_finder.findall(in_path)
     with open(in_path, 'r') as f:
