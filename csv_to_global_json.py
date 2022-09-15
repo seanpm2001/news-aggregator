@@ -120,8 +120,3 @@ with open(f"{config.GLOBAL_SOURCES_FILE}.json", 'w') as f:
 if not config.NO_UPLOAD:
     upload_file(f"{config.GLOBAL_SOURCES_FILE}.json", config.PUB_S3_BUCKET,
                 "{}.json".format(config.GLOBAL_SOURCES_FILE))
-    # Temporarily upload also with incorrect filename as a stopgap for
-    # https://github.com/brave/brave-browser/issues/20114
-    # Can be removed once fixed in the brave-core client for all Desktop users.
-    upload_file(f"{config.GLOBAL_SOURCES_FILE}.json", config.PUB_S3_BUCKET,
-                "{}json".format(config.GLOBAL_SOURCES_FILE))
