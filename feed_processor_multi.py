@@ -294,7 +294,7 @@ class FeedProcessor():
     def download_feeds(self, my_feeds):
         feed_cache = {}
         logging.info("Downloading %s feeds...", len(my_feeds))
-        with multiprocessing.Pool(50) as pool:
+        with multiprocessing.Pool(config.CONCURRENCY) as pool:
             for result in pool.imap(download_feed, [my_feeds[key]['url'] for key in my_feeds]):
                 if not result:
                     continue
