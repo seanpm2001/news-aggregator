@@ -1,8 +1,10 @@
+import collections.abc
 import csv
 import glob
 import hashlib
 import json
 import re
+from copy import deepcopy
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
@@ -39,19 +41,35 @@ def get_cover_infos_lookup():
         return {}
 
 
+def deep_update(d, u):
+    """
+    Update a nested dictionary or similar mapping.
+    Modify ``source`` in place.
+    """
+    for k, v in u.items():
+        if isinstance(v, collections.abc.Mapping):
+            d[k] = deep_update(d.get(k, {}), v)
+        else:
+            d[k] = v
+    return d
+
+
 locales_finder = re.compile(r"sources\.(.*)\.csv")
-count = 0
 by_url = {}
 sources_data = {}
 source_files = glob.glob(r'sources.*_*.csv')
+
+favicons_lookup = get_favicons_lookup()
+cover_infos_lookup = get_cover_infos_lookup()
+
 for in_path in source_files:
     locales = locales_finder.findall(in_path)
     with open(in_path, 'r') as f:
-        for row in csv.reader(f):
+        for index, row in enumerate(csv.reader(f)):
             row = [bleach.clean(x, strip=True) for x in row]
-            if count < 1:
-                count += 1
+            if index < 1:
                 continue
+
             if len(row[2].strip()) == 0:
                 # no title = no use
                 continue
@@ -73,9 +91,6 @@ for in_path in source_files:
             else:
                 content_type = row[7]
 
-            favicons_lookup = get_favicons_lookup()
-            cover_infos_lookup = get_cover_infos_lookup()
-
             domain = ensure_scheme(row[0])
             favicon_url = favicons_lookup.get(domain, "")
             cover_info = cover_infos_lookup.get(domain, {'cover_url': None, 'background_color': None})
@@ -91,23 +106,31 @@ for in_path in source_files:
             original_feed = ''
             if len(row) >= 13:
                 original_feed = row[12]
+            else:
+                original_feed = feed_url
 
-            sources_data[
-                hashlib.sha256(original_feed.encode('utf-8') if original_feed else feed_url.encode('utf-8')).hexdigest()
-            ] = {'enabled': default,
-                 'publisher_name': row[2],
-                 'category': row[3],
-                 'site_url': row[0],
-                 'feed_url': row[1],
-                 'favicon_url': favicon_url,
-                 'cover_url': cover_info['cover_url'],
-                 'background_color': cover_info['background_color'],
-                 'score': float(row[5] or 0),
-                 'destination_domains': row[9].split(';'),
-                 'channels': channels,
-                 'rank': rank,
-                 'locales': locales}
-        count = 0
+            feed_hash = hashlib.sha256(original_feed.encode('utf-8')).hexdigest()
+
+            if sources_data.get(feed_hash):
+                if locales[0] not in sources_data.get(feed_hash).get('locales'):
+                    update_locales = deepcopy(sources_data.get(feed_hash)['locales'])
+                    update_locales.extend(locales)
+                    update_locales_dict = {'locales': update_locales}
+                    deep_update(sources_data.get(feed_hash), update_locales_dict)
+            else:
+                sources_data[feed_hash] = {'enabled': default,
+                                           'publisher_name': row[2],
+                                           'category': row[3],
+                                           'site_url': row[0],
+                                           'feed_url': row[1],
+                                           'favicon_url': favicon_url,
+                                           'cover_url': cover_info['cover_url'],
+                                           'background_color': cover_info['background_color'],
+                                           'score': float(row[5] or 0),
+                                           'destination_domains': row[9].split(';'),
+                                           'channels': channels,
+                                           'rank': rank,
+                                           'locales': locales}
 
 sources_data_as_list = [dict(sources_data[x], publisher_id=x) for x in sources_data]
 
