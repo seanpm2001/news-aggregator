@@ -354,11 +354,11 @@ class FeedProcessor():
 
         article_embeddings = np.zeros((entries_n, 512))
         for i in range(entries_n):
-            article_embeddings[i] = model([entries[i]])[0]
+            article_embeddings[i] = model([entries[i]["title"]])[0]
 
         entry_similarity_matrix = np.zeros((entries_n, entries_n))
         for i in range(entries_n):
-            for j in range(i+1, range(entries_n)):
+            for j in range(i+1, entries_n):
                 entry_1 = article_embeddings[i]
                 entry_2 = article_embeddings[j]
                 sim_score = compute_source_similarity(entry_1, entry_2)
@@ -411,7 +411,7 @@ class FeedProcessor():
             item['title'] = html.unescape(item['title'])
             item['url'] = encoded_url
             item['url_hash'] = url_hash
-            item['index'] = i
+            item['index'] = str(i)
             out.append(item)
             url_dedupe[encoded_url] = True
         out = self.check_images(out)
