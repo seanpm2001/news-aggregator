@@ -368,7 +368,7 @@ class FeedProcessor():
         for i, entry in enumerate(entries):
             similar_entries = []
             for j in range(entries_n):
-                if i != j and entry_similarity_matrix[i,j] > 0.65:
+                if i != j and entry_similarity_matrix[i,j] > config.MARK_SIMILARITY_THRESHOLD:
                     similar_entries.append(entries[j]["index"])
             entry["similar_entries"] = similar_entries
             out_entries.append(entry)

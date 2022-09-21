@@ -26,4 +26,6 @@ SENTRY_URL = os.getenv('SENTRY_URL', '')
 SOURCES_FILE = os.getenv('SOURCES_FILE', 'sources')
 FAVICON_LOOKUP_FILE = os.getenv('FAVICON_LOOKUP_FILE', 'favicon_lookup')
 COVER_INFO_LOOKUP_FILE = os.getenv('COVER_INFO_LOOKUP_FILE', 'cover_info_lookup')
-MARK_SIMILARITY = os.getenv('MARK_SIMILARITY', True)
+
+MARK_SIMILARITY = os.getenv('MARK_SIMILARITY', False)
+MARK_SIMILARITY_THRESHOLD = os.getenv('MARK_SIMILARITY_THRESHOLD', 0.65)
