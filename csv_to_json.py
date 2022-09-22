@@ -84,7 +84,7 @@ with open(in_path, 'r') as f:
 
         rank = None
         if len(row) >= 12:
-            rank = int(row[11])
+            rank = int(row[11] or 1)
 
         original_feed = ''
         if len(row) >= 13:
