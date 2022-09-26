@@ -43,6 +43,9 @@ logging.getLogger("metadata_parser").setLevel(logging.CRITICAL)  # hide NotParsa
 
 logging.info("Using %s processes for parallel tasks.", config.CONCURRENCY)
 
+# adding custom bad words for profanity check
+custom_badwords = ["vibrators"]
+profanity.add_censor_words(custom_badwords)
 
 def get_with_max_size(url, max_bytes):
     response = requests.get(url, headers={'User-Agent': USER_AGENT}, stream=True)
