@@ -101,7 +101,7 @@ for in_path in source_files:
 
             rank = None
             if len(row) >= 12:
-                rank = int(row[11])
+                rank = int(row[11] or 1)
 
             original_feed = ''
             if len(row) >= 13:
@@ -121,7 +121,7 @@ for in_path in source_files:
                 sources_data[feed_hash] = {'enabled': default,
                                            'publisher_name': row[2],
                                            'category': row[3],
-                                           'site_url': row[0],
+                                           'site_url': domain,
                                            'feed_url': row[1],
                                            'favicon_url': favicon_url,
                                            'cover_url': cover_info['cover_url'],
