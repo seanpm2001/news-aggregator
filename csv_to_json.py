@@ -41,6 +41,9 @@ def get_cover_infos_lookup():
 in_path = "{}.csv".format(config.SOURCES_FILE)
 out_path = sys.argv[1]
 
+favicons_lookup = get_favicons_lookup()
+cover_infos_lookup = get_cover_infos_lookup()
+
 count = 0
 by_url = {}
 sources_data = {}
@@ -70,9 +73,6 @@ with open(in_path, 'r') as f:
             content_type = 'article'
         else:
             content_type = row[7]
-
-        favicons_lookup = get_favicons_lookup()
-        cover_infos_lookup = get_cover_infos_lookup()
 
         domain = ensure_scheme(row[0])
         favicon_url = favicons_lookup.get(domain, "")
@@ -113,7 +113,7 @@ with open(in_path, 'r') as f:
         ] = {'enabled': default,
              'publisher_name': record['publisher_name'],
              'category': row[3],
-             'site_url': row[0],
+             'site_url': domain,
              'feed_url': row[1].replace('&amp;', '&'),  # workaround limitation in bleach
              'favicon_url': record['favicon_url'],
              'cover_url': cover_info['cover_url'],
