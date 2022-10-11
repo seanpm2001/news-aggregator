@@ -10,5 +10,3 @@ __pycache__/
 .DS_Store
 sources.ja.json
 feed.ja.json
-.cache/
-sources.global.json
