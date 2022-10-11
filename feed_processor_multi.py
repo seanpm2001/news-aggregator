@@ -29,7 +29,7 @@ from requests.exceptions import ConnectTimeout, HTTPError, InvalidURL, ReadTimeo
 
 import config
 import image_processor_sandboxed
-from upload import upload_file
+from utils import upload_file
 
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.49 Safari/537.36'
 TZ = timezone('UTC')
@@ -48,7 +48,7 @@ custom_badwords = ["vibrators"]
 profanity.add_censor_words(custom_badwords)
 
 def get_with_max_size(url, max_bytes):
-    response = requests.get(url, headers={'User-Agent': USER_AGENT}, stream=True, timeout=10, allow_redirects=False)
+    response = requests.get(url, headers={'User-Agent': USER_AGENT}, stream=True)
     response.raise_for_status()
 
     if response.status_code != 200:  # raise for status is not working with 3xx error
@@ -327,7 +327,7 @@ class FeedProcessor():
         variety_by_source = {}
         for entry in entries:
             seconds_ago = (datetime.utcnow() - dateparser.parse(entry['publish_time'])).total_seconds()
-            recency = math.log(seconds_ago)
+            recency = math.log(seconds_ago) if seconds_ago > 0 else 0.1
             if entry['publisher_id'] in variety_by_source:
                 last_variety = variety_by_source[entry['publisher_id']]
             else:
@@ -414,17 +414,17 @@ if __name__ == '__main__':
         category = sys.argv[1]
     else:
         category = 'feed'
-    with open("%s.json" % (category)) as f:
+    with open(f"{category}.json") as f:
         feeds = json.loads(f.read())
-        fp.aggregate(feeds, "feed/%s.json-tmp" % (category))
-        shutil.copyfile("feed/%s.json-tmp" % (category), "feed/%s.json" % (category))
+        fp.aggregate(feeds, f"feed/{category}.json-tmp")
+        shutil.copyfile(f"feed/{category}.json-tmp", f"feed/{category}.json")
         if not config.NO_UPLOAD:
-            upload_file("feed/%s.json" % (category), config.PUB_S3_BUCKET,
-                        "brave-today/%s%s.json" % (category, config.SOURCES_FILE.strip("sources")))
+            upload_file(f"feed/{category}.json", config.PUB_S3_BUCKET,
+                        f"brave-today/{category}{config.SOURCES_FILE.replace('sources', '')}.json")
             # Temporarily upload also with incorrect filename as a stopgap for
             # https://github.com/brave/brave-browser/issues/20114
             # Can be removed once fixed in the brave-core client for all Desktop users.
-            upload_file("feed/%s.json" % (category), config.PUB_S3_BUCKET,
-                        "brave-today/%s%sjson" % (category, config.SOURCES_FILE.strip("sources")))
+            upload_file(f"feed/{category}.json", config.PUB_S3_BUCKET,
+                        f"brave-today/{category}{config.SOURCES_FILE.replace('sources', '')}json")
     with open("report.json", 'w') as f:
         f.write(json.dumps(fp.report))
