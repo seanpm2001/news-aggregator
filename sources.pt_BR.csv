@@ -1,5 +1,5 @@
 Domain,Feed,Title,Category,Status,Score,OG-Images,Content Type,Creative ID,Destination Domains,Channels,Rank
-uol.com.br,http://rss.uol.com.br/feed/noticias.xml,UOL,,Enabled,,,,,cultura.uol.com.br;noticias.uol.com.br;oantagonista.uol.com.br;aovivo.folha.uol.com.br;www.band.uol.com.br;tribunapr.uol.com.br;www.redetv.uol.com.br,Top Sources; Top News,1
+uol.com.br,https://rss.uol.com.br/feed/noticias.xml,UOL,,Enabled,,,,,cultura.uol.com.br;noticias.uol.com.br;oantagonista.uol.com.br;aovivo.folha.uol.com.br;www.band.uol.com.br;tribunapr.uol.com.br;www.redetv.uol.com.br,Top Sources; Top News,1
 canaltech.com.br,https://feeds2.feedburner.com/canaltechbr,Canaltech,,Enabled,,,,,canaltech.com.br,Top Sources; Technology,2
 tecnoblog.net,https://tecnoblog.net/feed/,Tecnoblog,,Enabled,,,,,tecnoblog.net,Top Sources; Technology,3
 cnnbrasil.com.br,https://www.cnnbrasil.com.br/feed/,CNN Brasil,,Enabled,,,,,www.cnnbrasil.com.br,Top Sources; Top News,4

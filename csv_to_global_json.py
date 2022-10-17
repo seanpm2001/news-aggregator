@@ -55,15 +55,15 @@ def deep_update(d, u):
 
 
 locales_finder = re.compile(r"sources\.(.*)\.csv")
-by_url = {}
 sources_data = {}
-source_files = glob.glob(r'sources.*_*.csv')
 
 favicons_lookup = get_favicons_lookup()
 cover_infos_lookup = get_cover_infos_lookup()
 
+source_files = glob.glob(r'sources.*_*.csv')
+
 for in_path in source_files:
-    locales = locales_finder.findall(in_path)
+    locale = locales_finder.findall(in_path)[0]
     with open(in_path, 'r') as f:
         for index, row in enumerate(csv.reader(f)):
             row = [bleach.clean(x, strip=True) for x in row]
@@ -105,19 +105,19 @@ for in_path in source_files:
 
             original_feed = ''
             if len(row) >= 13:
-                original_feed = row[12]
-            else:
-                original_feed = feed_url
+                original_feed = row[12] if row[12] else feed_url
 
             feed_hash = hashlib.sha256(original_feed.encode('utf-8')).hexdigest()
 
             if sources_data.get(feed_hash):
-                if locales[0] not in sources_data.get(feed_hash).get('locales'):
+                if locale not in sources_data.get(feed_hash).get('locales')[0].get("locale")[0]:
+                    locales = [{"locale": locale, "rank": rank, 'channels': channels}]
                     update_locales = deepcopy(sources_data.get(feed_hash)['locales'])
                     update_locales.extend(locales)
                     update_locales_dict = {'locales': update_locales}
                     deep_update(sources_data.get(feed_hash), update_locales_dict)
             else:
+                locales = [{"locale": locale, "rank": rank, 'channels': channels}]
                 sources_data[feed_hash] = {'enabled': default,
                                            'publisher_name': row[2],
                                            'category': row[3],
@@ -128,8 +128,6 @@ for in_path in source_files:
                                            'background_color': cover_info['background_color'],
                                            'score': float(row[5] or 0),
                                            'destination_domains': row[9].split(';'),
-                                           'channels': channels,
-                                           'rank': rank,
                                            'locales': locales}
 
 sources_data_as_list = [dict(sources_data[x], publisher_id=x) for x in sources_data]
