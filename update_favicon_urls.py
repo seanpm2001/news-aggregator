@@ -10,7 +10,7 @@ from structlog import get_logger
 import config
 import image_processor_sandboxed
 from config import FAVICON_LOOKUP_FILE, CONCURRENCY, USER_AGENT, PUB_S3_BUCKET, PRIV_S3_BUCKET, PCDN_URL_BASE
-from utils import ensure_scheme, get_all_domains, upload_file
+from utils import get_all_domains, upload_file
 
 logger = get_logger()
 im_proc = image_processor_sandboxed.ImageProcessor(PRIV_S3_BUCKET, s3_path='brave-today/favicons/{}.pad',
@@ -22,10 +22,6 @@ REQUEST_TIMEOUT = 15
 
 
 def get_favicon(domain: str) -> Tuple[str, str]:
-    # Only sources from the Japanese file include a scheme, so parse the domain
-    # as a url to get something we can use in a http request.
-    domain = ensure_scheme(domain)
-
     # Set the default favicon path. If we don't find something better, we'll use
     # this.
     icon_url = '/favicon.ico'

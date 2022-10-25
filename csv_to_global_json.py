@@ -11,7 +11,7 @@ from urllib.parse import urlparse, urlunparse
 import bleach
 
 import config
-from utils import ensure_scheme, download_file
+from utils import download_file
 from utils import upload_file
 
 
@@ -91,7 +91,7 @@ for in_path in source_files:
             else:
                 content_type = row[7]
 
-            domain = ensure_scheme(row[0])
+            domain = row[0]
             favicon_url = favicons_lookup.get(domain, "")
             cover_info = cover_infos_lookup.get(domain, {'cover_url': None, 'background_color': None})
 
