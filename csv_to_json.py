@@ -8,7 +8,7 @@ from urllib.parse import urlparse, urlunparse
 import bleach
 
 import config
-from utils import ensure_scheme, download_file
+from utils import download_file
 from utils import upload_file
 
 
@@ -74,7 +74,7 @@ with open(in_path, 'r') as f:
         else:
             content_type = row[7]
 
-        domain = ensure_scheme(row[0])
+        domain = row[0]
         favicon_url = favicons_lookup.get(domain, "")
         cover_info = cover_infos_lookup.get(domain, {'cover_url': None, 'background_color': None})
 
@@ -92,7 +92,7 @@ with open(in_path, 'r') as f:
 
         record = {'category': row[3],
                   'default': default,
-                  'publisher_name': row[2],
+                  'publisher_name': row[2].replace('&amp;', '&'),  # workaround limitation in bleach
                   'content_type': content_type,
                   'publisher_domain': domain,
                   'publisher_id': hashlib.sha256(original_feed.encode('utf-8') if original_feed
@@ -100,7 +100,7 @@ with open(in_path, 'r') as f:
                   'max_entries': 20,
                   'og_images': og_images,
                   'creative_instance_id': row[8],
-                  'url': feed_url.replace('&amp;', '&'),  # workaround limitation in bleach
+                  'url': feed_url,
                   'favicon_url': favicon_url,
                   'cover_url': cover_info['cover_url'],
                   'background_color': cover_info['background_color'],
@@ -114,7 +114,7 @@ with open(in_path, 'r') as f:
              'publisher_name': record['publisher_name'],
              'category': row[3],
              'site_url': domain,
-             'feed_url': row[1].replace('&amp;', '&'),  # workaround limitation in bleach
+             'feed_url': row[1],
              'favicon_url': record['favicon_url'],
              'cover_url': cover_info['cover_url'],
              'background_color': cover_info['background_color'],

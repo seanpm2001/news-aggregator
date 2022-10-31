@@ -12,7 +12,7 @@ from structlog import get_logger
 import config
 import image_processor_sandboxed
 from color import color_length, hex_color, is_transparent
-from utils import get_all_domains, ensure_scheme, upload_file
+from utils import get_all_domains, upload_file
 
 # In seconds. Tested with 5s but it's too low for a bunch of sites
 REQUEST_TIMEOUT = 15
@@ -183,8 +183,6 @@ def get_background_color(image: Image):
 
 
 def process_site(domain: str):
-    domain = ensure_scheme(domain)
-
     result = get_best_image(domain)
     if not result:
         return None
