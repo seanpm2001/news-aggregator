@@ -94,13 +94,13 @@ with open(in_path, 'r') as f:
                   'default': default,
                   'publisher_name': row[2].replace('&amp;', '&'),  # workaround limitation in bleach
                   'content_type': content_type,
-                  'publisher_domain': domain.replace('&amp;', '&'),  # workaround limitation in bleach
+                  'publisher_domain': domain,
                   'publisher_id': hashlib.sha256(original_feed.encode('utf-8') if original_feed
                                                  else feed_url.encode('utf-8')).hexdigest(),
                   'max_entries': 20,
                   'og_images': og_images,
                   'creative_instance_id': row[8],
-                  'url': feed_url.replace('&amp;', '&'),  # workaround limitation in bleach
+                  'url': feed_url,
                   'favicon_url': favicon_url,
                   'cover_url': cover_info['cover_url'],
                   'background_color': cover_info['background_color'],
@@ -113,8 +113,8 @@ with open(in_path, 'r') as f:
         ] = {'enabled': default,
              'publisher_name': record['publisher_name'],
              'category': row[3],
-             'site_url': domain.replace('&amp;', '&'),  # workaround limitation in bleach
-             'feed_url': row[1].replace('&amp;', '&'),  # workaround limitation in bleach
+             'site_url': domain,
+             'feed_url': row[1],
              'favicon_url': record['favicon_url'],
              'cover_url': cover_info['cover_url'],
              'background_color': cover_info['background_color'],
