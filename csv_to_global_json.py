@@ -92,7 +92,7 @@ for in_path in source_files:
                 content_type = row[7]
 
             domain = row[0]
-            favicon_url = favicons_lookup.get(domain, "")
+            favicon_url = favicons_lookup.get(domain, None)
             cover_info = cover_infos_lookup.get(domain, {'cover_url': None, 'background_color': None})
 
             channels = []
@@ -100,12 +100,20 @@ for in_path in source_files:
                 channels = [i.strip() for i in row[10].split(";")]
 
             rank = None
-            if len(row) >= 12:
-                rank = int(row[11] or 1)
+            try:
+                rank = int(row[11])
+                if rank == "":
+                    rank = None
+            except (ValueError, IndexError) as e:
+                rank = None
 
             original_feed = ''
-            if len(row) >= 13:
-                original_feed = row[12] if row[12] else feed_url
+            try:
+                original_feed = row[12]
+                if original_feed == "":
+                    original_feed = feed_url
+            except IndexError as e:
+                original_feed = feed_url
 
             feed_hash = hashlib.sha256(original_feed.encode('utf-8')).hexdigest()
 
