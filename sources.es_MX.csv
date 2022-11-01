@@ -1,4 +1,5 @@
 Domain,Feed,Title,Category,Status,Score,OG-Images,Content Type,Creative ID,Destination Domains,Channels,Rank,Original_Feed
+https://brave.com/,https://brave.com/blog/index.xml,Brave Blog,Brave,Enabled,,,article,,brave.com,Brave,,https://brave.com/blog/index.xml
 https://elpais.com/,https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/america/portada,EL PAÍS,Top News,Enabled,,,article,,elpais.com,Top Sources;Top News,1,
 https://www.xataka.com/,https://feeds.weblogssl.com/xataka2,Xataka,Technology,Enabled,,,article,,www.xataka.com,Top Sources;Technology,2,
 https://as.com/,https://as.com/rss/diarioas/portada.xml,Diario AS,Sports,Enabled,,,article,,as.com;elpais.com,Top Sources;Sports,3,
