@@ -1,4 +1,5 @@
 Domain,Feed,Title,Category,Status,Score,OG-Images,Content Type,Creative ID,Destination Domains,Channels,Rank
+https://brave.com/,https://brave.com/blog/index.xml,Brave Blog,Brave,Enabled,,,article,,brave.com,Brave,,https://brave.com/blog/index.xml
 https://www.uol.com.br/,https://rss.uol.com.br/feed/noticias.xml,UOL,,Enabled,,,,,cultura.uol.com.br;noticias.uol.com.br;oantagonista.uol.com.br;aovivo.folha.uol.com.br;www.band.uol.com.br;tribunapr.uol.com.br;www.redetv.uol.com.br,Top Sources; Top News,1
 https://canaltech.com.br/,https://feeds2.feedburner.com/canaltechbr,Canaltech,,Enabled,,,,,canaltech.com.br,Top Sources; Technology,2
 https://tecnoblog.net/,https://tecnoblog.net/feed/,Tecnoblog,,Enabled,,,,,tecnoblog.net,Top Sources; Technology,3
