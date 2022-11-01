@@ -75,7 +75,7 @@ with open(in_path, 'r') as f:
             content_type = row[7]
 
         domain = row[0]
-        favicon_url = favicons_lookup.get(domain, "")
+        favicon_url = favicons_lookup.get(domain, None)
         cover_info = cover_infos_lookup.get(domain, {'cover_url': None, 'background_color': None})
 
         channels = []
@@ -83,12 +83,20 @@ with open(in_path, 'r') as f:
             channels = [i.strip() for i in row[10].split(";")]
 
         rank = None
-        if len(row) >= 12:
-            rank = int(row[11] or 1)
+        try:
+            rank = int(row[11])
+            if rank == "":
+                rank = None
+        except (ValueError, IndexError) as e:
+            rank = None
 
         original_feed = ''
-        if len(row) >= 13:
+        try:
             original_feed = row[12]
+            if original_feed == "":
+                original_feed = feed_url
+        except IndexError as e:
+            original_feed = feed_url
 
         record = {'category': row[3],
                   'default': default,
