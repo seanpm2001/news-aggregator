@@ -1,5 +1,5 @@
 Domain,Feed,Title,Category,Status,Score,OG-Images,Content Type,Creative Instance ID,Destination Domains,Channels,Rank,Original_Feed
-https://brave.com/,https://brave.com/blog/index.xml,Brave Blog,Brave,Enabled,,,article,,brave.com,Brave,1,https://brave.com/blog/index.xml
+https://brave.com/,https://brave.com/blog/index.xml,Brave Blog,Brave,Enabled,,,article,,brave.com,Brave,,https://brave.com/blog/index.xml
 https://www.nytimes.com/,https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml,The New York Times,Top News,Enabled,,,article,,www.nytimes.com,Top Sources; Top News,1,https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
 https://www.cnn.com/,https://rss.cnn.com/rss/cnn_topstories.rss,CNN,Top News,Enabled,,,article,,www.cnn.com,Top Sources; Top News,2,https://rss.cnn.com/rss/cnn_topstories.rss
 https://www.foxnews.com/,https://feeds.feedburner.com/foxnews/latest,FOX News,Top News,Enabled,,,article,,www.foxnews.com,Top Sources; Top News,3,https://feeds.foxnews.com/foxnews/latest
