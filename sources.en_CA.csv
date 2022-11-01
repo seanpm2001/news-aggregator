@@ -10,7 +10,7 @@ http://globalnews.ca/,https://globalnews.ca/feed/,Global News,,Enabled,,,,,globa
 https://www.cnn.com/,http://rss.cnn.com/rss/edition_world.rss,CNN World News,Top News,Enabled,,,,,www.cnn.com,Top Sources; Top News; World News,8,https://rss.cnn.com/rss/cnn_topstories.rss
 https://www.webmd.com/,https://rssfeeds.webmd.com/rss/rss.aspx?RSSSource=RSS_PUBLIC,WebMD Health,Health,Enabled,,,,,www.webmd.com,Top Sources; Health,9,https://rssfeeds.webmd.com/rss/rss.aspx?RSSSource=RSS_PUBLIC
 https://www.forbes.com/,https://www.forbes.com/real-time/feed/,Forbes,Business,Enabled,,,,,www.forbes.com,Top Sources; Business,10,https://www.forbes.com/real-time/feed/
-https://www.espn.com/,https://www.espn.com/espn/rss/news,ESPN,Sports,Enabled,,,,,www.espn.com,Top Sources; Sports,11,https://sports.espn.go.com/espn/rss/news
+https://www.espn.com/,https://www.espn.com/espn/rss/news,ESPN,Sports,Enabled,,,,,www.espn.com,Top Sources; Sports,11,https://www.espn.com/espn/rss/news
 https://www.gamespot.com/,https://www.gamespot.com/feeds/news,Gamespot,,Enabled,,,,,www.gamespot.com,Top Sources; Entertainment; Gaming,12,
 https://www.lapresse.ca/,https://www.lapresse.ca/actualites/rss,LaPresse,,Enabled,,,,,www.lapresse.ca,Top Sources; Top News,13,
 https://www.cnbc.com/,https://www.cnbc.com/id/100003114/device/rss/rss.html,CNBC,Business,Enabled,,,,,www.cnbc.com,Top Sources; Top News,14,https://www.cnbc.com/id/100003114/device/rss/rss.html
