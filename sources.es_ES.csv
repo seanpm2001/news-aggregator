@@ -1,5 +1,5 @@
 Domain,Feed,Title,Category,Status,Score,OG-Images,Content Type,Creative ID,Destination Domains,Channels,Rank,Original_Feed
-https://brave.com/,https://brave.com/blog/index.xml,Brave Blog,Brave,Enabled,,,article,,brave.com,Brave,,https://brave.com/blog/index.xml
+https://brave.com/,https://brave.com/blog/index.xml,Brave Blog,Brave,Enabled,,,article,,brave.com,Brave,,
 https://elpais.com/,https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/espana/portada,EL PAÍS,Top News,Enabled,,,article,,elpais.com,Top Sources;Top News,1,
 https://as.com/,https://as.com/rss/diarioas/portada.xml,Diario AS,Sports,Enabled,,,article,,as.com,Top Sources;Sports,2,
 https://www.xataka.com/,https://feeds.weblogssl.com/xataka2,Xataka,Technology,Enabled,,,article,,www.xataka.com,Top Sources;Technology,3,
@@ -23,7 +23,7 @@ https://www.europapress.es/,https://www.europapress.es/rss/rss.aspx?ch=94,Europa
 https://www.xatakandroid.com/,https://www.xatakandroid.com/index.xml,Xataka Android,Technology,Disabled,,,article,,www.xatakandroid.com,Technology,21,
 https://www.espinof.com/,https://feeds.weblogssl.com/espinof,Espinof,Entertainment,Disabled,,,article,,www.espinof.com,Entertainment,22,
 https://computerhoy.com/,https://www.computerhoy.com/rss_all/all/rss.xml,ComputerHoy,Technology,Disabled,,,article,,computerhoy.com,Technology,23,
-https://www.theguardian.com/,https://www.theguardian.com/international/rss,The Guardian,World News,Disabled,,,article,,www.theguardian.com,World News,24,
+https://www.theguardian.com/,https://www.theguardian.com/international/rss,The Guardian World News,World News,Enabled,,,article,,www.theguardian.com,World News,24,
 https://www.fotogramas.es/,https://www.fotogramas.es/rss/all.xml/,Fotogramas,Entertainment,Disabled,,,article,,www.fotogramas.es,Entertainment,25,
 https://www.xatakamovil.com/,https://www.xatakamovil.com/index.xml,Xataka Móvil,Technology,Disabled,,,article,,www.xatakamovil.com,Technology,26,
 https://okdiario.com/,https://okdiario.com/feed,OKdiario,Top News,Disabled,,,article,,okdiario.com,Top News,27,
@@ -55,7 +55,7 @@ https://www.esquire.com/,https://www.esquire.com/es/rss/all/,Esquire España,Cul
 https://hardzone.es/,https://hardzone.es/feed/,HardZone,Technology,Disabled,,,article,,hardzone.es,Technology,53,
 https://www.businessinsider.es/,https://www.businessinsider.es/rss,BusinessInsider,Business,Disabled,,,article,,www.businessinsider.es,Business,54,
 https://www.digitaltrends.com/,https://es.digitaltrends.com/feed/,DigitalTrends,Technology,Disabled,,,article,,es.digitaltrends.com,Technology,55,
-https://www.cnn.com/,https://rss.cnn.com/rss/edition_europe.rss,CNN,World News,Disabled,,,article,,cnn.com,World News,56,
+https://www.cnn.com/,https://rss.cnn.com/rss/edition_europe.rss,CNN Europe Edition,World News,Disabled,,,article,,cnn.com,World News,56,
 https://www.diariodesevilla.es/,https://www.diariodesevilla.es/rss/,Diario de Sevilla,Top News,Disabled,,,article,,www.diariodesevilla.es,Top News,57,
 https://www.lasprovincias.es/,https://www.lasprovincias.es/rss/2.0/portada,Las Provincias,Top News,Disabled,,,article,,www.lasprovincias.es,Top News,58,
 https://elcomercio.pe/,https://www.elcomercio.es/rss/2.0/portada,El Comercio,Top News,Disabled,,,article,,www.elcomercio.es,Top News,59,
@@ -79,7 +79,7 @@ https://www.muyinteresante.es/,https://www.muyinteresante.es/rss,MuyInteresante.
 https://www.elle.com/,https://www.elle.com/es/rss/all.xml/,Elle,Fashion,Disabled,,,article,,www.elle.com,Fashion,77,
 https://psicologiaymente.com/,https://psicologiaymente.com/feeds/blog/rss,Psicología y Mente,Health,Disabled,,,article,,psicologiaymente.com,Health,78,
 https://www.diariovasco.com/,https://www.diariovasco.com/rss/2.0/portada,Diario Vasco,Top News,Disabled,,,article,,clasica-san-sebastian.diariovasco.com;www.diariovasco.com,Top News,79,
-https://www.dailymail.co.uk/home/index.html,https://www.dailymail.co.uk/news/spain/index.rss,DailyMail Spain,World News,Disabled,,,article,,www.dailymail.co.uk,World News,80,
+https://www.dailymail.co.uk/,https://www.dailymail.co.uk/news/spain/index.rss,Daily Mail Spain,World News,Disabled,,,article,,www.dailymail.co.uk,World News,80,
 https://www.levante-emv.com/,https://www.levante-emv.com/rss/,Levante-EMV,Top News,Disabled,,,article,,levante-emv.com,Top News,81,
 https://www.motorpasion.com/,https://www.motorpasion.com/index.xml,Motorpasión,Sports,Disabled,,,article,,motorpasion.com,Sports,82,
 https://www.investopedia.com/,https://www.investopedia.com/feeds/google-news,Investopedia,Business,Disabled,,,article,,investopedia.com,Business,83,
