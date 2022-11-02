@@ -2,15 +2,15 @@ Domain,Feed,Title,Category,Status,Score,OG-Images,Content Type,Creative Instance
 https://brave.com/,https://brave.com/blog/index.xml,Brave Blog,Brave,Enabled,,,article,,brave.com,Brave,,https://brave.com/blog/index.xml
 https://www.cbc.ca/,https://rss.cbc.ca/lineup/topstories.xml,CBC,Top News,Enabled,,,,,www.cbc.ca,Top Sources; Top News,1,https://www.cbc.ca/cmlink/rss-topstories
 https://www.nytimes.com/,https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml,The New York Times,Top News,Enabled,,,,,www.nytimes.com,Top Sources; Top News; World News,2,https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
-https://www.theguardian.com/,https://www.theguardian.com/world/rss,The Guardian,Top News,Enabled,,,,,www.theguardian.com,Top Sources; Top News; World News,3,https://www.theguardian.com/international/rss
+https://www.theguardian.com/,https://www.theguardian.com/world/rss,The Guardian,Top News,Enabled,,,,,www.theguardian.com,Top Sources; Top News; World News,3,https://www.theguardian.com/world/rss
 https://www.ctvnews.ca/,https://www.ctvnews.ca/rss/ctvnews-ca-top-stories-public-rss-1.822009,CTV News,,Enabled,,,,,bc.ctvnews.ca;www.ctvnews.ca;toronto.ctvnews.ca,Top Sources; Top News,4,
 https://www.bbc.com/,https://feeds.bbci.co.uk/news/rss.xml?edition=int,BBC,,Enabled,,,,,www.bbc.co.uk,Top Sources; Top News; World News,5,
 https://www.healthline.com/,https://www.healthline.com/rss/health-news,Healthline,Health,Enabled,,,,,healthline.com,Top Sources; Health,6,https://www.healthline.com/rss/health-news
 http://globalnews.ca/,https://globalnews.ca/feed/,Global News,,Enabled,,,,,globalnews.ca,Top Sources; Top News,7,
-https://www.cnn.com/,http://rss.cnn.com/rss/edition_world.rss,CNN World News,Top News,Enabled,,,,,www.cnn.com,Top Sources; Top News; World News,8,https://rss.cnn.com/rss/cnn_topstories.rss
+https://www.cnn.com/,https://rss.cnn.com/rss/cnn_topstories.rss,CNN,Top News,Enabled,,,,,www.cnn.com,Top Sources; Top News; World News,8,https://rss.cnn.com/rss/cnn_topstories.rss
 https://www.webmd.com/,https://rssfeeds.webmd.com/rss/rss.aspx?RSSSource=RSS_PUBLIC,WebMD Health,Health,Enabled,,,,,www.webmd.com,Top Sources; Health,9,https://rssfeeds.webmd.com/rss/rss.aspx?RSSSource=RSS_PUBLIC
 https://www.forbes.com/,https://www.forbes.com/real-time/feed/,Forbes,Business,Enabled,,,,,www.forbes.com,Top Sources; Business,10,https://www.forbes.com/real-time/feed/
-https://www.espn.com/,https://www.espn.com/espn/rss/news,ESPN,Sports,Enabled,,,,,www.espn.com,Top Sources; Sports,11,https://www.espn.com/espn/rss/news
+https://www.espn.com/,https://sports.espn.go.com/espn/rss/news,ESPN,Sports,Enabled,,,,,www.espn.com,Top Sources; Sports,11,https://sports.espn.go.com/espn/rss/news
 https://www.gamespot.com/,https://www.gamespot.com/feeds/news,Gamespot,,Enabled,,,,,www.gamespot.com,Top Sources; Entertainment; Gaming,12,
 https://www.lapresse.ca/,https://www.lapresse.ca/actualites/rss,LaPresse,,Enabled,,,,,www.lapresse.ca,Top Sources; Top News,13,
 https://www.cnbc.com/,https://www.cnbc.com/id/100003114/device/rss/rss.html,CNBC,Business,Enabled,,,,,www.cnbc.com,Top Sources; Top News,14,https://www.cnbc.com/id/100003114/device/rss/rss.html
