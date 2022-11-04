@@ -129,8 +129,8 @@ for in_path in source_files:
                 sources_data[feed_hash] = {'enabled': default,
                                            'publisher_name': row[2].replace('&amp;', '&'),  # workaround limitation in bleach
                                            'category': row[3],
-                                           'site_url': domain.replace('&amp;', '&'),  # workaround limitation in bleach
-                                           'feed_url': row[1].replace('&amp;', '&'),  # workaround limitation in bleach
+                                           'site_url': domain,
+                                           'feed_url': row[1],
                                            'favicon_url': favicon_url,
                                            'cover_url': cover_info['cover_url'],
                                            'background_color': cover_info['background_color'],
