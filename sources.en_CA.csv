@@ -2,7 +2,7 @@ Domain,Feed,Title,Category,Status,Score,OG-Images,Content Type,Creative Instance
 https://brave.com/,https://brave.com/blog/index.xml,Brave Blog,Brave,Enabled,,,article,,brave.com,Brave,,https://brave.com/blog/index.xml
 https://www.cbc.ca/,https://rss.cbc.ca/lineup/topstories.xml,CBC,Top News,Enabled,,,,,www.cbc.ca,Top Sources; Top News,1,https://www.cbc.ca/cmlink/rss-topstories
 https://www.nytimes.com/,https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml,The New York Times,Top News,Enabled,,,,,www.nytimes.com,Top Sources; Top News; World News,2,https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
-https://www.theguardian.com/,https://www.theguardian.com/world/rss,The Guardian,Top News,Enabled,,,,,www.theguardian.com,Top Sources; Top News; World News,3,https://www.theguardian.com/international/rss
+https://www.theguardian.com/,https://www.theguardian.com/international/rss,The Guardian,Top News,Enabled,,,,,www.theguardian.com,Top Sources; Top News; World News,3,https://www.theguardian.com/world/rss
 https://www.ctvnews.ca/,https://www.ctvnews.ca/rss/ctvnews-ca-top-stories-public-rss-1.822009,CTV News,,Enabled,,,,,bc.ctvnews.ca;www.ctvnews.ca;toronto.ctvnews.ca,Top Sources; Top News,4,
 https://www.bbc.com/,https://feeds.bbci.co.uk/news/rss.xml?edition=int,BBC,,Enabled,,,,,www.bbc.co.uk,Top Sources; Top News; World News,5,
 https://www.healthline.com/,https://www.healthline.com/rss/health-news,Healthline,Health,Enabled,,,,,healthline.com,Top Sources; Health,6,https://www.healthline.com/rss/health-news
