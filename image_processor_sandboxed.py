@@ -23,7 +23,7 @@ wasm_store = Store(engine.JIT(Compiler))
 wasm_module = Module(wasm_store, open(wasm_path, 'rb').read())
 
 
-def resize_and_pad_image(image_bytes, width, height, size, cache_path):
+def resize_and_pad_image(image_bytes, width, height, size, cache_path, quality=80):
     pathlib.Path(os.path.dirname(cache_path)).mkdir(parents=True, exist_ok=True)
     pid = os.fork()
     if pid == 0:
@@ -35,8 +35,8 @@ def resize_and_pad_image(image_bytes, width, height, size, cache_path):
         memory[0:image_length] = image_bytes
 
         try:
-            output_pointer = instance.exports.resize_and_pad(input_pointer, image_length, width, height, size)
-        except RuntimeError:
+            output_pointer = instance.exports.resize_and_pad(input_pointer, image_length, width, height, size, quality)
+        except RuntimeError as e:
             logging.warning("resize_and_pad() hit a RuntimeError (length=%s, width=%s, height=%s, size=%s): %s.failed",
                             image_length, width, height, size, cache_path)
             with open("%s.failed" % (cache_path), 'wb+') as out_image:

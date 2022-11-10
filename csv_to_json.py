@@ -83,12 +83,20 @@ with open(in_path, 'r') as f:
             channels = [i.strip() for i in row[10].split(";")]
 
         rank = None
-        if len(row) >= 12:
-            rank = int(row[11] or 1)
+        try:
+            rank = int(row[11])
+            if rank == "":
+                rank = None
+        except (ValueError, IndexError) as e:
+            rank = None
 
         original_feed = ''
-        if len(row) >= 13:
+        try:
             original_feed = row[12]
+            if original_feed == "":
+                original_feed = feed_url
+        except IndexError as e:
+            original_feed = feed_url
 
         record = {'category': row[3],
                   'default': default,
@@ -100,7 +108,7 @@ with open(in_path, 'r') as f:
                   'max_entries': 20,
                   'og_images': og_images,
                   'creative_instance_id': row[8],
-                  'url': feed_url,
+                  'url': feed_url.replace('&amp;', '&'),  # workaround limitation in bleach
                   'favicon_url': favicon_url,
                   'cover_url': cover_info['cover_url'],
                   'background_color': cover_info['background_color'],
@@ -114,7 +122,7 @@ with open(in_path, 'r') as f:
              'publisher_name': record['publisher_name'],
              'category': row[3],
              'site_url': domain,
-             'feed_url': row[1],
+             'feed_url': row[1].replace('&amp;', '&'),  # workaround limitation in bleach
              'favicon_url': record['favicon_url'],
              'cover_url': cover_info['cover_url'],
              'background_color': cover_info['background_color'],

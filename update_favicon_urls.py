@@ -31,7 +31,13 @@ def get_favicon(domain: str) -> Tuple[str, str]:
             'User-Agent': USER_AGENT
         })
         soup = BeautifulSoup(response.text, features='lxml')
-        icon = soup.find('link', rel="shortcut icon")
+        icon = soup.find('link', rel="icon")
+
+        # Some sites may use an icon with a different rel.
+        if not icon:
+            icon = soup.find('link', rel="shortcut icon")
+        if not icon:
+            icon = soup.find('link', rel="apple-touch-icon")
 
         # Check if the icon exists, and the href is not empty. Surprisingly,
         # some sites actually do this (https://coinchoice.net/ + more).
