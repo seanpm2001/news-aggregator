@@ -8,7 +8,7 @@ from urllib.parse import urlparse, urlunparse
 import bleach
 
 import config
-from utils import ensure_scheme, download_file
+from utils import download_file
 from utils import upload_file
 
 
@@ -41,6 +41,9 @@ def get_cover_infos_lookup():
 in_path = "{}.csv".format(config.SOURCES_FILE)
 out_path = sys.argv[1]
 
+favicons_lookup = get_favicons_lookup()
+cover_infos_lookup = get_cover_infos_lookup()
+
 count = 0
 by_url = {}
 sources_data = {}
@@ -71,10 +74,7 @@ with open(in_path, 'r') as f:
         else:
             content_type = row[7]
 
-        favicons_lookup = get_favicons_lookup()
-        cover_infos_lookup = get_cover_infos_lookup()
-
-        domain = ensure_scheme(row[0])
+        domain = row[0]
         favicon_url = favicons_lookup.get(domain, "")
         cover_info = cover_infos_lookup.get(domain, {'cover_url': None, 'background_color': None})
 
@@ -83,16 +83,24 @@ with open(in_path, 'r') as f:
             channels = [i.strip() for i in row[10].split(";")]
 
         rank = None
-        if len(row) >= 12:
-            rank = int(row[11] or 1)
+        try:
+            rank = int(row[11])
+            if rank == "":
+                rank = None
+        except (ValueError, IndexError) as e:
+            rank = None
 
         original_feed = ''
-        if len(row) >= 13:
+        try:
             original_feed = row[12]
+            if original_feed == "":
+                original_feed = feed_url
+        except IndexError as e:
+            original_feed = feed_url
 
         record = {'category': row[3],
                   'default': default,
-                  'publisher_name': row[2],
+                  'publisher_name': row[2].replace('&amp;', '&'),  # workaround limitation in bleach
                   'content_type': content_type,
                   'publisher_domain': domain,
                   'publisher_id': hashlib.sha256(original_feed.encode('utf-8') if original_feed
@@ -113,7 +121,7 @@ with open(in_path, 'r') as f:
         ] = {'enabled': default,
              'publisher_name': record['publisher_name'],
              'category': row[3],
-             'site_url': row[0],
+             'site_url': domain,
              'feed_url': row[1].replace('&amp;', '&'),  # workaround limitation in bleach
              'favicon_url': record['favicon_url'],
              'cover_url': cover_info['cover_url'],

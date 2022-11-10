@@ -145,7 +145,8 @@ def fixup_item(item, my_feed):
         if not my_feed.get('destination_domains'):
             return None
 
-        if (urlparse(item['link']).hostname or '') not in my_feed["destination_domains"]:
+        if (urlparse(item['link']).hostname or '') not in my_feed["destination_domains"] and \
+                my_feed["destination_domains"] not in (urlparse(item['link']).hostname or ''):
             return None
 
     # filter the offensive articles

@@ -1,5 +1,7 @@
 import glob
 import logging
+import mimetypes
+import re
 from typing import List
 
 import boto3
@@ -10,6 +12,8 @@ import config
 boto_session = boto3.Session()
 s3_client = boto_session.client('s3')
 
+domain_url_fixer = re.compile(r"^https://(www\.)?|^")
+subst = "https://www."
 
 class InvalidS3Bucket(Exception):
     pass
@@ -19,15 +23,18 @@ def upload_file(file_name, bucket, object_name=None):
     if object_name is None:
         object_name = file_name
     try:
+        content_type = mimetypes.guess_type(file_name)[0] or 'binary/octet-stream'
         if bucket == config.PUB_S3_BUCKET:
             s3_client.upload_file(file_name, bucket, object_name, ExtraArgs={
                 'GrantRead': 'id=%s' % config.BRAVE_TODAY_CLOUDFRONT_CANONICAL_ID,
-                'GrantFullControl': 'id=%s' % config.BRAVE_TODAY_CANONICAL_ID
+                'GrantFullControl': 'id=%s' % config.BRAVE_TODAY_CANONICAL_ID,
+                'ContentType': content_type
             })
         elif bucket == config.PRIV_S3_BUCKET:
             s3_client.upload_file(file_name, bucket, object_name, ExtraArgs={
                 'GrantRead': 'id=%s' % config.PRIVATE_CDN_CANONICAL_ID,
-                'GrantFullControl': 'id=%s' % config.PRIVATE_CDN_CLOUDFRONT_CANONICAL_ID
+                'GrantFullControl': 'id=%s' % config.PRIVATE_CDN_CLOUDFRONT_CANONICAL_ID,
+                'ContentType': content_type
             })
         else:
             raise InvalidS3Bucket("Attempted to upload to unknown S3 bucket.")
@@ -61,13 +68,11 @@ def ensure_scheme(domain):
        this will use the https scheme.
 
        Note: this will break if domain has a non http(s) scheme.
-       example.com ==> https://example.com
-       http://example.com ==> http://example.com
+       example.com ==> https://www.example.com
+       https://example.com ==> https://www.example.com
        file://example.com ==> https://file://example.com
     """
-    if not domain.startswith('http'):
-        domain = f'https://{domain}'
-    return domain
+    return domain_url_fixer.sub(subst, domain, 1)
 
 
 def get_all_domains() -> List[str]:
