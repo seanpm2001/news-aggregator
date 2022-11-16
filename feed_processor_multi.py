@@ -268,7 +268,7 @@ def check_images_in_item(item, feeds):
 expire_after = timedelta(hours=2)
 scrape_session = requests_cache.core.CachedSession(expire_after=expire_after, backend='memory', timeout=5)
 scrape_session.cache.remove_old_entries(datetime.utcnow() - expire_after)
-scrape_session.headers.update({'User-Agent': USER_AGENT})
+scrape_session.headers.update({'User-Agent': config.USER_AGENT})
 
 
 class FeedProcessor():
