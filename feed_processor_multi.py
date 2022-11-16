@@ -31,7 +31,6 @@ import config
 import image_processor_sandboxed
 from utils import upload_file
 
-USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.49 Safari/537.36'
 TZ = timezone('UTC')
 
 im_proc = image_processor_sandboxed.ImageProcessor(config.PRIV_S3_BUCKET)
@@ -48,7 +47,7 @@ custom_badwords = ["vibrators"]
 profanity.add_censor_words(custom_badwords)
 
 def get_with_max_size(url, max_bytes):
-    response = requests.get(url, headers={'User-Agent': USER_AGENT}, stream=True)
+    response = requests.get(url, headers={'User-Agent': config.USER_AGENT}, stream=True)
     response.raise_for_status()
 
     if response.status_code != 200:  # raise for status is not working with 3xx error
@@ -162,7 +161,9 @@ def fixup_item(item, my_feed):
         return None  # skip (unshortener failed)
 
     # image determination
-    if 'media_thumbnail' in item and 'url' in item['media_thumbnail'][0]:
+    if 'media_content' in item and len(item['media_content']) > 0 and 'url' in item['media_content'][0]:
+        out_item['img'] = item['media_content'][0]['url']
+    elif 'media_thumbnail' in item and 'url' in item['media_thumbnail'][0]:
         out_item['img'] = item['media_thumbnail'][0]['url']
     elif 'media_content' in item and len(item['media_content']) > 0 and 'url' in item['media_content'][0]:
         out_item['img'] = item['media_content'][0]['url']
@@ -240,7 +241,7 @@ def check_images_in_item(item, feeds):
         # if we came out of this without an image, lets try to get it from opengraph
         try:
             page = metadata_parser.MetadataParser(url=item['url'], requests_session=scrape_session,
-                                                  support_malformed=True,
+                                                  support_malformed=True, url_headers={'User-Agent': config.USER_AGENT},
                                                   search_head_only=True, strategy=['page', 'meta', 'og', 'dc'],
                                                   requests_timeout=5)
             item['img'] = page.get_metadata_link('image')
