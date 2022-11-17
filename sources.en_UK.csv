@@ -75,8 +75,8 @@ https://www.liverpoolecho.co.uk/,https://www.liverpoolecho.co.uk/?service=rss,Li
 https://www.scotsman.com/,https://www.scotsman.com/rss,The Scotsman,Top News,Disabled,,,article,,www.scotsman.com,Top News,73,
 https://www.pcgamesn.com/,https://www.pcgamesn.com/mainrss.xml,PC GamesN,Gaming,Disabled,,,article,,www.pcgamesn.com,Gaming,74,
 https://www.hitc.com/,https://www.hitc.com/feed/,HITC,Entertainment,Disabled,,,article,,www.hitc.com,Entertainment,75,
-https://www.windowscentral.com/,https://www.windowscentral.com/rss.xml,Windows Central,Technology,Disabled,,,article,,www.windowscentral.com,Technology,76,
-https://variety.com/,https://www.variety.com/rss,Variety,Entertainment,Disabled,,,article,,variety.com,Entertainment,77,
+https://www.windowscentral.com/,https://www.windowscentral.com/rss.xml,Windows Central,Technology,Disabled,,,article,,www.windowscentral.com,Technology,76,https://feeds.feedburner.com/wmexperts
+https://variety.com/,https://variety.com/feed/,Variety,Entertainment,Disabled,,,article,,variety.com,Entertainment,77,https://feeds.feedburner.com/variety/headlines
 https://www.whathifi.com/,https://www.whathifi.com/feeds/all,What Hi-Fi?,Technology,Disabled,,,article,,www.whathifi.com,Technology,78,
 https://www.gardenersworld.com/,https://www.gardenersworld.com/feed/atom/,Gardeners World,Home,Disabled,,,article,,www.gardenersworld.com,Home,79,
 https://www.hellomagazine.com/,https://www.hellomagazine.com/rss.xml,Hello Magazine,Entertainment,Disabled,,,article,,www.hellomagazine.com,Entertainment,80,
@@ -197,5 +197,5 @@ https://www.techrepublic.com/,https://www.techrepublic.com/rssfeeds/articles/,Te
 https://www.animenewsnetwork.com/,https://www.animenewsnetwork.com/all/rss.xml?ann-edition=uk,Anime News Network UK,Entertainment,Disabled,,,article,,www.animenewsnetwork.com,Entertainment,196,
 https://www.musicradar.com/,https://www.musicradar.com/rss.xml,MusicRadar,Entertainment,Disabled,,,article,,www.musicradar.com,Entertainment,197,
 https://www.verywellfit.com/,https://www.verywellfit.com/feeds/google-news,Very Well Fit,Health,Disabled,,,article,,www.verywellfit.com,Health,198,
-https://www.vanityfair.com/,https://www.vanityfair.com/rss,Vanity Fair,Culture,Disabled,,,article,,www.vanityfair.com,Culture,199,
+https://www.vanityfair.com/,https://www.vanityfair.com/feed/rss,Vanity Fair,Culture,Disabled,,,article,,www.vanityfair.com,Culture,199,
 https://www.smithsonianmag.com/,https://www.smithsonianmag.com/rss/latest_articles/,Smithsonian Magazine,Science,Disabled,,,article,,www.smithsonianmag.com,Science,200,https://feeds.feedburner.com/smithsonianmag/science-nature
