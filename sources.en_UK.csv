@@ -5,7 +5,7 @@ https://www.theguardian.com/,https://www.theguardian.com/uk/rss,The Guardian,Top
 https://www.dailymail.co.uk/home/index.html,https://www.dailymail.co.uk/news/index.rss,Daily Mail,Top News,Enabled,,,article,,www.dailymail.co.uk,Top Sources; Top News,3,https://www.dailymail.co.uk/home/index.rss
 https://www.independent.co.uk/,https://www.independent.co.uk/rss,The Independent,Top News,Enabled,,,article,,www.independent.co.uk,Top Sources; Top News,4,https://www.independent.co.uk/rss
 https://www.healthline.com/,https://www.healthline.com/rss/health-news,Healthline,Health,Enabled,,,article,,www.healthline.com/,Top Sources; Health,5,
-https://www.telegraph.co.uk/,https://www.telegraph.co.uk/rss,The Telegraph,Top News,Enabled,,,article,,www.telegraph.co.uk,Top Sources; Top News,6,https://www.telegraph.co.uk/news/rss.xml
+https://www.telegraph.co.uk/,https://www.telegraph.co.uk/rss.xml,The Telegraph,Top News,Enabled,,,article,,www.telegraph.co.uk,Top Sources; Top News,6,https://www.telegraph.co.uk/news/rss.xml
 https://www.nytimes.com/,https://rss.nytimes.com/services/xml/rss/nyt/World.xml,The New York Times World News,World News,Enabled,,,article,,www.nytimes.com,Top Sources; World News,7,
 https://www.sky.com/,https://feeds.skynews.com/feeds/rss/home.xml,Sky News,Top News,Enabled,,,article,,news.sky.com,Top Sources; Top News,8,https://feeds.skynews.com/feeds/rss/world.xml
 https://www.thesun.co.uk/,https://www.thesun.co.uk/feed/,The Sun,Top News,Enabled,,,article,,www.thesun.co.uk,Top Sources; Top News,9,
@@ -26,24 +26,24 @@ https://screenrant.com/,https://screenrant.com/feed/,Screenrant,Entertainment,En
 https://www.mayoclinic.org/,https://www.mayoclinic.org/rss/all-health-information-topics,Mayo Clinic,Health,Enabled,,,article,,www.mayoclinic.org,Top Sources; Health,24,
 https://www.skysports.com/,https://www.skysports.com/rss/11095,SkySports,Sports,Enabled,,,article,,www.skysports.com,Top Sources; Sports,25,https://www.skysports.com/rss/11095
 https://inews.co.uk/,https://www.inews.co.uk/feed,iNews,Top News,Enabled,,,article,,inews.co.uk,Top Sources; Top News,26,
-https://www.businessinsider.com/,https://feeds.businessinsider.com/custom/all,Business Insider,Business,Enabled,,,article,,markets.businessinsider.com;www.businessinsider.com,Top Sources; Business,27,
+https://www.businessinsider.com/,https://feeds.businessinsider.com/custom/all,Business Insider,Business,Enabled,,,article,,markets.businessinsider.com;www.businessinsider.com,Top Sources; Business,27,https://feeds2.feedburner.com/businessinsider
 https://www.pcgamer.com/,https://www.pcgamer.com/rss,PC Gamer,Gaming,Enabled,,,article,,www.pcgamer.com,Top Sources; Gaming,28,
 https://www.radiotimes.com/,https://www.radiotimes.com/feed/atom/,Radio Times,Entertainment,Enabled,,,article,,www.radiotimes.com,Top Sources; Entertainment,29,
-https://www.wikihow.com/Main-Page,https://www.wikihow.com/feed.rss,Wikihow,Culture,Enabled,,,article,,www.wikihow.com,Top Sources; Culture,30,
+https://www.wikihow.com/,https://www.wikihow.com/feed.rss,Wikihow,Culture,Enabled,,,article,,www.wikihow.com,Top Sources; Culture,30,
 https://www.makeuseof.com/,https://www.makeuseof.com/feed/,MakeUseOf,Technology,Enabled,,,article,,www.makeuseof.com,Top Sources; Technology,31,
 https://gamerant.com/,https://www.gamerant.com/feed/,Gamerant,Gaming,Enabled,,,article,,gamerant.com,Top Sources; Gaming,32,
 https://www.howtogeek.com/,https://feeds.howtogeek.com/HowToGeek,How-To Geek,Technology,Enabled,,,article,,www.reviewgeek.com;www.howtogeek.com,Top Sources; Technology,33,
 https://www.channel4.com/,https://www.channel4.com/news/rss,Channel4,Top News,Enabled,,,article,,www.channel4.com,Top Sources; Top News,34,
 https://www.lifewire.com/,https://www.lifewire.com/feeds/google-news,Lifewire,Technology,Enabled,,,article,,www.lifewire.com,Top Sources; Technology,35,
-https://www.ft.com/,https://www.ft.com/rss/home,Financial Times,Top News,Enabled,,,article,,www.ft.com,Top Sources; Top News,36,https://www.ft.com/rss/home/uk
+https://www.ft.com/,https://www.ft.com/rss/home,FT,Top News,Enabled,,,article,,www.ft.com,Top Sources; Top News,36,https://www.ft.com/rss/home/uk
 https://www.cnet.com/,https://www.cnet.com/rss/news/,CNET News,Technology,Enabled,,,article,,www.cnet.com,Top Sources; Technology,37,
-https://www.cnn.com/,https://rss.cnn.com/rss/edition_world.rss,CNN World News,Top News,Enabled,,,article,,edition.cnn.com,Top Sources; Top News,38,
+https://www.cnn.com/,http://rss.cnn.com/rss/edition_world.rss,CNN World News,Top News,Enabled,,,article,,edition.cnn.com,Top Sources; Top News,38,
 https://www.tomsguide.com/,https://www.tomsguide.com/uk/feeds/all,Tom's Guide,Technology,Enabled,,,article,,www.tomsguide.com,Top Sources; Technology,39,
 https://www.thegamer.com/,https://www.thegamer.com/feed,The Gamer,Gaming,Enabled,,,article,,www.thegamer.com,Top Sources; Gaming,40,
 https://www.manchestereveningnews.co.uk/,https://www.manchestereveningnews.co.uk/news/?service=rss,Manchester Evening News,Top News,Enabled,,,article,,www.manchestereveningnews.co.uk,Top Sources; Top News,41,
 https://www.theverge.com/,https://www.theverge.com/rss.xml,The Verge,Technology,Enabled,,,article,,www.theverge.com,Top Sources; Technology,42,
 https://www.gamesradar.com/,https://www.gamesradar.com/rss.xml,Games Radar,Gaming,Enabled,,,article,,www.gamesradar.com,Top Sources; Gaming,43,
-https://www.cnbc.com/,https://www.cnbc.com/id/100003114/device/rss/rss.html,CNBC,Business,Enabled,,,article,,www.cnbc.com,Top Sources; Top News,44,
+https://www.cnbc.com/,https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100727362,CNBC,Business,Enabled,,,article,,www.cnbc.com,Top Sources; Top News,44,
 https://www.digitalspy.com/,https://www.digitalspy.com/rss/all,Digital Spy,Entertainment,Enabled,,,article,,www.digitalspy.com,Top Sources; Entertainment,45,
 https://www.eurogamer.net/,https://www.eurogamer.net/feed,Eurogamer,Gaming,Enabled,,,article,,www.eurogamer.net,Top Sources; Gaming,46,
 https://www.digitaltrends.com/,https://www.digitaltrends.com/feed/,Digital Trends,Technology,Enabled,,,article,,www.digitaltrends.com,Top Sources; Technology,47,
@@ -94,7 +94,7 @@ https://www.verywellmind.com/,https://www.verywellmind.com/feeds/google-news,Ver
 https://dotesports.com/,https://dotesports.com/feed,Dot Esports,Gaming,Disabled,,,article,,dotesports.com,Gaming,92,
 https://www.wired.co.uk/,https://www.wired.co.uk/feed/rss,Wired UK,Technology,Disabled,,,article,,www.wired.co.uk,Technology,93,
 https://www.cbr.com/,https://www.cbr.com/feed/,CBR,Entertainment,Disabled,,,article,,www.cbr.com,Entertainment,94,
-https://www.https://www.washingtonpost.com/,https://feeds.washingtonpost.com/rss/world,Washington Post World News,Top News,Disabled,,,article,,www.washingtonpost.com,Top News,95,
+https://www.washingtonpost.com/,https://feeds.washingtonpost.com/rss/world,Washington Post World News,Top News,Disabled,,,article,,www.washingtonpost.com,Top News,95,
 https://www.theregister.com/,https://www.theregister.com/headlines.atom,Theregister,Technology,Disabled,,,article,,www.theregister.com,Technology,96,
 https://windowsreport.com/,https://feeds.feedburner.com/WindowsReport2,Windows Report,Technology,Disabled,,,article,,windowsreport.com,Technology,97,
 https://www.macrumors.com/,https://feeds.macrumors.com/MacRumors-All,Mac Rumors,Technology,Disabled,,,article,,www.macrumors.com,Technology,98,
