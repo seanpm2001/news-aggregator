@@ -231,7 +231,7 @@ async def check_images_in_item(item, publishers):
         # if we came out of this without an image, lets try to get it from opengraph
         try:
             page = metadata_parser.MetadataParser(url=item['url'], requests_session=scrape_session,
-                                                  support_malformed=True,
+                                                  support_malformed=True, url_headers={'User-Agent': config.USER_AGENT},
                                                   search_head_only=True, strategy=['page', 'meta', 'og', 'dc'],
                                                   requests_timeout=5)
             item['img'] = page.get_metadata_link('image')
