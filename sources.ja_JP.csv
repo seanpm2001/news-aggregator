@@ -1,5 +1,5 @@
 Domain,Feed,Title,Category,Status,Score,OG-Images,Content Type,Creative ID,Destination Domains,Channels,Rank,Original_Feed
-https://brave.com,https://brave.com/ja/blog/index.xml,Brave Blog,Brave,Enabled,,,article,,brave.com,Brave,,
+https://brave.com,https://brave.com/ja/blog/index.xml,Brave の最新情報,Brave,Enabled,,,article,,brave.com,Brave,,
 https://jp.cointelegraph.com,https://jp.cointelegraph.com/rss,コインテレグラフ ジャパン,Crypto,Enabled,,,article,,jp.cointelegraph.com,Top Sources; Crypto,1,
 https://toyokeizai.net,https://toyokeizai.net/list/feed/rss,東洋経済オンライン,Business,Disabled,,,article,,toyokeizai.net,Top Sources; Business,2,
 https://www.itmedia.co.jp/,https://rss.itmedia.co.jp/rss/1.0/plusd.xml,ITmedia,Technology,Disabled,,,article,,www.itmedia.co.jp,Top Sources; Technology,3,
