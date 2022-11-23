@@ -1,16 +1,18 @@
 import csv
 import hashlib
-import json
 import sys
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
 import bleach
+import orjson
+from structlog import get_logger
 
 import config
 from utils import download_file
 from utils import upload_file
 
+logger = get_logger()
 
 def get_favicons_lookup():
     if not config.NO_DOWNLOAD:
@@ -19,7 +21,7 @@ def get_favicons_lookup():
 
     if Path(f'{config.FAVICON_LOOKUP_FILE}.json').is_file():
         with open(f'{config.FAVICON_LOOKUP_FILE}.json', 'r') as f:
-            favicons_lookup = json.load(f)
+            favicons_lookup = orjson.loads(f.read())
             return favicons_lookup
     else:
         return {}
@@ -32,7 +34,7 @@ def get_cover_infos_lookup():
 
     if Path(f'{config.COVER_INFO_LOOKUP_FILE}.json').is_file():
         with open(f'{config.COVER_INFO_LOOKUP_FILE}.json', 'r') as f:
-            cover_infos_lookup = json.load(f)
+            cover_infos_lookup = orjson.loads(f.read())
             return cover_infos_lookup
     else:
         return {}
@@ -130,14 +132,16 @@ with open(in_path, 'r') as f:
              'destination_domains': row[9].split(';'),
              'channels': channels,
              'rank': rank}
-with open(out_path, 'w') as f:
-    f.write(json.dumps(by_url))
+
+with open(out_path, 'wb') as f:
+    f.write(orjson.dumps(by_url))
 
 sources_data_as_list = [dict(sources_data[x], publisher_id=x) for x in sources_data]
 
 sources_data_as_list = sorted(sources_data_as_list, key=lambda x: x['publisher_name'])
-with open("sources.json", 'w') as f:
-    f.write(json.dumps(sources_data_as_list))
+
+with open("sources.json", 'wb') as f:
+    f.write(orjson.dumps(sources_data_as_list))
 if not config.NO_UPLOAD:
     upload_file("sources.json", config.PUB_S3_BUCKET, "{}.json".format(config.SOURCES_FILE))
     # Temporarily upload also with incorrect filename as a stopgap for
