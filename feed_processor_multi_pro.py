@@ -121,9 +121,9 @@ async def fixup_item(item, publisher):
         out_item['publish_time'] = dateparser.parse(item['published'])
     else:
         return None  # skip (no update field)
-    if out_item['publish_time'] == None:
+    if out_item['publish_time'] is None:
         return None  # skip (no publish time)
-    if out_item['publish_time'].tzinfo == None:
+    if out_item['publish_time'].tzinfo is None:
         TZ.localize(out_item['publish_time'])
     out_item['publish_time'] = out_item['publish_time'].astimezone(pytz.utc)
     if not 'link' in item:
@@ -325,7 +325,6 @@ async def fixup_entries(entry):
 
 async def scrub_html(item):
     """Scrubbing HTML of all entries that will be written to feed."""
-
     for key in item:
         if item[key]:
             item[key] = bleach.clean(item[key], strip=True)
@@ -350,7 +349,6 @@ class FeedProcessor:
 
         async with Pool(config.CONCURRENCY, loop_initializer=uvloop.new_event_loop,
                         queuecount=4, childconcurrency=80) as pool:
-        # async with Pool(config.CONCURRENCY) as pool:
             async for result in pool.map(download_feed, [self.publishers[key]["url"] for key in self.publishers]):
                 if not result:
                     continue
@@ -397,9 +395,13 @@ class FeedProcessor:
         cleaned_entries = []
         entries += await self.get_rss()
 
+        logger.info(f"Sorting for {len(entries)} items...")
+        sorted_entries = sorted(entries, key=lambda entry: entry["publish_time"])
+        sorted_entries.reverse()  # for most recent entries first
+
         logger.info(f"Fixing up {len(entries)} feed articles...")
         async with Pool(config.CONCURRENCY, loop_initializer=uvloop.new_event_loop, childconcurrency=8) as pool:
-            async for out_item in pool.map(fixup_entries, entries):
+            async for out_item in pool.map(fixup_entries, sorted_entries):
                 if out_item:
                     fixed_entries.append(out_item)
 
@@ -415,11 +417,7 @@ class FeedProcessor:
         logger.info(f"Adding Score to {len(cleaned_entries)} items...")
         scored_entries = await self.score_entries(cleaned_entries)
 
-        logger.info(f"Sorting for {len(scored_entries)} items...")
-        sorted_entries = sorted(scored_entries, key=lambda entry: entry["publish_time"])
-        sorted_entries.reverse()  # for most recent entries first
-
-        return sorted_entries
+        return scored_entries
 
     async def aggregate(self):
         with open(self.output_path, 'wb') as f:
