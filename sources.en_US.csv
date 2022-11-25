@@ -215,7 +215,7 @@ https://coindesk.com,https://www.coindesk.com/arc/outboundfeeds/rss/?outputType=
 https://bmj.com,https://feeds.bmj.com/bmj/recent,BMJ,Health,Disabled,,,article,,www.bmj.com,Health,213,
 https://express.co.uk,https://feeds.feedburner.com/daily-express-uk-news,Daily Express,UK News,Disabled,,,article,,www.express.co.uk,UK News,214,
 https://groovypost.com,https://www.groovypost.com/feed/,groovyPost,Tech Reviews,Disabled,,,article,,www.groovypost.com,Tech Reviews,215,
-https://cbc.ca,https://rss.cbc.ca/lineup/topstories.xml,CBC,World News,Disabled,,,article,,www.cbc.ca,World News,216,
+https://www.cbc.ca/,https://rss.cbc.ca/lineup/topstories.xml,CBC,World News,Enabled,,,article,,www.cbc.ca,World News,216,https://www.cbc.ca/cmlink/rss-topstories
 https://creativebloq.com,https://www.creativebloq.com/feed,Creative Bloq,Tech Reviews,Disabled,,,article,,www.creativebloq.com,Tech Reviews,217,
 https://france24.com,https://www.france24.com/en/rss,France24,World News,Disabled,,,article,,www.infomigrants.net;observers.france24.com;www.france24.com,World News,218,
 https://techadvisor.com,https://www.techadvisor.com/feed,Tech Advisor,Tech Reviews,Disabled,,,article,,www.techadvisor.com,Tech Reviews,219,
@@ -225,7 +225,7 @@ https://mirror.co.uk,https://www.mirror.co.uk/rss.xml,The Mirror,UK News,Disable
 https://lonelyplanet.com,https://www.lonelyplanet.com/articles/news/feed,Lonely Planet,Travel,Disabled,,,article,,www.lonelyplanet.com/,Travel,223,
 https://whathifi.com,https://www.whathifi.com/feeds/all,What Hi-Fi?,Tech Reviews,Disabled,,,article,,www.whathifi.com,Tech Reviews,224,
 https://dpreview.com,https://www.dpreview.com/feeds/news.xml,DPReview,Tech Reviews,Disabled,,,article,,www.dpreview.com,Tech Reviews,225,
-https://ft.com,https://www.ft.com/rss/home,FT,World News,Disabled,,,article,,www.ft.com,World News,226,
+https://www.ft.com/,https://www.ft.com/rss/home,FT,World News,Enabled,,,article,,www.ft.com,World News,226,https://www.ft.com/rss/home/uk
 https://cracked.com,https://feeds.feedburner.com/CrackedRSS,Cracked,Fun,Disabled,,,article,,www.cracked.com,Fun,227,
 https://elle.com,https://www.elle.com/rss/all,Elle,Fashion,Disabled,,,article,,www.elle.com,Fashion,228,
 https://metro.co.uk,https://metro.co.uk/feed/,Metro,UK News,Disabled,,,article,,metro.co.uk,UK News,229,
@@ -240,7 +240,7 @@ https://food52.com,https://food52.com/blog.rss,Food52,Food,Disabled,,,article,,f
 https://whattowatch.com,https://www.whattowatch.com/rss.xml,WhatToWatch,Film & TV,Disabled,,,article,,www.whattowatch.com,Film & TV,238,
 https://sciencedaily.com,https://www.sciencedaily.com/rss/all.xml,ScienceDaily,Science,Disabled,,,article,,www.sciencedaily.com,Science,239,
 https://boston.com,https://www.boston.com/feed/,Boston.com,Regional News,Disabled,,,article,,boston.com,Regional News,240,
-https://economist.com,https://www.economist.com/briefing/rss.xml,The Economist,Business,Disabled,,,article,,www.economist.com,Business,241,
+https://www.economist.com/,https://www.economist.com/briefing/rss.xml,The Economist,Business,Disabled,,,article,,www.economist.com,Business,241,https://www.economist.com/business/rss.xml
 https://mindbodygreen.com,https://www.mindbodygreen.com/rss/featured.xml,mindbodygreen,Health,Disabled,,,article,,www.mindbodygreen.com,Health,242,
 https://mentalfloss.com,https://www.mentalfloss.com/rss.xml,Mental Floss,Culture,Disabled,,,article,,www.mentalfloss.com,Culture,243,
 https://inc.com,https://www.inc.com/rss,Inc.com,Business,Disabled,,,article,,www.inc.com;events.inc.com,Business,244,
