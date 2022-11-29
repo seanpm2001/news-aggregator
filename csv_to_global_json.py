@@ -97,7 +97,7 @@ for in_path in source_files:
 
             channels = []
             if len(row) >= 11:
-                channels = [i.strip() for i in row[10].split(";") if i]
+                channels = [i.strip() for i in row[10].split(";") if i.strip()]
 
             rank = None
             try:
