@@ -1,7 +1,7 @@
 Domain,Feed,Title,Category,Status,Score,OG-Images,Content Type,Creative Instance ID,Destination Domains,Channels,Rank,Original_Feed
 https://brave.com/,https://brave.com/blog/index.xml,Brave Blog,Brave,Enabled,,,article,,brave.com,Brave; Top Sources,,
 https://www.bbc.co.uk/,https://feeds.bbci.co.uk/news/rss.xml?edition=uk,BBC,Top News,Enabled,,,article,,www.bbc.co.uk,Top News; Top Sources,1,
-https://www.theguardian.com/,https://www.theguardian.com/uk/rss,The Guardian,Top News,Enabled,,,article,,www.theguardian.com,Top News; Top Sources,2,
+https://www.theguardian.com/,https://www.theguardian.com/uk/rss,The Guardian,Top News,Enabled,,On,article,,www.theguardian.com,Top News; Top Sources,2,
 https://www.dailymail.co.uk/home/index.html,https://www.dailymail.co.uk/news/index.rss,Daily Mail,Top News,Enabled,,,article,,www.dailymail.co.uk,Top News; Top Sources,3,https://www.dailymail.co.uk/home/index.rss
 https://www.independent.co.uk/,https://www.independent.co.uk/rss,The Independent,Top News,Enabled,,,article,,www.independent.co.uk,Top News; Top Sources,4,https://www.independent.co.uk/rss
 https://www.healthline.com/,https://www.healthline.com/rss/health-news,Healthline,Health,Enabled,,,article,,www.healthline.com/,Health; Top Sources,5,
@@ -95,7 +95,7 @@ https://www.cbr.com/,https://www.cbr.com/feed/,CBR,Entertainment,Disabled,,,arti
 https://www.washingtonpost.com/,https://feeds.washingtonpost.com/rss/world,Washington Post World News,Top News,Disabled,,,article,,www.washingtonpost.com,Top News,93,
 https://www.theregister.com/,https://www.theregister.com/headlines.atom,Theregister,Technology,Disabled,,,article,,www.theregister.com,Technology,94,
 https://windowsreport.com/,https://feeds.feedburner.com/WindowsReport2,Windows Report,Technology,Disabled,,,article,,windowsreport.com,Technology,95,
-https://www.macrumors.com/,https://feeds.macrumors.com/MacRumors-All,Mac Rumors,Technology,Disabled,,,article,,www.macrumors.com,Technology,96,
+https://www.macrumors.com/,https://feeds.macrumors.com/MacRumors-Front,MacRumors,Technology,Disabled,,,article,,www.macrumors.com,Technology,96,
 https://www.androidauthority.com/,https://www.androidauthority.com/feed,Android Authority,Technology,Disabled,,,article,,www.androidauthority.com,Technology,97,
 https://www.lonelyplanet.com/,https://www.lonelyplanet.com/articles/news/feed,Lonely Planet,Travel,Disabled,,,article,,www.lonelyplanet.com,Travel; Top Sources,98,
 https://www.techspot.com/,https://www.techspot.com/backend.xml,Techspot,Technology,Disabled,,,article,,www.techspot.com,Technology,99,
