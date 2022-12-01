@@ -3,7 +3,7 @@ https://brave.com/,https://brave.com/blog/index.xml,Brave Blog,Brave,Enabled,,,a
 https://www.nytimes.com/,https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml,The New York Times,Top News,Enabled,,On,article,,www.nytimes.com,US News; Top Sources; Top News,1,
 https://www.cnn.com/,http://rss.cnn.com/rss/cnn_topstories.rss,CNN,Top News,Enabled,,,article,,www.cnn.com,US News; Top Sources; Top News,2,https://rss.cnn.com/rss/cnn_topstories.rss
 https://www.foxnews.com/,https://feeds.foxnews.com/foxnews/latest,FOX News,Top News,Enabled,,On,article,,www.foxnews.com,US News; Top Sources; Top News,3,
-https://www.washingtonpost.com/,https://feeds.washingtonpost.com/rss/national,Washington Post,Top News,Enabled,,,article,,www.washingtonpost.com,US News; Top Sources; Top News,4,https://www.washingtonpost.com/?outputType=rss
+https://www.washingtonpost.com/,https://feeds.washingtonpost.com/rss/national,Washington Post,Top News,Enabled,,On,article,,www.washingtonpost.com,US News; Top Sources; Top News,4,https://www.washingtonpost.com/?outputType=rss
 https://www.theguardian.com/,https://www.theguardian.com/international/rss,The Guardian World News,Top News,Enabled,,On,article,,www.theguardian.com,World News; Top Sources; Top News,5,https://www.theguardian.com/world/rss
 https://www.webmd.com/,https://rssfeeds.webmd.com/rss/rss.aspx?RSSSource=RSS_PUBLIC,WebMD Health,Health,Enabled,,,article,,www.webmd.com,Health; Top Sources,6,
 https://www.espn.com/,https://www.espn.com/espn/rss/news,ESPN,Sports,Enabled,,,article,,www.espn.com,Sports; Top Sources,7,
