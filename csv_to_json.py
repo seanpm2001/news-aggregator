@@ -80,7 +80,7 @@ with open(in_path, 'r') as f:
 
         channels = []
         if len(row) >= 11:
-            channels = [i.strip() for i in row[10].split(";")]
+            channels = [i.strip() for i in row[10].split(";") if i.strip()]
 
         rank = None
         try:
