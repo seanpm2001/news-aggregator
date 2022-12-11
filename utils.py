@@ -3,6 +3,7 @@ import logging
 import mimetypes
 import re
 from typing import List
+from urllib.parse import urlparse
 
 import boto3
 from botocore.exceptions import ClientError
@@ -14,6 +15,7 @@ s3_client = boto_session.client('s3')
 
 domain_url_fixer = re.compile(r"^https://(www\.)?|^")
 subst = "https://www."
+
 
 class InvalidS3Bucket(Exception):
     pass
@@ -86,3 +88,21 @@ def get_all_domains() -> List[str]:
 
             # The domain is the first field on the line
             yield from [line.split(',')[0].strip() for line in lines]
+
+
+def uri_validator(x):
+    """
+    'http://www.cwi.nl:80/%7Eguido/Python.html' Ture
+    '/data/Python.html' False
+    '532' False
+    u'dkakasdkjdjakdjadjfalskdjfalk' False
+    https://stackoverflow.com' False
+
+    :param x: URL
+    :return:
+    """
+    try:
+        result = urlparse(x)
+        return all([result.scheme, result.netloc])
+    except:
+        return False

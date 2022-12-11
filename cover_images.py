@@ -195,7 +195,6 @@ def process_site(domain: str):
 
 def process_cover_image(item):
     domain = ""
-    image_url = ""
     padded_image_url = ""
     background_color = ""
     try:
@@ -216,10 +215,7 @@ def process_cover_image(item):
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")
 
-    if padded_image_url:
-        return domain, padded_image_url, background_color
-    else:
-        return domain, image_url, background_color
+    return domain, padded_image_url, background_color
 
 
 if __name__ == '__main__':
