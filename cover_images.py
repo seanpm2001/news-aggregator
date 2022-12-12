@@ -210,7 +210,7 @@ def process_cover_image(item):
             else:
                 padded_image_url = f"{config.PCDN_URL_BASE}/brave-today/cover_images/{cache_fn}.pad"
         else:
-            padded_image_url = ""
+            padded_image_url = None
 
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")

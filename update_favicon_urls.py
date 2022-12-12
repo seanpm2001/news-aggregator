@@ -57,7 +57,7 @@ def get_favicon(domain: str) -> Tuple[str, str]:
 
 def process_favicons_image(item):
     domain = ""
-    padded_icon_url = ""
+    padded_icon_url = None
     try:
         domain, icon_url = item
         try:
@@ -71,7 +71,7 @@ def process_favicons_image(item):
             else:
                 padded_icon_url = f"{PCDN_URL_BASE}/brave-today/favicons/{cache_fn}.pad"
         else:
-            padded_icon_url = ""
+            padded_icon_url = None
 
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")
