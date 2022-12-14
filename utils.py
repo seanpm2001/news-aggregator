@@ -92,17 +92,17 @@ def get_all_domains() -> List[str]:
 
 def uri_validator(x):
     """
-    'http://www.cwi.nl:80/%7Eguido/Python.html' Ture
+    'http://www.cwi.nl:80/%7Eguido/Python.html' False
     '/data/Python.html' False
     '532' False
     u'dkakasdkjdjakdjadjfalskdjfalk' False
-    https://stackoverflow.com' False
+    'https://stackoverflow.com' True
 
     :param x: URL
-    :return:
+    :return: bool
     """
     try:
         result = urlparse(x)
-        return all([result.scheme, result.netloc])
-    except:
+        return all([result.scheme, result.scheme == "https", result.netloc])
+    except Exception as e:
         return False
