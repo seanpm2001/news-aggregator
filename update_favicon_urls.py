@@ -10,7 +10,7 @@ from structlog import get_logger
 import config
 import image_processor_sandboxed
 from config import FAVICON_LOOKUP_FILE, CONCURRENCY, USER_AGENT, PUB_S3_BUCKET, PRIV_S3_BUCKET, PCDN_URL_BASE
-from utils import ensure_scheme, get_all_domains, upload_file
+from utils import get_all_domains, upload_file, uri_validator
 
 logger = get_logger()
 im_proc = image_processor_sandboxed.ImageProcessor(PRIV_S3_BUCKET, s3_path='brave-today/favicons/{}.pad',
@@ -22,10 +22,6 @@ REQUEST_TIMEOUT = 15
 
 
 def get_favicon(domain: str) -> Tuple[str, str]:
-    # Only sources from the Japanese file include a scheme, so parse the domain
-    # as a url to get something we can use in a http request.
-    domain = ensure_scheme(domain)
-
     # Set the default favicon path. If we don't find something better, we'll use
     # this.
     icon_url = '/favicon.ico'
@@ -35,7 +31,13 @@ def get_favicon(domain: str) -> Tuple[str, str]:
             'User-Agent': USER_AGENT
         })
         soup = BeautifulSoup(response.text, features='lxml')
-        icon = soup.find('link', rel="shortcut icon")
+        icon = soup.find('link', rel="icon")
+
+        # Some sites may use an icon with a different rel.
+        if not icon:
+            icon = soup.find('link', rel="shortcut icon")
+        if not icon:
+            icon = soup.find('link', rel="apple-touch-icon")
 
         # Check if the icon exists, and the href is not empty. Surprisingly,
         # some sites actually do this (https://coinchoice.net/ + more).
@@ -46,13 +48,16 @@ def get_favicon(domain: str) -> Tuple[str, str]:
 
     # We need to resolve relative urls, so we send something sensible to the client.
     icon_url = urljoin(domain, icon_url)
+
+    if not uri_validator(icon_url):
+        icon_url = None
+
     return domain, icon_url
 
 
 def process_favicons_image(item):
     domain = ""
-    icon_url = ""
-    padded_icon_url = ""
+    padded_icon_url = None
     try:
         domain, icon_url = item
         try:
@@ -66,15 +71,12 @@ def process_favicons_image(item):
             else:
                 padded_icon_url = f"{PCDN_URL_BASE}/brave-today/favicons/{cache_fn}.pad"
         else:
-            padded_icon_url = ""
+            padded_icon_url = None
 
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")
 
-    if padded_icon_url:
-        return domain, padded_icon_url
-    else:
-        return domain, icon_url
+    return domain, padded_icon_url
 
 
 if __name__ == "__main__":

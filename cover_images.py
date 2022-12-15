@@ -12,7 +12,7 @@ from structlog import get_logger
 import config
 import image_processor_sandboxed
 from color import color_length, hex_color, is_transparent
-from utils import get_all_domains, ensure_scheme, upload_file
+from utils import get_all_domains, upload_file
 
 # In seconds. Tested with 5s but it's too low for a bunch of sites
 REQUEST_TIMEOUT = 15
@@ -183,8 +183,6 @@ def get_background_color(image: Image):
 
 
 def process_site(domain: str):
-    domain = ensure_scheme(domain)
-
     result = get_best_image(domain)
     if not result:
         return None
@@ -197,7 +195,6 @@ def process_site(domain: str):
 
 def process_cover_image(item):
     domain = ""
-    image_url = ""
     padded_image_url = ""
     background_color = ""
     try:
@@ -213,15 +210,12 @@ def process_cover_image(item):
             else:
                 padded_image_url = f"{config.PCDN_URL_BASE}/brave-today/cover_images/{cache_fn}.pad"
         else:
-            padded_image_url = ""
+            padded_image_url = None
 
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")
 
-    if padded_image_url:
-        return domain, padded_image_url, background_color
-    else:
-        return domain, image_url, background_color
+    return domain, padded_image_url, background_color
 
 
 if __name__ == '__main__':

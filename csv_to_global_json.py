@@ -11,7 +11,7 @@ from urllib.parse import urlparse, urlunparse
 import bleach
 
 import config
-from utils import ensure_scheme, download_file
+from utils import download_file
 from utils import upload_file
 
 
@@ -55,15 +55,15 @@ def deep_update(d, u):
 
 
 locales_finder = re.compile(r"sources\.(.*)\.csv")
-by_url = {}
 sources_data = {}
-source_files = glob.glob(r'sources.*_*.csv')
 
 favicons_lookup = get_favicons_lookup()
 cover_infos_lookup = get_cover_infos_lookup()
 
+source_files = glob.glob(r'sources.*_*.csv')
+
 for in_path in source_files:
-    locales = locales_finder.findall(in_path)
+    locale = locales_finder.findall(in_path)[0]
     with open(in_path, 'r') as f:
         for index, row in enumerate(csv.reader(f)):
             row = [bleach.clean(x, strip=True) for x in row]
@@ -91,45 +91,51 @@ for in_path in source_files:
             else:
                 content_type = row[7]
 
-            domain = ensure_scheme(row[0])
-            favicon_url = favicons_lookup.get(domain, "")
+            domain = row[0]
+            favicon_url = favicons_lookup.get(domain, None)
             cover_info = cover_infos_lookup.get(domain, {'cover_url': None, 'background_color': None})
 
             channels = []
             if len(row) >= 11:
-                channels = [i.strip() for i in row[10].split(";")]
+                channels = [i.strip() for i in row[10].split(";") if i.strip()]
 
             rank = None
-            if len(row) >= 12:
+            try:
                 rank = int(row[11])
+                if rank == "":
+                    rank = None
+            except (ValueError, IndexError) as e:
+                rank = None
 
             original_feed = ''
-            if len(row) >= 13:
+            try:
                 original_feed = row[12]
-            else:
+                if original_feed == "":
+                    original_feed = feed_url
+            except IndexError as e:
                 original_feed = feed_url
 
             feed_hash = hashlib.sha256(original_feed.encode('utf-8')).hexdigest()
 
             if sources_data.get(feed_hash):
-                if locales[0] not in sources_data.get(feed_hash).get('locales'):
+                if locale not in sources_data.get(feed_hash).get('locales')[0].get("locale")[0]:
+                    locales = [{"locale": locale, "rank": rank, 'channels': channels}]
                     update_locales = deepcopy(sources_data.get(feed_hash)['locales'])
                     update_locales.extend(locales)
                     update_locales_dict = {'locales': update_locales}
                     deep_update(sources_data.get(feed_hash), update_locales_dict)
             else:
+                locales = [{"locale": locale, "rank": rank, 'channels': channels}]
                 sources_data[feed_hash] = {'enabled': default,
-                                           'publisher_name': row[2],
+                                           'publisher_name': row[2].replace('&amp;', '&'),  # workaround limitation in bleach
                                            'category': row[3],
-                                           'site_url': row[0],
+                                           'site_url': domain,
                                            'feed_url': row[1],
                                            'favicon_url': favicon_url,
                                            'cover_url': cover_info['cover_url'],
                                            'background_color': cover_info['background_color'],
                                            'score': float(row[5] or 0),
                                            'destination_domains': row[9].split(';'),
-                                           'channels': channels,
-                                           'rank': rank,
                                            'locales': locales}
 
 sources_data_as_list = [dict(sources_data[x], publisher_id=x) for x in sources_data]
