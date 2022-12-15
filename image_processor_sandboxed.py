@@ -58,7 +58,7 @@ def resize_and_pad_image(image_bytes, width, height, size, cache_path, quality=8
 
 def get_with_max_size(url, max_bytes=1000000):
     is_large = False
-    response = requests.get(url, stream=True, timeout=10)
+    response = requests.get(url, stream=True, timeout=10, headers={'User-Agent': config.USER_AGENT})
     response.raise_for_status()
     if response.headers.get('Content-Length') and int(response.headers.get('Content-Length')) > max_bytes:
         is_large = True
