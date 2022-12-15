@@ -27,3 +27,7 @@ SOURCES_FILE = os.getenv('SOURCES_FILE', 'sources')
 GLOBAL_SOURCES_FILE = os.getenv('GLOBAL_SOURCES_FILE', 'sources.global')
 FAVICON_LOOKUP_FILE = os.getenv('FAVICON_LOOKUP_FILE', 'favicon_lookup')
 COVER_INFO_LOOKUP_FILE = os.getenv('COVER_INFO_LOOKUP_FILE', 'cover_info_lookup')
+
+if SENTRY_DSN := os.getenv('SENTRY_DSN'):
+    import sentry_sdk
+    sentry_sdk.init(dsn=SENTRY_DSN, traces_sample_rate=0)
