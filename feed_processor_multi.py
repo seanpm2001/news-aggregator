@@ -32,6 +32,7 @@ import image_processor_sandboxed
 from utils import upload_file
 
 TZ = timezone('UTC')
+REQUEST_TIMEOUT = 30
 
 im_proc = image_processor_sandboxed.ImageProcessor(config.PRIV_S3_BUCKET)
 unshortener = unshortenit.UnshortenIt(default_timeout=5)
@@ -47,7 +48,7 @@ custom_badwords = ["vibrators"]
 profanity.add_censor_words(custom_badwords)
 
 def get_with_max_size(url, max_bytes):
-    response = requests.get(url, headers={'User-Agent': config.USER_AGENT}, stream=True)
+    response = requests.get(url, timeout=REQUEST_TIMEOUT, headers={'User-Agent': config.USER_AGENT}, stream=True)
     response.raise_for_status()
 
     if response.status_code != 200:  # raise for status is not working with 3xx error
