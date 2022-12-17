@@ -7,6 +7,7 @@ import multiprocessing
 import os
 import shutil
 import sys
+import time
 from datetime import datetime, timedelta
 from functools import partial
 from io import BytesIO
@@ -32,11 +33,12 @@ import image_processor_sandboxed
 from utils import upload_file
 
 TZ = timezone('UTC')
+REQUEST_TIMEOUT = 30
 
 im_proc = image_processor_sandboxed.ImageProcessor(config.PRIV_S3_BUCKET)
 unshortener = unshortenit.UnshortenIt(default_timeout=5)
 
-logging.basicConfig(level=config.LOG_LEVEL)
+logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s', level=config.LOG_LEVEL, datefmt="%Y-%m-%dT%H:%M:%S%z")
 logging.getLogger("urllib3").setLevel(logging.ERROR)  # too many unactionable warnings
 logging.getLogger("metadata_parser").setLevel(logging.CRITICAL)  # hide NotParsableFetchError messages
 
@@ -47,7 +49,7 @@ custom_badwords = ["vibrators"]
 profanity.add_censor_words(custom_badwords)
 
 def get_with_max_size(url, max_bytes):
-    response = requests.get(url, headers={'User-Agent': config.USER_AGENT}, stream=True)
+    response = requests.get(url, timeout=REQUEST_TIMEOUT, headers={'User-Agent': config.USER_AGENT}, stream=True)
     response.raise_for_status()
 
     if response.status_code != 200:  # raise for status is not working with 3xx error
@@ -88,6 +90,7 @@ def download_feed(feed):
     max_feed_size = 10000000  # 10M
     try:
         data = get_with_max_size(feed, max_feed_size)
+        logging.debug("Downloaded feed: %s", feed)
     except Exception as e:
         # Failed to get feed. I will try plain HTTP.
         try:
@@ -98,7 +101,7 @@ def download_feed(feed):
         except ReadTimeout:
             return None
         except HTTPError as e:
-            logging.error("Failed to get feed: %s", feed_url)
+            logging.error("Failed to get feed: %s (%s)", feed_url, e)
             return None
         except Exception as e:
             logging.error("Failed to get [%s]: %s -- %s", e.__class__.__name__, feed_url, e)
@@ -316,12 +319,16 @@ class FeedProcessor():
 
         logging.info("Fixing up and extracting the data for the items in %s feeds...", len(feed_cache))
         for key in feed_cache:
+            logging.debug("processing: %s", key)
+            start_time = time.time()
             with multiprocessing.Pool(config.CONCURRENCY) as pool:
                 for out_item in pool.imap(partial(fixup_item, my_feed=my_feeds[key]),
                                           feed_cache[key]['entries'][:my_feeds[key]['max_entries']]):
                     if out_item:
                         entries.append(out_item)
                     self.report['feed_stats'][key]['size_after_insert'] += 1
+            end_time = time.time()
+            logging.debug("processed %s in %s ms", key, round((end_time - start_time) * 1000))
         return entries
 
     def score_entries(self, entries):
