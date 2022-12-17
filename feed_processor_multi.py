@@ -7,6 +7,7 @@ import multiprocessing
 import os
 import shutil
 import sys
+import time
 from datetime import datetime, timedelta
 from functools import partial
 from io import BytesIO
@@ -319,12 +320,15 @@ class FeedProcessor():
         logging.info("Fixing up and extracting the data for the items in %s feeds...", len(feed_cache))
         for key in feed_cache:
             logging.debug("processing: %s", key)
+            start_time = time.time()
             with multiprocessing.Pool(config.CONCURRENCY) as pool:
                 for out_item in pool.imap(partial(fixup_item, my_feed=my_feeds[key]),
                                           feed_cache[key]['entries'][:my_feeds[key]['max_entries']]):
                     if out_item:
                         entries.append(out_item)
                     self.report['feed_stats'][key]['size_after_insert'] += 1
+            end_time = time.time()
+            logging.debug("processed %s in %s ms", key, round((end_time - start_time) * 1000))
         return entries
 
     def score_entries(self, entries):
