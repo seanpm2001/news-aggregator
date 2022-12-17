@@ -10,7 +10,7 @@ BRAVE_TODAY_CLOUDFRONT_CANONICAL_ID = os.getenv('BRAVE_TODAY_CLOUDFRONT_CANONICA
 CONCURRENCY = max(1, int(os.getenv('CONCURRENCY', os.cpu_count())))
 
 # Set to INFO to see some output during long-running steps.
-LOG_LEVEL = os.getenv('LOG_LEVEL', 'WARNING')
+LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
 
 # Disable uploads and downloads to S3. Useful when running locally or in CI.
 NO_UPLOAD = os.getenv('NO_UPLOAD', None)
