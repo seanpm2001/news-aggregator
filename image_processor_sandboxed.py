@@ -2,7 +2,6 @@ import hashlib
 import logging
 import os
 import pathlib
-import sys
 from io import BytesIO
 
 import boto3
@@ -41,13 +40,15 @@ def resize_and_pad_image(image_bytes, width, height, size, cache_path, quality=8
                             image_length, width, height, size, cache_path)
             with open("%s.failed" % (cache_path), 'wb+') as out_image:
                 out_image.write(image_bytes)
-            sys.exit(1)
+
+            os._exit(1)
 
         memory = instance.exports.memory.uint8_view(output_pointer)
         out_bytes = bytes(memory[:size])
         with open("%s.pad" % (cache_path), 'wb+') as out_image:
             out_image.write(out_bytes)
-        sys.exit(0)
+
+        os._exit(0)
 
     pid, status = os.waitpid(pid, 0)
 
