@@ -53,6 +53,8 @@ async def resize_and_pad_image(image_bytes, width, height, size, cache_path, qua
         with open("%s.pad" % (cache_path), 'wb+') as out_image:
             out_image.write(out_bytes)
 
+        instance.exports.deallocate(output_pointer, size)
+
         os._exit(0)
 
     pid, status = os.waitpid(pid, 0)
