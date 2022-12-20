@@ -181,11 +181,12 @@ async def process_articles(article, publisher):
     else:
         return None  # skip (no update field)
 
-    if article.get("published") is None:
+    if out_article.get("published") is None:
         return None
 
     if out_article["publish_time"].tzinfo is None:
         TZ.localize(out_article["publish_time"])
+
     out_article["publish_time"] = out_article["publish_time"].astimezone(pytz.utc)
 
     now_utc = datetime.now().replace(tzinfo=pytz.utc)
