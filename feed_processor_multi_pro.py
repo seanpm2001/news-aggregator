@@ -181,7 +181,7 @@ async def process_articles(article, publisher):
     else:
         return None  # skip (no update field)
 
-    if out_article.get("published") is None:
+    if out_article.get("publish_time") is None:
         return None
 
     if out_article["publish_time"].tzinfo is None:
