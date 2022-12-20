@@ -53,7 +53,6 @@ logging.getLogger("urllib3").setLevel(logging.ERROR)  # too many un-actionable w
 logging.getLogger("metadata_parser").setLevel(
     logging.CRITICAL
 )  # hide NotParsableFetchError messages
-logger.info("Using %s processes for parallel tasks.", config.CONCURRENCY)
 
 # adding custom bad words for profanity check
 custom_badwords = ["vibrators"]
@@ -172,14 +171,18 @@ async def process_articles(article, publisher):
         # No title. Skip.
         return None
     out_article["title"] = BS(article["title"], features="html.parser").get_text()
+    out_article["title"] = html.unescape(out_article["title"])
 
     # Process published time
     if article.get("updated"):
         out_article["publish_time"] = dateparser.parse(article.get("updated"))
-    elif "published" in article:
+    elif article.get("published"):
         out_article["publish_time"] = dateparser.parse(article.get("published"))
     else:
         return None  # skip (no update field)
+
+    if article.get("published") is None:
+        return None
 
     if out_article["publish_time"].tzinfo is None:
         TZ.localize(out_article["publish_time"])
@@ -200,41 +203,27 @@ async def process_articles(article, publisher):
         out_article['date_live_to'] = article['date_live_to'].strftime('%Y-%m-%d %H:%M:%S')
 
     # Process article URL
-    if article.get("link") is None:
-        if article.get("url"):
-            article["link"] = article["url"]
-        else:
-            return None  # skip (can't find link)
+    if article.get("link"):
+        out_article["link"] = article["link"]
+    elif article.get("url"):
+        out_article["link"] = article["url"]
+    else:
+        return None  # skip (can't find link)
 
     # check if the article belongs to allowed domains
-    if article.get("link"):
+    if out_article.get("link"):
         if not publisher.get("destination_domains"):
             return None
 
-        if (urlparse(article["link"]).hostname or "") not in publisher[
+        if (urlparse(out_article["link"]).hostname or "") not in publisher[
             "destination_domains"
         ] and publisher["destination_domains"] not in (
-                urlparse(article["link"]).hostname or ""
+                urlparse(out_article["link"]).hostname or ""
         ):
             return None
 
-    try:
-        out_article["url"] = unshortener.unshorten(article["link"])
-    except (
-            requests.exceptions.ConnectionError,
-            ConnectTimeout,
-            InvalidURL,
-            ReadTimeout,
-            SSLError,
-            TooManyRedirects,
-    ):
-        return None  # skip (unshortener failed)
-    except Exception as e:
-        logger.error(f"unshortener failed [{publisher}]: {e}")
-        return None  # skip (unshortener failed)
-
     # Filter the offensive articles
-    if profanity.contains_profanity(article.get("title")):
+    if profanity.contains_profanity(out_article.get("title")):
         return None
 
     out_article['img'] = get_article_img(article)
@@ -255,16 +244,32 @@ async def process_articles(article, publisher):
     out_article["publisher_id"] = publisher["publisher_id"]
     out_article["publisher_name"] = publisher["publisher_name"]
     out_article["creative_instance_id"] = publisher["creative_instance_id"]
-    out_article["description"] = article["description"][:500]
 
-    url_hash = hashlib.sha256(out_article["url"].encode("utf-8")).hexdigest()
-    parts = urlparse(out_article["url"])
-    parts = parts._replace(path=quote(parts.path))
-    encoded_url = urlunparse(parts)
+    return out_article
 
-    out_article["title"] = html.unescape(out_article["title"])
-    out_article["url"] = encoded_url
-    out_article["url_hash"] = url_hash
+async def unshorten_url(out_article):
+    try:
+        out_article["url"] = unshortener.unshorten(out_article["link"])
+        out_article.pop("link", None)
+        url_hash = hashlib.sha256(out_article["url"].encode("utf-8")).hexdigest()
+        parts = urlparse(out_article["url"])
+        parts = parts._replace(path=quote(parts.path))
+        encoded_url = urlunparse(parts)
+        out_article["url"] = encoded_url
+        out_article["url_hash"] = url_hash
+    except (
+            requests.exceptions.ConnectionError,
+            ConnectTimeout,
+            InvalidURL,
+            ReadTimeout,
+            SSLError,
+            TooManyRedirects,
+    ) as e:
+        logger.error(f"unshortener failed [{out_article['link']}]: {e}")
+        return None  # skip (unshortener failed)
+    except Exception as e:
+        logger.error(f"unshortener failed [{out_article['link']}]: {e}")
+        return None  # skip (unshortener failed)
 
     return out_article
 
@@ -438,12 +443,23 @@ class FeedProcessor:
         return out_entries
 
     async def aggregate_rss(self):
+        raw_entries = []
         entries = []
         cleaned_entries = []
-        entries += await self.get_rss()
+        raw_entries += await self.get_rss()
+
+        logger.info(f"Unshorten the URL of {len(raw_entries)} items...")
+        async with Pool(
+                config.CONCURRENCY,
+                loop_initializer=uvloop.new_event_loop,
+                queuecount=4,
+                childconcurrency=80,
+        ) as pool:
+            async for out_item in pool.map(unshorten_url, raw_entries):
+                if out_item:
+                    entries.append(out_item)
 
         logger.info(f"Sorting for {len(entries)} items...")
-
         # for most recent entries first
         sorted_entries = sorted(entries, key=lambda entry: entry["publish_time"], reverse=True)
 
@@ -484,6 +500,7 @@ class FeedProcessor:
 
 
 if __name__ == "__main__":
+    logger.info("Using %s processes for parallel tasks.", config.CONCURRENCY)
     if len(sys.argv) > 1:
         category = sys.argv[1]
     else:
