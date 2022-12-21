@@ -1,32 +1,115 @@
-import os
+from __future__ import annotations
 
-USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+import logging
+from multiprocessing import cpu_count
+from pathlib import Path
+from typing import Any, Optional
 
-# Canonical ID of the public S3 bucket
-BRAVE_TODAY_CANONICAL_ID = os.getenv('BRAVE_TODAY_CANONICAL_ID', None)
-BRAVE_TODAY_CLOUDFRONT_CANONICAL_ID = os.getenv('BRAVE_TODAY_CLOUDFRONT_CANONICAL_ID', None)
+import structlog
+from pydantic import BaseSettings, Field
 
-# Set the number of processes to spawn for all multiprocessing tasks.
-CONCURRENCY = max(1, int(os.getenv('CONCURRENCY', os.cpu_count())))
+logger = structlog.getLogger(__name__)
+CONFIG: Optional[Configuration] = None
 
-# Set to INFO to see some output during long-running steps.
-LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
 
-# Disable uploads and downloads to S3. Useful when running locally or in CI.
-NO_UPLOAD = os.getenv('NO_UPLOAD', None)
-NO_DOWNLOAD = os.getenv('NO_DOWNLOAD', None)
+class Configuration(BaseSettings):
+    """
+    Configuration manager.
 
-PCDN_URL_BASE = os.getenv('PCDN_URL_BASE', 'https://pcdn.brave.software')
-# Canonical ID of the private S3 bucket
-PRIVATE_CDN_CANONICAL_ID = os.getenv('PRIVATE_CDN_CANONICAL_ID', None)
-PRIVATE_CDN_CLOUDFRONT_CANONICAL_ID = os.getenv('PRIVATE_CDN_CLOUDFRONT_CANONICAL_ID', None)
-PRIV_S3_BUCKET = os.getenv('PRIV_S3_BUCKET', 'brave-private-cdn-development')
-PUB_S3_BUCKET = os.getenv('PUB_S3_BUCKET', 'brave-today-cdn-development')
-SOURCES_FILE = os.getenv('SOURCES_FILE', 'sources')
-GLOBAL_SOURCES_FILE = os.getenv('GLOBAL_SOURCES_FILE', 'sources.global')
-FAVICON_LOOKUP_FILE = os.getenv('FAVICON_LOOKUP_FILE', 'favicon_lookup')
-COVER_INFO_LOOKUP_FILE = os.getenv('COVER_INFO_LOOKUP_FILE', 'cover_info_lookup')
+    Config values should be added as attributes:
 
-if SENTRY_URL := os.getenv('SENTRY_URL'):
-    import sentry_sdk
-    sentry_sdk.init(dsn=SENTRY_URL, traces_sample_rate=0)
+        class Configuration(BaseConfig):
+            my_required_config_value: int
+            my_optional_config_value: Optional[str]
+
+    Config values will be automatically read from environment
+    variables with the same name as the attribute (case-insensitive),
+    e.g. the config value my_required_config_value will be read from
+    the environment variable MY_REQUIRED_CONFIG_VALUE.
+
+    If a required config value isn't found in the environment, an
+    exception will be raised when the Configuration object is
+    instantiated.
+
+    For setting dynamic defaults, a Pydantic validator can be used:
+
+        from pydantic import Field, validator
+
+        class Configuration(BaseConfig):
+            my_dynamic_config_value: str = Field(None)  # Need to use Field(None) to appease mypy
+
+            @validator("my_dynamic_config_value", pre=True, always=True)
+            def get_my_value(cls: Configuration, found_value: Optional[str]) -> str:
+                return found_value or call_some_function()
+    """
+
+    user_agent: str = (
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    )
+
+    output_feed_path: Path = Field(default=Path(__file__).parent / "output/feed")
+    output_path: Path = Field(default=Path(__file__).parent / "output")
+    wasm_thumbnail_path: Path = Field(
+        default=Path(__file__).parent / "wasm_thumbnail.wasm"
+    )
+    img_cache_path: Path = Field(
+        default=Path(__file__).parent / "output/feed" / "cache"
+    )
+
+    # Set the number of processes to spawn for all multiprocessing tasks.
+    concurrency = max(1, cpu_count())
+
+    # Set to INFO to see some output during long-running steps.
+    log_level = logging.INFO
+
+    # Disable uploads and downloads to S3. Useful when running locally or in CI.
+    no_upload: Optional[str] = None
+    no_download: Optional[str] = None
+
+    pcdn_url_base: str = Field(default="https://pcdn.brave.software")
+
+    # Canonical ID of the private S3 bucket
+    priv_s3_bucket: str = Field(default="brave-private-cdn-development")
+    private_cdn_canonical_id: str = ""
+    private_cdn_cloudfront_canonical_id: str = ""
+
+    # Canonical ID of the public S3 bucket
+    pub_s3_bucket: str = Field(default="brave-today-cdn-development")
+    brave_today_canonical_id: str = ""
+    brave_today_cloudfront_canonical_id: str = ""
+
+    sources_file: Path = Field(default="sources")
+    sources_dir: Path = Field(default=Path(__file__).parent / "sources")
+    global_sources_file: str = Field(default="sources.global")
+    favicon_lookup_file: str = Field(default="favicon_lookup")
+    cover_info_lookup_file: str = Field(default="cover_info_lookup")
+
+    sentry_url: str = ""
+
+    structlog.configure(
+        wrapper_class=structlog.make_filtering_bound_logger(log_level),
+    )
+
+    if sentry_url:
+        import sentry_sdk
+
+        sentry_sdk.init(dsn=sentry_url, traces_sample_rate=0)
+
+
+def get_config() -> Configuration:
+    global CONFIG
+    if CONFIG is None:
+        CONFIG = Configuration()
+
+        # Creating the tmp dir
+        if not CONFIG.img_cache_path.exists():
+            CONFIG.img_cache_path.mkdir(parents=True, exist_ok=True)
+    return CONFIG
+
+
+def set_config(key: str, value: Any) -> None:
+    """For testing overrides"""
+    config = get_config()
+    logger.warning("overriding config value", key=key, value=value)
+    setattr(config, key, value)

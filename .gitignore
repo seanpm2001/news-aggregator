@@ -12,3 +12,5 @@ sources.ja.json
 feed.ja.json
 .cache/
 sources.global.json
+output/*
+monkeytype.sqlite3

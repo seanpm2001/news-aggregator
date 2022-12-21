@@ -5,11 +5,15 @@ import sys
 
 def check_report(report):
     success = True
-    for feed in report['feed_stats']:
-        get_size = report['feed_stats'][feed]['size_after_get']
-        insert_size = report['feed_stats'][feed]['size_after_insert']
+    for feed in report["feed_stats"]:
+        get_size = report["feed_stats"][feed]["size_after_get"]
+        insert_size = report["feed_stats"][feed]["size_after_insert"]
         if insert_size > get_size:
-            logging.error("Logic error: we inserted %s posts but only downloaded %s.", insert_size, get_size)
+            logging.error(
+                "Logic error: we inserted %s posts but only downloaded %s.",
+                insert_size,
+                get_size,
+            )
             success = False
 
         if get_size == 0:

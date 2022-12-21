@@ -1,4 +1,8 @@
 # News Aggregator
+This project is the backend side of Brave News, and it fetches the articles from the Brave-defined publishers and 
+shows their feeds/News in the Browser.
+
+For more details: https://brave.com/brave-news-updates/
 
 ## Installation
 
@@ -17,16 +21,16 @@ then if you want to run `make test`:
 
 To generate sources and list of feeds:
 
-    NO_UPLOAD=1 python csv_to_json.py feed.json
+    NO_UPLOAD=1;NO_DOWNLOAD=1 python csv_to_json.py feed.json
 
 To generate browser feed and images:
 
-    NO_UPLOAD=1 python feed_processor_multi.py feed
+    NO_UPLOAD=1; python feed_processor_multi.py feed
 
 To update the favicon urls:
 
     python update_favicon_urls.py
-    NO_UPLOAD=1 python csv_to_json sources.json
+    NO_UPLOAD=1;NO_DOWNLOAD=1 python csv_to_json sources.json
 
 # wasm_thumbnail
 
