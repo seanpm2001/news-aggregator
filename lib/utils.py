@@ -1,8 +1,7 @@
-import glob
 import logging
 import mimetypes
 import re
-from pathlib import Path, PosixPath
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 from urllib.parse import urlparse
 
@@ -25,7 +24,7 @@ class InvalidS3Bucket(Exception):
     pass
 
 
-def upload_file(file_name: PosixPath, bucket: str, object_name: Optional[str] = None):
+def upload_file(file_name: Path, bucket: str, object_name: Optional[str] = None):
     if object_name is None:
         object_name = file_name
     try:
@@ -94,7 +93,7 @@ def ensure_scheme(domain):
 
 def get_all_domains() -> List[str]:
     """Helper utility for getting all domains across all sources"""
-    source_files = glob.glob("sources*.csv")
+    source_files = config.sources_dir.glob("sources.*_*.csv")
     for source_file in source_files:
         with open(source_file) as f:
             # Skip the first line, with the headers.

@@ -49,7 +49,7 @@ unshortener = unshortenit.UnshortenIt(
     default_timeout=5, default_headers={"User-Agent": config.user_agent}
 )
 
-logging.getLogger("urllib3").setLevel(logging.ERROR)  # too many unactionable warnings
+logging.getLogger("urllib3").setLevel(logging.ERROR)  # too many un-actionable warnings
 logging.getLogger("metadata_parser").setLevel(
     logging.CRITICAL
 )  # hide NotParsableFetchError messages
@@ -330,10 +330,10 @@ def check_images_in_item(item, feeds):  # noqa: C901
 
 
 expire_after = timedelta(hours=2)
-scrape_session = requests_cache.core.CachedSession(
+scrape_session = requests_cache.CachedSession(
     expire_after=expire_after, backend="memory", timeout=5
 )
-scrape_session.cache.remove_old_entries(datetime.utcnow() - expire_after)
+scrape_session.cache.remove_expired_responses(datetime.utcnow() - expire_after)
 scrape_session.headers.update({"User-Agent": config.user_agent})
 
 
@@ -433,7 +433,7 @@ class FeedProcessor:
         return filtered_entries
 
     def fixup_entries(self, sorted_entries):
-        "this function tends to be used more for fixups that require the whole feed like dedupe"
+        """This function tends to be used more for fix-ups that require the whole feed like dedupe"""
         url_dedupe = {}
         out = []
         now_utc = datetime.now().replace(tzinfo=pytz.utc)
@@ -469,7 +469,7 @@ class FeedProcessor:
         return out
 
     def scrub_html(self, feed):
-        "Scrubbing HTML of all entries that will be written to feed"
+        """Scrubbing HTML of all entries that will be written to feed"""
         out = []
         for item in feed:
             for key in item:
@@ -515,7 +515,7 @@ if __name__ == "__main__":
 
         if not config.no_upload:
             upload_file(
-                f"{config.output_feed_path / category}.json",
+                config.output_feed_path / f"{category}.json",
                 config.pub_s3_bucket,
                 f"brave-today/{category}{str(config.sources_file).replace('sources', '')}.json",
             )
@@ -523,7 +523,7 @@ if __name__ == "__main__":
             # https://github.com/brave/brave-browser/issues/20114
             # Can be removed once fixed in the brave-core client for all Desktop users.
             upload_file(
-                f"{config.output_feed_path / category}.json",
+                config.output_feed_path / f"{category}.json",
                 config.pub_s3_bucket,
                 f"brave-today/{category}{str(config.sources_file).replace('sources', '')}json",
             )

@@ -59,6 +59,7 @@ class Configuration(BaseSettings):
 
     # Set the number of processes to spawn for all multiprocessing tasks.
     concurrency = max(1, cpu_count())
+    thread_pool_size = max(1, cpu_count() * 10)
 
     # Set to INFO to see some output during long-running steps.
     log_level = logging.INFO
@@ -81,9 +82,10 @@ class Configuration(BaseSettings):
 
     sources_file: Path = Field(default="sources")
     sources_dir: Path = Field(default=Path(__file__).parent / "sources")
-    global_sources_file: str = Field(default="sources.global")
-    favicon_lookup_file: str = Field(default="favicon_lookup")
-    cover_info_lookup_file: str = Field(default="cover_info_lookup")
+    global_sources_file: Path = Field(default="sources.global.json")
+    favicon_lookup_file: Path = Field(default="favicon_lookup.json")
+    cover_info_lookup_file: Path = Field(default="cover_info_lookup.json")
+    cover_info_cache_dir: Path = Field(default="cover_info_cache")
 
     sentry_url: str = ""
 

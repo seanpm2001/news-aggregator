@@ -7,7 +7,7 @@ from pydantic import Field, HttpUrl, root_validator, validator
 from models.base import Model
 
 
-class PublisherModel(Model):
+class PublisherBase(Model):
     enabled: bool = Field(alias="Status")
     publisher_name: str = Field(alias="Title")
     category: str = Field(alias="Category")
@@ -15,13 +15,10 @@ class PublisherModel(Model):
     feed_url: HttpUrl = Field(alias="Feed")
     favicon_url: Optional[HttpUrl] = Field(default=None)
     cover_info: Optional[dict] = Field(
-        default={"cover_url": None, "background_color": None}
+        default={"cover_url": Optional[HttpUrl], "background_color": Optional[str]}
     )
-    background_color: Optional[str] = Field(default=None)
     score: float = Field(default=0, alias="Score")
     destination_domains: list[str] = Field(alias="Destination Domains")
-    channels: list[str] = Field(default=None, alias="Channels")
-    rank: Optional[int] = Field(default=0, alias="Rank")
     original_feed: Optional[str] = Field(default=None, alias="Original_Feed")
     og_images: bool = Field(default=None, alias="OG-Images")
     max_entries: int = Field(default=20)
@@ -44,7 +41,7 @@ class PublisherModel(Model):
         return v == "Enabled"
 
     @validator("score", pre=True, always=True)
-    def fix_score_format(cls, v: str) -> str:
+    def fix_score_format(cls, v: str) -> float:
         return v if v else 0
 
     @validator("og_images", pre=True, always=True)
@@ -63,12 +60,6 @@ class PublisherModel(Model):
             raise ValueError("must contain a value")
         return v.split(";")
 
-    @validator("channels", pre=True)
-    def fix_channels_format(cls, v: str) -> List[str]:
-        if not v:
-            raise ValueError("must contain a value")
-        return v.split(";")
-
     @validator("publisher_id", pre=True, always=True)
     def add_publisher_id(cls, v: str, values: Dict[str, Any]) -> str:
         return hashlib.sha256(
@@ -76,3 +67,34 @@ class PublisherModel(Model):
             if values.get("original_feed")
             else values.get("feed_url").encode("utf-8")
         ).hexdigest()
+
+
+class PublisherModel(PublisherBase):
+    channels: Optional[list[str]] = Field(default=None, alias="Channels")
+    rank: Optional[int] = Field(default=None, alias="Rank")
+
+    @validator("rank", pre=True, always=True)
+    def fix_rank_format(cls, v: str) -> Optional[int]:
+        return int(v) if v else None
+
+    @validator("channels", pre=True)
+    def fix_channels_format(cls, v: str) -> Optional[List[str]]:
+        return v.split(";") if v else None
+
+
+class LocaleModel(Model):
+    locale: str = ""
+    channels: Optional[list[str]] = Field(default=None, alias="Channels")
+    rank: Optional[int] = Field(default=None, alias="Rank")
+
+    @validator("rank", pre=True, always=True)
+    def fix_rank_format(cls, v: str) -> Optional[int]:
+        return int(v) if v else None
+
+    @validator("channels", pre=True)
+    def fix_channels_format(cls, v: str) -> Optional[List[str]]:
+        return v.split(";") if v else None
+
+
+class PublisherGlobal(PublisherBase):
+    locales: list[LocaleModel] = []

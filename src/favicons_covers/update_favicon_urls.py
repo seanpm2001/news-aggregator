@@ -1,11 +1,11 @@
-import json
-from multiprocessing import Pool
+from multiprocessing.pool import Pool, ThreadPool
 from typing import List, Tuple
 from urllib.parse import urljoin
 
 import requests
 import structlog
 from bs4 import BeautifulSoup
+from orjson import orjson
 
 from config import get_config
 from lib.utils import get_all_domains, upload_file, uri_validator
@@ -17,7 +17,7 @@ im_proc = image_processor_sandboxed.ImageProcessor(
     config.priv_s3_bucket, s3_path="brave-today/favicons/{}.pad", force_upload=True
 )
 
-# In seconds. Tested with 5s but it's too low for a bunch of sites (I'm looking
+# In seconds. Tested with 5s, but it's too low for a bunch of sites (I'm looking
 # at you https://skysports.com).
 REQUEST_TIMEOUT = 15
 
@@ -89,23 +89,22 @@ if __name__ == "__main__":
     logger.info(f"Processing {len(domains)} domains")
 
     favicons: List[Tuple[str, str]]
-    with Pool(config.concurrency) as pool:
+    with ThreadPool(config.thread_pool_size) as pool:
         favicons = pool.map(get_favicon, domains)
 
     processed_favicons: List[Tuple[str, str]]
     with Pool(config.concurrency) as pool:
         processed_favicons = pool.map(process_favicons_image, favicons)
 
-    result = json.dumps(dict(processed_favicons), indent=4)
-    with open(f"{config.favicon_lookup_file}.json", "w") as f:
-        f.write(result)
+    with open(config.output_path / config.favicon_lookup_file, "wb") as f:
+        f.write(orjson.dumps(dict(processed_favicons)))
 
     logger.info("Fetched all the favicons!")
 
     if not config.no_upload:
         upload_file(
-            f"{config.favicon_lookup_file}.json",
+            config.output_path / config.favicon_lookup_file,
             config.pub_s3_bucket,
-            f"{config.favicon_lookup_file}.json",
+            f"{config.favicon_lookup_file}",
         )
         logger.info(f"{config.favicon_lookup_file} is upload to S3")
