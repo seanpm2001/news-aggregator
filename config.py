@@ -86,6 +86,7 @@ class Configuration(BaseSettings):
     favicon_lookup_file: Path = Field(default="favicon_lookup.json")
     cover_info_lookup_file: Path = Field(default="cover_info_lookup.json")
     cover_info_cache_dir: Path = Field(default="cover_info_cache")
+    tests_dir: Path = Field(default="tests")
 
     sentry_url: str = ""
 

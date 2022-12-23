@@ -35,11 +35,11 @@ from requests.exceptions import (
     TooManyRedirects,
 )
 
-import config
-import image_processor_sandboxed
+from config import get_config
 from lib.utils import upload_file
+from src import image_processor_sandboxed
 
-config = config.get_config()
+config = get_config()
 
 TZ = timezone("UTC")
 REQUEST_TIMEOUT = 30

@@ -1,5 +1,5 @@
 # News Aggregator
-This project is the backend side of Brave News, and it fetches the articles from the Brave-defined publishers and 
+This project is the backend side of Brave News, and it fetches the articles from the Brave-defined publishers and
 shows their feeds/News in the Browser.
 
 For more details: https://brave.com/brave-news-updates/
