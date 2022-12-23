@@ -7,9 +7,9 @@ from typing import List, Optional, Tuple
 
 import requests
 import structlog
-from PIL import Image
 from bs4 import BeautifulSoup
 from orjson import orjson
+from PIL import Image
 
 from config import get_config
 from lib.utils import get_all_domains, upload_file

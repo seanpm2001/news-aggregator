@@ -2,6 +2,10 @@ import json
 import logging
 import sys
 
+from config import get_config
+
+config = get_config()
+
 
 def check_report(report):
     success = True
@@ -27,6 +31,6 @@ def check_report(report):
     return success
 
 
-with open("report.json") as f:
+with open(config.output_path / "report.json") as f:
     if not check_report(json.loads(f.read())):
         sys.exit(1)

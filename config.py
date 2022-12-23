@@ -61,9 +61,6 @@ class Configuration(BaseSettings):
     concurrency = max(1, cpu_count())
     thread_pool_size = max(1, cpu_count() * 10)
 
-    # Set to INFO to see some output during long-running steps.
-    log_level = logging.INFO
-
     # Disable uploads and downloads to S3. Useful when running locally or in CI.
     no_upload: Optional[str] = None
     no_download: Optional[str] = None
@@ -91,7 +88,7 @@ class Configuration(BaseSettings):
     sentry_url: str = ""
 
     structlog.configure(
-        wrapper_class=structlog.make_filtering_bound_logger(log_level),
+        wrapper_class=structlog.make_filtering_bound_logger(logging.INFO),
     )
 
     if sentry_url:

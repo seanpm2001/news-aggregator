@@ -20,11 +20,11 @@ validjson:
 	echo Checking that feed.json is of the expected size...
 	test `stat -c%s output/feed.json` -gt 10
 	echo Checking that feed_processor_multi.py creates a valid JSON file...
-	NO_UPLOAD=1 NO_DOWNLOAD=1 PYTHONPATH=. python feed_processor_multi.py feed
+	NO_UPLOAD=1 NO_DOWNLOAD=1 PYTHONPATH=. python src/feed_processor_multi.py feed
 	json_verify < output/feed/feed.json
 	echo Checking that the report makes sense...
-	python lib/report-check.py
+	PYTHONPATH=. python lib/report-check.py
 	echo Checking that feed/feed.json is of the expected size...
-	test `stat -c%s feed/feed.json` -gt 1000
+	test `stat -c%s output/feed/feed.json` -gt 1000
 
 test: pytest validjson
