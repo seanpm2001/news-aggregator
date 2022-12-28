@@ -6,6 +6,8 @@ WORKDIR /app
 RUN apt update
 RUN apt install ffmpeg libsm6 libxext6  -y
 
+ENV PYTHONPATH $PYTHONPATH:/app
+
 ENV REQUIREMENTS_FILE=requirements.txt
 
 COPY ./${REQUIREMENTS_FILE} ./requirements.txt

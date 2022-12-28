@@ -1,8 +1,8 @@
 beautifulsoup4==4.11.1
 better-profanity==0.7.0
 bleach==5.0.1
-boto3==1.26.36
-botocore==1.29.36
+boto3==1.26.38
+botocore==1.29.38
 dateparser==1.1.4
 feedparser==6.0.10
 html2text==2020.1.16

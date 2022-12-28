@@ -29,8 +29,6 @@ if [[ "$task" = "csv-to-json" ]]; then
   echo "Init feed sources"
   python -u src/csv_to_json.py feed.json
 
-
-
 elif [[ "$task" = "global-json" ]]; then
   if [[ ! -d "output/" ]]; then
     echo "Error: output/ dir not found!"
@@ -52,18 +50,19 @@ elif [[ "$task" = "run-all" ]]; then
     echo "Error: output/ dir not found!"
     echo "Are you in the from root directory?"
     exit 1
+  fi
 
   set -x
 
   echo "Waiting for squid to start..."
   seconds_remaining=60
-  while [ $seconds_remaining -gt 0  ] && [ ! pids=$(pidof squid) ]
+  while [ $seconds_remaining -gt 0  ] && [ ! pids = $(pidof squid) ]
   do
      sleep 1
      echo $seconds_remaining
-     seconds_remaining="$(($seconds_remaining - 1))"
+     seconds_remaining="$($seconds_remaining - 1)"
   done
-  if [ ! pids=$(pidof squid) ]
+  if [ ! pids = $(pidof squid) ]
   then
     exit
   fi
