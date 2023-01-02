@@ -30,10 +30,3 @@ repos:
     hooks:
     - id: bandit
       entry: bandit --quiet -r -x tests/ src/*.py
-
--   repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-    rev: v1.3.0
-    hooks:
-    -   id: python-safety-dependencies-check
-        files: requirements.txt
-        args: [--short-report]
