@@ -30,9 +30,3 @@ repos:
     hooks:
     - id: bandit
       entry: bandit --quiet -r -x tests/ *.py
-
--   repo: https://github.com/mschfh/pip-check-reqs
-    rev: 7708423707e2beec65dd650227bc1b8e6baf8fed
-    hooks:
-    - id: pip-check-reqs
-      args: [--ignore-requirement=urllib3,--ignore-requirement=regex,*.py]
