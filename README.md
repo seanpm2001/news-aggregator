@@ -18,16 +18,17 @@ Required setup:
 
 To generate sources and list of feeds:
 
-    NO_UPLOAD=1 NO_DOWNLOAD=1 python src/csv_to_json.py
+
+    NO_UPLOAD=1 NO_DOWNLOAD=1 PYTHONPATH=. python src/csv_to_json.py
 
 To generate browser feed and images:
 
-    NO_UPLOAD=1 python src/feed_processor_multi.py feed
+    NO_UPLOAD=1 PYTHONPATH=. python src/feed_processor_multi.py feed
 
 To update the favicon urls:
 
     python update_favicon_urls.py
-    NO_UPLOAD=1 NO_DOWNLOAD=1 python update_favicon_urls.py
+    NO_UPLOAD=1 NO_DOWNLOAD=1 PYTHONPATH=. python update_favicon_urls.py
 
 ### Committing code
 
