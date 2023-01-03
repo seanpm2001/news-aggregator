@@ -87,10 +87,12 @@ class Configuration(BaseSettings):
 
     sentry_url: str = ""
 
-    log_level = logging.INFO
+    log_level: str = "info"
 
     structlog.configure(
-        wrapper_class=structlog.make_filtering_bound_logger(log_level),
+        wrapper_class=structlog.make_filtering_bound_logger(
+            logging.getLevelName(log_level.upper())
+        ),
     )
 
     if sentry_url:
