@@ -28,7 +28,7 @@ To generate browser feed and images:
 To update the favicon urls:
 
     python update_favicon_urls.py
-    NO_UPLOAD=1 NO_DOWNLOAD=1 PYTHONPATH=. python update_favicon_urls.py
+    NO_UPLOAD=1 NO_DOWNLOAD=1 PYTHONPATH=. python src/favicons_covers/update_favicon_urls.py
 
 ### Committing code
 
