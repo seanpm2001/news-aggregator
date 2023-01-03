@@ -1,8 +1,0 @@
-[MESSAGES CONTROL]
-disable=ungrouped-imports,wrong-import-order,invalid-name,missing-docstring,no-self-use,too-many-statements,too-many-branches,bare-except,broad-except,line-too-long,bad-whitespace,trailing-whitespace,len-as-condition,simplifiable-if-statement,duplicate-code,too-many-return-statements,trailing-newlines,too-few-public-methods,redefined-outer-name,bad-continuation,import-error,singleton-comparison,no-name-in-module
-
-[REPORTS]
-output-format=text
-files-output=no
-reports=no
-score=no

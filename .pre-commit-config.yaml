@@ -1,0 +1,38 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+    -   id: check-ast
+    -   id: requirements-txt-fixer
+    -   id: check-yaml
+    -   id: check-docstring-first
+
+-   repo: https://github.com/psf/black
+    rev: 22.12.0
+    hooks:
+    -   id: black
+
+-   repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+    -   id: flake8
+
+-   repo: https://github.com/PyCQA/isort
+    rev: 5.11.4
+    hooks:
+    -   id: isort
+
+-   repo: https://github.com/PyCQA/bandit
+    rev: 1.7.4
+    hooks:
+    - id: bandit
+      entry: bandit --quiet -r -x tests/ *.py
+
+-   repo: https://github.com/mschfh/pip-check-reqs
+    rev: 7708423707e2beec65dd650227bc1b8e6baf8fed
+    hooks:
+    - id: pip-check-reqs
+      args: [--ignore-requirement=urllib3,--ignore-requirement=regex,*.py]
