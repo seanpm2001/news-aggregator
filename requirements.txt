@@ -1,13 +1,13 @@
 beautifulsoup4==4.11.1
 better-profanity==0.7.0
 bleach==5.0.1
-boto3==1.26.42
-botocore==1.29.42
+boto3==1.26.43
+botocore==1.29.43
 dateparser==1.1.5
 feedparser==6.0.10
 html2text==2020.1.16
 metadata-parser==0.10.5
-orjson==3.8.3
+orjson==3.8.4
 Pillow==9.4.0
 pydantic==1.10.4
 pytz==2022.7
