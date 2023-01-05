@@ -1,2 +1,2 @@
-from base import Model
-from publisher import LocaleModel, PublisherGlobal, PublisherModel
+from .base import Model
+from .publisher import LocaleModel, PublisherGlobal, PublisherModel

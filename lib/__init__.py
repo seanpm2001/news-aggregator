@@ -1,4 +1,4 @@
-from utils import (
+from .utils import (
     download_file,
     ensure_scheme,
     get_all_domains,
