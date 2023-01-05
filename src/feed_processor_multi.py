@@ -41,7 +41,7 @@ from requests.exceptions import (
 )
 
 from config import get_config
-from lib import upload_file
+from lib.utils import upload_file
 from src import image_processor_sandboxed
 
 config = get_config()
@@ -49,7 +49,7 @@ config = get_config()
 TZ = timezone("UTC")
 REQUEST_TIMEOUT = 30
 
-im_proc = image_processor_sandboxed.ImageProcessor(config.priv_s3_bucket)
+im_proc = image_processor_sandboxed.ImageProcessor(config.private_s3_bucket)
 unshortener = unshortenit.UnshortenIt(
     default_timeout=5, default_headers={"User-Agent": config.user_agent}
 )

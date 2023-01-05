@@ -13,13 +13,13 @@ from bs4 import BeautifulSoup
 from orjson import orjson
 
 from config import get_config
-from lib import get_all_domains, upload_file, uri_validator
+from lib.utils import get_all_domains, upload_file, uri_validator
 from src import image_processor_sandboxed
 
 config = get_config()
 logger = structlog.getLogger(__name__)
 im_proc = image_processor_sandboxed.ImageProcessor(
-    config.priv_s3_bucket, s3_path="brave-today/favicons/{}.pad", force_upload=True
+    config.private_s3_bucket, s3_path="brave-today/favicons/{}.pad", force_upload=True
 )
 
 # In seconds. Tested with 5s, but it's too low for a bunch of sites (I'm looking

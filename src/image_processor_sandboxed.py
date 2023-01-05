@@ -15,7 +15,7 @@ from wasmer import Instance, Module, Store, engine
 from wasmer_compiler_cranelift import Compiler
 
 from config import get_config
-from lib import upload_file
+from lib.utils import upload_file
 
 config = get_config()
 

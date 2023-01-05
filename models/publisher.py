@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Optional
 import bleach
 from pydantic import Field, HttpUrl, root_validator, validator
 
-from models import Model
+from models.base import Model
 
 
 class PublisherBase(Model):

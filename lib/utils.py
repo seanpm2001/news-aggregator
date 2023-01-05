@@ -45,7 +45,7 @@ def upload_file(file_name: Path, bucket: str, object_name: Optional[str] = None)
                     "ContentType": content_type,
                 },
             )
-        elif bucket == config.priv_s3_bucket:
+        elif bucket == config.private_s3_bucket:
             s3_client.upload_file(
                 file_name,
                 bucket,
@@ -73,7 +73,7 @@ def download_file(file_name: str, bucket: str, object_name: Optional[str] = None
     try:
         if bucket == config.pub_s3_bucket:
             s3_client.download_file(bucket, object_name, file_name)
-        elif bucket == config.priv_s3_bucket:
+        elif bucket == config.private_s3_bucket:
             s3_client.download_file(bucket, object_name, file_name)
         else:
             raise InvalidS3Bucket("Attempted to upload to unknown S3 bucket.")

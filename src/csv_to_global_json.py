@@ -11,8 +11,8 @@ from orjson import orjson
 from pydantic import ValidationError
 
 from config import get_config
-from lib import get_cover_infos_lookup, get_favicons_lookup, upload_file
-from models import LocaleModel, PublisherGlobal
+from lib.utils import get_cover_infos_lookup, get_favicons_lookup, upload_file
+from models.publisher import LocaleModel, PublisherGlobal
 
 config = get_config()
 logger = structlog.getLogger(__name__)
@@ -37,18 +37,8 @@ publisher_include_keys = {
 }
 
 
-def get_publisher_by_id(
-    publishers: list[PublisherGlobal], publisher_id: str
-) -> PublisherGlobal:
-    publisher = [
-        publisher for publisher in publishers if publisher.publisher_id == publisher_id
-    ]
-    return publisher[0]
-
-
-def parse_global_publishers():
-    publishers: list[PublisherGlobal] = []
-    publishers_ids = []
+def main():
+    publishers = {}
     source_files = config.sources_dir.glob("sources.*_*.csv")
     for source_file in source_files:
         locale = locales_finder.findall(source_file.name)[0]
@@ -58,7 +48,7 @@ def parse_global_publishers():
                 try:
                     publisher: PublisherGlobal = PublisherGlobal(**data)
 
-                    if publisher.publisher_id not in publishers_ids:
+                    if publisher.publisher_id not in publishers:
                         publisher.favicon_url = favicons_lookup.get(
                             publisher.site_url, None
                         )
@@ -71,24 +61,19 @@ def parse_global_publishers():
                         locale_builder.locale = locale
                         publisher.locales.append(locale_builder)
 
-                        publishers.append(publisher)
+                        publishers[publisher.publisher_id] = publisher
 
-                    if publisher.publisher_id in publishers_ids:
-                        existing_publisher = get_publisher_by_id(
-                            publishers, publisher.publisher_id
-                        )
-                        if existing_publisher:
-                            locale_builder = LocaleModel(**data)
-                            locale_builder.locale = locale
-                            existing_publisher.locales.append(locale_builder)
-
-                    publishers_ids.append(publisher.publisher_id)
+                    else:
+                        existing_publisher = publishers[publisher.publisher_id]
+                        locale_builder = LocaleModel(**data)
+                        locale_builder.locale = locale
+                        existing_publisher.locales.append(locale_builder)
 
                 except ValidationError as e:
                     logger.info(f"{e} on {data}")
 
     publishers_data_as_list = [
-        x.dict(include=publisher_include_keys) for x in publishers
+        x.dict(include=publisher_include_keys) for x in publishers.values()
     ]
 
     publishers_data_as_list = sorted(
@@ -107,4 +92,4 @@ def parse_global_publishers():
 
 
 if __name__ == "__main__":
-    parse_global_publishers()
+    main()

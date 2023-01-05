@@ -10,8 +10,8 @@ import structlog
 from pydantic import ValidationError
 
 from config import get_config
-from lib import get_cover_infos_lookup, get_favicons_lookup, upload_file
-from models import PublisherModel
+from lib.utils import get_cover_infos_lookup, get_favicons_lookup, upload_file
+from models.publisher import PublisherModel
 
 config = get_config()
 
@@ -50,7 +50,7 @@ feed_include_keys = {
 }
 
 
-def parse_publishers():
+def main():
     publisher_file_path = f"{config.sources_dir / config.sources_file}.csv"
     publisher_output_path = "feed.json"
     publishers = []
@@ -102,4 +102,4 @@ def parse_publishers():
 
 
 if __name__ == "__main__":
-    parse_publishers()
+    main()

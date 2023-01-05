@@ -17,7 +17,7 @@ from orjson import orjson
 from PIL import Image
 
 from config import get_config
-from lib import get_all_domains, upload_file
+from lib.utils import get_all_domains, upload_file
 from src import image_processor_sandboxed
 from src.favicons_covers.color import color_length, hex_color, is_transparent
 
@@ -27,7 +27,9 @@ REQUEST_TIMEOUT = 15
 config = get_config()
 logger = structlog.getLogger(__name__)
 im_proc = image_processor_sandboxed.ImageProcessor(
-    config.priv_s3_bucket, s3_path="brave-today/cover_images/{}.pad", force_upload=True
+    config.private_s3_bucket,
+    s3_path="brave-today/cover_images/{}.pad",
+    force_upload=True,
 )
 
 CACHE_FOLDER = config.output_path / config.cover_info_cache_dir
