@@ -39,9 +39,6 @@ if [[ "$task" = "run-all" ]]; then
   mkdir -p output/feed/cache
   python -u src/feed_processor_multi.py
 
-  echo "Shutting down squid..."
-  kill $(pidof squid)
-
 elif [[ "$task" = "shell" ]]; then
   set -x
   bpython
