@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Optional
 
 import structlog
-from pydantic import BaseSettings, Field
+from pydantic import BaseSettings, Field, validator
 
 logger = structlog.getLogger(__name__)
 
@@ -72,8 +72,9 @@ class Configuration(BaseSettings):
 
         sentry_sdk.init(dsn=sentry_url, traces_sample_rate=0)
 
-    if not img_cache_path.exists():
-        img_cache_path.mkdir(parents=True, exist_ok=True)
+    @validator("img_cache_path")
+    def fix_enabled_format(cls, v: Path) -> None:
+        v.mkdir(parents=True, exist_ok=True)
 
 
 @lru_cache()
