@@ -1,3 +1,8 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 import hashlib
 import html
 import json
@@ -36,7 +41,7 @@ from requests.exceptions import (
 )
 
 from config import get_config
-from lib.utils import upload_file
+from lib import upload_file
 from src import image_processor_sandboxed
 
 config = get_config()

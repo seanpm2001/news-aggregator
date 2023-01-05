@@ -1,3 +1,8 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 import csv
 import re
 
@@ -6,8 +11,8 @@ from orjson import orjson
 from pydantic import ValidationError
 
 from config import get_config
-from lib.utils import get_cover_infos_lookup, get_favicons_lookup, upload_file
-from models.publisher import LocaleModel, PublisherGlobal
+from lib import get_cover_infos_lookup, get_favicons_lookup, upload_file
+from models import LocaleModel, PublisherGlobal
 
 config = get_config()
 logger = structlog.getLogger(__name__)

@@ -1,10 +1,15 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 import hashlib
 from typing import Any, Dict, List, Optional
 
 import bleach
 from pydantic import Field, HttpUrl, root_validator, validator
 
-from models.base import Model
+from models import Model
 
 
 class PublisherBase(Model):

@@ -1,3 +1,8 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 from multiprocessing.pool import Pool, ThreadPool
 from typing import List, Tuple
 from urllib.parse import urljoin
@@ -8,7 +13,7 @@ from bs4 import BeautifulSoup
 from orjson import orjson
 
 from config import get_config
-from lib.utils import get_all_domains, upload_file, uri_validator
+from lib import get_all_domains, upload_file, uri_validator
 from src import image_processor_sandboxed
 
 config = get_config()

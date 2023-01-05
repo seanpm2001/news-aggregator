@@ -1,3 +1,8 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 import json
 import os
 import urllib
@@ -12,7 +17,7 @@ from orjson import orjson
 from PIL import Image
 
 from config import get_config
-from lib.utils import get_all_domains, upload_file
+from lib import get_all_domains, upload_file
 from src import image_processor_sandboxed
 from src.favicons_covers.color import color_length, hex_color, is_transparent
 
