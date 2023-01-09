@@ -98,7 +98,7 @@ def ensure_scheme(domain):
 
 def get_all_domains() -> List[str]:
     """Helper utility for getting all domains across all sources"""
-    source_files = config.sources_dir.glob("sources.*_*.csv")
+    source_files = list(config.sources_dir.glob("sources.*_*.csv"))
     for source_file in source_files:
         with open(source_file) as f:
             # Skip the first line, with the headers.
