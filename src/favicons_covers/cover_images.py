@@ -17,9 +17,9 @@ from orjson import orjson
 from PIL import Image
 
 from config import get_config
-from lib.utils import get_all_domains, upload_file
 from src import image_processor_sandboxed
 from src.favicons_covers.color import color_length, hex_color, is_transparent
+from src.utils import get_all_domains, upload_file
 
 # In seconds. Tested with 5s, but it's too low for a bunch of sites
 REQUEST_TIMEOUT = 15

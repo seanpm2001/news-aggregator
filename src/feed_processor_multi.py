@@ -41,8 +41,8 @@ from requests.exceptions import (
 )
 
 from config import get_config
-from lib.utils import upload_file
 from src import image_processor_sandboxed
+from utils import upload_file
 
 config = get_config()
 

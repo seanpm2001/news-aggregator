@@ -10,8 +10,8 @@ import structlog
 from pydantic import ValidationError
 
 from config import get_config
-from lib.utils import get_cover_infos_lookup, get_favicons_lookup, upload_file
 from models.publisher import PublisherModel
+from utils import get_cover_infos_lookup, get_favicons_lookup, upload_file
 
 config = get_config()
 
@@ -54,7 +54,7 @@ def main():
     publisher_file_path = f"{config.sources_dir / config.sources_file}.csv"
     publisher_output_path = "feed.json"
     publishers = []
-    with open(publisher_file_path, "r") as publisher_file_pointer:
+    with open(publisher_file_path) as publisher_file_pointer:
         publisher_reader = csv.DictReader(publisher_file_pointer)
         for data in publisher_reader:
             try:

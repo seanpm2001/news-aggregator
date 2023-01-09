@@ -13,8 +13,8 @@ from bs4 import BeautifulSoup
 from orjson import orjson
 
 from config import get_config
-from lib.utils import get_all_domains, upload_file, uri_validator
 from src import image_processor_sandboxed
+from src.utils import get_all_domains, upload_file, uri_validator
 
 config = get_config()
 logger = structlog.getLogger(__name__)

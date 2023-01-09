@@ -135,7 +135,7 @@ def get_favicons_lookup() -> Dict[Any, Any]:
         )
 
     if Path(f"{config.favicon_lookup_file}.json").is_file():
-        with open(f"{config.favicon_lookup_file}.json", "r") as f:
+        with open(f"{config.favicon_lookup_file}.json") as f:
             favicons_lookup = orjson.loads(f.read())
             return favicons_lookup
     else:
@@ -151,7 +151,7 @@ def get_cover_infos_lookup() -> Dict[Any, Any]:
         )
 
     if Path(f"{config.cover_info_lookup_file}.json").is_file():
-        with open(f"{config.cover_info_lookup_file}.json", "r") as f:
+        with open(f"{config.cover_info_lookup_file}.json") as f:
             cover_infos_lookup = orjson.loads(f.read())
             return cover_infos_lookup
     else:

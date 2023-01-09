@@ -11,8 +11,8 @@ from orjson import orjson
 from pydantic import ValidationError
 
 from config import get_config
-from lib.utils import get_cover_infos_lookup, get_favicons_lookup, upload_file
 from models.publisher import LocaleModel, PublisherGlobal
+from utils import get_cover_infos_lookup, get_favicons_lookup, upload_file
 
 config = get_config()
 logger = structlog.getLogger(__name__)
@@ -42,7 +42,7 @@ def main():
     source_files = config.sources_dir.glob("sources.*_*.csv")
     for source_file in source_files:
         locale = locales_finder.findall(source_file.name)[0]
-        with open(source_file, "r") as publisher_file_pointer:
+        with open(source_file) as publisher_file_pointer:
             publisher_reader = csv.DictReader(publisher_file_pointer)
             for data in publisher_reader:
                 try:
