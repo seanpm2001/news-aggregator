@@ -12,9 +12,9 @@ import structlog
 from bs4 import BeautifulSoup
 from orjson import orjson
 
+import image_processor_sandboxed
 from config import get_config
-from src import image_processor_sandboxed
-from src.utils import get_all_domains, upload_file, uri_validator
+from utils import get_all_domains, upload_file, uri_validator
 
 config = get_config()
 logger = structlog.getLogger(__name__)
