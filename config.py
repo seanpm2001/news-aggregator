@@ -1,37 +1,82 @@
-import os
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+import logging
+from functools import lru_cache
+from multiprocessing import cpu_count
+from pathlib import Path
+from typing import Optional
 
-# Canonical ID of the public S3 bucket
-BRAVE_TODAY_CANONICAL_ID = os.getenv("BRAVE_TODAY_CANONICAL_ID", None)
-BRAVE_TODAY_CLOUDFRONT_CANONICAL_ID = os.getenv(
-    "BRAVE_TODAY_CLOUDFRONT_CANONICAL_ID", None
-)
+import structlog
+from pydantic import BaseSettings, Field, validator
 
-# Set the number of processes to spawn for all multiprocessing tasks.
-CONCURRENCY = max(1, int(os.getenv("CONCURRENCY", os.cpu_count())))
+logger = structlog.getLogger(__name__)
 
-# Set to INFO to see some output during long-running steps.
-LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 
-# Disable uploads and downloads to S3. Useful when running locally or in CI.
-NO_UPLOAD = os.getenv("NO_UPLOAD", None)
-NO_DOWNLOAD = os.getenv("NO_DOWNLOAD", None)
+class Configuration(BaseSettings):
 
-PCDN_URL_BASE = os.getenv("PCDN_URL_BASE", "https://pcdn.brave.software")
-# Canonical ID of the private S3 bucket
-PRIVATE_CDN_CANONICAL_ID = os.getenv("PRIVATE_CDN_CANONICAL_ID", None)
-PRIVATE_CDN_CLOUDFRONT_CANONICAL_ID = os.getenv(
-    "PRIVATE_CDN_CLOUDFRONT_CANONICAL_ID", None
-)
-PRIV_S3_BUCKET = os.getenv("PRIV_S3_BUCKET", "brave-private-cdn-development")
-PUB_S3_BUCKET = os.getenv("PUB_S3_BUCKET", "brave-today-cdn-development")
-SOURCES_FILE = os.getenv("SOURCES_FILE", "sources")
-GLOBAL_SOURCES_FILE = os.getenv("GLOBAL_SOURCES_FILE", "sources.global")
-FAVICON_LOOKUP_FILE = os.getenv("FAVICON_LOOKUP_FILE", "favicon_lookup")
-COVER_INFO_LOOKUP_FILE = os.getenv("COVER_INFO_LOOKUP_FILE", "cover_info_lookup")
+    user_agent: str = (
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+    )
 
-if SENTRY_URL := os.getenv("SENTRY_URL"):
-    import sentry_sdk
+    output_feed_path: Path = Field(default=Path(__file__).parent / "output/feed")
+    output_path: Path = Field(default=Path(__file__).parent / "output")
+    wasm_thumbnail_path: Path = Field(
+        default=Path(__file__).parent / "wasm_thumbnail.wasm"
+    )
+    img_cache_path: Path = Field(default=Path(__file__).parent / "output/feed/cache")
 
-    sentry_sdk.init(dsn=SENTRY_URL, traces_sample_rate=0)
+    # Set the number of processes to spawn for all multiprocessing tasks.
+    concurrency = cpu_count()
+    thread_pool_size = cpu_count() * 10
+
+    # Disable uploads and downloads to S3. Useful when running locally or in CI.
+    no_upload: Optional[str] = None
+    no_download: Optional[str] = None
+
+    pcdn_url_base: str = Field(default="https://pcdn.brave.software")
+
+    # Canonical ID of the private S3 bucket
+    private_s3_bucket: str = Field(default="brave-private-cdn-development")
+    private_cdn_canonical_id: str = ""
+    private_cdn_cloudfront_canonical_id: str = ""
+
+    # Canonical ID of the public S3 bucket
+    pub_s3_bucket: str = Field(default="brave-today-cdn-development")
+    brave_today_canonical_id: str = ""
+    brave_today_cloudfront_canonical_id: str = ""
+
+    sources_file: Path = Field(default="sources")
+    sources_dir: Path = Field(default=Path(__file__).parent / "sources")
+    global_sources_file: Path = Field(default="sources.global.json")
+    favicon_lookup_file: Path = Field(default="favicon_lookup.json")
+    cover_info_lookup_file: Path = Field(default="cover_info_lookup.json")
+    cover_info_cache_dir: Path = Field(default="cover_info_cache")
+    tests_dir: Path = Field(default="tests")
+
+    sentry_url: str = ""
+
+    log_level: str = "info"
+
+    structlog.configure(
+        wrapper_class=structlog.make_filtering_bound_logger(
+            logging.getLevelName(log_level.upper())
+        ),
+    )
+
+    if sentry_url:
+        import sentry_sdk
+
+        sentry_sdk.init(dsn=sentry_url, traces_sample_rate=0)
+
+    @validator("img_cache_path")
+    def fix_enabled_format(cls, v: Path) -> None:
+        v.mkdir(parents=True, exist_ok=True)
+
+
+@lru_cache()
+def get_config() -> Configuration:
+    return Configuration()

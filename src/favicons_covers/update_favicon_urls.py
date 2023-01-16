@@ -1,30 +1,28 @@
-import json
-from multiprocessing import Pool
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+from multiprocessing.pool import Pool, ThreadPool
 from typing import List, Tuple
 from urllib.parse import urljoin
 
 import requests
+import structlog
 from bs4 import BeautifulSoup
-from structlog import get_logger
+from orjson import orjson
 
-import config
 import image_processor_sandboxed
-from config import (
-    CONCURRENCY,
-    FAVICON_LOOKUP_FILE,
-    PCDN_URL_BASE,
-    PRIV_S3_BUCKET,
-    PUB_S3_BUCKET,
-    USER_AGENT,
-)
+from config import get_config
 from utils import get_all_domains, upload_file, uri_validator
 
-logger = get_logger()
+config = get_config()
+logger = structlog.getLogger(__name__)
 im_proc = image_processor_sandboxed.ImageProcessor(
-    PRIV_S3_BUCKET, s3_path="brave-today/favicons/{}.pad", force_upload=True
+    config.private_s3_bucket, s3_path="brave-today/favicons/{}.pad", force_upload=True
 )
 
-# In seconds. Tested with 5s but it's too low for a bunch of sites (I'm looking
+# In seconds. Tested with 5s, but it's too low for a bunch of sites (I'm looking
 # at you https://skysports.com).
 REQUEST_TIMEOUT = 15
 
@@ -36,7 +34,7 @@ def get_favicon(domain: str) -> Tuple[str, str]:
 
     try:
         response = requests.get(
-            domain, timeout=REQUEST_TIMEOUT, headers={"User-Agent": USER_AGENT}
+            domain, timeout=REQUEST_TIMEOUT, headers={"User-Agent": config.user_agent}
         )
         soup = BeautifulSoup(response.text, features="lxml")
         icon = soup.find("link", rel="icon")
@@ -74,12 +72,14 @@ def process_favicons_image(item):
             cache_fn = im_proc.cache_image(icon_url)
         except Exception as e:
             cache_fn = None
-            logger.error(f"im_proc.cache_image failed [e]: {icon_url}")
+            logger.error(f"im_proc.cache_image failed [{e}]: {icon_url}")
         if cache_fn:
             if cache_fn.startswith("https"):
                 padded_icon_url = cache_fn
             else:
-                padded_icon_url = f"{PCDN_URL_BASE}/brave-today/favicons/{cache_fn}.pad"
+                padded_icon_url = (
+                    f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}.pad"
+                )
         else:
             padded_icon_url = None
 
@@ -90,25 +90,26 @@ def process_favicons_image(item):
 
 
 if __name__ == "__main__":
-    domains = list(get_all_domains())
+    domains = list(set(get_all_domains()))
     logger.info(f"Processing {len(domains)} domains")
 
     favicons: List[Tuple[str, str]]
-    with Pool(CONCURRENCY) as pool:
+    with ThreadPool(config.thread_pool_size) as pool:
         favicons = pool.map(get_favicon, domains)
 
     processed_favicons: List[Tuple[str, str]]
-    with Pool(CONCURRENCY) as pool:
+    with Pool(config.concurrency) as pool:
         processed_favicons = pool.map(process_favicons_image, favicons)
 
-    result = json.dumps(dict(processed_favicons), indent=4)
-    with open(f"{FAVICON_LOOKUP_FILE}.json", "w") as f:
-        f.write(result)
+    with open(config.output_path / config.favicon_lookup_file, "wb") as f:
+        f.write(orjson.dumps(dict(processed_favicons)))
 
     logger.info("Fetched all the favicons!")
 
-    if not config.NO_UPLOAD:
+    if not config.no_upload:
         upload_file(
-            f"{FAVICON_LOOKUP_FILE}.json", PUB_S3_BUCKET, f"{FAVICON_LOOKUP_FILE}.json"
+            config.output_path / config.favicon_lookup_file,
+            config.pub_s3_bucket,
+            f"{config.favicon_lookup_file}",
         )
-        logger.info(f"{FAVICON_LOOKUP_FILE} is upload to S3")
+        logger.info(f"{config.favicon_lookup_file} is upload to S3")

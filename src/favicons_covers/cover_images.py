@@ -1,39 +1,49 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 import json
 import os
 import urllib
 from multiprocessing import Pool
+from multiprocessing.pool import ThreadPool
 from typing import List, Optional, Tuple
 
 import requests
+import structlog
 from bs4 import BeautifulSoup
+from orjson import orjson
 from PIL import Image
-from structlog import get_logger
 
-import config
 import image_processor_sandboxed
-from color import color_length, hex_color, is_transparent
+from config import get_config
+from favicons_covers.color import color_length, hex_color, is_transparent
 from utils import get_all_domains, upload_file
 
-# In seconds. Tested with 5s but it's too low for a bunch of sites
+# In seconds. Tested with 5s, but it's too low for a bunch of sites
 REQUEST_TIMEOUT = 15
 
-CACHE_FOLDER = ".cache"
-logger = get_logger()
+config = get_config()
+logger = structlog.getLogger(__name__)
 im_proc = image_processor_sandboxed.ImageProcessor(
-    config.PRIV_S3_BUCKET, s3_path="brave-today/cover_images/{}.pad", force_upload=True
+    config.private_s3_bucket,
+    s3_path="brave-today/cover_images/{}.pad",
+    force_upload=True,
 )
 
-os.makedirs(CACHE_FOLDER, exist_ok=True)
+CACHE_FOLDER = config.output_path / config.cover_info_cache_dir
+CACHE_FOLDER.mkdir(parents=True, exist_ok=True)
 
 
 def get_soup(domain) -> Optional[BeautifulSoup]:
     try:
         html = requests.get(
-            domain, timeout=REQUEST_TIMEOUT, headers={"user-agent": config.USER_AGENT}
+            domain, timeout=REQUEST_TIMEOUT, headers={"user-agent": config.user_agent}
         ).content.decode("utf-8")
         return BeautifulSoup(html, features="lxml")
     # Failed to download html
-    except:
+    except Exception:
         return None
 
 
@@ -50,7 +60,7 @@ def get_manifest_icon_urls(site_url: str, soup: BeautifulSoup):
 
     try:
         manifest_response = requests.get(
-            url, timeout=REQUEST_TIMEOUT, headers={"user-agent": config.USER_AGENT}
+            url, timeout=REQUEST_TIMEOUT, headers={"user-agent": config.user_agent}
         )
 
         if not manifest_response.ok:
@@ -67,7 +77,7 @@ def get_manifest_icon_urls(site_url: str, soup: BeautifulSoup):
             if "src" not in icon_raw:
                 continue
             yield icon_raw["src"]
-    except:
+    except Exception:
         return []
 
 
@@ -108,7 +118,7 @@ def get_icon(icon_url: str) -> Image:
                 icon_url,
                 stream=True,
                 timeout=REQUEST_TIMEOUT,
-                headers={"user-agent": config.USER_AGENT},
+                headers={"user-agent": config.user_agent},
             )
             if not response.ok:
                 return None
@@ -120,11 +130,11 @@ def get_icon(icon_url: str) -> Image:
         return Image.open(filename).convert("RGBA")
 
     # Failed to download the image, or the thing we downloaded wasn't valid.
-    except:
+    except Exception:
         return None
 
 
-def get_best_image(site_url: str) -> tuple[Image, str]:
+def get_best_image(site_url: str) -> Optional[tuple[Image, str]]:
     sources = [get_manifest_icon_urls, get_apple_icon_urls, get_open_graph_icon_urls]
 
     soup = get_soup(site_url)
@@ -220,13 +230,13 @@ def process_cover_image(item):
             cache_fn = im_proc.cache_image(image_url)
         except Exception as e:
             cache_fn = None
-            logger.error(f"im_proc.cache_image failed [e]: {image_url}")
+            logger.error(f"im_proc.cache_image failed [{e}]: {image_url}")
         if cache_fn:
             if cache_fn.startswith("https"):
                 padded_image_url = cache_fn
             else:
                 padded_image_url = (
-                    f"{config.PCDN_URL_BASE}/brave-today/cover_images/{cache_fn}.pad"
+                    f"{config.pcdn_url_base}/brave-today/cover_images/{cache_fn}.pad"
                 )
         else:
             padded_image_url = None
@@ -238,35 +248,36 @@ def process_cover_image(item):
 
 
 if __name__ == "__main__":
-    domains = list(set(get_all_domains()))[:]
+    domains = list(set(get_all_domains()))
     logger.info(f"Processing {len(domains)} domains")
 
     cover_infos: List[Tuple[str, str, str]]
 
     # This work is IO bound, so it's okay to start up a bunch more threads
     # than we have cores, it just means we'll have more in flight requests.
-    with Pool(100) as p:
+    with ThreadPool(config.thread_pool_size) as pool:
         cover_infos = list(
-            filter(lambda x: x is not None, p.map(process_site, domains))
+            filter(lambda x: x is not None, pool.map(process_site, domains))
         )
 
     processed_cover_images: List[Tuple[str, str, str]]
-    with Pool(config.CONCURRENCY) as pool:
+    with Pool(config.concurrency) as pool:
         processed_cover_images = pool.map(process_cover_image, cover_infos)
 
     result = {}
     for entry in processed_cover_images:
         result.update({entry[0]: {"cover_url": entry[1], "background_color": entry[2]}})
 
-    with open("cover_info_lookup.json", "w") as f:
-        f.write(json.dumps(result, indent=4))
+    with open(config.output_path / config.cover_info_lookup_file, "wb") as f:
+        f.write(orjson.dumps(result))
 
     logger.info("Fetched all the Cover images!")
 
-    if not config.NO_UPLOAD:
+    if not config.no_upload:
         upload_file(
-            f"{config.COVER_INFO_LOOKUP_FILE}.json",
-            config.PUB_S3_BUCKET,
-            f"{config.COVER_INFO_LOOKUP_FILE}.json",
+            config.output_path / config.cover_info_lookup_file,
+            config.pub_s3_bucket,
+            f"{config.cover_info_lookup_file}",
         )
-        logger.info(f"{config.COVER_INFO_LOOKUP_FILE} is upload to S3")
+
+        logger.info(f"{config.cover_info_lookup_file} is upload to S3")

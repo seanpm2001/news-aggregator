@@ -1,15 +1,18 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 import json
 import os
 
 import feedparser
 
-import feed_processor_multi
+from config import get_config
+from src import feed_processor_multi
 
-# def test_image_processor():
-#     im_proc = image_processor_sandboxed.ImageProcessor()
-#     result = im_proc.cache_image('https://brave.com/wp-content/uploads/2019/03/brave-logo.png')
-#     assert result
-#     assert os.stat("feed/cache/%s.pad" % (result)).st_size != 0
+config = get_config()
+fp = feed_processor_multi.FeedProcessor()
 
 
 def test_feed_processor_download():
@@ -18,20 +21,19 @@ def test_feed_processor_download():
 
 
 def test_feed_processor_aggregate():
-    fp = feed_processor_multi.FeedProcessor()
-    with open("test.json") as f:
+    with open(config.tests_dir / "test.json") as f:
         feeds = json.loads(f.read())
-        fp.aggregate(feeds, "feed/test.json")
-    assert os.stat("feed/test.json").st_size != 0
+        fp.aggregate(feeds, config.output_feed_path / "test.json")
+    assert os.stat(config.output_feed_path / "test.json").st_size != 0
 
-    with open("feed/test.json") as f:
+    with open(config.output_feed_path / "test.json") as f:
         data = json.loads(f.read())
     assert data
     assert len(data) != 0
 
 
 def test_check_images():
-    data = [feedparser.parse("test.rss")["items"][0]]
+    data = [feedparser.parse(config.tests_dir / "test.rss")["items"][0]]
     data[0]["img"] = data[0]["media_content"][0]["url"]
     data[0]["publisher_id"] = ""
     fp = feed_processor_multi.FeedProcessor()
@@ -40,8 +42,7 @@ def test_check_images():
 
 
 def test_download_feeds():
-    fp = feed_processor_multi.FeedProcessor()
-    with open("test.json") as f:
+    with open(config.tests_dir / "test.json") as f:
         data = json.loads(f.read())
     data = {
         "https://brave.com/blog/index.xml": data["https://brave.com/blog/index.xml"]
@@ -52,8 +53,7 @@ def test_download_feeds():
 
 
 def test_get_rss():
-    fp = feed_processor_multi.FeedProcessor()
-    with open("test.json") as f:
+    with open(config.tests_dir / "test.json") as f:
         data = json.loads(f.read())
     data = {
         "https://brave.com/blog/index.xml": data["https://brave.com/blog/index.xml"]
@@ -64,8 +64,7 @@ def test_get_rss():
 
 
 def test_fixup_entries():
-    fp = feed_processor_multi.FeedProcessor()
-    with open("test.json") as f:
+    with open(config.tests_dir / "test.json") as f:
         data = json.loads(f.read())
     data = {
         "https://brave.com/blog/index.xml": data["https://brave.com/blog/index.xml"]
@@ -82,8 +81,7 @@ def test_fixup_entries():
 
 
 def test_scrub_html():
-    fp = feed_processor_multi.FeedProcessor()
-    with open("test.json") as f:
+    with open(config.tests_dir / "test.json") as f:
         data = json.loads(f.read())
     data = {
         "https://brave.com/blog/index.xml": data["https://brave.com/blog/index.xml"]
@@ -102,8 +100,7 @@ def test_scrub_html():
 
 
 def test_score_entries():
-    fp = feed_processor_multi.FeedProcessor()
-    with open("test.json") as f:
+    with open(config.tests_dir / "test.json") as f:
         data = json.loads(f.read())
     data = {
         "https://brave.com/blog/index.xml": data["https://brave.com/blog/index.xml"]

@@ -8,7 +8,7 @@
       "publisher_id": "566c845eb6148d74f7ee6bf1a05c9ef0d828d2fe0028c3ecb18ddec4849a83e7",
       "max_entries": 20,
       "og_images": false,
-      "url": "https://brave.com/blog/index.xml",
+      "feed_url": "https://brave.com/blog/index.xml",
       "creative_instance_id": "1",
       "destination_domains": "brave.com"
    },
@@ -21,7 +21,7 @@
       "publisher_id":"afbd69d1c1e0349b0d54164ddd329d4586cd1554d21a578e9da174ad07904946",
       "max_entries":20,
       "og_images":"",
-      "url":"https://offers.bravesoftware.com/index.xml",
+      "feed_url":"https://offers.bravesoftware.com/index.xml",
       "creative_instance_id": "2"
    }
 }

@@ -30,4 +30,4 @@ repos:
     rev: 1.7.4
     hooks:
     - id: bandit
-      entry: bandit --quiet -r -x tests/ *.py
+      entry: bandit --quiet -r -x tests/ src/*.py

@@ -1,3 +1,5 @@
+export PYTHONPATH=$(PWD):$(PWD)/src
+
 all:
 
 clean:
@@ -6,25 +8,26 @@ clean:
 
 pytest:
 	echo Running pytest...
-	pytest -s test.py
+	pytest -s tests/test.py
 
 validjson:
-	mv sources.csv sources-orig.csv ; head -10 sources-orig.csv > sources.csv
+	export PYTHONPATH=$PWD:$PWD/src
+	mv sources/sources.csv sources/sources-orig.csv ; head -10 sources/sources-orig.csv > sources/sources.csv
 	echo Checking that csv_to_json.py creates valid JSON files...
-	NO_UPLOAD=1 NO_DOWNLOAD=1 PYTHONPATH=. python csv_to_json.py feed.json
-	mv sources-orig.csv sources.csv
-	json_verify < sources.json
-	json_verify < feed.json
+	NO_UPLOAD=1 NO_DOWNLOAD=1 python src/csv_to_json.py
+	mv sources/sources-orig.csv sources/sources.csv
+	json_verify < output/sources.json
+	json_verify < output/feed.json
 	echo Checking that sources.json is of the expected size...
-	test `stat -c%s sources.json` -gt 10
+	test `stat -c%s output/sources.json` -gt 10
 	echo Checking that feed.json is of the expected size...
-	test `stat -c%s feed.json` -gt 10
+	test `stat -c%s output/feed.json` -gt 10
 	echo Checking that feed_processor_multi.py creates a valid JSON file...
-	NO_UPLOAD=1 NO_DOWNLOAD=1 PYTHONPATH=. python feed_processor_multi.py feed
-	json_verify < feed/feed.json
+	NO_UPLOAD=1 NO_DOWNLOAD=1 python src/feed_processor_multi.py feed
+	json_verify < output/feed/feed.json
 	echo Checking that the report makes sense...
-	PYTHONPATH=. python report-check.py
+	python lib/report-check.py
 	echo Checking that feed/feed.json is of the expected size...
-	test `stat -c%s feed/feed.json` -gt 1000
+	test `stat -c%s output/feed/feed.json` -gt 1000
 
 test: pytest validjson

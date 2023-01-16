@@ -1,6 +1,15 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 import json
 import logging
 import sys
+
+from config import get_config
+
+config = get_config()
 
 
 def check_report(report):
@@ -27,6 +36,6 @@ def check_report(report):
     return success
 
 
-with open("report.json") as f:
+with open(config.output_path / "report.json") as f:
     if not check_report(json.loads(f.read())):
         sys.exit(1)

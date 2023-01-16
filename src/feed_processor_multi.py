@@ -1,10 +1,14 @@
+# Copyright (c) 2023 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 import hashlib
 import html
 import json
 import logging
 import math
 import multiprocessing
-import os
 import shutil
 import sys
 import time
@@ -22,6 +26,7 @@ import metadata_parser
 import pytz
 import requests
 import requests_cache
+import structlog
 import unshortenit
 from better_profanity import profanity
 from bs4 import BeautifulSoup as BS
@@ -35,27 +40,28 @@ from requests.exceptions import (
     TooManyRedirects,
 )
 
-import config
-import image_processor_sandboxed
+from config import get_config
+from src import image_processor_sandboxed
 from utils import upload_file
+
+config = get_config()
 
 TZ = timezone("UTC")
 REQUEST_TIMEOUT = 30
 
-im_proc = image_processor_sandboxed.ImageProcessor(config.PRIV_S3_BUCKET)
-unshortener = unshortenit.UnshortenIt(default_timeout=5)
-
-logging.basicConfig(
-    format="%(asctime)s %(levelname)-8s %(message)s",
-    level=config.LOG_LEVEL,
-    datefmt="%Y-%m-%dT%H:%M:%S%z",
+im_proc = image_processor_sandboxed.ImageProcessor(config.private_s3_bucket)
+unshortener = unshortenit.UnshortenIt(
+    default_timeout=5, default_headers={"User-Agent": config.user_agent}
 )
-logging.getLogger("urllib3").setLevel(logging.ERROR)  # too many unactionable warnings
+
+logging.getLogger("urllib3").setLevel(logging.ERROR)  # too many un-actionable warnings
 logging.getLogger("metadata_parser").setLevel(
     logging.CRITICAL
 )  # hide NotParsableFetchError messages
 
-logging.info("Using %s processes for parallel tasks.", config.CONCURRENCY)
+logging.info("Using %s processes for parallel tasks.", config.concurrency)
+
+logger = structlog.getLogger(__name__)
 
 # adding custom bad words for profanity check
 custom_badwords = ["vibrators"]
@@ -66,7 +72,7 @@ def get_with_max_size(url, max_bytes):
     response = requests.get(
         url,
         timeout=REQUEST_TIMEOUT,
-        headers={"User-Agent": config.USER_AGENT},
+        headers={"User-Agent": config.user_agent},
         stream=True,
     )
     response.raise_for_status()
@@ -95,18 +101,13 @@ def process_image(item):
             cache_fn = im_proc.cache_image(item["img"])
         except Exception as e:
             cache_fn = None
-            logging.error(
-                "im_proc.cache_image failed [%s]: %s -- %s",
-                e.__class__.__name__,
-                item["img"],
-                e,
-            )
+            logger.error(f"im_proc.cache_image failed [{e}]: {item['img']}")
         if cache_fn:
             if cache_fn.startswith("https"):
                 item["padded_img"] = cache_fn
             else:
                 item["padded_img"] = (
-                    "%s/brave-today/cache/%s" % (config.PCDN_URL_BASE, cache_fn)
+                    "%s/brave-today/cache/%s" % (config.pcdn_url_base, cache_fn)
                     + ".pad"
                 )
         else:
@@ -115,13 +116,13 @@ def process_image(item):
     return item
 
 
-def download_feed(feed):
+def download_feed(feed):  # noqa: C901
     report = {"size_after_get": None, "size_after_insert": 0}
     max_feed_size = 10000000  # 10M
     try:
         data = get_with_max_size(feed, max_feed_size)
-        logging.debug("Downloaded feed: %s", feed)
-    except Exception as e:
+        logger.debug(f"Downloaded feed: {feed}")
+    except Exception:
         # Failed to get feed. I will try plain HTTP.
         try:
             u = urlparse(feed)
@@ -131,12 +132,10 @@ def download_feed(feed):
         except ReadTimeout:
             return None
         except HTTPError as e:
-            logging.error("Failed to get feed: %s (%s)", feed_url, e)
+            logger.error(f"Failed to get feed: {feed_url} ({e})")
             return None
         except Exception as e:
-            logging.error(
-                "Failed to get [%s]: %s -- %s", e.__class__.__name__, feed_url, e
-            )
+            logger.error(f"Failed to get [{e}]: {feed_url}")
             return None
     try:
         feed_cache = feedparser.parse(data)
@@ -144,9 +143,7 @@ def download_feed(feed):
         if report["size_after_get"] == 0:
             return None  # workaround error serialization issue
     except Exception as e:
-        logging.error(
-            "Feed failed to parse [%s]: %s -- %s", e.__class__.__name__, feed, e
-        )
+        logger.error(f"Feed failed to parse [{e}]: {feed}")
         return None
     # bypass serialization issues
     feed_cache = dict(feed_cache)
@@ -155,7 +152,7 @@ def download_feed(feed):
     return {"report": report, "feed_cache": feed_cache, "key": feed}
 
 
-def fixup_item(item, my_feed):
+def fixup_item(item, my_feed):  # noqa: C901
     out_item = {}
     if "category" in my_feed:
         out_item["category"] = my_feed["category"]
@@ -165,12 +162,12 @@ def fixup_item(item, my_feed):
         out_item["publish_time"] = dateparser.parse(item["published"])
     else:
         return None  # skip (no update field)
-    if out_item["publish_time"] == None:
+    if out_item["publish_time"] is None:
         return None  # skip (no publish time)
-    if out_item["publish_time"].tzinfo == None:
+    if out_item["publish_time"].tzinfo is None:
         TZ.localize(out_item["publish_time"])
     out_item["publish_time"] = out_item["publish_time"].astimezone(pytz.utc)
-    if not "link" in item:
+    if "link" not in item:
         if "url" in item:
             item["link"] = item["url"]
         else:
@@ -204,9 +201,7 @@ def fixup_item(item, my_feed):
     ):
         return None  # skip (unshortener failed)
     except Exception as e:
-        logging.error(
-            "unshortener failed [%s]: %s -- %s", e.__class__.__name__, item["link"], e
-        )
+        logger.error(f"unshortener failed [{e}]: {item['link']}")
         return None  # skip (unshortener failed)
 
     # image determination
@@ -253,7 +248,7 @@ def fixup_item(item, my_feed):
             out_item["img"] = ""
     else:
         out_item["img"] = ""
-    if not "title" in item:
+    if "title" not in item:
         # No title. Skip.
         return None
 
@@ -278,13 +273,13 @@ def fixup_item(item, my_feed):
 
     # weird hack put in place just for demo
     if "filter_images" in my_feed:
-        if my_feed["filter_images"] == True:
+        if my_feed["filter_images"]:
             out_item["img"] = ""
 
     return out_item
 
 
-def check_images_in_item(item, feeds):
+def check_images_in_item(item, feeds):  # noqa: C901
     if item["img"]:
         try:
             parsed = urlparse(item["img"])
@@ -294,9 +289,7 @@ def check_images_in_item(item, feeds):
             else:
                 url = item["img"]
         except Exception as e:
-            logging.error(
-                "Can't parse image [%s]: %s -- %s", e.__class__.__name__, item["img"], e
-            )
+            logger.error(f"Can't parse image [{e}]: {item['img']}")
             item["img"] = ""
         try:
             result = scrape_session.head(url, allow_redirects=True)
@@ -306,16 +299,16 @@ def check_images_in_item(item, feeds):
                 item["img"] = url
         except SSLError:
             item["img"] = ""
-        except:
+        except Exception:
             item["img"] = ""
-    if item["img"] == "" or feeds[item["publisher_id"]]["og_images"] == True:
+    if item["img"] == "" or feeds[item["publisher_id"]]["og_images"] is True:
         # if we came out of this without an image, lets try to get it from opengraph
         try:
             page = metadata_parser.MetadataParser(
                 url=item["url"],
                 requests_session=scrape_session,
                 support_malformed=True,
-                url_headers={"User-Agent": config.USER_AGENT},
+                url_headers={"User-Agent": config.user_agent},
                 search_head_only=True,
                 strategy=["page", "meta", "og", "dc"],
                 requests_timeout=5,
@@ -323,10 +316,10 @@ def check_images_in_item(item, feeds):
             item["img"] = page.get_metadata_link("image")
         except metadata_parser.NotParsableFetchError as e:
             if e.code and e.code not in (403, 429, 500, 502, 503):
-                logging.error("Error parsing [%s]: %s", e.code, item["url"])
+                logger.error(f"Error parsing [{e}]: {item['url']}")
         except (UnicodeDecodeError, metadata_parser.NotParsable) as e:
-            logging.error("Error parsing: %s -- %s", item["url"], e)
-        if item["img"] == None:
+            logger.error(f"Error parsing: {item['url']} -- {e}")
+        if item["img"] is None:
             item["img"] = ""
 
     if not item["img"] == "":
@@ -342,11 +335,11 @@ def check_images_in_item(item, feeds):
 
 
 expire_after = timedelta(hours=2)
-scrape_session = requests_cache.core.CachedSession(
+scrape_session = requests_cache.CachedSession(
     expire_after=expire_after, backend="memory", timeout=5
 )
-scrape_session.cache.remove_old_entries(datetime.utcnow() - expire_after)
-scrape_session.headers.update({"User-Agent": config.USER_AGENT})
+scrape_session.cache.remove_expired_responses(datetime.utcnow() - expire_after)
+scrape_session.headers.update({"User-Agent": config.user_agent})
 
 
 class FeedProcessor:
@@ -357,20 +350,17 @@ class FeedProcessor:
         self.report = {}  # holds reports and stats of all actions
         self.feeds = {}
 
-    if not os.path.isdir("feed"):
-        os.mkdir("feed")
-
     def check_images(self, items):
         out_items = []
-        logging.info("Checking images for %s items...", len(items))
-        with multiprocessing.Pool(config.CONCURRENCY) as pool:
+        logger.info(f"Checking images for {len(items)} items...")
+        with multiprocessing.Pool(config.concurrency) as pool:
             for item in pool.imap(
                 partial(check_images_in_item, feeds=self.feeds), items
             ):
                 out_items.append(item)
 
-        logging.info("Caching images for %s items...", len(out_items))
-        with multiprocessing.Pool(config.CONCURRENCY) as pool:
+        logger.info(f"Caching images for {len(out_items)} items...")
+        with multiprocessing.Pool(config.concurrency) as pool:
             result = []
             for item in pool.imap(process_image, out_items):
                 result.append(item)
@@ -378,10 +368,10 @@ class FeedProcessor:
 
     def download_feeds(self, my_feeds):
         feed_cache = {}
-        logging.info("Downloading %s feeds...", len(my_feeds))
-        with multiprocessing.Pool(config.CONCURRENCY) as pool:
+        logger.info(f"Downloading {len(my_feeds)} feeds...")
+        with multiprocessing.Pool(config.concurrency) as pool:
             for result in pool.imap(
-                download_feed, [my_feeds[key]["url"] for key in my_feeds]
+                download_feed, [my_feeds[key]["feed_url"] for key in my_feeds]
             ):
                 if not result:
                     continue
@@ -398,14 +388,13 @@ class FeedProcessor:
         self.report["feed_stats"] = {}
         feed_cache = self.download_feeds(my_feeds)
 
-        logging.info(
-            "Fixing up and extracting the data for the items in %s feeds...",
-            len(feed_cache),
+        logger.info(
+            f"Fixing up and extracting the data for the items in {len(feed_cache)} feeds..."
         )
         for key in feed_cache:
-            logging.debug("processing: %s", key)
+            logger.debug(f"processing: {key}")
             start_time = time.time()
-            with multiprocessing.Pool(config.CONCURRENCY) as pool:
+            with multiprocessing.Pool(config.concurrency) as pool:
                 for out_item in pool.imap(
                     partial(fixup_item, my_feed=my_feeds[key]),
                     feed_cache[key]["entries"][: my_feeds[key]["max_entries"]],
@@ -414,8 +403,8 @@ class FeedProcessor:
                         entries.append(out_item)
                     self.report["feed_stats"][key]["size_after_insert"] += 1
             end_time = time.time()
-            logging.debug(
-                "processed %s in %s ms", key, round((end_time - start_time) * 1000)
+            logger.debug(
+                f"processed {key} in {round((end_time - start_time) * 1000)} ms"
             )
         return entries
 
@@ -449,7 +438,7 @@ class FeedProcessor:
         return filtered_entries
 
     def fixup_entries(self, sorted_entries):
-        "this function tends to be used more for fixups that require the whole feed like dedupe"
+        """This function tends to be used more for fix-ups that require the whole feed like dedupe"""
         url_dedupe = {}
         out = []
         now_utc = datetime.now().replace(tzinfo=pytz.utc)
@@ -485,7 +474,7 @@ class FeedProcessor:
         return out
 
     def scrub_html(self, feed):
-        "Scrubbing HTML of all entries that will be written to feed"
+        """Scrubbing HTML of all entries that will be written to feed"""
         out = []
         for item in feed:
             for key in item:
@@ -510,7 +499,7 @@ class FeedProcessor:
             else:
                 by_category[item["category"]].append(item)
         for key in by_category:
-            with open("feed/category/%s.json" % (key), "w") as f:
+            with open("feed/category/%s.json" % key, "w") as f:
                 f.write(json.dumps(by_category[key]))
 
 
@@ -521,23 +510,27 @@ if __name__ == "__main__":
         category = sys.argv[1]
     else:
         category = "feed"
-    with open(f"{category}.json") as f:
+    with open(f"{config.output_path / category}.json") as f:
         feeds = json.loads(f.read())
-        fp.aggregate(feeds, f"feed/{category}.json-tmp")
-        shutil.copyfile(f"feed/{category}.json-tmp", f"feed/{category}.json")
-        if not config.NO_UPLOAD:
+        fp.aggregate(feeds, f"{config.output_feed_path / category}.json-tmp")
+        shutil.copyfile(
+            f"{config.output_feed_path / category}.json-tmp",
+            f"{config.output_feed_path / category}.json",
+        )
+
+        if not config.no_upload:
             upload_file(
-                f"feed/{category}.json",
-                config.PUB_S3_BUCKET,
-                f"brave-today/{category}{config.SOURCES_FILE.replace('sources', '')}.json",
+                config.output_feed_path / f"{category}.json",
+                config.pub_s3_bucket,
+                f"brave-today/{category}{str(config.sources_file).replace('sources', '')}.json",
             )
             # Temporarily upload also with incorrect filename as a stopgap for
             # https://github.com/brave/brave-browser/issues/20114
             # Can be removed once fixed in the brave-core client for all Desktop users.
             upload_file(
-                f"feed/{category}.json",
-                config.PUB_S3_BUCKET,
-                f"brave-today/{category}{config.SOURCES_FILE.replace('sources', '')}json",
+                config.output_feed_path / f"{category}.json",
+                config.pub_s3_bucket,
+                f"brave-today/{category}{str(config.sources_file).replace('sources', '')}json",
             )
-    with open("report.json", "w") as f:
+    with open(config.output_path / "report.json", "w") as f:
         f.write(json.dumps(fp.report))
