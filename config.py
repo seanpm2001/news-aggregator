@@ -73,8 +73,9 @@ class Configuration(BaseSettings):
         sentry_sdk.init(dsn=sentry_url, traces_sample_rate=0)
 
     @validator("img_cache_path")
-    def fix_enabled_format(cls, v: Path) -> None:
+    def fix_enabled_format(cls, v: Path) -> Path:
         v.mkdir(parents=True, exist_ok=True)
+        return v
 
 
 @lru_cache()

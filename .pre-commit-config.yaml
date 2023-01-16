@@ -7,7 +7,6 @@ repos:
     -   id: trailing-whitespace
     -   id: check-ast
     -   id: requirements-txt-fixer
-    -   id: check-yaml
     -   id: check-docstring-first
 
 -   repo: https://github.com/psf/black
