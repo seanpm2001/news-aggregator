@@ -129,13 +129,13 @@ def uri_validator(x):
 def get_favicons_lookup() -> Dict[Any, Any]:
     if not config.no_download:
         download_file(
-            f"{config.favicon_lookup_file}.json",
+            str(config.output_path / config.favicon_lookup_file),
             config.pub_s3_bucket,
-            f"{config.favicon_lookup_file}.json",
+            str(config.favicon_lookup_file),
         )
 
-    if Path(f"{config.favicon_lookup_file}.json").is_file():
-        with open(f"{config.favicon_lookup_file}.json") as f:
+    if Path(config.output_path / config.favicon_lookup_file).is_file():
+        with open(config.output_path / config.favicon_lookup_file) as f:
             favicons_lookup = orjson.loads(f.read())
             return favicons_lookup
     else:
@@ -145,13 +145,13 @@ def get_favicons_lookup() -> Dict[Any, Any]:
 def get_cover_infos_lookup() -> Dict[Any, Any]:
     if not config.no_download:
         download_file(
-            f"{config.cover_info_lookup_file}.json",
+            str(config.output_path / config.cover_info_lookup_file),
             config.pub_s3_bucket,
-            f"{config.cover_info_lookup_file}.json",
+            str(config.cover_info_lookup_file),
         )
 
-    if Path(f"{config.cover_info_lookup_file}.json").is_file():
-        with open(f"{config.cover_info_lookup_file}.json") as f:
+    if Path(config.output_path / config.cover_info_lookup_file).is_file():
+        with open(config.output_path / config.cover_info_lookup_file) as f:
             cover_infos_lookup = orjson.loads(f.read())
             return cover_infos_lookup
     else:

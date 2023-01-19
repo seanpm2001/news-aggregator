@@ -87,7 +87,7 @@ def main():
         upload_file(
             config.output_path / config.global_sources_file,
             config.pub_s3_bucket,
-            f"{config.global_sources_file}.json",
+            f"{config.global_sources_file}",
         )
 
 

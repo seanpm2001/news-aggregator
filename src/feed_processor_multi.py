@@ -180,9 +180,7 @@ def fixup_item(item, my_feed):  # noqa: C901
 
         if (urlparse(item["link"]).hostname or "") not in my_feed[
             "destination_domains"
-        ] and my_feed["destination_domains"] not in (
-            urlparse(item["link"]).hostname or ""
-        ):
+        ]:
             return None
 
     # filter the offensive articles
