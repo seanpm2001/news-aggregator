@@ -322,6 +322,9 @@ def check_images_in_item(item, feeds):  # noqa: C901
                 logger.error(f"Error parsing [{e}]: {item['url']}")
         except (UnicodeDecodeError, metadata_parser.NotParsable) as e:
             logger.error(f"Error parsing: {item['url']} -- {e}")
+        except Exception as e:
+            logger.error(f"Error parsing: {item['url']} -- {e}")
+
         if item["img"] is None:
             item["img"] = ""
 
