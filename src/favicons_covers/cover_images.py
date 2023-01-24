@@ -13,6 +13,7 @@ from typing import List, Optional, Tuple
 import requests
 import structlog
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 from orjson import orjson
 from PIL import Image
 
@@ -20,6 +21,8 @@ import image_processor_sandboxed
 from config import get_config
 from favicons_covers.color import color_length, hex_color, is_transparent
 from utils import get_all_domains, upload_file
+
+ua = UserAgent()
 
 # In seconds. Tested with 5s, but it's too low for a bunch of sites
 REQUEST_TIMEOUT = 15
@@ -39,7 +42,7 @@ CACHE_FOLDER.mkdir(parents=True, exist_ok=True)
 def get_soup(domain) -> Optional[BeautifulSoup]:
     try:
         html = requests.get(
-            domain, timeout=REQUEST_TIMEOUT, headers={"user-agent": config.user_agent}
+            domain, timeout=REQUEST_TIMEOUT, headers={"user-agent": ua.random}
         ).content.decode("utf-8")
         return BeautifulSoup(html, features="lxml")
     # Failed to download html
@@ -60,7 +63,7 @@ def get_manifest_icon_urls(site_url: str, soup: BeautifulSoup):
 
     try:
         manifest_response = requests.get(
-            url, timeout=REQUEST_TIMEOUT, headers={"user-agent": config.user_agent}
+            url, timeout=REQUEST_TIMEOUT, headers={"user-agent": ua.random}
         )
 
         if not manifest_response.ok:
@@ -118,7 +121,7 @@ def get_icon(icon_url: str) -> Image:
                 icon_url,
                 stream=True,
                 timeout=REQUEST_TIMEOUT,
-                headers={"user-agent": config.user_agent},
+                headers={"user-agent": ua.random},
             )
             if not response.ok:
                 return None

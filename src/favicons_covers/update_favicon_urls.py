@@ -10,11 +10,14 @@ from urllib.parse import urljoin
 import requests
 import structlog
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 from orjson import orjson
 
 import image_processor_sandboxed
 from config import get_config
 from utils import get_all_domains, upload_file, uri_validator
+
+ua = UserAgent()
 
 config = get_config()
 logger = structlog.getLogger(__name__)
@@ -34,7 +37,7 @@ def get_favicon(domain: str) -> Tuple[str, str]:
 
     try:
         response = requests.get(
-            domain, timeout=REQUEST_TIMEOUT, headers={"User-Agent": config.user_agent}
+            domain, timeout=REQUEST_TIMEOUT, headers={"User-Agent": ua.random}
         )
         soup = BeautifulSoup(response.text, features="lxml")
         icon = soup.find("link", rel="icon")

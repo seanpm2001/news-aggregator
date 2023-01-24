@@ -11,11 +11,14 @@ from io import BytesIO
 import boto3
 import botocore
 import requests
+from fake_useragent import UserAgent
 from wasmer import Instance, Module, Store, engine
 from wasmer_compiler_cranelift import Compiler
 
 from config import get_config
 from utils import upload_file
+
+ua = UserAgent()
 
 config = get_config()
 
@@ -72,7 +75,7 @@ def resize_and_pad_image(image_bytes, width, height, size, cache_path, quality=8
 def get_with_max_size(url, max_bytes=1000000):
     is_large = False
     response = requests.get(
-        url, stream=True, timeout=10, headers={"User-Agent": config.user_agent}
+        url, stream=True, timeout=10, headers={"User-Agent": ua.random}
     )
     response.raise_for_status()
     if (
