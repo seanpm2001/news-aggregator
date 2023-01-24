@@ -30,6 +30,7 @@ import structlog
 import unshortenit
 from better_profanity import profanity
 from bs4 import BeautifulSoup as BS
+from fake_useragent import UserAgent
 from pytz import timezone
 from requests.exceptions import (
     ConnectTimeout,
@@ -44,6 +45,8 @@ from config import get_config
 from src import image_processor_sandboxed
 from utils import upload_file
 
+ua = UserAgent()
+
 config = get_config()
 
 TZ = timezone("UTC")
@@ -51,7 +54,7 @@ REQUEST_TIMEOUT = 30
 
 im_proc = image_processor_sandboxed.ImageProcessor(config.private_s3_bucket)
 unshortener = unshortenit.UnshortenIt(
-    default_timeout=5, default_headers={"User-Agent": config.user_agent}
+    default_timeout=5, default_headers={"User-Agent": ua.random}
 )
 
 logging.getLogger("urllib3").setLevel(logging.ERROR)  # too many un-actionable warnings
@@ -72,7 +75,7 @@ def get_with_max_size(url, max_bytes):
     response = requests.get(
         url,
         timeout=REQUEST_TIMEOUT,
-        headers={"User-Agent": config.user_agent},
+        headers={"User-Agent": ua.random},
         stream=True,
     )
     response.raise_for_status()
@@ -311,7 +314,7 @@ def check_images_in_item(item, feeds):  # noqa: C901
                 url=item["url"],
                 requests_session=scrape_session,
                 support_malformed=True,
-                url_headers={"User-Agent": config.user_agent},
+                url_headers={"User-Agent": ua.random},
                 search_head_only=True,
                 strategy=["page", "meta", "og", "dc"],
                 requests_timeout=5,
@@ -345,7 +348,7 @@ scrape_session = requests_cache.CachedSession(
     expire_after=expire_after, backend="memory", timeout=5
 )
 scrape_session.cache.remove_expired_responses(datetime.utcnow() - expire_after)
-scrape_session.headers.update({"User-Agent": config.user_agent})
+scrape_session.headers.update({"User-Agent": ua.random})
 
 
 class FeedProcessor:
