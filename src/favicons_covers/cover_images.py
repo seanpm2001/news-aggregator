@@ -235,14 +235,11 @@ def process_cover_image(item):
             cache_fn = None
             logger.error(f"im_proc.cache_image failed [{e}]: {image_url}")
         if cache_fn:
-            if cache_fn.startswith("https"):
-                padded_image_url = cache_fn
-            else:
-                padded_image_url = (
-                    f"{config.pcdn_url_base}/brave-today/cover_images/{cache_fn}.pad"
-                )
+            padded_image_url = (
+                f"{config.pcdn_url_base}/brave-today/cover_images/{cache_fn}.pad"
+            )
         else:
-            padded_image_url = None
+            padded_image_url = image_url
 
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")

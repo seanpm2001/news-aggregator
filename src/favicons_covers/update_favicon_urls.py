@@ -77,14 +77,11 @@ def process_favicons_image(item):
             cache_fn = None
             logger.error(f"im_proc.cache_image failed [{e}]: {icon_url}")
         if cache_fn:
-            if cache_fn.startswith("https"):
-                padded_icon_url = cache_fn
-            else:
-                padded_icon_url = (
-                    f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}.pad"
-                )
+            padded_icon_url = (
+                f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}.pad"
+            )
         else:
-            padded_icon_url = None
+            padded_icon_url = icon_url
 
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")
