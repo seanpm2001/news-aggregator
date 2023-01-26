@@ -32,45 +32,37 @@ wasm_module = Module(wasm_store, open(config.wasm_thumbnail_path, "rb").read())
 
 
 def resize_and_pad_image(image_bytes, width, height, size, cache_path, quality=80):
-    pid = os.fork()
-    if pid == 0:
-        instance = Instance(wasm_module)
+    instance = Instance(wasm_module)
 
-        image_length = len(image_bytes)
-        input_pointer = instance.exports.allocate(image_length)
-        memory = instance.exports.memory.uint8_view(input_pointer)
-        memory[0:image_length] = image_bytes
+    image_length = len(image_bytes)
+    input_pointer = instance.exports.allocate(image_length)
+    memory = instance.exports.memory.uint8_view(input_pointer)
+    memory[0:image_length] = image_bytes
 
-        try:
-            output_pointer = instance.exports.resize_and_pad(
-                input_pointer, image_length, width, height, size, quality
-            )
-        except RuntimeError:
-            logger.info(
-                "resize_and_pad() hit a RuntimeError (length=%s, width=%s, height=%s, size=%s): %s.failed",
-                image_length,
-                width,
-                height,
-                size,
-                cache_path,
-            )
-            with open(str(cache_path) + ".failed", "wb+") as out_image:
-                out_image.write(image_bytes)
+    try:
+        output_pointer = instance.exports.resize_and_pad(
+            input_pointer, image_length, width, height, size, quality
+        )
+    except RuntimeError:
+        logger.info(
+            "resize_and_pad() hit a RuntimeError (length=%s, width=%s, height=%s, size=%s): %s.failed",
+            image_length,
+            width,
+            height,
+            size,
+            cache_path,
+        )
+        with open(str(cache_path) + ".failed", "wb+") as out_image:
+            out_image.write(image_bytes)
 
-            os._exit(1)
+        return False
 
-        memory = instance.exports.memory.uint8_view(output_pointer)
-        out_bytes = bytes(memory[:size])
-        with open(str(cache_path) + ".pad", "wb+") as out_image:
-            out_image.write(out_bytes)
+    memory = instance.exports.memory.uint8_view(output_pointer)
+    out_bytes = bytes(memory[:size])
+    with open(str(cache_path) + ".pad", "wb+") as out_image:
+        out_image.write(out_bytes)
 
-        os._exit(0)
-
-    pid, status = os.waitpid(pid, 0)
-
-    if status == 0:
-        return True
-    return False
+    return True
 
 
 def get_with_max_size(url, max_bytes=1000000):
@@ -142,7 +134,7 @@ class ImageProcessor:
 
         if self.s3_bucket and not config.no_upload:
             upload_file(
-                config.img_cache_path / cache_fn,
+                cache_path,
                 self.s3_bucket,
                 self.s3_path.format(cache_fn),
             )
