@@ -109,10 +109,9 @@ def process_image(item):
             if cache_fn.startswith("https"):
                 item["padded_img"] = cache_fn
             else:
-                item["padded_img"] = (
-                    "%s/brave-today/cache/%s" % (config.pcdn_url_base, cache_fn)
-                    + ".pad"
-                )
+                item[
+                    "padded_img"
+                ] = f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}"
         else:
             item["img"] = ""
             item["padded_img"] = ""

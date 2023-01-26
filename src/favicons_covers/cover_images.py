@@ -236,7 +236,7 @@ def process_cover_image(item):
             logger.error(f"im_proc.cache_image failed [{e}]: {image_url}")
         if cache_fn:
             padded_image_url = (
-                f"{config.pcdn_url_base}/brave-today/cover_images/{cache_fn}.pad"
+                f"{config.pcdn_url_base}/brave-today/cover_images/{cache_fn}"
             )
         else:
             padded_image_url = None

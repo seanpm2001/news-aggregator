@@ -59,7 +59,7 @@ def resize_and_pad_image(image_bytes, width, height, size, cache_path, quality=8
 
     memory = instance.exports.memory.uint8_view(output_pointer)
     out_bytes = bytes(memory[:size])
-    with open(str(cache_path) + ".pad", "wb+") as out_image:
+    with open(str(cache_path), "wb+") as out_image:
         out_image.write(out_bytes)
 
     return True

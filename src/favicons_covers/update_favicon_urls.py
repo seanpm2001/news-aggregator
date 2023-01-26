@@ -77,9 +77,7 @@ def process_favicons_image(item):
             cache_fn = None
             logger.error(f"im_proc.cache_image failed [{e}]: {icon_url}")
         if cache_fn:
-            padded_icon_url = (
-                f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}.pad"
-            )
+            padded_icon_url = f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}"
         else:
             padded_icon_url = None
 
