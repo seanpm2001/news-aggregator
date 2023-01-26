@@ -81,7 +81,7 @@ def process_favicons_image(item):
                 f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}.pad"
             )
         else:
-            padded_icon_url = icon_url
+            padded_icon_url = None
 
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")
