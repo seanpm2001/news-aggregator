@@ -92,7 +92,7 @@ def process_favicons_image(item):
 
 
 if __name__ == "__main__":
-    domains = list(set(get_all_domains()))
+    domains = list(set(get_all_domains()))[:10]
     logger.info(f"Processing {len(domains)} domains")
 
     favicons: List[Tuple[str, str]]
