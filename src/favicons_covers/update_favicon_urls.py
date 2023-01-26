@@ -86,6 +86,8 @@ def process_favicons_image(item):
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")
 
+    logger.info(f"The padded image of the {domain} is {padded_icon_url}")
+
     return domain, padded_icon_url
 
 

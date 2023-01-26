@@ -244,6 +244,10 @@ def process_cover_image(item):
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")
 
+    logger.info(
+        f"The padded image of the {domain} is {padded_image_url} with {background_color}"
+    )
+
     return domain, padded_image_url, background_color
 
 
