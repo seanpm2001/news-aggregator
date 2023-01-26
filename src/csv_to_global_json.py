@@ -29,7 +29,8 @@ publisher_include_keys = {
     "site_url": True,
     "feed_url": True,
     "favicon_url": True,
-    "cover_info": True,
+    "cover_url": True,
+    "background_color": True,
     "score": True,
     "destination_domains": True,
     "locales": True,
@@ -52,10 +53,12 @@ def main():
                         publisher.favicon_url = favicons_lookup.get(
                             publisher.site_url, None
                         )
-                        publisher.cover_info = cover_infos_lookup.get(
+                        cover_info = cover_infos_lookup.get(
                             publisher.site_url,
                             {"cover_url": None, "background_color": None},
                         )
+                        publisher.cover_url = cover_info.get("cover_url")
+                        publisher.background_color = cover_info.get("background_color")
 
                         locale_builder = LocaleModel(**data)
                         locale_builder.locale = locale
