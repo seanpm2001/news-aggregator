@@ -4,13 +4,12 @@
 # You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import hashlib
-import logging
 import os
-from io import BytesIO
 
 import boto3
 import botocore
 import requests
+import structlog
 from fake_useragent import UserAgent
 from wasmer import Instance, Module, Store, engine
 from wasmer_compiler_cranelift import Compiler
@@ -21,6 +20,8 @@ from utils import upload_file
 ua = UserAgent()
 
 config = get_config()
+
+logger = structlog.getLogger(__name__)
 
 boto_session = boto3.Session()
 s3_client = boto_session.client("s3")
@@ -45,7 +46,7 @@ def resize_and_pad_image(image_bytes, width, height, size, cache_path, quality=8
                 input_pointer, image_length, width, height, size, quality
             )
         except RuntimeError:
-            logging.warning(
+            logger.info(
                 "resize_and_pad() hit a RuntimeError (length=%s, width=%s, height=%s, size=%s): %s.failed",
                 image_length,
                 width,
@@ -74,24 +75,15 @@ def resize_and_pad_image(image_bytes, width, height, size, cache_path, quality=8
 
 def get_with_max_size(url, max_bytes=1000000):
     is_large = False
-    response = requests.get(
-        url, stream=True, timeout=10, headers={"User-Agent": ua.random}
-    )
+    response = requests.get(url, timeout=10, headers={"User-Agent": ua.random})
     response.raise_for_status()
     if (
         response.headers.get("Content-Length")
         and int(response.headers.get("Content-Length")) > max_bytes
     ):
         is_large = True
-    count = 0
-    content = BytesIO()
-    for chunk in response.iter_content(4096):
-        count += len(chunk)
-        content.write(chunk)
-        if count > max_bytes:
-            is_large = True
 
-    return content.getvalue(), is_large
+    return response.content, is_large
 
 
 class ImageProcessor:
@@ -104,11 +96,11 @@ class ImageProcessor:
 
     def cache_image(self, url):  # noqa: C901
         try:
-            content, is_large = get_with_max_size(url)  # 5mb max
+            content, is_large = get_with_max_size(url)  # 1mb max
             if not is_large and not self.force_upload:
                 return url
 
-            cache_fn = "%s.jpg" % (hashlib.sha256(url.encode("utf-8")).hexdigest())
+            cache_fn = f"{hashlib.sha256(url.encode('utf-8')).hexdigest()}.jpg"
             cache_path = config.img_cache_path / cache_fn
 
             # if we have it dont do it again
@@ -127,26 +119,25 @@ class ImageProcessor:
                 except botocore.exceptions.ClientError as e:
                     if e.response["Error"]["Code"] == "404":
                         exists = False
-                    else:
-                        return None  # should retry
+
                 if exists:
                     return cache_fn
 
-        except requests.exceptions.ReadTimeout:
+        except requests.exceptions.ReadTimeout as e:
+            logger.info(f"Failed to cache image {url} with {e}")
             return None
         except ValueError:
             return None  # skipping (image exceeds maximum size)
-        except requests.exceptions.SSLError:
+        except requests.exceptions.SSLError as e:
+            logger.info(f"Failed to cache image {url} with {e}")
             return None
         except requests.exceptions.HTTPError as e:
             if e.response.status_code not in (403, 429, 500, 502, 503):
-                logging.error(
-                    "Failed to get image [%s]: %s", e.response.status_code, url
-                )
+                logger.info("Failed to get image [%s]: %s", e.response.status_code, url)
             return None
 
         if not resize_and_pad_image(content, 1168, 657, 250000, cache_path):
-            logging.error("Failed to cache image %s", url)
+            logger.info(f"Failed to cache image {url}")
             return None
 
         if self.s3_bucket and not config.no_upload:
