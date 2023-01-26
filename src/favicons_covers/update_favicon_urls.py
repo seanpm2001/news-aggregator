@@ -77,9 +77,7 @@ def process_favicons_image(item):
             cache_fn = None
             logger.error(f"im_proc.cache_image failed [{e}]: {icon_url}")
         if cache_fn:
-            padded_icon_url = (
-                f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}.pad"
-            )
+            padded_icon_url = f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}"
         else:
             padded_icon_url = None
 
@@ -92,7 +90,7 @@ def process_favicons_image(item):
 
 
 if __name__ == "__main__":
-    domains = list(set(get_all_domains()))
+    domains = list(set(get_all_domains()))[:10]
     logger.info(f"Processing {len(domains)} domains")
 
     favicons: List[Tuple[str, str]]
