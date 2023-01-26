@@ -19,9 +19,8 @@ class PublisherBase(Model):
     site_url: HttpUrl = Field(alias="Domain")
     feed_url: HttpUrl = Field(alias="Feed")
     favicon_url: Optional[HttpUrl] = Field(default=None)
-    cover_info: Optional[dict] = Field(
-        default={"cover_url": Optional[HttpUrl], "background_color": Optional[str]}
-    )
+    cover_url: Optional[HttpUrl] = Field(default=None)
+    background_color: Optional[str] = Field(default=None)
     score: float = Field(default=0, alias="Score")
     destination_domains: list[str] = Field(alias="Destination Domains")
     original_feed: Optional[str] = Field(default=None, alias="Original_Feed")
