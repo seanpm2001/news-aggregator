@@ -31,7 +31,7 @@ config = get_config()
 logger = structlog.getLogger(__name__)
 im_proc = image_processor_sandboxed.ImageProcessor(
     config.private_s3_bucket,
-    s3_path="brave-today/cover_images/{}.pad",
+    s3_path="brave-today/cover_images/{}",
     force_upload=True,
 )
 

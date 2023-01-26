@@ -80,7 +80,7 @@ def get_with_max_size(url, max_bytes=1000000):
 
 class ImageProcessor:
     def __init__(
-        self, s3_bucket=None, s3_path="brave-today/cache/{}.pad", force_upload=False
+        self, s3_bucket=None, s3_path="brave-today/cache/{}", force_upload=False
     ):
         self.s3_bucket = s3_bucket
         self.s3_path = s3_path
