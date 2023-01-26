@@ -92,7 +92,7 @@ class ImageProcessor:
             if not is_large and not self.force_upload:
                 return url
 
-            cache_fn = f"{hashlib.sha256(url.encode('utf-8')).hexdigest()}.jpg"
+            cache_fn = f"{hashlib.sha256(url.encode('utf-8')).hexdigest()}.jpg.pad"
             cache_path = config.img_cache_path / cache_fn
 
             # if we have it dont do it again
