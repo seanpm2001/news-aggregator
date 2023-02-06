@@ -10,16 +10,19 @@ from urllib.parse import urljoin
 import requests
 import structlog
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 from orjson import orjson
 
 import image_processor_sandboxed
 from config import get_config
 from utils import get_all_domains, upload_file, uri_validator
 
+ua = UserAgent()
+
 config = get_config()
 logger = structlog.getLogger(__name__)
 im_proc = image_processor_sandboxed.ImageProcessor(
-    config.private_s3_bucket, s3_path="brave-today/favicons/{}.pad", force_upload=True
+    config.private_s3_bucket, s3_path="brave-today/favicons/{}", force_upload=True
 )
 
 # In seconds. Tested with 5s, but it's too low for a bunch of sites (I'm looking
@@ -34,7 +37,7 @@ def get_favicon(domain: str) -> Tuple[str, str]:
 
     try:
         response = requests.get(
-            domain, timeout=REQUEST_TIMEOUT, headers={"User-Agent": config.user_agent}
+            domain, timeout=REQUEST_TIMEOUT, headers={"User-Agent": ua.random}
         )
         soup = BeautifulSoup(response.text, features="lxml")
         icon = soup.find("link", rel="icon")
@@ -74,17 +77,14 @@ def process_favicons_image(item):
             cache_fn = None
             logger.error(f"im_proc.cache_image failed [{e}]: {icon_url}")
         if cache_fn:
-            if cache_fn.startswith("https"):
-                padded_icon_url = cache_fn
-            else:
-                padded_icon_url = (
-                    f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}.pad"
-                )
+            padded_icon_url = f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}"
         else:
             padded_icon_url = None
 
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")
+
+    logger.info(f"The padded image of the {domain} is {padded_icon_url}")
 
     return domain, padded_icon_url
 

@@ -19,9 +19,8 @@ class PublisherBase(Model):
     site_url: HttpUrl = Field(alias="Domain")
     feed_url: HttpUrl = Field(alias="Feed")
     favicon_url: Optional[HttpUrl] = Field(default=None)
-    cover_info: Optional[dict] = Field(
-        default={"cover_url": Optional[HttpUrl], "background_color": Optional[str]}
-    )
+    cover_url: Optional[HttpUrl] = Field(default=None)
+    background_color: Optional[str] = Field(default=None)
     score: float = Field(default=0, alias="Score")
     destination_domains: list[str] = Field(alias="Destination Domains")
     original_feed: Optional[str] = Field(default=None, alias="Original_Feed")
@@ -75,7 +74,7 @@ class PublisherBase(Model):
 
 
 class PublisherModel(PublisherBase):
-    channels: Optional[list[str]] = Field(default=None, alias="Channels")
+    channels: Optional[list[str]] = Field(default=[], alias="Channels")
     rank: Optional[int] = Field(default=None, alias="Rank")
 
     @validator("rank", pre=True, always=True)
@@ -84,12 +83,12 @@ class PublisherModel(PublisherBase):
 
     @validator("channels", pre=True)
     def fix_channels_format(cls, v: str) -> Optional[List[str]]:
-        return v.split(";") if v else None
+        return v.split(";") if v else []
 
 
 class LocaleModel(Model):
     locale: str = ""
-    channels: Optional[list[str]] = Field(default=None, alias="Channels")
+    channels: Optional[list[str]] = Field(default=[], alias="Channels")
     rank: Optional[int] = Field(default=None, alias="Rank")
 
     @validator("rank", pre=True, always=True)
@@ -98,7 +97,7 @@ class LocaleModel(Model):
 
     @validator("channels", pre=True)
     def fix_channels_format(cls, v: str) -> Optional[List[str]]:
-        return v.split(";") if v else None
+        return v.split(";") if v else []
 
 
 class PublisherGlobal(PublisherBase):

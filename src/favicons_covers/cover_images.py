@@ -13,6 +13,7 @@ from typing import List, Optional, Tuple
 import requests
 import structlog
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 from orjson import orjson
 from PIL import Image
 
@@ -21,6 +22,8 @@ from config import get_config
 from favicons_covers.color import color_length, hex_color, is_transparent
 from utils import get_all_domains, upload_file
 
+ua = UserAgent()
+
 # In seconds. Tested with 5s, but it's too low for a bunch of sites
 REQUEST_TIMEOUT = 15
 
@@ -28,7 +31,7 @@ config = get_config()
 logger = structlog.getLogger(__name__)
 im_proc = image_processor_sandboxed.ImageProcessor(
     config.private_s3_bucket,
-    s3_path="brave-today/cover_images/{}.pad",
+    s3_path="brave-today/cover_images/{}",
     force_upload=True,
 )
 
@@ -39,7 +42,7 @@ CACHE_FOLDER.mkdir(parents=True, exist_ok=True)
 def get_soup(domain) -> Optional[BeautifulSoup]:
     try:
         html = requests.get(
-            domain, timeout=REQUEST_TIMEOUT, headers={"user-agent": config.user_agent}
+            domain, timeout=REQUEST_TIMEOUT, headers={"user-agent": ua.random}
         ).content.decode("utf-8")
         return BeautifulSoup(html, features="lxml")
     # Failed to download html
@@ -60,7 +63,7 @@ def get_manifest_icon_urls(site_url: str, soup: BeautifulSoup):
 
     try:
         manifest_response = requests.get(
-            url, timeout=REQUEST_TIMEOUT, headers={"user-agent": config.user_agent}
+            url, timeout=REQUEST_TIMEOUT, headers={"user-agent": ua.random}
         )
 
         if not manifest_response.ok:
@@ -118,7 +121,7 @@ def get_icon(icon_url: str) -> Image:
                 icon_url,
                 stream=True,
                 timeout=REQUEST_TIMEOUT,
-                headers={"user-agent": config.user_agent},
+                headers={"user-agent": ua.random},
             )
             if not response.ok:
                 return None
@@ -232,17 +235,18 @@ def process_cover_image(item):
             cache_fn = None
             logger.error(f"im_proc.cache_image failed [{e}]: {image_url}")
         if cache_fn:
-            if cache_fn.startswith("https"):
-                padded_image_url = cache_fn
-            else:
-                padded_image_url = (
-                    f"{config.pcdn_url_base}/brave-today/cover_images/{cache_fn}.pad"
-                )
+            padded_image_url = (
+                f"{config.pcdn_url_base}/brave-today/cover_images/{cache_fn}"
+            )
         else:
             padded_image_url = None
 
     except ValueError as e:
         logger.info(f"Tuple unpacking error {e}")
+
+    logger.info(
+        f"The padded image of the {domain} is {padded_image_url} with {background_color}"
+    )
 
     return domain, padded_image_url, background_color
 
