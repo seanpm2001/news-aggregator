@@ -111,7 +111,7 @@ def process_image(item):
             else:
                 item[
                     "padded_img"
-                ] = f"{config.pcdn_url_base}/brave-today/favicons/{cache_fn}"
+                ] = f"{config.pcdn_url_base}/brave-today/cache/{cache_fn}"
         else:
             item["img"] = ""
             item["padded_img"] = ""
