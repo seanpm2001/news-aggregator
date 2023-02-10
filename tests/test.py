@@ -12,7 +12,6 @@ from config import get_config
 from src import feed_processor_multi
 
 config = get_config()
-fp = feed_processor_multi.FeedProcessor()
 
 
 def test_feed_processor_download():
@@ -21,9 +20,11 @@ def test_feed_processor_download():
 
 
 def test_feed_processor_aggregate():
-    with open(config.tests_dir / "test.json") as f:
-        feeds = json.loads(f.read())
-        fp.aggregate(feeds, config.output_feed_path / "test.json")
+    feeds = json.loads(open(config.tests_dir / "test.json").read())
+    fp = feed_processor_multi.FeedProcessor(
+        feeds, config.output_feed_path / "test.json"
+    )
+    fp.aggregate()
     assert os.stat(config.output_feed_path / "test.json").st_size != 0
 
     with open(config.output_feed_path / "test.json") as f:
@@ -36,7 +37,6 @@ def test_check_images():
     data = [feedparser.parse(config.tests_dir / "test.rss")["items"][0]]
     data[0]["img"] = data[0]["media_content"][0]["url"]
     data[0]["publisher_id"] = ""
-    fp = feed_processor_multi.FeedProcessor()
     fp.feeds[""] = {"og_images": False}
     assert fp.check_images(data)
 

@@ -24,9 +24,6 @@ from utils import get_all_domains, upload_file
 
 ua = UserAgent()
 
-# In seconds. Tested with 5s, but it's too low for a bunch of sites
-REQUEST_TIMEOUT = 15
-
 config = get_config()
 logger = structlog.getLogger(__name__)
 im_proc = image_processor_sandboxed.ImageProcessor(
@@ -42,7 +39,7 @@ CACHE_FOLDER.mkdir(parents=True, exist_ok=True)
 def get_soup(domain) -> Optional[BeautifulSoup]:
     try:
         html = requests.get(
-            domain, timeout=REQUEST_TIMEOUT, headers={"user-agent": ua.random}
+            domain, timeout=config.request_timeout, headers={"User-Agent": ua.random}
         ).content.decode("utf-8")
         return BeautifulSoup(html, features="lxml")
     # Failed to download html
@@ -63,7 +60,7 @@ def get_manifest_icon_urls(site_url: str, soup: BeautifulSoup):
 
     try:
         manifest_response = requests.get(
-            url, timeout=REQUEST_TIMEOUT, headers={"user-agent": ua.random}
+            url, timeout=config.request_timeout, headers={"User-Agent": ua.random}
         )
 
         if not manifest_response.ok:
@@ -120,8 +117,8 @@ def get_icon(icon_url: str) -> Image:
             response = requests.get(
                 icon_url,
                 stream=True,
-                timeout=REQUEST_TIMEOUT,
-                headers={"user-agent": ua.random},
+                timeout=config.request_timeout,
+                headers={"User-Agent": ua.random},
             )
             if not response.ok:
                 return None

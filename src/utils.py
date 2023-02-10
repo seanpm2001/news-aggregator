@@ -29,6 +29,10 @@ class InvalidS3Bucket(Exception):
     pass
 
 
+class ObjectNotFound(Exception):
+    pass
+
+
 def upload_file(file_name: Path, bucket: str, object_name: Optional[str] = None):
     if object_name is None:
         object_name = file_name
