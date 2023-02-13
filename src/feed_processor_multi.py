@@ -294,7 +294,6 @@ def process_articles(article, _publisher):  # noqa: C901
 
 
 def unshorten_url(out_article, _publisher):
-    # TODO Process only short urls
     unshortener = unshortenit.UnshortenIt(
         default_timeout=config.request_timeout,
         default_headers={"User-Agent": ua.random},
@@ -372,15 +371,10 @@ def check_images_in_item(article, _publishers):  # noqa: C901
 
 def scrub_html(feed: dict):
     """Scrubbing HTML of all entries that will be written to feed"""
-    out = []
     for key in feed.keys():
-        if feed[key]:
-            feed[key] = bleach.clean(feed[key], strip=True)
-            feed[key] = feed[key].replace(
-                "&amp;", "&"
-            )  # workaround limitation in bleach
-    out.append(feed)
-    return out
+        feed[key] = bleach.clean(feed[key], strip=True)
+        feed[key] = feed[key].replace("&amp;", "&")  # workaround limitation in bleach
+    return feed
 
 
 def score_entries(entries):
@@ -478,16 +472,12 @@ class FeedProcessor:
                 f"processed {key} in {round((end_time - start_time) * 1000)} ms"
             )
 
-            logger.info(f"Un-shorten the URL for {self.publishers[key]}")
-            with ThreadPool(config.thread_pool_size) as pool:
-                for result in pool.imap_unordered(
-                    partial(unshorten_url, _publisher=self.publishers[key]), raw_entries
-                ):
-                    if not result:
-                        continue
-                    entries.append(result)
-
-            raw_entries = []
+        logger.info(f"Un-shorten the URL of {len(raw_entries)}")
+        with ThreadPool(config.thread_pool_size) as pool:
+            for result in pool.imap_unordered(unshorten_url, raw_entries):
+                if not result:
+                    continue
+                entries.append(result)
 
         return entries
 
@@ -503,7 +493,7 @@ class FeedProcessor:
         logger.info(f"Scrubbing {len(fixed_entries)} items...")
         with ProcessPool(config.concurrency) as pool:
             for result in pool.imap_unordered(scrub_html, fixed_entries):
-                filtered_entries.extend(result)
+                filtered_entries.append(result)
         fixed_entries.clear()
 
         sorted_entries = list({d["url_hash"]: d for d in filtered_entries}.values())
