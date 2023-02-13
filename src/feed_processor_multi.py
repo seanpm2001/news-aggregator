@@ -293,7 +293,7 @@ def process_articles(article, _publisher):  # noqa: C901
     return out_article
 
 
-def unshorten_url(out_article, _publisher):
+def unshorten_url(out_article):
     unshortener = unshortenit.UnshortenIt(
         default_timeout=config.request_timeout,
         default_headers={"User-Agent": ua.random},
