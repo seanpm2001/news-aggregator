@@ -157,41 +157,24 @@ def get_article_img(article):  # noqa: C901
         img_url = article["urlToImage"]
 
     elif article.get("media_content"):
-        if len(article.get("media_content")) > 0 and all(
-            "url" in d for d in article.get("media_content")
-        ):
-            if all("width" in d for d in article.get("media_content")):
-                img_url = max(
-                    article["media_content"], key=lambda item: int(item["width"])
-                ).get("url")
-            elif all("height" in d for d in article.get("media_content")):
-                img_url = max(
-                    article.get("media_content"), key=lambda item: int(item["height"])
-                ).get("url")
-            else:
-                img_url = article.get("media_content")[0].get("url")
+        largest_width = 0
+        for content in article.get("media_content"):
+            if int(content.get("width") or 0) > largest_width:
+                largest_width = int(content.get("width"))
+                img_url = content.get("url")
 
     elif article.get("media_thumbnail"):
-        if len(article["media_thumbnail"]) > 0 and all(
-            "url" in d for d in article["media_thumbnail"]
-        ):
-            if all("width" in d for d in article["media_thumbnail"]):
-                img_url = max(
-                    article["media_thumbnail"], key=lambda item: int(item["width"])
-                ).get("url")
-            elif all("height" in d for d in article["media_thumbnail"]):
-                img_url = max(
-                    article["media_thumbnail"], key=lambda item: int(item["height"])
-                ).get("url")
-            else:
-                img_url = article["media_thumbnail"][0].get("url")
+        largest_width = 0
+        for content in article.get("media_thumbnail"):
+            if int(content.get("width") or 0) > largest_width:
+                largest_width = int(content.get("width"))
+                img_url = content.get("url")
 
     elif article.get("summary"):
         soup = BS(article["summary"], features="html.parser")
         image_tags = soup.find_all("img")
         for img_tag in image_tags:
             if "src" in img_tag.attrs:
-                # TODO: Check resolution of image
                 img_url = img_tag.get("src")
                 break
 
@@ -200,7 +183,6 @@ def get_article_img(article):  # noqa: C901
         image_tags = soup.find_all("img")
         for img_tag in image_tags:
             if "src" in img_tag.attrs:
-                # TODO: Check resolution of image
                 img_url = img_tag.get("src")
                 break
 
@@ -525,10 +507,6 @@ class FeedProcessor:
 
 
 if __name__ == "__main__":
-    st = time.time()
-    logger.info(
-        f"Using {config.concurrency} processes and {config.thread_pool_size} Threads"
-    )
     if len(sys.argv) > 1:
         category = sys.argv[1]
     else:
@@ -560,9 +538,3 @@ if __name__ == "__main__":
             )
     with open(config.output_path / "report.json", "w") as f:
         f.write(json.dumps(fp.report))
-
-    et = time.time()
-
-    # get the execution time
-    elapsed_time = et - st
-    print("Execution timeof fast feed_parser:", elapsed_time, "seconds")
