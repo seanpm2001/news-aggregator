@@ -11,6 +11,7 @@ import math
 import shutil
 import sys
 import time
+import warnings
 from collections import defaultdict
 from datetime import datetime, timedelta
 from functools import partial
@@ -54,6 +55,10 @@ logging.getLogger("urllib3").setLevel(logging.ERROR)  # too many un-actionable w
 logging.getLogger("metadata_parser").setLevel(
     logging.CRITICAL
 )  # hide NotParsableFetchError messages
+# disable the MarkupResemblesLocatorWarning
+warnings.filterwarnings(
+    "ignore", category=UserWarning, message=".*MarkupResemblesLocatorWarning.*"
+)
 
 logger = structlog.getLogger(__name__)
 
@@ -128,7 +133,12 @@ def parse_rss(downloaded_feed):
 
 
 def process_image(item):
-    if item["img"] != "":
+    if item["img"] is None or item["img"] == "":
+        item["img"] = ""
+        item["padded_img"] = ""
+        return item
+
+    else:
         try:
             cache_fn = im_proc.cache_image(item["img"])
         except Exception as e:
@@ -144,6 +154,7 @@ def process_image(item):
         else:
             item["img"] = ""
             item["padded_img"] = ""
+
     return item
 
 
