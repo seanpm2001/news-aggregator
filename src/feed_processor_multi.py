@@ -45,7 +45,7 @@ from config import get_config
 from src import image_processor_sandboxed
 from utils import upload_file
 
-ua = UserAgent()
+ua = UserAgent(browsers=["edge", "chrome", "firefox", "safari", "opera"])
 
 config = get_config()
 
