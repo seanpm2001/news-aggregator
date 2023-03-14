@@ -4,12 +4,16 @@
     "config:base"
   ],
   "schedule": [
-    "after 7 days"
+    "every 7 days"
   ],
   "baseBranches": [
     "master"
   ],
-  "ignoredPackages": [
-    "regex"
+  "packageRules": [
+    {
+      "excludePackageNames": [
+        "regex"
+      ]
+    }
   ]
 }
