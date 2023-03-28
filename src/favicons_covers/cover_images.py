@@ -22,7 +22,7 @@ from config import get_config
 from favicons_covers.color import color_length, hex_color, is_transparent
 from utils import get_all_domains, upload_file
 
-ua = UserAgent()
+ua = UserAgent(browsers=["edge", "chrome", "firefox", "safari", "opera"])
 
 config = get_config()
 logger = structlog.getLogger(__name__)
