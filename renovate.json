@@ -9,11 +9,17 @@
   "baseBranches": [
     "master"
   ],
+  "pre-commit": {
+    "enabled": true
+  },
   "packageRules": [
     {
-      "excludePackageNames": [
-        "regex"
-      ]
+      "packagePatterns": ["^regex$"],
+      "enabled": false
+    },
+    {
+      "matchPaths": ["requirements.dev.txt"],
+      "groupName": "devDependencies"
     }
   ]
 }
