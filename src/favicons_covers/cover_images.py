@@ -10,6 +10,7 @@ from multiprocessing import Pool
 from multiprocessing.pool import ThreadPool
 from typing import List, Optional, Tuple
 
+import metadata_parser
 import requests
 import structlog
 from bs4 import BeautifulSoup
@@ -215,6 +216,26 @@ def process_site(domain: str):
         return None
 
     image, image_url = result
+
+    if not image_url:
+        try:
+            page = metadata_parser.MetadataParser(
+                url=domain,
+                support_malformed=True,
+                url_headers={"User-Agent": ua.random},
+                search_head_only=True,
+                strategy=["page", "meta", "og", "dc"],
+                requests_timeout=config.request_timeout,
+            )
+            image_url = page.get_metadata_link("image")
+        except metadata_parser.NotParsableFetchError as e:
+            if e.code and e.code not in (403, 429, 500, 502, 503):
+                logger.error(f"Error parsing [{domain}]: {e}")
+        except (UnicodeDecodeError, metadata_parser.NotParsable) as e:
+            logger.error(f"Error parsing: {domain} -- {e}")
+        except Exception as e:
+            logger.error(f"Error parsing: {domain} -- {e}")
+
     background_color = get_background_color(image) if image is not None else None
 
     return domain, image_url, background_color
