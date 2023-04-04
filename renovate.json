@@ -12,17 +12,13 @@
   "pre-commit": {
     "enabled": true
   },
-  "packageManagers": [
-    "pip_requirements"
-  ],
+  "pip_requirements": {
+    "fileMatch": ["requirements.*"]
+  },
   "packageRules": [
     {
       "packagePatterns": ["^regex$"],
       "enabled": false
-    },
-    {
-      "matchPaths": ["requirements.dev.txt"],
-      "groupName": "devDependencies"
     }
   ]
 }
