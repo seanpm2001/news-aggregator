@@ -12,6 +12,9 @@
   "pre-commit": {
     "enabled": true
   },
+  "packageManagers": [
+    "pip_requirements"
+  ],
   "packageRules": [
     {
       "packagePatterns": ["^regex$"],
