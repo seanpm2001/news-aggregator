@@ -7,6 +7,7 @@ from multiprocessing.pool import Pool, ThreadPool
 from typing import List, Tuple
 from urllib.parse import urljoin
 
+import metadata_parser
 import requests
 import structlog
 from bs4 import BeautifulSoup
@@ -30,7 +31,7 @@ im_proc = image_processor_sandboxed.ImageProcessor(
 REQUEST_TIMEOUT = 15
 
 
-def get_favicon(domain: str) -> Tuple[str, str]:
+def get_favicon(domain: str) -> Tuple[str, str]:  # noqa: C901
     # Set the default favicon path. If we don't find something better, we'll use
     # this.
     icon_url = "/favicon.ico"
@@ -62,6 +63,25 @@ def get_favicon(domain: str) -> Tuple[str, str]:
 
     if not uri_validator(icon_url):
         icon_url = None
+
+    if not icon_url:
+        try:
+            page = metadata_parser.MetadataParser(
+                url=domain,
+                support_malformed=True,
+                url_headers={"User-Agent": ua.random},
+                search_head_only=True,
+                strategy=["page", "meta", "og", "dc"],
+                requests_timeout=config.request_timeout,
+            )
+            icon_url = page.get_metadata_link("image")
+        except metadata_parser.NotParsableFetchError as e:
+            if e.code and e.code not in (403, 429, 500, 502, 503):
+                logger.error(f"Error parsing [{domain}]: {e}")
+        except (UnicodeDecodeError, metadata_parser.NotParsable) as e:
+            logger.error(f"Error parsing: {domain} -- {e}")
+        except Exception as e:
+            logger.error(f"Error parsing: {domain} -- {e}")
 
     return domain, icon_url
 
