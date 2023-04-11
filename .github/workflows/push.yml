@@ -25,6 +25,8 @@ jobs:
           cache: 'pip' # caching pip dependencies
       - name: Install Python dependencies
         run: pip install -r requirements.dev.txt
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.0
       - name: Run tests
         run: CONCURRENCY=4 LOG_LEVEL=INFO make test
       - name: Configure AWS Credentials
