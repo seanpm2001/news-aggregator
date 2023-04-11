@@ -67,7 +67,7 @@ logging.info("Using %s processes for parallel tasks.", config.concurrency)
 logger = structlog.getLogger(__name__)
 
 # adding custom bad words for profanity check
-custom_badwords = ["vibrators", "hedonistic"]
+custom_badwords = ["vibrators"]
 profanity.add_censor_words(custom_badwords)
 
 
@@ -156,11 +156,6 @@ def download_feed(feed):  # noqa: C901
 
 def fixup_item(item, my_feed):  # noqa: C901
     out_item = {}
-    # Process Title of the article
-    if not item.get("title"):
-        # No title. Skip.
-        return None
-
     if "category" in my_feed:
         out_item["category"] = my_feed["category"]
     if "updated" in item:
@@ -196,7 +191,7 @@ def fixup_item(item, my_feed):  # noqa: C901
             return None
 
     # filter the offensive articles
-    if profanity.contains_profanity(item.get("title").lower()):
+    if profanity.contains_profanity(item.get("title")):
         return None
 
     try:
