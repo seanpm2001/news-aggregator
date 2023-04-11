@@ -63,7 +63,7 @@ warnings.filterwarnings(
 logger = structlog.getLogger(__name__)
 
 # adding custom bad words for profanity check
-custom_badwords = ["vibrators"]
+custom_badwords = ["vibrators", "hedonistic"]
 profanity.add_censor_words(custom_badwords)
 
 
@@ -211,7 +211,7 @@ def process_articles(article, _publisher):  # noqa: C901
     out_article["title"] = html.unescape(out_article["title"])
 
     # Filter the offensive articles
-    if profanity.contains_profanity(out_article.get("title")):
+    if profanity.contains_profanity(out_article.get("title").lower()):
         return None
 
     # Process article URL
