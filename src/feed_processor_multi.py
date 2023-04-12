@@ -145,7 +145,8 @@ def process_image(item):
             cache_fn = None
             logger.error(f"im_proc.cache_image failed [{e}]: {item['img']}")
         if cache_fn:
-            if cache_fn.startswith("https") or cache_fn.startswith("http"):
+            parsed_url = urlparse(cache_fn)
+            if parsed_url.scheme:
                 item["padded_img"] = cache_fn
             else:
                 item[
