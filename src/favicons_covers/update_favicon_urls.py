@@ -78,10 +78,21 @@ def get_favicon(domain: str) -> Tuple[str, str]:  # noqa: C901
         except metadata_parser.NotParsableFetchError as e:
             if e.code and e.code not in (403, 429, 500, 502, 503):
                 logger.error(f"Error parsing [{domain}]: {e}")
+            icon_url = None
         except (UnicodeDecodeError, metadata_parser.NotParsable) as e:
             logger.error(f"Error parsing: {domain} -- {e}")
+            icon_url = None
         except Exception as e:
             logger.error(f"Error parsing: {domain} -- {e}")
+            icon_url = None
+
+    if not icon_url:
+        icon_url = requests.get(
+            f"https://t0.gstatic.com/faviconV2?client=SOCIAL&"
+            f"type=FAVICON&fallback_opts=TYPE,SIZE,URL&url={domain}&size=64",
+            timeout=REQUEST_TIMEOUT,
+            headers={"User-Agent": ua.random},
+        )
 
     return domain, icon_url
 
