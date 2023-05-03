@@ -129,6 +129,8 @@ class ImageProcessor:
             logger.info(
                 f"Image is not already uploaded [{e.response.status_code}]: {url}"
             )
+        except Exception as e:
+            logger.info(f"Image is not already uploaded {url} with {e}")
 
         if not resize_and_pad_image(content, 1168, 657, 250000, cache_path):
             logger.info(f"Failed to cache image {url}")
