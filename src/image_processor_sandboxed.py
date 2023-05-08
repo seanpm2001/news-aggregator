@@ -16,7 +16,7 @@ from wasmer_compiler_cranelift import Compiler
 from config import get_config
 from utils import ObjectNotFound, upload_file
 
-ua = UserAgent()
+ua = UserAgent(browsers=["edge", "chrome", "firefox", "safari", "opera"])
 
 config = get_config()
 
@@ -92,6 +92,10 @@ class ImageProcessor:
         self.force_upload = force_upload
 
     def cache_image(self, url):  # noqa: C901
+        content = None
+        cache_path = None
+        cache_fn = None
+
         try:
             content, is_large = get_with_max_size(url)  # 1mb max
             if not is_large and not self.force_upload:
@@ -116,20 +120,17 @@ class ImageProcessor:
                     return cache_fn
 
         except requests.exceptions.ReadTimeout as e:
-            logger.info(f"Failed to cache image {url} with {e}")
-            return None
+            logger.info(f"Image is not already uploaded {url} with {e}")
         except ValueError as e:
-            logger.info(f"Failed to cache image {url} with {e}")
-            return None  # skipping (image exceeds maximum size)
+            logger.info(f"Image is not already uploaded {url} with {e}")
         except requests.exceptions.SSLError as e:
-            logger.info(f"Failed to cache image {url} with {e}")
-            return None
+            logger.info(f"Image is not already uploaded {url} with {e}")
         except requests.exceptions.HTTPError as e:
-            logger.info("Failed to get image [%s]: %s", e.response.status_code, url)
-            return None
+            logger.info(
+                f"Image is not already uploaded [{e.response.status_code}]: {url}"
+            )
         except Exception as e:
-            logger.info(f"Failed to cache image {url} with {e}")
-            return None
+            logger.info(f"Image is not already uploaded {url} with {e}")
 
         if not resize_and_pad_image(content, 1168, 657, 250000, cache_path):
             logger.info(f"Failed to cache image {url}")

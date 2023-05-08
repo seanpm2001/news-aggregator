@@ -9,11 +9,16 @@
   "baseBranches": [
     "master"
   ],
+  "pre-commit": {
+    "enabled": true
+  },
+  "pip_requirements": {
+    "fileMatch": ["requirements.*"]
+  },
   "packageRules": [
     {
-      "excludePackageNames": [
-        "regex"
-      ]
+      "packagePatterns": ["^regex$"],
+      "enabled": false
     }
   ]
 }

@@ -45,7 +45,7 @@ from config import get_config
 from src import image_processor_sandboxed
 from utils import upload_file
 
-ua = UserAgent()
+ua = UserAgent(browsers=["edge", "chrome", "firefox", "safari", "opera"])
 
 config = get_config()
 
@@ -63,7 +63,7 @@ warnings.filterwarnings(
 logger = structlog.getLogger(__name__)
 
 # adding custom bad words for profanity check
-custom_badwords = ["vibrators"]
+custom_badwords = ["vibrators", "hedonistic"]
 profanity.add_censor_words(custom_badwords)
 
 
@@ -145,7 +145,8 @@ def process_image(item):
             cache_fn = None
             logger.error(f"im_proc.cache_image failed [{e}]: {item['img']}")
         if cache_fn:
-            if cache_fn.startswith("https"):
+            parsed_url = urlparse(cache_fn)
+            if parsed_url.scheme:
                 item["padded_img"] = cache_fn
             else:
                 item[
@@ -211,7 +212,7 @@ def process_articles(article, _publisher):  # noqa: C901
     out_article["title"] = html.unescape(out_article["title"])
 
     # Filter the offensive articles
-    if profanity.contains_profanity(out_article.get("title")):
+    if profanity.contains_profanity(out_article.get("title").lower()):
         return None
 
     # Process article URL
