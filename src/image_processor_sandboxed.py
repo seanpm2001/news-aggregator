@@ -7,7 +7,6 @@ import hashlib
 import os
 
 import boto3
-import botocore
 import requests
 import structlog
 from fake_useragent import UserAgent
@@ -15,9 +14,9 @@ from wasmer import Instance, Module, Store, engine
 from wasmer_compiler_cranelift import Compiler
 
 from config import get_config
-from utils import upload_file
+from utils import ObjectNotFound, upload_file
 
-ua = UserAgent()
+ua = UserAgent(browsers=["edge", "chrome", "firefox", "safari", "opera"])
 
 config = get_config()
 
@@ -71,7 +70,9 @@ def resize_and_pad_image(image_bytes, width, height, size, cache_path, quality=8
 
 def get_with_max_size(url, max_bytes=1000000):
     is_large = False
-    response = requests.get(url, timeout=10, headers={"User-Agent": ua.random})
+    response = requests.get(
+        url, timeout=config.request_timeout, headers={"User-Agent": ua.random}
+    )
     response.raise_for_status()
     if (
         response.headers.get("Content-Length")
@@ -91,6 +92,10 @@ class ImageProcessor:
         self.force_upload = force_upload
 
     def cache_image(self, url):  # noqa: C901
+        content = None
+        cache_path = None
+        cache_fn = None
+
         try:
             content, is_large = get_with_max_size(url)  # 1mb max
             if not is_large and not self.force_upload:
@@ -99,38 +104,33 @@ class ImageProcessor:
             cache_fn = f"{hashlib.sha256(url.encode('utf-8')).hexdigest()}.jpg.pad"
             cache_path = config.img_cache_path / cache_fn
 
-            # if we have it dont do it again
+            # if we have it don't do it again
             if os.path.isfile(cache_path):
                 return cache_fn
             # also check if we have it on s3
             if not config.no_upload:
-                exists = False
                 try:
                     s3_resource.Object(
                         self.s3_bucket, self.s3_path.format(cache_fn)
                     ).load()
                     exists = True
-                except ValueError:
-                    exists = False  # make tests work
-                except botocore.exceptions.ClientError as e:
-                    if e.response["Error"]["Code"] == "404":
-                        exists = False
-
+                except ObjectNotFound:
+                    exists = False
                 if exists:
                     return cache_fn
 
         except requests.exceptions.ReadTimeout as e:
-            logger.info(f"Failed to cache image {url} with {e}")
-            return None
-        except ValueError:
-            return None  # skipping (image exceeds maximum size)
+            logger.info(f"Image is not already uploaded {url} with {e}")
+        except ValueError as e:
+            logger.info(f"Image is not already uploaded {url} with {e}")
         except requests.exceptions.SSLError as e:
-            logger.info(f"Failed to cache image {url} with {e}")
-            return None
+            logger.info(f"Image is not already uploaded {url} with {e}")
         except requests.exceptions.HTTPError as e:
-            if e.response.status_code not in (403, 429, 500, 502, 503):
-                logger.info("Failed to get image [%s]: %s", e.response.status_code, url)
-            return None
+            logger.info(
+                f"Image is not already uploaded [{e.response.status_code}]: {url}"
+            )
+        except Exception as e:
+            logger.info(f"Image is not already uploaded {url} with {e}")
 
         if not resize_and_pad_image(content, 1168, 657, 250000, cache_path):
             logger.info(f"Failed to cache image {url}")

@@ -11,17 +11,5 @@
       "feed_url": "https://brave.com/blog/index.xml",
       "creative_instance_id": "1",
       "destination_domains": "brave.com"
-   },
-   "https://offers.bravesoftware.com/index.xml":{
-      "category":"Brave",
-      "default":"On",
-      "publisher_name":"Brave Offers",
-      "content_type":"product",
-      "publisher_domain":"brave.com",
-      "publisher_id":"afbd69d1c1e0349b0d54164ddd329d4586cd1554d21a578e9da174ad07904946",
-      "max_entries":20,
-      "og_images":"",
-      "feed_url":"https://offers.bravesoftware.com/index.xml",
-      "creative_instance_id": "2"
    }
 }

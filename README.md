@@ -18,17 +18,17 @@ Required setup:
 
 To generate sources and list of feeds:
 
-    export PYTHONPATH=$PWD:$PWS/src
+    export PYTHONPATH=$PWD:$PWD/src
     NO_UPLOAD=1 NO_DOWNLOAD=1 python src/csv_to_json.py
 
 To generate browser feed and images:
 
-    export PYTHONPATH=$PWD:$PWS/src
+    export PYTHONPATH=$PWD:$PWD/src
     NO_UPLOAD=1 python src/feed_processor_multi.py feed
 
 To update the favicon urls:
 
-    export PYTHONPATH=$PWD:$PWS/src
+    export PYTHONPATH=$PWD:$PWD/src
     NO_UPLOAD=1 NO_DOWNLOAD=1 python src/favicons_covers/update_favicon_urls.py
 
 ### Committing code

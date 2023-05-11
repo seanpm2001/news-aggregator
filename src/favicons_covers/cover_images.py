@@ -10,21 +10,21 @@ from multiprocessing import Pool
 from multiprocessing.pool import ThreadPool
 from typing import List, Optional, Tuple
 
+import metadata_parser
 import requests
 import structlog
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from orjson import orjson
 from PIL import Image
+from requests import HTTPError
 
 import image_processor_sandboxed
 from config import get_config
 from favicons_covers.color import color_length, hex_color, is_transparent
 from utils import get_all_domains, upload_file
 
-ua = UserAgent()
-
-# In seconds. Tested with 5s, but it's too low for a bunch of sites
+ua = UserAgent(browsers=["edge", "chrome", "firefox", "safari", "opera"])
 REQUEST_TIMEOUT = 15
 
 config = get_config()
@@ -42,7 +42,7 @@ CACHE_FOLDER.mkdir(parents=True, exist_ok=True)
 def get_soup(domain) -> Optional[BeautifulSoup]:
     try:
         html = requests.get(
-            domain, timeout=REQUEST_TIMEOUT, headers={"user-agent": ua.random}
+            domain, timeout=config.request_timeout, headers={"User-Agent": ua.random}
         ).content.decode("utf-8")
         return BeautifulSoup(html, features="lxml")
     # Failed to download html
@@ -63,7 +63,7 @@ def get_manifest_icon_urls(site_url: str, soup: BeautifulSoup):
 
     try:
         manifest_response = requests.get(
-            url, timeout=REQUEST_TIMEOUT, headers={"user-agent": ua.random}
+            url, timeout=config.request_timeout, headers={"User-Agent": ua.random}
         )
 
         if not manifest_response.ok:
@@ -120,8 +120,8 @@ def get_icon(icon_url: str) -> Image:
             response = requests.get(
                 icon_url,
                 stream=True,
-                timeout=REQUEST_TIMEOUT,
-                headers={"user-agent": ua.random},
+                timeout=config.request_timeout,
+                headers={"User-Agent": ua.random},
             )
             if not response.ok:
                 return None
@@ -212,13 +212,56 @@ def get_background_color(image: Image):
     return hex_color(color)
 
 
-def process_site(domain: str):
-    result = get_best_image(domain)
-    if not result:
-        return None
+def process_site(domain: str):  # noqa: C901
+    image_url = None
+    background_color = None
 
-    image, image_url = result
-    background_color = get_background_color(image) if image is not None else None
+    try:
+        image_url = (
+            f"https://t0.gstatic.com/faviconV2?client=SOCIAL&"
+            f"type=FAVICON&fallback_opts=TYPE,SIZE,URL&url={domain}&size=256"
+        )
+        res = requests.get(
+            image_url, timeout=REQUEST_TIMEOUT, headers={"User-Agent": ua.random}
+        )
+
+        res.raise_for_status()
+
+        if res.status_code != 200:  # raise for status is not working with 3xx error
+            raise HTTPError(f"Http error with status code {res.status_code}")
+
+    except Exception as e:
+        logger.info(
+            f"Failed to download HTML for {domain} with exception {e}. Using default icon path {image_url}"
+        )
+
+    if image_url is None:
+        try:
+            page = metadata_parser.MetadataParser(
+                url=domain,
+                support_malformed=True,
+                url_headers={"User-Agent": ua.random},
+                search_head_only=True,
+                strategy=["page", "meta", "og", "dc"],
+                requests_timeout=config.request_timeout,
+            )
+            image_url = page.get_metadata_link("image")
+        except metadata_parser.NotParsableFetchError as e:
+            if e.code and e.code not in (403, 429, 500, 502, 503):
+                logger.error(f"Error parsing [{domain}]: {e}")
+        except (UnicodeDecodeError, metadata_parser.NotParsable) as e:
+            logger.error(f"Error parsing: {domain} -- {e}")
+        except Exception as e:
+            logger.error(f"Error parsing: {domain} -- {e}")
+
+    if image_url is None:
+        result = get_best_image(domain)
+        if not result:
+            return None
+
+        image, image_url = result
+
+        background_color = get_background_color(image) if image is not None else None
 
     return domain, image_url, background_color
 

@@ -7,17 +7,19 @@ from multiprocessing.pool import Pool, ThreadPool
 from typing import List, Tuple
 from urllib.parse import urljoin
 
+import metadata_parser
 import requests
 import structlog
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from orjson import orjson
+from requests import HTTPError
 
 import image_processor_sandboxed
 from config import get_config
 from utils import get_all_domains, upload_file, uri_validator
 
-ua = UserAgent()
+ua = UserAgent(browsers=["edge", "chrome", "firefox", "safari", "opera"])
 
 config = get_config()
 logger = structlog.getLogger(__name__)
@@ -30,38 +32,80 @@ im_proc = image_processor_sandboxed.ImageProcessor(
 REQUEST_TIMEOUT = 15
 
 
-def get_favicon(domain: str) -> Tuple[str, str]:
+def get_favicon(domain: str) -> Tuple[str, str]:  # noqa: C901
     # Set the default favicon path. If we don't find something better, we'll use
     # this.
-    icon_url = "/favicon.ico"
-
+    default_icon_url = "/favicon.ico"
+    icon_url = None
     try:
-        response = requests.get(
-            domain, timeout=REQUEST_TIMEOUT, headers={"User-Agent": ua.random}
+        icon_url = (
+            f"https://t0.gstatic.com/faviconV2?client=SOCIAL&"
+            f"type=FAVICON&fallback_opts=TYPE,SIZE,URL&url={domain}&size=64"
         )
-        soup = BeautifulSoup(response.text, features="lxml")
-        icon = soup.find("link", rel="icon")
+        res = requests.get(
+            icon_url, timeout=REQUEST_TIMEOUT, headers={"User-Agent": ua.random}
+        )
 
-        # Some sites may use an icon with a different rel.
-        if not icon:
-            icon = soup.find("link", rel="shortcut icon")
-        if not icon:
-            icon = soup.find("link", rel="apple-touch-icon")
+        res.raise_for_status()
 
-        # Check if the icon exists, and the href is not empty. Surprisingly,
-        # some sites actually do this (https://coinchoice.net/ + more).
-        if icon and icon.get("href"):
-            icon_url = icon.get("href")
+        if res.status_code != 200:  # raise for status is not working with 3xx error
+            raise HTTPError(f"Http error with status code {res.status_code}")
+
     except Exception as e:
         logger.info(
             f"Failed to download HTML for {domain} with exception {e}. Using default icon path {icon_url}"
         )
 
-    # We need to resolve relative urls, so we send something sensible to the client.
-    icon_url = urljoin(domain, icon_url)
+    if icon_url is None:
+        try:
+            page = metadata_parser.MetadataParser(
+                url=domain,
+                support_malformed=True,
+                url_headers={"User-Agent": ua.random},
+                search_head_only=True,
+                strategy=["page", "meta", "og", "dc"],
+                requests_timeout=config.request_timeout,
+            )
+            icon_url = page.get_metadata_link("image")
+        except metadata_parser.NotParsableFetchError as e:
+            if e.code and e.code not in (403, 429, 500, 502, 503):
+                logger.error(f"Error parsing [{domain}]: {e}")
+        except (UnicodeDecodeError, metadata_parser.NotParsable) as e:
+            logger.error(f"Error parsing: {domain} -- {e}")
+        except Exception as e:
+            logger.error(f"Error parsing: {domain} -- {e}")
 
-    if not uri_validator(icon_url):
-        icon_url = None
+    if icon_url is None:
+        try:
+            response = requests.get(
+                domain, timeout=REQUEST_TIMEOUT, headers={"User-Agent": ua.random}
+            )
+            soup = BeautifulSoup(response.text, features="lxml")
+            icon = soup.find("link", rel="icon")
+
+            # Some sites may use an icon with a different rel.
+            if not icon:
+                icon = soup.find("link", rel="shortcut icon")
+            if not icon:
+                icon = soup.find("link", rel="apple-touch-icon")
+
+            # Check if the icon exists, and the href is not empty. Surprisingly,
+            # some sites actually do this (https://coinchoice.net/ + more).
+            if icon and icon.get("href"):
+                icon_url = icon.get("href")
+        except Exception as e:
+            logger.info(
+                f"Failed to download HTML for {domain} with exception {e}. Using default icon path {icon_url}"
+            )
+
+        if icon_url is None:
+            # We need to resolve relative urls, so we send something sensible to the client.
+            icon_url = urljoin(domain, icon_url)
+        else:
+            icon_url = urljoin(domain, default_icon_url)
+
+        if not uri_validator(icon_url):
+            icon_url = None
 
     return domain, icon_url
 
