@@ -76,6 +76,8 @@ class Configuration(BaseSettings):
 
         sentry_sdk.init(dsn=sentry_url, traces_sample_rate=0)
 
+    prom_pushgateway_url: Optional[str] = None
+
     @validator("img_cache_path")
     def fix_enabled_format(cls, v: Path) -> Path:
         v.mkdir(parents=True, exist_ok=True)
