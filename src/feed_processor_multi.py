@@ -66,6 +66,8 @@ logger = structlog.getLogger(__name__)
 custom_badwords = ["vibrators", "hedonistic"]
 profanity.add_censor_words(custom_badwords)
 
+publisher_level_alert = []
+
 
 def get_with_max_size(url, max_bytes):
     response = requests.get(
@@ -112,7 +114,6 @@ def download_feed(feed, max_feed_size=10000000):
 
 
 def parse_rss(downloaded_feed):
-    publisher_level_alert = []
     report = {"size_after_get": None, "size_after_insert": 0}
     url, data = downloaded_feed["key"], downloaded_feed["feed_cache"]
 
@@ -121,22 +122,21 @@ def parse_rss(downloaded_feed):
         report["size_after_get"] = len(feed_cache["items"])
         if report["size_after_get"] == 0:
             logger.info(f"Read 0 articles from {url}")
-            publisher_level_alert.append({"url": url, "error": "Read 0 articles"})
+            push_metrics_to_pushgateway(
+                "publisher_articles_count", "Read 0 articles", 1, url
+            )
             return None  # workaround error serialization issue
     except Exception as e:
         logger.error(f"Feed failed to parse [{e}]: {url}")
-        publisher_level_alert.append({"url": url, "error": str(e)})
+        push_metrics_to_pushgateway(
+            "publisher_url_error_count", "Failed to parse feed", 1, url
+        )
         return None
 
     feed_cache = dict(feed_cache)  # bypass serialization issues
 
     if "bozo_exception" in feed_cache:
         del feed_cache["bozo_exception"]
-
-    for alert in publisher_level_alert:
-        push_metrics_to_pushgateway(
-            "publisher_level_alert", f"{alert['url'] -- alert ['error']}"
-        )
 
     return {"report": report, "feed_cache": feed_cache, "key": url}
 
