@@ -66,7 +66,9 @@ logger = structlog.getLogger(__name__)
 custom_badwords = ["vibrators", "hedonistic"]
 profanity.add_censor_words(custom_badwords)
 
-publisher_level_alert = []
+PUBLISHER_ARTICLE_ALERT_NAME = "publisher_articles_count"
+
+PUBLISHER_URL_ERR_ALERT_NAME = "publisher_url_error_count"
 
 
 def get_with_max_size(url, max_bytes):
@@ -123,13 +125,13 @@ def parse_rss(downloaded_feed):
         if report["size_after_get"] == 0:
             logger.info(f"Read 0 articles from {url}")
             push_metrics_to_pushgateway(
-                "publisher_articles_count", "Read 0 articles", 1, url
+                PUBLISHER_ARTICLE_ALERT_NAME, "Read 0 articles", 1, url
             )
             return None  # workaround error serialization issue
     except Exception as e:
         logger.error(f"Feed failed to parse [{e}]: {url}")
         push_metrics_to_pushgateway(
-            "publisher_url_error_count", "Failed to parse feed", 1, url
+            PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, url
         )
         return None
 
