@@ -171,7 +171,10 @@ def push_metrics_to_pushgateway(metric_name, metric_doc, metric_value, label_val
     try:
         # Create a Gauge metric
         metric = Gauge(
-            metric_name, metric_doc, registry=registry, labelnames=["news-aggregator"]
+            metric_name,
+            metric_doc,
+            registry=registry,
+            labelnames=["news_aggregator_backend"],
         )
 
         # Set the metric value

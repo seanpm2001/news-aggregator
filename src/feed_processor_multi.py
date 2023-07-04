@@ -104,20 +104,26 @@ def download_feed(feed, max_feed_size=10000000):
             data = get_with_max_size(feed_url, max_feed_size)
         except ReadTimeout as e:
             logger.error(f"Failed to get feed: {feed} ({e})")
+            prom_label = urlparse(feed).hostname
+            prom_label = prom_label.decode().replace(".", "_")
             push_metrics_to_pushgateway(
-                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, feed
+                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, prom_label
             )
             return None
         except HTTPError as e:
+            prom_label = urlparse(feed).hostname
+            prom_label = prom_label.decode().replace(".", "_")
             logger.error(f"Failed to get feed: {feed} ({e})")
             push_metrics_to_pushgateway(
-                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, feed
+                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, prom_label
             )
             return None
         except Exception as e:
             logger.error(f"Failed to get [{e}]: {feed}")
+            prom_label = urlparse(feed).hostname
+            prom_label = prom_label.decode().replace(".", "_")
             push_metrics_to_pushgateway(
-                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, feed
+                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, prom_label
             )
             return None
 
@@ -136,8 +142,10 @@ def parse_rss(downloaded_feed):
             raise Exception(f"Read 0 articles from {url}")
     except Exception as e:
         logger.error(f"Feed failed to parse [{e}]: {url}")
+        prom_label = urlparse(url).hostname
+        prom_label = prom_label.decode().replace(".", "_")
         push_metrics_to_pushgateway(
-            PUBLISHER_ARTICLE_ALERT_NAME, "Read 0 articles", 1, url
+            PUBLISHER_ARTICLE_ALERT_NAME, "Read 0 articles", 1, prom_label
         )
         return None
 
