@@ -170,7 +170,9 @@ def get_cover_infos_lookup() -> Dict[Any, Any]:
 def push_metrics_to_pushgateway(metric_name, metric_doc, metric_value, label_value):
     try:
         # Create a Gauge metric
-        metric = Gauge(metric_name, metric_doc, registry=registry)
+        metric = Gauge(
+            metric_name, metric_doc, registry=registry, labelnames=["news-aggregator"]
+        )
 
         # Set the metric value
         metric.labels(label_value).inc(metric_value)
