@@ -104,12 +104,21 @@ def download_feed(feed, max_feed_size=10000000):
             data = get_with_max_size(feed_url, max_feed_size)
         except ReadTimeout as e:
             logger.error(f"Failed to get feed: {feed} ({e})")
+            push_metrics_to_pushgateway(
+                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, feed
+            )
             return None
         except HTTPError as e:
             logger.error(f"Failed to get feed: {feed} ({e})")
+            push_metrics_to_pushgateway(
+                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, feed
+            )
             return None
         except Exception as e:
             logger.error(f"Failed to get [{e}]: {feed}")
+            push_metrics_to_pushgateway(
+                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, feed
+            )
             return None
 
     return {"feed_cache": data, "key": feed}
@@ -124,14 +133,11 @@ def parse_rss(downloaded_feed):
         report["size_after_get"] = len(feed_cache["items"])
         if report["size_after_get"] == 0:
             logger.info(f"Read 0 articles from {url}")
-            push_metrics_to_pushgateway(
-                PUBLISHER_ARTICLE_ALERT_NAME, "Read 0 articles", 1, url
-            )
-            return None  # workaround error serialization issue
+            raise Exception(f"Read 0 articles from {url}")
     except Exception as e:
         logger.error(f"Feed failed to parse [{e}]: {url}")
         push_metrics_to_pushgateway(
-            PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, url
+            PUBLISHER_ARTICLE_ALERT_NAME, "Read 0 articles", 1, url
         )
         return None
 
