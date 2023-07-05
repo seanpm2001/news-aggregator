@@ -14,7 +14,7 @@ import boto3
 import orjson
 import structlog
 from botocore.exceptions import ClientError
-from prometheus_client import CollectorRegistry, Gauge, multiprocess, push_to_gateway
+from prometheus_client import push_to_gateway
 
 import config
 
@@ -25,8 +25,6 @@ domain_url_fixer = re.compile(r"^https://(www\.)?|^")
 subst = "https://www."
 
 config = config.get_config()
-registry = CollectorRegistry()
-multiprocess.MultiProcessCollector(registry)
 
 logger = structlog.getLogger(__name__)
 
@@ -168,18 +166,10 @@ def get_cover_infos_lookup() -> Dict[Any, Any]:
         return {}
 
 
-def push_metrics_to_pushgateway(metric_name, metric_doc, metric_value, label_value):
+def push_metrics_to_pushgateway(metric, metric_value, label_value, registry):
     try:
-        # Create a Gauge metric
-        metric = Gauge(
-            metric_name,
-            metric_doc,
-            registry=registry,
-            labelnames=["news_aggregator_backend"],
-        )
-
         # Set the metric value
-        metric.labels(label_value).inc(metric_value)
+        metric.labels(url=label_value).inc(metric_value)
 
         # Push the metrics to the Pushgateway
         push_to_gateway(

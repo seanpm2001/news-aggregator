@@ -32,6 +32,7 @@ import unshortenit
 from better_profanity import profanity
 from bs4 import BeautifulSoup as BS
 from fake_useragent import UserAgent
+from prometheus_client import CollectorRegistry, Gauge, multiprocess
 from requests.exceptions import (
     ConnectTimeout,
     HTTPError,
@@ -66,9 +67,24 @@ logger = structlog.getLogger(__name__)
 custom_badwords = ["vibrators", "hedonistic"]
 profanity.add_censor_words(custom_badwords)
 
+registry = CollectorRegistry()
+multiprocess.MultiProcessCollector(registry)
+
 PUBLISHER_ARTICLE_ALERT_NAME = "publisher_articles_count"
+PUBLISHER_ARTICLE_ALERT_NAME_METRIC = Gauge(
+    PUBLISHER_ARTICLE_ALERT_NAME,
+    PUBLISHER_ARTICLE_ALERT_NAME,
+    registry=registry,
+    labelnames=["url"],
+)
 
 PUBLISHER_URL_ERR_ALERT_NAME = "publisher_url_error_count"
+PUBLISHER_URL_ERR_ALERT_NAME_METRIC = Gauge(
+    PUBLISHER_URL_ERR_ALERT_NAME,
+    PUBLISHER_URL_ERR_ALERT_NAME,
+    registry=registry,
+    labelnames=["url"],
+)
 
 
 def get_with_max_size(url, max_bytes):
@@ -107,7 +123,7 @@ def download_feed(feed, max_feed_size=10000000):
             prom_label = urlparse(feed).hostname
             prom_label = prom_label.replace(".", "_")
             push_metrics_to_pushgateway(
-                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, prom_label
+                PUBLISHER_URL_ERR_ALERT_NAME_METRIC, 1, prom_label, registry
             )
             return None
         except HTTPError as e:
@@ -115,7 +131,7 @@ def download_feed(feed, max_feed_size=10000000):
             prom_label = prom_label.replace(".", "_")
             logger.error(f"Failed to get feed: {feed} ({e})")
             push_metrics_to_pushgateway(
-                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, prom_label
+                PUBLISHER_URL_ERR_ALERT_NAME_METRIC, 1, prom_label, registry
             )
             return None
         except Exception as e:
@@ -123,7 +139,7 @@ def download_feed(feed, max_feed_size=10000000):
             prom_label = urlparse(feed).hostname
             prom_label = prom_label.replace(".", "_")
             push_metrics_to_pushgateway(
-                PUBLISHER_URL_ERR_ALERT_NAME, "Failed to parse feed", 1, prom_label
+                PUBLISHER_URL_ERR_ALERT_NAME_METRIC, 1, prom_label, registry
             )
             return None
 
@@ -145,7 +161,7 @@ def parse_rss(downloaded_feed):
         prom_label = urlparse(url).hostname
         prom_label = prom_label.replace(".", "_")
         push_metrics_to_pushgateway(
-            PUBLISHER_ARTICLE_ALERT_NAME, "Read 0 articles", 1, prom_label
+            PUBLISHER_ARTICLE_ALERT_NAME_METRIC, 1, prom_label, registry
         )
         return None
 
