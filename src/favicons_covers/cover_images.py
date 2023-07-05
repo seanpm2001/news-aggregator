@@ -111,7 +111,7 @@ def get_filename(url: str):
 
 def get_icon(icon_url: str) -> Image:
     filename = get_filename(icon_url)
-    if filename.endswith(".svg") or filename.endswith(".ico"):
+    if filename.endswith(".svg"):
         # Can't handle SVGs or favicons
         return None
 
@@ -230,6 +230,10 @@ def process_site(domain: str):  # noqa: C901
         if res.status_code != 200:  # raise for status is not working with 3xx error
             raise HTTPError(f"Http error with status code {res.status_code}")
 
+        image = get_icon(image_url)
+
+        background_color = get_background_color(image) if image is not None else None
+
     except Exception as e:
         logger.info(
             f"Failed to download HTML for {domain} with exception {e}. Using default icon path {image_url}"
@@ -296,6 +300,7 @@ def process_cover_image(item):
 
 if __name__ == "__main__":
     domains = list(set(get_all_domains()))
+    domains = ["https://www.cnn.com/"]
     logger.info(f"Processing {len(domains)} domains")
 
     cover_infos: List[Tuple[str, str, str]]
