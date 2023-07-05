@@ -77,7 +77,7 @@ class Configuration(BaseSettings):
 
     prom_pushgateway_url: Optional[str] = None
 
-    prometheus_multiproc_dir: str = Field(
+    prometheus_multiproc_dir: Path = Field(
         default=Path(__file__).parent / "output/prom_tmp"
     )
 
