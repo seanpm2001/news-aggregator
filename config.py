@@ -4,6 +4,7 @@
 # You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import logging
+import os
 from functools import lru_cache
 from multiprocessing import cpu_count
 from pathlib import Path
@@ -89,6 +90,7 @@ class Configuration(BaseSettings):
     @validator("prometheus_multiproc_dir")
     def create_prometheus_multiproc_dir(cls, v: Path) -> Path:
         v.mkdir(parents=True, exist_ok=True)
+        os.environ["PROMETHEUS_MULTIPROC_DIR"] = str(v)
         return v
 
 
