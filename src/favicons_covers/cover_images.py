@@ -300,7 +300,6 @@ def process_cover_image(item):
 
 if __name__ == "__main__":
     domains = list(set(get_all_domains()))
-    domains = ["https://www.cnn.com/"]
     logger.info(f"Processing {len(domains)} domains")
 
     cover_infos: List[Tuple[str, str, str]]
