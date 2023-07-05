@@ -77,7 +77,9 @@ class Configuration(BaseSettings):
 
     prom_pushgateway_url: Optional[str] = None
 
-    prometheus_multiproc_dir: str = output_path / "tmp"
+    prometheus_multiproc_dir: str = Field(
+        default=Path(__file__).parent / "output/prom_tmp"
+    )
 
     @validator("img_cache_path")
     def create_img_cache_path(cls, v: Path) -> Path:
