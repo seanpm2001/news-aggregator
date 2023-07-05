@@ -77,8 +77,15 @@ class Configuration(BaseSettings):
 
     prom_pushgateway_url: Optional[str] = None
 
+    prometheus_multiproc_dir: str = output_path / "tmp"
+
     @validator("img_cache_path")
-    def fix_enabled_format(cls, v: Path) -> Path:
+    def create_img_cache_path(cls, v: Path) -> Path:
+        v.mkdir(parents=True, exist_ok=True)
+        return v
+
+    @validator("prometheus_multiproc_dir")
+    def create_prometheus_multiproc_dir(cls, v: Path) -> Path:
         v.mkdir(parents=True, exist_ok=True)
         return v
 

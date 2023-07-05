@@ -14,7 +14,7 @@ import boto3
 import orjson
 import structlog
 from botocore.exceptions import ClientError
-from prometheus_client import CollectorRegistry, Gauge, push_to_gateway
+from prometheus_client import CollectorRegistry, Gauge, multiprocess, push_to_gateway
 
 import config
 
@@ -26,6 +26,7 @@ subst = "https://www."
 
 config = config.get_config()
 registry = CollectorRegistry()
+multiprocess.MultiProcessCollector(registry)
 
 logger = structlog.getLogger(__name__)
 
