@@ -264,19 +264,6 @@ def process_articles(article, _publisher):  # noqa: C901
     else:
         return None  # skip (can't find link)
 
-    # check if the article belongs to allowed domains
-    if out_article.get("link"):
-        if not _publisher.get("destination_domains"):
-            return None
-
-        try:
-            if (urlparse(out_article["link"]).hostname or "") not in _publisher[
-                "destination_domains"
-            ]:
-                return None
-        except Exception:
-            return None
-
     # Process published time
     if article.get("updated"):
         out_article["publish_time"] = dateparser.parse(article.get("updated"))
