@@ -82,6 +82,8 @@ class Configuration(BaseSettings):
         default=Path(__file__).parent / "output/prom_tmp"
     )
 
+    bs_pop_endpoint: Optional[str] = None
+
     @validator("img_cache_path")
     def create_img_cache_path(cls, v: Path) -> Path:
         v.mkdir(parents=True, exist_ok=True)

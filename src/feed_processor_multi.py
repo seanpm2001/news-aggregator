@@ -87,7 +87,7 @@ PUBLISHER_URL_ERR_ALERT_NAME_METRIC = Gauge(
 )
 
 
-def get_with_max_size(url, max_bytes):
+def get_with_max_size(url, max_bytes=10000000):
     response = requests.get(
         url,
         timeout=config.request_timeout,
@@ -334,7 +334,7 @@ def unshorten_url(out_article):
     ):
         return None  # skip (unshortener failed)
     except Exception as e:
-        logger.error(f"unshortener failed [{out_article['link']}]: {e}")
+        logger.error(f"unshortener failed [{out_article.get('link')}]: {e}")
         return None  # skip (unshortener failed)
 
     url_hash = hashlib.sha256(out_article["url"].encode("utf-8")).hexdigest()
@@ -343,6 +343,20 @@ def unshorten_url(out_article):
     encoded_url = urlunparse(parts)
     out_article["url"] = encoded_url
     out_article["url_hash"] = url_hash
+
+    return out_article
+
+
+def get_popularity_score(out_article):
+    try:
+        url = config.bs_pop_endpoint + out_article["url"]
+        response = get_with_max_size(url)
+        pop_response = orjson.loads(response)
+        pop_score = pop_response.get("popularity").get("popularity")
+        out_article["pop_score"] = pop_score
+    except Exception as e:
+        logger.error(f"Unable to get the pop score for {url} due to {e}")
+        out_article["pop_score"] = None
 
     return out_article
 
@@ -394,8 +408,14 @@ def check_images_in_item(article, _publishers):  # noqa: C901
 def scrub_html(feed: dict):
     """Scrubbing HTML of all entries that will be written to feed"""
     for key in feed.keys():
-        feed[key] = bleach.clean(feed[key], strip=True)
-        feed[key] = feed[key].replace("&amp;", "&")  # workaround limitation in bleach
+        try:
+            feed[key] = bleach.clean(feed[key], strip=True)
+            feed[key] = feed[key].replace(
+                "&amp;", "&"
+            )  # workaround limitation in bleach
+        except Exception:
+            feed[key] = feed[key]
+
     return feed
 
 
@@ -501,7 +521,16 @@ class FeedProcessor:
                     continue
                 entries.append(result)
 
-        return entries
+        raw_entries.clear()
+
+        logger.info(f"Getting the Popularity score the URL of {len(entries)}")
+        with ThreadPool(config.thread_pool_size) as pool:
+            for result in pool.imap_unordered(get_popularity_score, entries):
+                if not result:
+                    continue
+                raw_entries.append(result)
+
+        return raw_entries
 
     def aggregate_rss(self):
         entries = []
