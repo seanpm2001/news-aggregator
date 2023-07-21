@@ -348,8 +348,8 @@ def unshorten_url(out_article):
 
 
 def get_popularity_score(out_article):
+    url = config.bs_pop_endpoint + out_article["url"]
     try:
-        url = config.bs_pop_endpoint + out_article["url"]
         response = get_with_max_size(url)
         pop_response = orjson.loads(response)
         pop_score = pop_response.get("popularity").get("popularity")
