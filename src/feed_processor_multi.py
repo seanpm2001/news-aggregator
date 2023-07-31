@@ -353,7 +353,8 @@ def get_popularity_score(out_article):
         response = get_with_max_size(url)
         pop_response = orjson.loads(response)
         pop_score = pop_response.get("popularity").get("popularity")
-        out_article["pop_score"] = pop_score
+        pop_score_agg = sum(pop_score.values())
+        out_article["pop_score"] = pop_score_agg
     except Exception as e:
         logger.error(f"Unable to get the pop score for {url} due to {e}")
         out_article["pop_score"] = None
