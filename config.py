@@ -4,6 +4,7 @@
 # You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 import logging
+import os
 from functools import lru_cache
 from multiprocessing import cpu_count
 from pathlib import Path
@@ -17,7 +18,6 @@ logger = structlog.getLogger(__name__)
 
 
 class Configuration(BaseSettings):
-
     user_agent: str = (
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
@@ -76,9 +76,23 @@ class Configuration(BaseSettings):
 
         sentry_sdk.init(dsn=sentry_url, traces_sample_rate=0)
 
+    prom_pushgateway_url: Optional[str] = None
+
+    prometheus_multiproc_dir: Path = Field(
+        default=Path(__file__).parent / "output/prom_tmp"
+    )
+
+    bs_pop_endpoint: str = ""
+
     @validator("img_cache_path")
-    def fix_enabled_format(cls, v: Path) -> Path:
+    def create_img_cache_path(cls, v: Path) -> Path:
         v.mkdir(parents=True, exist_ok=True)
+        return v
+
+    @validator("prometheus_multiproc_dir")
+    def create_prometheus_multiproc_dir(cls, v: Path) -> Path:
+        v.mkdir(parents=True, exist_ok=True)
+        os.environ["PROMETHEUS_MULTIPROC_DIR"] = str(v)
         return v
 
 

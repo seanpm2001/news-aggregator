@@ -32,6 +32,7 @@ import unshortenit
 from better_profanity import profanity
 from bs4 import BeautifulSoup as BS
 from fake_useragent import UserAgent
+from prometheus_client import CollectorRegistry, Gauge, multiprocess
 from requests.exceptions import (
     ConnectTimeout,
     HTTPError,
@@ -43,7 +44,7 @@ from requests.exceptions import (
 
 from config import get_config
 from src import image_processor_sandboxed
-from utils import upload_file
+from utils import push_metrics_to_pushgateway, upload_file
 
 ua = UserAgent(browsers=["edge", "chrome", "firefox", "safari", "opera"])
 
@@ -66,8 +67,27 @@ logger = structlog.getLogger(__name__)
 custom_badwords = ["vibrators", "hedonistic"]
 profanity.add_censor_words(custom_badwords)
 
+registry = CollectorRegistry()
+multiprocess.MultiProcessCollector(registry)
 
-def get_with_max_size(url, max_bytes):
+PUBLISHER_ARTICLE_ALERT_NAME = "publisher_articles_count"
+PUBLISHER_ARTICLE_ALERT_NAME_METRIC = Gauge(
+    PUBLISHER_ARTICLE_ALERT_NAME,
+    PUBLISHER_ARTICLE_ALERT_NAME,
+    registry=registry,
+    labelnames=["url"],
+)
+
+PUBLISHER_URL_ERR_ALERT_NAME = "publisher_url_error_count"
+PUBLISHER_URL_ERR_ALERT_NAME_METRIC = Gauge(
+    PUBLISHER_URL_ERR_ALERT_NAME,
+    PUBLISHER_URL_ERR_ALERT_NAME,
+    registry=registry,
+    labelnames=["url"],
+)
+
+
+def get_with_max_size(url, max_bytes=10000000):
     response = requests.get(
         url,
         timeout=config.request_timeout,
@@ -100,12 +120,27 @@ def download_feed(feed, max_feed_size=10000000):
             data = get_with_max_size(feed_url, max_feed_size)
         except ReadTimeout as e:
             logger.error(f"Failed to get feed: {feed} ({e})")
+            prom_label = urlparse(feed).hostname
+            prom_label = prom_label.replace(".", "_")
+            push_metrics_to_pushgateway(
+                PUBLISHER_URL_ERR_ALERT_NAME_METRIC, 1, prom_label, registry
+            )
             return None
         except HTTPError as e:
+            prom_label = urlparse(feed).hostname
+            prom_label = prom_label.replace(".", "_")
             logger.error(f"Failed to get feed: {feed} ({e})")
+            push_metrics_to_pushgateway(
+                PUBLISHER_URL_ERR_ALERT_NAME_METRIC, 1, prom_label, registry
+            )
             return None
         except Exception as e:
             logger.error(f"Failed to get [{e}]: {feed}")
+            prom_label = urlparse(feed).hostname
+            prom_label = prom_label.replace(".", "_")
+            push_metrics_to_pushgateway(
+                PUBLISHER_URL_ERR_ALERT_NAME_METRIC, 1, prom_label, registry
+            )
             return None
 
     return {"feed_cache": data, "key": feed}
@@ -120,15 +155,21 @@ def parse_rss(downloaded_feed):
         report["size_after_get"] = len(feed_cache["items"])
         if report["size_after_get"] == 0:
             logger.info(f"Read 0 articles from {url}")
-            return None  # workaround error serialization issue
+            raise Exception(f"Read 0 articles from {url}")
     except Exception as e:
         logger.error(f"Feed failed to parse [{e}]: {url}")
+        prom_label = urlparse(url).hostname
+        prom_label = prom_label.replace(".", "_")
+        push_metrics_to_pushgateway(
+            PUBLISHER_ARTICLE_ALERT_NAME_METRIC, 1, prom_label, registry
+        )
         return None
 
     feed_cache = dict(feed_cache)  # bypass serialization issues
 
     if "bozo_exception" in feed_cache:
         del feed_cache["bozo_exception"]
+
     return {"report": report, "feed_cache": feed_cache, "key": url}
 
 
@@ -223,19 +264,6 @@ def process_articles(article, _publisher):  # noqa: C901
     else:
         return None  # skip (can't find link)
 
-    # check if the article belongs to allowed domains
-    if out_article.get("link"):
-        if not _publisher.get("destination_domains"):
-            return None
-
-        try:
-            if (urlparse(out_article["link"]).hostname or "") not in _publisher[
-                "destination_domains"
-            ]:
-                return None
-        except Exception:
-            return None
-
     # Process published time
     if article.get("updated"):
         out_article["publish_time"] = dateparser.parse(article.get("updated"))
@@ -306,7 +334,7 @@ def unshorten_url(out_article):
     ):
         return None  # skip (unshortener failed)
     except Exception as e:
-        logger.error(f"unshortener failed [{out_article['link']}]: {e}")
+        logger.error(f"unshortener failed [{out_article.get('link')}]: {e}")
         return None  # skip (unshortener failed)
 
     url_hash = hashlib.sha256(out_article["url"].encode("utf-8")).hexdigest()
@@ -315,6 +343,21 @@ def unshorten_url(out_article):
     encoded_url = urlunparse(parts)
     out_article["url"] = encoded_url
     out_article["url_hash"] = url_hash
+
+    return out_article
+
+
+def get_popularity_score(out_article):
+    url = config.bs_pop_endpoint + out_article["url"]
+    try:
+        response = get_with_max_size(url)
+        pop_response = orjson.loads(response)
+        pop_score = pop_response.get("popularity").get("popularity")
+        pop_score_agg = sum(pop_score.values())
+        out_article["pop_score"] = pop_score_agg
+    except Exception as e:
+        logger.error(f"Unable to get the pop score for {url} due to {e}")
+        out_article["pop_score"] = None
 
     return out_article
 
@@ -366,8 +409,14 @@ def check_images_in_item(article, _publishers):  # noqa: C901
 def scrub_html(feed: dict):
     """Scrubbing HTML of all entries that will be written to feed"""
     for key in feed.keys():
-        feed[key] = bleach.clean(feed[key], strip=True)
-        feed[key] = feed[key].replace("&amp;", "&")  # workaround limitation in bleach
+        try:
+            feed[key] = bleach.clean(feed[key], strip=True)
+            feed[key] = feed[key].replace(
+                "&amp;", "&"
+            )  # workaround limitation in bleach
+        except Exception:
+            feed[key] = feed[key]
+
     return feed
 
 
@@ -473,7 +522,16 @@ class FeedProcessor:
                     continue
                 entries.append(result)
 
-        return entries
+        raw_entries.clear()
+
+        logger.info(f"Getting the Popularity score the URL of {len(entries)}")
+        with ThreadPool(config.thread_pool_size) as pool:
+            for result in pool.imap_unordered(get_popularity_score, entries):
+                if not result:
+                    continue
+                raw_entries.append(result)
+
+        return raw_entries
 
     def aggregate_rss(self):
         entries = []

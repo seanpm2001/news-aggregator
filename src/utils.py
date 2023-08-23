@@ -12,7 +12,9 @@ from urllib.parse import urlparse
 
 import boto3
 import orjson
+import structlog
 from botocore.exceptions import ClientError
+from prometheus_client import push_to_gateway
 
 import config
 
@@ -23,6 +25,8 @@ domain_url_fixer = re.compile(r"^https://(www\.)?|^")
 subst = "https://www."
 
 config = config.get_config()
+
+logger = structlog.getLogger(__name__)
 
 
 class InvalidS3Bucket(Exception):
@@ -160,3 +164,17 @@ def get_cover_infos_lookup() -> Dict[Any, Any]:
             return cover_infos_lookup
     else:
         return {}
+
+
+def push_metrics_to_pushgateway(metric, metric_value, label_value, registry):
+    try:
+        # Set the metric value
+        metric.labels(url=label_value).inc(metric_value)
+
+        # Push the metrics to the Pushgateway
+        push_to_gateway(
+            config.prom_pushgateway_url, job="news-aggregator", registry=registry
+        )
+
+    except Exception as e:
+        logger.error(f"Failed to push metrics: {e}")
